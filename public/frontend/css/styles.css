@@ -3390,16 +3390,16 @@ body .header .nav-menu.nav-menu-social>li.add-listing a {
     color:#ffffff !important;
 }
 .nav-menu.nav-menu-social>li.add-listing.dark-bg {
-    background:#0b85ec;
+    background:#FFBE58;
 }
 .nav-menu.nav-menu-social>li.add-listing.dark-bg.light {
-    background:#0b85ec;
+    background:#FFBE58;
 }
 .nav-menu.nav-menu-social>li.add-listing.red-bg {
     background:#DC143C;
 }
 .nav-menu.nav-menu-social>li.add-listing.green-bg {
-    background:#0b85ec;
+    background:#FFBE58;
 }
 
 .nav-menu.nav-menu-social>li.add-listing.bg-whit{
@@ -3949,14 +3949,14 @@ h1.small{
     justify-content: center;
 }
 .btn--2{
-    background:#0b85ec !important;
+    background:#FFBE58 !important;
 }
 .radiup{
 	border-radius:4px 0px 0px 4px;
 }
 .banner-search .btn.bt-round.trans {
     background: #ffffff;
-    color: #0b85ec;
+    color: #FFBE58;
     font-size: 20px;
 }
 .select2-container--default .select2-search--dropdown .select2-search__field {
