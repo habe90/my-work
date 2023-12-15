@@ -13,21 +13,6 @@
                         <ul class="nav-menu">
                         
                             <li class="active"><a href="#">Home<span class="submenu-indicator"></span></a>
-                                <ul class="nav-dropdown nav-submenu">
-                                    <li><a href="#">Job Board<span class="submenu-indicator"></span></a>
-                                        <ul class="nav-dropdown nav-submenu">
-                                            <li><a href="/" class="active">Home</a></li>                                    													
-                                        </ul>
-                                    </li>
-                                    <li><a href="#">Freelancing<span class="submenu-indicator"></span></a>
-                                        <ul class="nav-dropdown nav-submenu">
-                                            <li><a href="freelancer-1.html">Freelancing 1</a></li>                                    
-                                            <li><a href="freelancer-2.html">Freelancing 2</a></li>  
-                                            <li><a href="freelancer-3.html">Freelancing 3</a></li> 
-                                            <li><a href="freelancer-4.html">Freelancing 4</a></li>  														
-                                        </ul>
-                                    </li>
-                                </ul>
                             </li>
                             
                             <li><a href="#">Explore<span class="submenu-indicator"></span></a>
