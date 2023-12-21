@@ -1,12 +1,14 @@
 <div>
     @switch($categoryName)
-        @case('voluptas')
+        @case('dolorem')
             @livewire('home-renovation-form')
             @break
 
         @case('Keramika')
             @livewire('keramika-form')
             @break
+
+            
 
         {{-- Nastavite sa ostalim kategorijama --}}
 

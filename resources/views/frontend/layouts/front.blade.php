@@ -26,9 +26,15 @@
         <!-- Main wrapper - style you can find in pages.scss -->
         <!-- ============================================================== -->
         <div id="main-wrapper">
+			@if(Request::is('/'))
 			@include('frontend.includes.navbar')
+		@else
+			@include('frontend.includes.navbar2')
+		@endif
             @yield('content')
 			@include('frontend.includes.footer')
+
+	
 
 		</div>
 		<!-- ============================================================== -->
