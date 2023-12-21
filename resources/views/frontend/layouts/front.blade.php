@@ -12,6 +12,8 @@
 
         <!-- Custom CSS -->
         <link href="{{asset('frontend/css/styles.css')}}" rel="stylesheet">
+	    @livewireStyles
+		 @stack('styles')
     </head>
 	
     <body class="blue-skin">
@@ -24,21 +26,9 @@
         <!-- Main wrapper - style you can find in pages.scss -->
         <!-- ============================================================== -->
         <div id="main-wrapper">
-		
+			@include('frontend.includes.navbar')
             @yield('content')
-
-
-
-
-
-
-
-
-            
-
-
-
-
+			@include('frontend.includes.footer')
 
 		</div>
 		<!-- ============================================================== -->
@@ -48,6 +38,9 @@
 		<!-- ============================================================== -->
 		<!-- All Jquery -->
 		<!-- ============================================================== -->
+		@livewireScripts
+		@yield('scripts')
+		@stack('scripts')
 		<script src="{{asset('frontend/js/jquery.min.js')}}"></script>
 		<script src="{{asset('frontend/js/popper.min.js')}}"></script>
 		<script src="{{asset('frontend/js/bootstrap.min.js')}}"></script>

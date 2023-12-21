@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\FrontendController;
+use App\Http\Controllers\PostServicesRequestController;
 use App\Http\Controllers\Admin\FaqCategoryController;
 use App\Http\Controllers\Admin\FaqQuestionController;
 use App\Http\Controllers\Admin\HomeController;
@@ -21,6 +22,13 @@ use Illuminate\Support\Facades\Route;
 
 Auth::routes();
 Route::get('/', [FrontendController::class, 'index']);
+
+Route::resource('categories', ServiceCategoryController::class);
+Route::resource('details', ServiceDetailController::class);
+Route::resource('posts', ServicePostController::class);
+
+Route::get('/post-service-request/{categoryId}', [PostServicesRequestController::class, 'index']);
+
 
 Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth']], function () {
     Route::get('/', [HomeController::class, 'index'])->name('home');
