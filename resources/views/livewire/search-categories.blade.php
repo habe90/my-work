@@ -3,7 +3,7 @@
         <div class="banner-search style-1 position-relative">
             <div class="input-group">
                 <input wire:model="searchTerm" wire:keydown.enter="performSearch" type="text"
-                    class="form-control lio-rad" placeholder="npr. Kućna renovacija">
+                    class="form-control lio-rad" placeholder="{{__('global.searchPlaceholder')}}">
                 <div class="input-group-append">
                     <button wire:click="$refresh" class="btn bt-round btn--2"><i class="ti-search"></i></button>
                 </div>

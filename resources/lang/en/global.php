@@ -1,6 +1,7 @@
 <?php
 
 return [
+    'searchPlaceholder'              => 'Exmpl. Home renovation ',
     'actions'                        => 'Actions',
     'add'                            => 'Add',
     'allRightsReserved'              => 'All rights reserved.',
