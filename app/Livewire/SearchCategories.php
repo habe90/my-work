@@ -73,6 +73,4 @@ class SearchCategories extends Component
         return redirect()->to('/post-service-request/' . $categoryId);
 
     }
-
-   
 }
