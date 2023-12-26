@@ -4,11 +4,10 @@
             @livewire('home-renovation-form')
             @break
 
-        @case('Keramika')
-            @livewire('keramika-form')
+        @case('Diagnosis of electrical systems')
+            @livewire('home-renovation-form')
             @break
 
-            
 
         {{-- Nastavite sa ostalim kategorijama --}}
 
