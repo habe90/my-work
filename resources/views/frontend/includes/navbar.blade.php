@@ -5,85 +5,22 @@
             <div class="col-lg-12 col-md-12 col-sm-12">
                 <nav id="navigation" class="navigation navigation-landscape">
                     <div class="nav-header">
-                        <a class="nav-brand static-logo" href="#"><img src="frontend/img/logo-my-work.png" class="logo" alt="" /></a>
-                        <a class="nav-brand fixed-logo" href="#"><img src="frontend/img/logo-my-work.png" class="logo" alt="" /></a>
+                        <a class="nav-brand static-logo" href="/"><img src="frontend/img/logo-my-work.png" class="logo" alt="" /></a>
+                        <a class="nav-brand fixed-logo" href="/"><img src="frontend/img/logo-my-work.png" class="logo" alt="" /></a>
                         <div class="nav-toggle"></div>
                     </div>
                     <div class="nav-menus-wrapper">
                         <ul class="nav-menu">
                         
-                            <li class="active"><a href="#">Home<span class="submenu-indicator"></span></a>
+                            <li class="active"><a href="/">Home<span class="submenu-indicator"></span></a>
                             </li>
                             
-                            <li><a href="#">Explore<span class="submenu-indicator"></span></a>
-                                <ul class="nav-dropdown nav-submenu">
-                                    <li><a href="#">Search Job<span class="submenu-indicator"></span></a>
-                                        <ul class="nav-dropdown nav-submenu">
-                                            <li><a href="search-job-grid-1.html">Search Job 01</a></li>                                    
-                                            <li><a href="search-job-grid-2.html">Search Job 02</a></li>  
-                                            <li><a href="search-job-grid-3.html">Search Job 03</a></li>  	
-                                            <li><a href="search-job-list-1.html">Search Job List 01</a></li>
-                                            <li><a href="search-job-list-2.html">Search Job List 02</a></li>
-                                        </ul>
-                                    </li>
-                                    <li><a href="#">Services<span class="submenu-indicator"></span></a>
-                                        <ul class="nav-dropdown nav-submenu">
-                                            <li><a href="search-services.html">Search Services 01</a></li>                                    
-                                            <li><a href="search-services-grid-2.html">Search Services 02</a></li>  
-                                            <li><a href="search-services-list.html">Search Services List</a></li>    														
-                                        </ul>
-                                    </li>
-                                    <li><a href="#">Freelancers<span class="submenu-indicator"></span></a>
-                                        <ul class="nav-dropdown nav-submenu">
-                                            <li><a href="search-freelancers.html">Search Freelancers</a></li>                                    
-                                            <li><a href="search-freelancers-grid-2.html">Search Freelancers 02</a></li>  
-                                            <li><a href="search-freelancers-list.html">Search Freelancers List</a></li>
-                                            <li><a href="freelancer-detail.html">Freelancer Detail</a></li>	
-                                        </ul>
-                                    </li>
-                                    <li><a href="#">Candidates<span class="submenu-indicator"></span></a>
-                                        <ul class="nav-dropdown nav-submenu">
-                                            <li><a href="search-candidates.html">Search Canddates</a></li>                                    
-                                            <li><a href="search-candidates-list.html">Search Candidates List</a></li>
-                                            <li><a href="candidate-detail.html">Candidate Detail</a></li>	
-                                        </ul>
-                                    </li>
-                                    <li><a href="#">Employers<span class="submenu-indicator"></span></a>
-                                        <ul class="nav-dropdown nav-submenu">
-                                            <li><a href="search-employers.html">Search Employers</a></li>                                    
-                                            <li><a href="search-employers-list.html">Search Employers List</a></li>
-                                            <li><a href="employer-detail.html">Employer Detail</a></li>	
-                                        </ul>
-                                    </li>
-                                    <li><a href="#">Detail Page<span class="submenu-indicator"></span></a>
-                                        <ul class="nav-dropdown nav-submenu">
-                                            <li><a href="job-detail-1.html">Job Detail 01</a></li>                                    
-                                            <li><a href="job-detail-2.html">Job Detail 02</a></li> 
-                                              <li><a href="job-detail-3.html">Job Detail 03</a></li> 
-                                            <li><a href="service-detail.html">Service Detail</a></li> 
-                                            <li><a href="project-detail.html">Project Detail</a></li> 														
-                                        </ul>
-                                    </li>
-                                    <li><a href="advance-search-1.html">Advance Search 01</a></li>
-                                    <li><a href="advance-search-2.html">Advance Search 02</a></li>
-                                </ul>
-                            </li>
+                            
                             
                             <li><a href="dashboard.html">Dashboard</a></li>
                             
-                            <li><a href="#">Pages<span class="submenu-indicator"></span></a>
-                                <ul class="nav-dropdown nav-submenu">
-                                    <li><a href="about-us.html">About Us</a></li> 
-                                    <li><a href="blog.html">Blogs Page</a></li>                                    
-                                    <li><a href="blog-detail.html">Blog Detail</a></li>                                     
-                                    <li><a href="pricing.html">Pricing</a></li>
-                                    <li><a href="contact.html">Contact Us</a></li>
-                                    <li><a href="components.html">Components</a></li>												
-                                    <li><a href="faq.html">FAQ's</a></li>
-                                    <li><a href="checkout.html">CheckOut</a></li>
-                                </ul>
-                            </li>
-                            
+                            <li><a href="dashboard.html">Dashboard</a></li>
+                    
                         </ul>
                         
                         <ul class="nav-menu nav-menu-social align-to-right">

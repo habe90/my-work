@@ -15,7 +15,7 @@
 								<div class="nav-menus-wrapper">
 									<ul class="nav-menu">
 									
-										<li class="active"><a href="#">Home<span class="submenu-indicator"></span></a>
+										<li class="active"><a href="/">Home<span class="submenu-indicator"></span></a>
 											<ul class="nav-dropdown nav-submenu">
 												<li><a href="#">Job Board<span class="submenu-indicator"></span></a>
 													<ul class="nav-dropdown nav-submenu">
