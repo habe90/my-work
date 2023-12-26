@@ -18,7 +18,7 @@
             
             <div class="col-lg-6 col-md-6 col-sm-12">
                 <div class="form-group">
-                    <label>Email<i class="req">*</i></label>
+                    <label>{{__('global.email')}}<i class="req">*</i></label>
                     <input type="text" class="form-control with-light">
                 </div>
             </div>
