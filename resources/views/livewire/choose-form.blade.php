@@ -12,6 +12,6 @@
         {{-- Nastavite sa ostalim kategorijama --}}
 
         @default
-            <p>Nema formulara za odabranu kategoriju.</p>
+            <p>{{ __('global.noForm') }}</p>
     @endswitch
 </div>

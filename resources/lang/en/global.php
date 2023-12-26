@@ -3,6 +3,7 @@
 return [
     'searchPlaceholder'              => 'Exmpl. Home renovation ',
     'actions'                        => 'Actions',
+    'noForm'                         => 'There is no formula for the selected category.',
     'add'                            => 'Add',
     'allRightsReserved'              => 'All rights reserved.',
     'areYouSure'                     => 'Are you sure?',
