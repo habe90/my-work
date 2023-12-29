@@ -90,7 +90,7 @@
                             $fields = [];
                         }
                     @endphp
-                    @include('admin.forms.attrform', $fields)
+                    @include('admin.attrform', $fields)
 
                 </div>
             </div>
