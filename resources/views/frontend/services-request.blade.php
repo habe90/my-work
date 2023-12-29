@@ -6,8 +6,8 @@
         <div class="row">
             <div class="col-lg-12 col-md-12">
                 
-                <h2 class="ipt-title">Checkout Page</h2>
-                <span class="ipn-subtitle">Billing & Payment Page</span>
+                <h2 class="ipt-title">Post Services</h2>
+                <span class="ipn-subtitle">Services Request</span>
                 
             </div>
         </div>

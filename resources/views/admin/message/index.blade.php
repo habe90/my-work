@@ -1,13 +1,17 @@
 @extends('layouts.admin')
 @section('content')
-<div class="row">
-    <div class="flex flex-wrap">
-        <div class="w-full pt-6 lg:w-64 lg:pt-0">
+<div class="animate__animated p-6" :class="[$store.app.animation]">
+    <div x-data="mailbox">
+        <div class="relative flex h-full gap-5 sm:h-[calc(100vh_-_150px)]">
+          <div class="overlay absolute z-[5] hidden h-full w-full rounded-md bg-black/60" :class="{'!block xl:!hidden' : isShowMailMenu}" @click="isShowMailMenu = !isShowMailMenu"></div>
+
+          <div class="panel dark:gray-50 absolute z-10 hidden h-full w-[250px] max-w-full flex-none space-y-3 overflow-hidden p-4 ltr:rounded-r-none rtl:rounded-l-none xl:relative xl:block xl:h-auto ltr:xl:rounded-r-md rtl:xl:rounded-l-md" :class="{'!block' : isShowMailMenu}">
             @include('admin.message.nav-messages')
         </div>
 
-        <div class="w-1 flex-grow lg:pl-4">
-            <div class="card bg-white">
+        <div class="panel h-full flex-1 overflow-auto p-0">
+            <div  class="flex h-full flex-col">
+                
                 <div class="card-header border-b border-blueGray-200">
                     <div class="card-header-container">
                         <h6 class="card-title">
@@ -70,6 +74,7 @@
                 <div class="card-body"></div>
             </div>
         </div>
+    </div>
     </div>
 </div>
 @endsection

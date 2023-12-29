@@ -1,10 +1,9 @@
 <?php
 
-use App\Http\Controllers\FrontendController;
-use App\Http\Controllers\PostServicesRequestController;
 use App\Http\Controllers\Admin\FaqCategoryController;
 use App\Http\Controllers\Admin\FaqQuestionController;
 use App\Http\Controllers\Admin\HomeController;
+use App\Http\Controllers\Admin\FormController;
 use App\Http\Controllers\Admin\MessageController;
 use App\Http\Controllers\Admin\PermissionController;
 use App\Http\Controllers\Admin\RoleController;
@@ -17,8 +16,10 @@ use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Auth\UserProfileController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\FrontendController;
+use App\Http\Controllers\PostServicesRequestController;
 
-
+// Route::redirect('/', '/login');
 
 Auth::routes();
 Route::get('/', [FrontendController::class, 'index']);
@@ -28,7 +29,6 @@ Route::resource('details', ServiceDetailController::class);
 Route::resource('posts', ServicePostController::class);
 
 Route::get('/post-service-request/{categoryId}', [PostServicesRequestController::class, 'index']);
-
 
 Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth']], function () {
     Route::get('/', [HomeController::class, 'index'])->name('home');
@@ -65,6 +65,16 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth']], 
     // Task Calendar
     Route::resource('task-calendars', TaskCalendarController::class, ['except' => ['store', 'update', 'destroy', 'create', 'edit', 'show']]);
 
+    // Content Category
+    Route::resource('content-categories', ContentCategoryController::class, ['except' => ['store', 'update', 'destroy']]);
+
+    // Content Tag
+    Route::resource('content-tags', ContentTagController::class, ['except' => ['store', 'update', 'destroy']]);
+    
+    // Content Page
+    Route::post('content-pages/media', [ContentPageController::class, 'storeMedia'])->name('content-pages.storeMedia');
+    Route::resource('content-pages', ContentPageController::class, ['except' => ['store', 'update', 'destroy']]);
+
     // Messages
     Route::get('messages', [MessageController::class, 'index'])->name('messages.index');
     Route::post('messages', [MessageController::class, 'store'])->name('messages.store');
@@ -74,6 +84,17 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth']], 
     Route::get('messages/{conversation}', [MessageController::class, 'show'])->name('messages.show');
     Route::post('messages/{conversation}', [MessageController::class, 'update'])->name('messages.update');
     Route::post('messages/{conversation}/destroy', [MessageController::class, 'destroy'])->name('messages.destroy');
+
+    Route::resource('forms', FormController::class)->names('superadmin.forms');
+    Route::get('fields/get-attr/{id}', [FormController::class, 'getAttr'])->name('superadmin.getAttr');
+    Route::post('fields/update_order', [FormController::class, 'updateFormFieldsOrder'])->name('superadmin.update_order');
+    Route::post('fields/fieldsdata/update', [FormController::class, 'updateFormFieldsData'])->name('superadmin.updateFormFieldsData');
+    Route::post('form/loadmyform', [FormController::class, 'loadMyForm'])->name('form.getMyForm');
+    Route::post('form/insert-data/', [FormController::class, 'insertData'])->name('form.insertData');
+    Route::delete('form/fields/destroy/', [FormController::class, 'destroyFormFields'])->name('form.fields.destroy');
+    Route::delete('form/destroy/', [FormController::class, 'destroyForm'])->name('form.destroy');
+    Route::get('form/copy/{id}', [FormController::class, 'formCopy'])->name('superadmin.formCopy');
+    
 });
 
 Route::group(['prefix' => 'profile', 'as' => 'profile.', 'middleware' => ['auth']], function () {

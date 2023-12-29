@@ -1,10 +1,6 @@
-<div>
-    <h6 class="text-blueGray-400 text-sm mt-3 mb-6 font-bold uppercase">
-        {{ __('global.update') }} {{ __('global.login_password') }}
-    </h6>
 
-    <div class="flex flex-wrap">
-        <form wire:submit.prevent="updatePassword" class="w-full">
+        <form wire:submit.prevent="updatePassword" class="rounded-md border border-[#ebedf2] bg-white p-4 dark:border-[#191e3a] dark:bg-[#0e1726]">
+            <h6 class="mb-5 text-lg font-bold">{{ __('global.update') }} {{ __('global.login_password') }}</h6>
             <div class="form-group px-4">
                 <label class="form-label" for="current_password">{{ __('global.current_password') }}</label>
                 <input class="form-control" id="current_password" type="password" wire:model.defer="state.current_password" autocomplete="current-password">
@@ -37,5 +33,3 @@
 
             </div>
         </form>
-    </div>
-</div>

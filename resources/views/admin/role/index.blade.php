@@ -1,23 +1,18 @@
 @extends('layouts.admin')
 @section('content')
-<div class="row">
-    <div class="card bg-white">
-        <div class="card-header border-b border-blueGray-200">
-            <div class="card-header-container">
-                <h6 class="card-title">
-                    {{ trans('cruds.role.title_singular') }}
-                    {{ trans('global.list') }}
-                </h6>
-
-                @can('role_create')
-                    <a class="btn btn-indigo" href="{{ route('admin.roles.create') }}">
-                        {{ trans('global.add') }} {{ trans('cruds.role.title_singular') }}
-                    </a>
-                @endcan
+    <div class="animate__animated p-6" :class="[$store.app.animation]">
+        <div x-data="exportTable">
+                <div class="panel flex items-center overflow-x-auto whitespace-nowrap p-3 text-primary">
+                    @can('role_create')
+                        <a class="btn bg-primary text-white" href="{{ route('admin.roles.create') }}">
+                            {{ trans('global.add') }} {{ trans('cruds.role.title_singular') }}
+                        </a>
+                    @endcan
+                </div>
+                <div class="panel mt-6">
+                @livewire('role.index')
             </div>
-        </div>
-        @livewire('role.index')
 
+        </div>
     </div>
-</div>
 @endsection

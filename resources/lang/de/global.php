@@ -1,9 +1,7 @@
 <?php
 
 return [
-    'searchPlaceholder'              => 'Z.B. Hausrenovierung',
     'actions'                        => 'Aktionen',
-    'noForm'                         => 'Für die ausgewählte Kategorie gibt es keine Formel.',
     'add'                            => 'Hinzufügen',
     'allRightsReserved'              => 'Alle Rechte vorbehalten.',
     'areYouSure'                     => 'Sind Sie sich sicher?',
