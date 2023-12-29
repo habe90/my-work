@@ -8,7 +8,7 @@
         </div>
         <div class="flex justify-end pb-4">
             <div>
-                <a class="mb-1 mt-1 me-1 modal-with-zoom-anim ws-normal btn btn-primary getMyFormModal"
+               <a class="cursor-pointer first-letter:mb-1 mt-1 me-1 modal-with-zoom-anim ws-normal btn btn-primary getMyFormModal"
                     data-title="{{ __('global.add_field') }}" data-url="{{ route('admin.form.getMyForm') }}"
                     data-form-name="{{ encrypt('Form fields') }}" data-id="{{ encrypt('0') }}">
                     {{ __('global.add_field') }}
@@ -140,7 +140,19 @@
         });    
     </script>
     <script>
-     
+     function openModal() {
+        $('#modal').removeClass('hidden');
+    }
+
+    function closeModal() {
+        $('#modal').addClass('hidden');
+    }
+
+    $(document).ready(function() {
+        // Initially hide the modal
+        closeModal();
+
+        // Open modal on button click
         $(document).on('click', '.getMyFormModal', function(e) {
             e.preventDefault();
 
@@ -161,26 +173,12 @@
                     type: 'POST',
                     data: dataString,
                     success: function(response) {
-                        //Open modal
-                        $.magnificPopup.open({
-                            items: {
-                                src: '#modal'
-                            },
-                            type: 'inline',
-                            fixedContentPos: false,
-                            fixedBgPos: true,
-                            overflowY: 'auto',
-                            closeBtnInside: true,
-                            preloader: false,
-                            midClick: true,
-                            removalDelay: 300,
-                            mainClass: 'my-mfp-zoom-in',
-                            modal: false
-                        });
-
                         // set modal content
                         $("#modalTitle").html(modalTitle);
                         $("#modalBody").html(response);
+
+                        // Open modal
+                        openModal();
                     },
                     error: function(xhr) {
                         toastr.error(from_not_found);
@@ -188,9 +186,9 @@
                 });
             } else {
                 toastr.error(undefined_form_url);
-
             }
         });
+    });
     </script>
 
 @endsection
