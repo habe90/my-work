@@ -2,8 +2,10 @@
 
 namespace App\Http\Livewire;
 
-use Livewire\Component;
+use App\Http\Controllers\Admin\FormController;
 use App\Models\ServiceCategory;
+use Illuminate\Http\Request;
+use Livewire\Component;
 
 class ChooseForm extends Component
 {
@@ -18,10 +20,19 @@ class ChooseForm extends Component
     {
         $category = ServiceCategory::findOrFail($this->categoryId);
 
-        // Ovde možete dodati logiku za odabir odgovarajućeg view-a
-        // na osnovu imena ili druge karakteristike kategorije
+        $formName = $category->name;  // Ime kategorije odgovara imenu forme
+       
+        // Kreirajte Request objekt za učitavanje forme
+        $request = new Request([
+            'recordID' => encrypt($this->categoryId),  // ID kategorije se koristi ovdje
+            'formName' => encrypt($formName),  // Ime forme se šifrira i šalje
+        ]);
+
+        // Učitajte formu koristeći FormController
+        $dynamicForm = (new FormController)->loadMyForm($request);
 
         return view('livewire.choose-form', [
+            'dynamicForm' => $dynamicForm,
             'categoryName' => $category->name,
         ]);
     }
