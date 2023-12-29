@@ -7,8 +7,12 @@
             <h4 class="mt-2 text-lg text-gray-600">{{ $form->name }} #ID: {{ $form->id }}</h4>
         </div>
         <div class="flex justify-end pb-4">
-            <div x-data="{ open: false }">
-                <button type="button" class="btn btn-secondary" @click="open = true">Open Modal</button>
+            <div>
+                <a class="mb-1 mt-1 me-1 modal-with-zoom-anim ws-normal btn btn-primary getMyFormModal"
+                    data-title="{{ __('global.add_field') }}" data-url="{{ route('admin.form.getMyForm') }}"
+                    data-form-name="{{ encrypt('Form fields') }}" data-id="{{ encrypt('0') }}">
+                    {{ __('global.add_field') }}
+                </a>
             </div>
         </div>
     </header>
@@ -135,41 +139,58 @@
             @endif
         });    
     </script>
-  <script>
-    $(document).on('click', '.getMyFormModal', function(e) {
-    e.preventDefault(); 
+    <script>
+     
+        $(document).on('click', '.getMyFormModal', function(e) {
+            e.preventDefault();
 
-    var url = $(this).data('url');
-    var modalTitle = $(this).data('title');
-    var dataString = {
-        recordID: $(this).data('id'), 
-        formName: $(this).data('form-name'), 
-        modalForm: 'yes'
-    };
+            var url = $(this).data('url');
+            var modalTitle = $(this).data('title');
+            var dataString = {
+                recordID: $(this).data('id'),
+                formName: $(this).data('form-name'),
+                modalForm: 'yes'
+            };
 
-    if(url){
-        $.ajax({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            },
-            url: url,
-            type: 'POST',
-            data: dataString,
-            success: function(response) {
-                // Postavite sadržaj modala
-                $('#modalBody').html(response);
-                // Otvorite modal koristeći Alpine.js
-                document.querySelector('[x-data]').__x.$data.open = true;
-            },
-            error: function(xhr) {
-                toastr.error('Forma nije pronađena.');
+            if (url) {
+                $.ajax({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    url: url,
+                    type: 'POST',
+                    data: dataString,
+                    success: function(response) {
+                        //Open modal
+                        $.magnificPopup.open({
+                            items: {
+                                src: '#modal'
+                            },
+                            type: 'inline',
+                            fixedContentPos: false,
+                            fixedBgPos: true,
+                            overflowY: 'auto',
+                            closeBtnInside: true,
+                            preloader: false,
+                            midClick: true,
+                            removalDelay: 300,
+                            mainClass: 'my-mfp-zoom-in',
+                            modal: false
+                        });
+
+                        // set modal content
+                        $("#modalTitle").html(modalTitle);
+                        $("#modalBody").html(response);
+                    },
+                    error: function(xhr) {
+                        toastr.error(from_not_found);
+                    }
+                });
+            } else {
+                toastr.error(undefined_form_url);
+
             }
         });
-    } else {
-        toastr.error('URL forme nije definisan.');
-    }
-});
+    </script>
 
-  </script>
-    
 @endsection
