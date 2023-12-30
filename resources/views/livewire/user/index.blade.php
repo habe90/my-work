@@ -1,50 +1,23 @@
-<div>
+<div class="dataTable-wrapper dataTable-loading no-footer sortable searchable fixed-columns">
     {{-- Kreiranje 2 reda i kolonu radi estetike --}}
-    <div class="card-controls sm:flex sm:items-center mb-3">
-        <div class="sm:flex-1 sm:flex sm:items-start flex-col">
+    <div class="dataTable-top">
 
-            <!-- Prvi Red -->
-            <div class="flex items-start flex-row my-3 mx-3">
-                <!-- Kolona 1 u redu 1 -->
-                <div class="flex-initial mr-3">
-                    <span class="ml-3">Per Page: </span>
-                    <select wire:model="perPage" class="form-select ml-2">
-                        @foreach ($paginationOptions as $value)
-                            <option class="font-normal" value="{{ $value }}">{{ $value }}</option>
-                        @endforeach
-                    </select>
-                </div>
-                <!-- Kolona 2 u redu 1 -->
-                <div class="sm:flex-1 sm:text-right flex-initial">
-                    <span class="block">Search: </span>
-                    <input type="text" wire:model.debounce.300ms="search" class="form-input w-52 border-black p-2" />
-                </div>
 
-            </div>
+        @can('role_delete')
+            <button class="btn btn-rose ml-3 disabled:opacity-50 disabled:cursor-not-allowed" type="button"
+                wire:click="confirm('deleteSelected')" wire:loading.attr="disabled"
+                {{ $this->selectedCount ? '' : 'disabled' }}>
+                {{ __('Delete Selected') }}
+            </button>
+        @endcan
 
-            <!-- Drugi red -->
-            <div class="flex items-start flex-row mb-4 mx-3">
-                <!-- Kolona 1 u redu 2 -->
-                <div class="flex-initial mr-3">
-                    @can('permission_delete')
-                        <button class="btn btn-rose disabled:opacity-50 disabled:cursor-not-allowed" type="button"
-                            wire:click="confirm('deleteSelected')" wire:loading.attr="disabled"
-                            {{ $this->selectedCount ? '' : 'disabled' }}>
-                            {{ __('Delete Selected') }}
-                        </button>
-                    @endcan
-                </div>
-                <!--Kolona 2 u redu 2 -->
-                <div class="flex items-center space-x-2 flex-initial">
-                    @if (file_exists(app_path('Http/Livewire/ExcelExport.php')))
-                        <livewire:excel-export model="Permission" format="csv" />
-                        <livewire:excel-export model="Permission" format="xlsx" />
-                        <livewire:excel-export model="Permission" format="pdf" />
-                    @endif
-                </div>
-            </div>
+        <div class="dataTable-search">
+            Search:
+            <input type="text" wire:model.debounce.300ms="search" class="dataTable-input" />
         </div>
+
     </div>
+
     <div wire:loading.delay>
         Loading...
     </div>
@@ -178,6 +151,16 @@
                 </p>
             @endif
             {{ $users->links() }}
+        </div>
+    </div>
+    <div class="dataTable-bottom">
+        <div class="dataTable-dropdown">
+            Per page:
+            <select wire:model="perPage" class="dataTable-selector">
+                @foreach ($paginationOptions as $value)
+                    <option value="{{ $value }}">{{ $value }}</option>
+                @endforeach
+            </select>
         </div>
     </div>
 </div>

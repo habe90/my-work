@@ -9,15 +9,6 @@
                 {{ __('Delete Selected') }}
             </button>
         @endcan
-        <div class="md:absolute md:top-5 ltr:md:left-5 rtl:md:right-5">
-            <div class="mb-5 flex flex-wrap items-center ">
-                @if (file_exists(app_path('Http/Livewire/ExcelExport.php')))
-                    <livewire:excel-export model="Role" format="csv" />
-                    <livewire:excel-export model="Role" format="xlsx" />
-                    <livewire:excel-export model="Role" format="pdf" />
-                @endif
-            </div>
-        </div>
 
         <div class="dataTable-search">
             Search:
