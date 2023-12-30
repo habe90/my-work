@@ -140,56 +140,6 @@
             @endif
         });    
     </script>
-    <script>
-     function openModal() {
-        $('#modal').removeClass('hidden');
-    }
-
-    function closeModal() {
-        $('#modal').addClass('hidden');
-    }
-
-    $(document).ready(function() {
-        // Initially hide the modal
-        closeModal();
-
-        // Open modal on button click
-        $(document).on('click', '.getMyFormModal', function(e) {
-            e.preventDefault();
-
-            var url = $(this).data('url');
-            var modalTitle = $(this).data('title');
-            var dataString = {
-                recordID: $(this).data('id'),
-                formName: $(this).data('form-name'),
-                modalForm: 'yes'
-            };
-
-            if (url) {
-                $.ajax({
-                    headers: {
-                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                    },
-                    url: url,
-                    type: 'POST',
-                    data: dataString,
-                    success: function(response) {
-                        // set modal content
-                        $("#modalTitle").html(modalTitle);
-                        $("#modalBody").html(response);
-
-                        // Open modal
-                        openModal();
-                    },
-                    error: function(xhr) {
-                        toastr.error(from_not_found);
-                    }
-                });
-            } else {
-                toastr.error(undefined_form_url);
-            }
-        });
-    });
-    </script>
+    
 
 @endsection

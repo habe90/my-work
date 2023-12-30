@@ -30,7 +30,7 @@
                                     Delete
                                 </button>
                                 <a 
-                                class="btn btn-primary gap-2"
+                                class="btn btn-primary gap-2 getMyFormModal"
                                 data-title="{{ __('global.add_form') }}"
                                 data-url="{{ route('admin.form.getMyForm') }}"
                                 data-form-name="{{ encrypt('Form') }}"

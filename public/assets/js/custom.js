@@ -234,3 +234,49 @@
 
 
 
+$(document).on('click', '.getMyFormModal', function(e) {
+    e.preventDefault(); 
+
+    var url = $(this).data('url');
+    var modalTitle = $(this).data('title');
+    var dataString = {recordID: $(this).data('id'), formName: $(this).data('form-name'), modalForm: 'yes'};
+
+    if(url){
+        $.ajax({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') 
+            },
+            url: url,
+            type: 'POST',
+            data: dataString,
+            success: function(response) {
+                //Open modal
+                $.magnificPopup.open({
+                    items: {
+                        src: '#magnificPopupModal'
+                    },
+                    type: 'inline',
+                    fixedContentPos: false,
+                    fixedBgPos: true,
+                    overflowY: 'auto',
+                    closeBtnInside: true,
+                    preloader: false,
+                    midClick: true,
+                    removalDelay: 300,
+                    mainClass: 'my-mfp-zoom-in',
+                    modal: false
+                });
+                
+                // set modal content
+                $("#modalTitle").html( modalTitle );
+                $("#modalBody").html( response );
+            },
+            error: function(xhr) {
+                toastr.error(from_not_found);
+            }
+        });
+    } else {
+        toastr.error(undefined_form_url);
+        
+    }
+});
