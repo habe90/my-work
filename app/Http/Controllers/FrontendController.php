@@ -13,10 +13,14 @@ class FrontendController extends Controller
     }
 
     public function showMenu()
-    {
-        $contentPages = ContentPage::where('active', 1)->get(); // pretpostavimo da imamo kolonu 'active'
-        return view('frontend.index', compact('contentPages'));
-    }
+{
+    
+    $menuPages = ContentPage::whereHas('category', function ($query) {
+        $query->where('name', 'Menu'); // 'name' je kolona u tabeli content_categories
+    })->where('active', 1)->get();
+
+    return view('frontend.index', compact('menuPages'));
+}
 
     public function showBySlug($slug)
     {

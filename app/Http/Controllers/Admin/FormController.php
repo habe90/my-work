@@ -10,6 +10,7 @@ use App\Models\Forms;
 use App\Models\FormFiledsData;
 use App\Models\FormFields;
 use DB;
+use App\Models\ContentPage;
 use Collective\Html\FormFacade as Form;
 use App\Models\User;
 use Modules\Superadmin\App\Http\Controllers\AccountController;
@@ -420,6 +421,34 @@ class FormController extends Controller
                 $appController = new AppController;
                 $return = $appController->storeApp($data, $recordID);
                 return $return;
+            }
+
+            //if is form name Add page
+            if ($formName == 'Add Page') {
+                if (!isset($data['slug']) && isset($data['title'])) {
+                    $data['slug'] = Str::slug($data['title']);
+                }
+                DB::beginTransaction();
+                try {
+                    if ($recordID > 0) {
+                        // update existing page
+                        $contentPage = ContentPage::find($recordID);
+                        $contentPage->update($data);
+                    } else {
+                        // Create new page
+                        $contentPage = ContentPage::create($data);
+                    }
+            
+                    
+                    // Pretpostavka je da se ID kategorije šalje u formi kao 'category_id'
+                    $contentPage->category()->sync($request->input('category_id'));
+            
+                    DB::commit();
+                    return response()->json(['status' => 'success', 'message' => __('global.data_add_sussesfully')]);
+                } catch (\Exception $e) {
+                    DB::rollBack();
+                    return response()->json(['status' => 'error', 'message' => $e->getMessage()]);
+                }
             }
             
 
