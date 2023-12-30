@@ -168,7 +168,11 @@
                     <ul x-cloak x-show="activeDropdown === 'users'" x-collapse class="sub-menu text-gray-500">
                         @can('permission_access')
                         <li>
-                            <a href="">{{ trans('cruds.permission.title') }}</a>
+                            <a class="{{ request()->is("admin/permissions*") ? "sidebar-nav-active" : "sidebar-nav" }}" href="{{ route("admin.permissions.index") }}">
+                                <i class="fa-fw c-sidebar-nav-icon fas fa-unlock-alt">
+                                </i>
+                                {{ trans('cruds.permission.title') }}
+                            </a>
                         </li>
                         @endcan
                         @can('role_access')
