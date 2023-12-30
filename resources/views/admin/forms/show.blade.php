@@ -8,10 +8,10 @@
         </div>
         <div class="flex justify-end pb-4">
             <div>
-               <a class="cursor-pointer first-letter:mb-1 mt-1 me-1 modal-with-zoom-anim ws-normal btn btn-primary getMyFormModal"
+                <a class="cursor-pointer first-letter:mb-1 mt-1 me-1 modal-with-zoom-anim ws-normal btn btn-primary getMyFormModal"
                     data-title="{{ __('global.add_field') }}" data-url="{{ route('admin.form.getMyForm') }}"
                     data-form-name="{{ encrypt('Form fields') }}" data-id="{{ encrypt('0') }}">
-                    
+
                     {{ __('global.add_field') }}
                 </a>
             </div>
@@ -102,13 +102,7 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Sortable/1.15.0/Sortable.min.js"></script>
     <script type="application/javascript">
-    var example1 = document.getElementById('example1');
-            var sortable = Sortable.create(example1, {
-                animation: 200,
-                ghostClass: 'gu-transit',
-                group: 'shared',
-                
-            });
+   
         $(document).ready(function()
         {
             // get field settings of selectend field
@@ -146,8 +140,45 @@
             @if (\Session::has('error'))
                 toastr.error('{!! \Session::get('error') !!}');
             @endif
-        });    
+
+            var el = document.getElementById('example1');
+            var sortable = Sortable.create(el, {
+                animation: 200,
+                ghostClass: 'gu-transit',
+                onEnd: function(evt) {
+                    // Funkcija koja se poziva nakon što se element pomjeri
+                    var data = sortable.toArray(); // Dohvati sortirani niz ID-ova
+                    updateOrder(data); // Poziv funkcije za ažuriranje redoslijeda
+                }
+            });
+
+            function updateOrder(data) {
+        var dataString = {
+            data: data,
+            _token: '{{ csrf_token() }}' // CSRF token iz Laravela
+        };
+        
+        $.ajax({
+            type: "POST",
+            url: "{{ route('admin.superadmin.update_order') }}",
+            data: dataString,
+            success: function(response) {
+                if (response.status === 'success') {
+                    toastr.success('{{ __("global.order_sussesfully_updated") }}');
+                } else {
+                    toastr.error('{{ __("global.order_error") }}');
+                }
+            },
+            error: function(xhr, status, error) {
+                toastr.error('{{ __("global.order_error") }}');
+            },
+        });
+    }
+
+            
+        });  
+          
     </script>
-    
+
 
 @endsection
