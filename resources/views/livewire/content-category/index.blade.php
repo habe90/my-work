@@ -1,4 +1,4 @@
-<div>
+<div class="dataTable-wrapper dataTable-loading no-footer sortable searchable fixed-columns">
     <div class="card-controls sm:flex">
         <div class="w-full sm:w-1/2">
             Per page:
@@ -14,12 +14,7 @@
                 </button>
             @endcan
 
-            @if(file_exists(app_path('Http/Livewire/ExcelExport.php')))
-                <livewire:excel-export model="ContentCategory" format="csv" />
-                <livewire:excel-export model="ContentCategory" format="xlsx" />
-                <livewire:excel-export model="ContentCategory" format="pdf" />
-            @endif
-
+       
 
 
 
