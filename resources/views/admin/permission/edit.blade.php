@@ -3,12 +3,12 @@
 <div class="row">
     <div class="card bg-blueGray-100">
         <div class="card-header">
-            <div class="card-header-container">
+            <div class="card-header-container text-center">
                 <h6 class="card-title">
                     {{ trans('global.edit') }}
                     {{ trans('cruds.permission.title_singular') }}:
                     {{ trans('cruds.permission.fields.id') }}
-                    {{ $permission->id }}
+                    <span class="font-bold">:{{ $permission->id }}</span>
                 </h6>
             </div>
         </div>
