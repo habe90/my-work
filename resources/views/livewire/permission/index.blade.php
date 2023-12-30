@@ -1,5 +1,4 @@
 <div class="dataTable-wrapper dataTable-loading no-footer sortable searchable fixed-columns">
-
     {{-- Kreiranje 2 reda i kolonu radi estetike --}}
     <div class="dataTable-top">
         <div class="sm:flex-1 sm:flex sm:items-start flex-col">
