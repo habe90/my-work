@@ -13,7 +13,7 @@
 
                 <div class="dataTable-search">
                     Search:
-                    <input type="text" wire:model.debounce.300ms="search" class="w-full sm:w-1/3 inline-block" />
+                    <input type="text" wire:model.debounce.300ms="search" class="dataTable-input" />
                 </div>
             </div>
         </div>
