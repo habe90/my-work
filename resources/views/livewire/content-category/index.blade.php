@@ -1,27 +1,21 @@
 <div class="dataTable-wrapper dataTable-loading no-footer sortable searchable fixed-columns">
-    <div class="card-controls sm:flex">
-        <div class="w-full sm:w-1/2">
-            Per page:
-            <select wire:model="perPage" class="form-select w-full sm:w-1/6">
-                @foreach($paginationOptions as $value)
-                    <option value="{{ $value }}">{{ $value }}</option>
-                @endforeach
-            </select>
+    <div class="dataTable-top">
+        <div class="sm:flex-1 sm:flex sm:items-start flex-col">
 
-            @can('content_category_delete')
-                <button class="btn btn-rose ml-3 disabled:opacity-50 disabled:cursor-not-allowed" type="button" wire:click="confirm('deleteSelected')" wire:loading.attr="disabled" {{ $this->selectedCount ? '' : 'disabled' }}>
-                    {{ __('Delete Selected') }}
-                </button>
-            @endcan
+            <div class="flex items-start flex-row mb-4 mx-3">
+                @can('content_category_delete')
+                    <button class="btn btn-rose ml-3 disabled:opacity-50 disabled:cursor-not-allowed" type="button"
+                        wire:click="confirm('deleteSelected')" wire:loading.attr="disabled"
+                        {{ $this->selectedCount ? '' : 'disabled' }}>
+                        {{ __('Delete Selected') }}
+                    </button>
+                @endcan
 
-       
-
-
-
-        </div>
-        <div class="w-full sm:w-1/2 sm:text-right">
-            Search:
-            <input type="text" wire:model.debounce.300ms="search" class="w-full sm:w-1/3 inline-block" />
+                <div class="dataTable-search">
+                    Search:
+                    <input type="text" wire:model.debounce.300ms="search" class="w-full sm:w-1/3 inline-block" />
+                </div>
+            </div>
         </div>
     </div>
     <div wire:loading.delay>
@@ -69,24 +63,28 @@
                             <td>
                                 <div class="flex justify-end">
                                     @can('content_category_show')
-                                        <a class="btn btn-sm btn-info mr-2" href="{{ route('admin.content-categories.show', $contentCategory) }}">
+                                        <a class="btn btn-sm btn-info mr-2"
+                                            href="{{ route('admin.content-categories.show', $contentCategory) }}">
                                             {{ trans('global.view') }}
                                         </a>
                                     @endcan
                                     @can('content_category_edit')
-                                        <a class="btn btn-sm btn-success mr-2" href="{{ route('admin.content-categories.edit', $contentCategory) }}">
+                                        <a class="btn btn-sm btn-success mr-2"
+                                            href="{{ route('admin.content-categories.edit', $contentCategory) }}">
                                             {{ trans('global.edit') }}
                                         </a>
                                     @endcan
                                     @can('content_category_delete')
-                                        <button class="btn btn-sm btn-rose mr-2" type="button" wire:click="confirm('delete', {{ $contentCategory->id }})" wire:loading.attr="disabled">
+                                        <button class="btn btn-sm btn-rose mr-2" type="button"
+                                            wire:click="confirm('delete', {{ $contentCategory->id }})"
+                                            wire:loading.attr="disabled">
                                             {{ trans('global.delete') }}
                                         </button>
                                     @endcan
                                 </div>
                             </td>
                         </tr>
-                        @empty
+                    @empty
                         <tr>
                             <td colspan="10">No entries found.</td>
                         </tr>
@@ -98,7 +96,7 @@
 
     <div class="card-body">
         <div class="pt-3">
-            @if($this->selectedCount)
+            @if ($this->selectedCount)
                 <p class="text-sm leading-5">
                     <span class="font-medium">
                         {{ $this->selectedCount }}
@@ -109,15 +107,25 @@
             {{ $contentCategories->links() }}
         </div>
     </div>
+    <div class="dataTable-bottom">
+        <div class="dataTable-dropdown">
+            Per page:
+            <select wire:model="perPage" class="form-select w-full sm:w-1/6">
+                @foreach ($paginationOptions as $value)
+                    <option value="{{ $value }}">{{ $value }}</option>
+                @endforeach
+            </select>
+        </div>
+    </div>
 </div>
 
 @push('scripts')
     <script>
         Livewire.on('confirm', e => {
-    if (!confirm("{{ trans('global.areYouSure') }}")) {
-        return
-    }
-@this[e.callback](...e.argv)
-})
+            if (!confirm("{{ trans('global.areYouSure') }}")) {
+                return
+            }
+            @this[e.callback](...e.argv)
+        })
     </script>
 @endpush
