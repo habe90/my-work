@@ -4,6 +4,7 @@ return [
     'all' => 'All',
     'add_field' => 'Add field',
     'edit_field' => 'Edit field',
+    'add_page' => 'Add page',
     'add_user' => 'Add user',
     'form_fields' => 'Form fields',
     'field_settings' => 'Field settings',

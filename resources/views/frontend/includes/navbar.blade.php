@@ -19,7 +19,9 @@
                             
                             <li><a href="dashboard.html">Dashboard</a></li>
                             
-                            <li><a href="dashboard.html">Dashboard</a></li>
+                            @foreach ($contentPages as $page)
+                                <li><a href="{{ url('/page/' . $page->slug) }}">{{ $page->title }}</a></li>
+                            @endforeach
                     
                         </ul>
                         
