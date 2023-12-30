@@ -1,33 +1,20 @@
-<div>
-    <div class="card-controls sm:flex">
-        <div class="w-full sm:w-1/2">
-            Per page:
-            <select wire:model="perPage" class="form-select w-full sm:w-1/6">
-                @foreach($paginationOptions as $value)
-                    <option value="{{ $value }}">{{ $value }}</option>
-                @endforeach
-            </select>
-
+<div class="dataTable-wrapper dataTable-loading no-footer sortable searchable fixed-columns">
+    <div class="dataTable-top">
+        <div class="sm:flex-1 sm:flex sm:items-start flex-col">
+     
+    <div class="flex items-start flex-row mb-4 mx-3">
             @can('user_alert_delete')
-                <button class="btn btn-rose ml-3 disabled:opacity-50 disabled:cursor-not-allowed" type="button" wire:click="confirm('deleteSelected')" wire:loading.attr="disabled" {{ $this->selectedCount ? '' : 'disabled' }}>
+                <button class="btn btn-danger ml-3 disabled:opacity-50 disabled:cursor-not-allowed" type="button" wire:click="confirm('deleteSelected')" wire:loading.attr="disabled" {{ $this->selectedCount ? '' : 'disabled' }}>
                     {{ __('Delete Selected') }}
                 </button>
             @endcan
 
-            @if(file_exists(app_path('Http/Livewire/ExcelExport.php')))
-                <livewire:excel-export model="UserAlert" format="csv" />
-                <livewire:excel-export model="UserAlert" format="xlsx" />
-                <livewire:excel-export model="UserAlert" format="pdf" />
-            @endif
-
-
-
-
         </div>
-        <div class="w-full sm:w-1/2 sm:text-right">
+        <div class="dataTable-search">
             Search:
-            <input type="text" wire:model.debounce.300ms="search" class="w-full sm:w-1/3 inline-block" />
+            <input type="text" wire:model.debounce.300ms="search" class="dataTable-input" />
         </div>
+    </div>
     </div>
     <div wire:loading.delay>
         Loading...
@@ -122,6 +109,16 @@
             {{ $userAlerts->links() }}
         </div>
     </div>
+    <div class="dataTable-bottom">
+        <div class="dataTable-dropdown">
+        Per page:
+        <select wire:model="perPage" class="form-select w-full sm:w-1/6">
+            @foreach($paginationOptions as $value)
+                <option value="{{ $value }}">{{ $value }}</option>
+            @endforeach
+        </select>
+    </div>
+</div>
 </div>
 
 @push('scripts')
