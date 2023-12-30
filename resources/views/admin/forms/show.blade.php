@@ -11,6 +11,7 @@
                 <a class="mb-1 mt-1 me-1 modal-with-zoom-anim ws-normal btn btn-primary getMyFormModal"
                     data-title="{{ __('global.add_field') }}" data-url="{{ route('admin.form.getMyForm') }}"
                     data-form-name="{{ encrypt('Form fields') }}" data-id="{{ encrypt('0') }}">
+                    
                     {{ __('global.add_field') }}
                 </a>
             </div>
@@ -164,7 +165,7 @@
                         //Open modal
                         $.magnificPopup.open({
                             items: {
-                                src: '#modal'
+                                src: '#magnificPopupModal'
                             },
                             type: 'inline',
                             fixedContentPos: false,

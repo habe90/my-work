@@ -13,6 +13,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800&display=swap"
         rel="stylesheet" />
     <link rel="stylesheet" type="text/css" media="screen" href="{{ asset('assets/css/perfect-scrollbar.min.css') }}" />
+    <link href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" media="screen" href="{{ asset('assets/css/style.css') }}" />
     <link defer rel="stylesheet" type="text/css" media="screen" href="{{ asset('assets/css/animate.css') }}" />
     <link rel="stylesheet" href="{{ asset('assets/magnific-popup/magnific-popup.css') }}" />
@@ -85,6 +86,7 @@
     <script src="{{ asset('assets/js/alpine-collaspe.min.js') }}"></script>
     <script src="{{ asset('assets/js/alpine-persist.min.js') }}"></script>
     <script defer src="{{ asset('assets/js/alpine-ui.min.js') }}"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script> 
     <script defer src="{{ asset('assets/js/alpine-focus.min.js') }}"></script>
     <script defer src="{{ asset('assets/js/alpine.min.js') }}"></script>
     <script src="{{ asset('assets/js/custom.js') }}"></script>
