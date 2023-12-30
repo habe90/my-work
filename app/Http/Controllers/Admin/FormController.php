@@ -13,6 +13,7 @@ use DB;
 use Collective\Html\FormFacade as Form;
 use App\Models\User;
 use Modules\Superadmin\App\Http\Controllers\AccountController;
+use Log;
 
 class FormController extends Controller
 {
@@ -122,19 +123,21 @@ class FormController extends Controller
         if (!$request->has('data')) {
             return response()->json(['status' => 'error', 'message' => 'No data provided!']);
         }
-        
-        $data = json_decode($request->data);
+        $data = json_decode($request->data, true);
         DB::beginTransaction();
     
         try {
-            foreach ($data as $order => $item) {
-                FormFields::where('id', decrypt($item->id))->update(['order_by' => $order + 1]);
+            foreach ($data as $order => $encryptedId) {
+                // Ovdje koristimo $encryptedId direktno jer smo već dobili čisti niz ID-ova.
+                $id = decrypt($encryptedId); 
+                FormFields::where('id', $id)->update(['order_by' => $order + 1]);
             }
             DB::commit();
-    
+        
             return response()->json(['status' => 'success']);
         } catch (\Exception $e) {
             DB::rollBack();
+            Log::error($e->getMessage());
             return response()->json(['status' => 'error', 'message' => __('global.data_update_error')]);
         }
     }

@@ -147,16 +147,17 @@
                 ghostClass: 'gu-transit',
                 onEnd: function(evt) {
                     // Funkcija koja se poziva nakon što se element pomjeri
-                    var data = sortable.toArray(); // Dohvati sortirani niz ID-ova
+                    var data = sortable.toArray();
+                    console.log(data); // Dohvati sortirani niz ID-ova
                     updateOrder(data); // Poziv funkcije za ažuriranje redoslijeda
                 }
             });
 
             function updateOrder(data) {
-        var dataString = {
-            data: data,
-            _token: '{{ csrf_token() }}' // CSRF token iz Laravela
-        };
+            var dataString = {
+                data: JSON.stringify(data),
+                _token: '{{ csrf_token() }}' // CSRF token iz Laravela
+            };
         
         $.ajax({
             type: "POST",
