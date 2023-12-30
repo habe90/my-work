@@ -18,6 +18,9 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\FrontendController;
 use App\Http\Controllers\PostServicesRequestController;
+use App\Http\Controllers\Admin\ContentCategoryController;
+use App\Http\Controllers\Admin\ContentPageController;
+use App\Http\Controllers\Admin\ContentTagController;
 
 // Route::redirect('/', '/login');
 

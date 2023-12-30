@@ -187,6 +187,7 @@
                         @endcan
                     </ul>
                 </li>
+                @can('content_management_access')
                 <li class="menu nav-item">
                     <button
                         type="button"
@@ -232,137 +233,26 @@
                         </div>
                     </button>
                     <ul x-cloak x-show="activeDropdown === 'pages'" x-collapse class="sub-menu text-gray-500">
+                        @can('content_category_access')
                         <li>
-                            <a href="pages-knowledge-base.html">Knowledge Base</a>
+                            <a class="{{ request()->is("admin/content-categories*") ? "sidebar-nav-active" : "sidebar-nav" }}" href="{{ route("admin.content-categories.index") }}"> {{ trans('cruds.contentCategory.title') }} </a>
                         </li>
+                        @endcan
+                        @can('content_tag_access')
                         <li>
-                            <a href="pages-contact-us-boxed.html" target="_blank">Contact Us Boxed</a>
+                            <a class="{{ request()->is("admin/content-tags*") ? "sidebar-nav-active" : "sidebar-nav" }}" href="{{ route("admin.content-tags.index") }}" target="_self">{{ trans('cruds.contentTag.title') }}</a>
                         </li>
-                        <li>
-                            <a href="pages-contact-us-cover.html" target="_blank">Contact Us Cover</a>
+                        @endcan
+                        @can('content_page_access')
+                        <li> 
+                            <a class="{{ request()->is("admin/content-pages*") ? "sidebar-nav-active" : "sidebar-nav" }}" href="{{ route("admin.content-pages.index") }}" target="_self"> {{ trans('cruds.contentPage.title') }}</a>
                         </li>
-                        <li>
-                            <a href="pages-faq.html">Faq</a>
-                        </li>
-                        <li>
-                            <a href="pages-coming-soon-boxed.html" target="_blank">Coming Soon Boxed</a>
-                        </li>
-                        <li>
-                            <a href="pages-coming-soon-cover.html" target="_blank">Coming Soon Cover</a>
-                        </li>
-                        <li x-data="{subActive:null}">
-                            <button
-                                type="button"
-                                class="before:h-[5px] before:w-[5px] before:rounded before:bg-gray-300 hover:bg-gray-100 ltr:before:mr-2 rtl:before:ml-2 dark:text-[#888ea8] dark:hover:bg-gray-900"
-                                @click="subActive === 'error' ? subActive = null : subActive = 'error'"
-                            >
-                                Error
-                                <div class="ltr:ml-auto rtl:mr-auto rtl:rotate-180" :class="{'!rotate-90' : subActive === 'error'}">
-                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path
-                                            opacity="0.5"
-                                            d="M6.25 19C6.25 19.3139 6.44543 19.5946 6.73979 19.7035C7.03415 19.8123 7.36519 19.7264 7.56944 19.4881L13.5694 12.4881C13.8102 12.2073 13.8102 11.7928 13.5694 11.5119L7.56944 4.51194C7.36519 4.27364 7.03415 4.18773 6.73979 4.29662C6.44543 4.40551 6.25 4.68618 6.25 5.00004L6.25 19Z"
-                                            fill="currentColor"
-                                        />
-                                        <path
-                                            fill-rule="evenodd"
-                                            clip-rule="evenodd"
-                                            d="M10.5119 19.5695C10.1974 19.2999 10.161 18.8264 10.4306 18.5119L16.0122 12L10.4306 5.48811C10.161 5.17361 10.1974 4.70014 10.5119 4.43057C10.8264 4.161 11.2999 4.19743 11.5695 4.51192L17.5695 11.5119C17.8102 11.7928 17.8102 12.2072 17.5695 12.4881L11.5695 19.4881C11.2999 19.8026 10.8264 19.839 10.5119 19.5695Z"
-                                            fill="currentColor"
-                                        />
-                                    </svg>
-                                </div>
-                            </button>
-                            <ul class="sub-menu text-gray-500 ltr:ml-2 rtl:mr-2" x-show="subActive === 'error'" x-collapse>
-                                <li>
-                                    <a href="pages-error404.html" target="_blank">404</a>
-                                </li>
-                                <li>
-                                    <a href="pages-error500.html" target="_blank">500</a>
-                                </li>
-                                <li>
-                                    <a href="pages-error503.html" target="_blank">503</a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="pages-maintenence.html" target="_blank">Maintanence</a>
-                        </li>
+                        @endcan
+                     
                     </ul>
                 </li>
-                <li class="menu nav-item">
-                    <button
-                        type="button"
-                        class="nav-link group"
-                        :class="{'active' : activeDropdown === 'authentication'}"
-                        @click="activeDropdown === 'authentication' ? activeDropdown = null : activeDropdown = 'authentication'"
-                    >
-                        <div class="flex items-center">
-                            <svg
-                                class="shrink-0 group-hover:!text-primary"
-                                width="20"
-                                height="20"
-                                viewBox="0 0 24 24"
-                                fill="none"
-                                xmlns="http://www.w3.org/2000/svg"
-                            >
-                                <path
-                                    opacity="0.5"
-                                    d="M2 16C2 13.1716 2 11.7574 2.87868 10.8787C3.75736 10 5.17157 10 8 10H16C18.8284 10 20.2426 10 21.1213 10.8787C22 11.7574 22 13.1716 22 16C22 18.8284 22 20.2426 21.1213 21.1213C20.2426 22 18.8284 22 16 22H8C5.17157 22 3.75736 22 2.87868 21.1213C2 20.2426 2 18.8284 2 16Z"
-                                    fill="currentColor"
-                                />
-                                <path
-                                    d="M8 17C8.55228 17 9 16.5523 9 16C9 15.4477 8.55228 15 8 15C7.44772 15 7 15.4477 7 16C7 16.5523 7.44772 17 8 17Z"
-                                    fill="currentColor"
-                                />
-                                <path
-                                    d="M12 17C12.5523 17 13 16.5523 13 16C13 15.4477 12.5523 15 12 15C11.4477 15 11 15.4477 11 16C11 16.5523 11.4477 17 12 17Z"
-                                    fill="currentColor"
-                                />
-                                <path
-                                    d="M17 16C17 16.5523 16.5523 17 16 17C15.4477 17 15 16.5523 15 16C15 15.4477 15.4477 15 16 15C16.5523 15 17 15.4477 17 16Z"
-                                    fill="currentColor"
-                                />
-                                <path
-                                    d="M6.75 8C6.75 5.10051 9.10051 2.75 12 2.75C14.8995 2.75 17.25 5.10051 17.25 8V10.0036C17.8174 10.0089 18.3135 10.022 18.75 10.0546V8C18.75 4.27208 15.7279 1.25 12 1.25C8.27208 1.25 5.25 4.27208 5.25 8V10.0546C5.68651 10.022 6.18264 10.0089 6.75 10.0036V8Z"
-                                    fill="currentColor"
-                                />
-                            </svg>
-                            <span class="text-black ltr:pl-3 rtl:pr-3 dark:text-[#506690] dark:group-hover:text-white-dark">Authentication</span>
-                        </div>
-                        <div class="rtl:rotate-180" :class="{'!rotate-90' : activeDropdown === 'authentication'}">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M9 5L15 12L9 19" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                            </svg>
-                        </div>
-                    </button>
-                    <ul x-cloak x-show="activeDropdown === 'authentication'" x-collapse class="sub-menu text-gray-500">
-                        <li>
-                            <a href="auth-boxed-signin.html" target="_blank">Login Boxed</a>
-                        </li>
-                        <li>
-                            <a href="auth-boxed-signup.html" target="_blank">Register Boxed</a>
-                        </li>
-                        <li>
-                            <a href="auth-boxed-lockscreen.html" target="_blank">Unlock Boxed</a>
-                        </li>
-                        <li>
-                            <a href="auth-boxed-password-reset.html" target="_blank">Recover ID Boxed</a>
-                        </li>
-                        <li>
-                            <a href="auth-cover-login.html" target="_blank">Login Cover</a>
-                        </li>
-                        <li>
-                            <a href="auth-cover-register.html" target="_blank">Register Cover</a>
-                        </li>
-                        <li>
-                            <a href="auth-cover-lockscreen.html" target="_blank">Unlock Cover</a>
-                        </li>
-                        <li>
-                            <a href="auth-cover-password-reset.html" target="_blank">Recover ID Cover</a>
-                        </li>
-                    </ul>
-                </li>
+                @endcan
+              
 
                 <h2 class="-mx-4 mb-1 flex items-center bg-white-light/30 py-3 px-7 font-extrabold uppercase dark:bg-dark dark:bg-opacity-[0.08]">
                     <svg
