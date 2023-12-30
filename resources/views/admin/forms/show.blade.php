@@ -100,7 +100,15 @@
 
     <!-- end: page -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Sortable/1.15.0/Sortable.min.js"></script>
     <script type="application/javascript">
+    var example1 = document.getElementById('example1');
+            var sortable = Sortable.create(example1, {
+                animation: 200,
+                ghostClass: 'gu-transit',
+                group: 'shared',
+                
+            });
         $(document).ready(function()
         {
             // get field settings of selectend field
