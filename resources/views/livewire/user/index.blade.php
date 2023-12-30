@@ -1,32 +1,48 @@
 <div>
-    <div class="card-controls sm:flex">
-        <div class="w-full sm:w-1/2">
-            Per page:
-            <select wire:model="perPage" class="form-select w-full sm:w-1/6">
-                @foreach($paginationOptions as $value)
-                    <option value="{{ $value }}">{{ $value }}</option>
-                @endforeach
-            </select>
+    {{-- Kreiranje 2 reda i kolonu radi estetike --}}
+    <div class="card-controls sm:flex sm:items-center mb-3">
+        <div class="sm:flex-1 sm:flex sm:items-start flex-col">
 
-            @can('user_delete')
-                <button class="btn btn-rose ml-3 disabled:opacity-50 disabled:cursor-not-allowed" type="button" wire:click="confirm('deleteSelected')" wire:loading.attr="disabled" {{ $this->selectedCount ? '' : 'disabled' }}>
-                    {{ __('Delete Selected') }}
-                </button>
-            @endcan
+            <!-- Prvi Red -->
+            <div class="flex items-start flex-row my-3 mx-3">
+                <!-- Kolona 1 u redu 1 -->
+                <div class="flex-initial mr-3">
+                    <span class="ml-3">Per Page: </span>
+                    <select wire:model="perPage" class="form-select ml-2">
+                        @foreach ($paginationOptions as $value)
+                            <option class="font-normal" value="{{ $value }}">{{ $value }}</option>
+                        @endforeach
+                    </select>
+                </div>
+                <!-- Kolona 2 u redu 1 -->
+                <div class="sm:flex-1 sm:text-right flex-initial">
+                    <span class="block">Search: </span>
+                    <input type="text" wire:model.debounce.300ms="search" class="form-input w-52 border-black p-2" />
+                </div>
 
-            @if(file_exists(app_path('Http/Livewire/ExcelExport.php')))
-                <livewire:excel-export model="User" format="csv" />
-                <livewire:excel-export model="User" format="xlsx" />
-                <livewire:excel-export model="User" format="pdf" />
-            @endif
+            </div>
 
-
-
-
-        </div>
-        <div class="w-full sm:w-1/2 sm:text-right">
-            Search:
-            <input type="text" wire:model.debounce.300ms="search" class="w-full sm:w-1/3 inline-block" />
+            <!-- Drugi red -->
+            <div class="flex items-start flex-row mb-4 mx-3">
+                <!-- Kolona 1 u redu 2 -->
+                <div class="flex-initial mr-3">
+                    @can('permission_delete')
+                        <button class="btn btn-rose disabled:opacity-50 disabled:cursor-not-allowed" type="button"
+                            wire:click="confirm('deleteSelected')" wire:loading.attr="disabled"
+                            {{ $this->selectedCount ? '' : 'disabled' }}>
+                            {{ __('Delete Selected') }}
+                        </button>
+                    @endcan
+                </div>
+                <!--Kolona 2 u redu 2 -->
+                <div class="flex items-center space-x-2 flex-initial">
+                    @if (file_exists(app_path('Http/Livewire/ExcelExport.php')))
+                        <livewire:excel-export model="Permission" format="csv" />
+                        <livewire:excel-export model="Permission" format="xlsx" />
+                        <livewire:excel-export model="Permission" format="pdf" />
+                    @endif
+                </div>
+            </div>
         </div>
     </div>
     <div wire:loading.delay>
@@ -108,7 +124,7 @@
                                 {{ $user->email_verified_at }}
                             </td>
                             <td>
-                                @foreach($user->roles as $key => $entry)
+                                @foreach ($user->roles as $key => $entry)
                                     <span class="badge badge-relationship">{{ $entry->title }}</span>
                                 @endforeach
                             </td>
@@ -126,19 +142,22 @@
                                         </a>
                                     @endcan
                                     @can('user_edit')
-                                        <a class="btn btn-sm btn-success mr-2" href="{{ route('admin.users.edit', $user) }}">
+                                        <a class="btn btn-sm btn-success mr-2"
+                                            href="{{ route('admin.users.edit', $user) }}">
                                             {{ trans('global.edit') }}
                                         </a>
                                     @endcan
                                     @can('user_delete')
-                                        <button class="btn btn-sm btn-rose mr-2" type="button" wire:click="confirm('delete', {{ $user->id }})" wire:loading.attr="disabled">
+                                        <button class="btn btn-sm btn-rose mr-2" type="button"
+                                            wire:click="confirm('delete', {{ $user->id }})"
+                                            wire:loading.attr="disabled">
                                             {{ trans('global.delete') }}
                                         </button>
                                     @endcan
                                 </div>
                             </td>
                         </tr>
-                        @empty
+                    @empty
                         <tr>
                             <td colspan="10">No entries found.</td>
                         </tr>
@@ -150,7 +169,7 @@
 
     <div class="card-body">
         <div class="pt-3">
-            @if($this->selectedCount)
+            @if ($this->selectedCount)
                 <p class="text-sm leading-5">
                     <span class="font-medium">
                         {{ $this->selectedCount }}
@@ -166,10 +185,10 @@
 @push('scripts')
     <script>
         Livewire.on('confirm', e => {
-    if (!confirm("{{ trans('global.areYouSure') }}")) {
-        return
-    }
-@this[e.callback](...e.argv)
-})
+            if (!confirm("{{ trans('global.areYouSure') }}")) {
+                return
+            }
+            @this[e.callback](...e.argv)
+        })
     </script>
 @endpush
