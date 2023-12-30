@@ -7,7 +7,7 @@
                 <!-- Kolona 1 u redu 2 -->
                 <div class="flex-initial mr-3">
                     @can('permission_delete')
-                        <button class="btn btn-rose disabled:opacity-50 disabled:cursor-not-allowed" type="button" wire:click="confirm('deleteSelected')" wire:loading.attr="disabled" {{ $this->selectedCount ? '' : 'disabled' }}>
+                        <button class="btn btn-danger disabled:opacity-50 disabled:cursor-not-allowed" type="button" wire:click="confirm('deleteSelected')" wire:loading.attr="disabled" {{ $this->selectedCount ? '' : 'disabled' }}>
                             {{ __('Delete Selected') }}
                         </button>
                     @endcan

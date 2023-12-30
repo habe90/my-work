@@ -5,7 +5,7 @@
             <div class="panel flex items-center overflow-x-auto whitespace-nowrap p-3 text-primary">
 
                 @can('content_category_create')
-                    <a class="btn btn-indigo" href="{{ route('admin.content-categories.create') }}">
+                    <a class="btn btn-primary" href="{{ route('admin.content-categories.create') }}">
                         {{ trans('global.add') }} {{ trans('cruds.contentCategory.title_singular') }}
                     </a>
                 @endcan

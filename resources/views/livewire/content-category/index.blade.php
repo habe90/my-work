@@ -4,7 +4,7 @@
 
             <div class="flex items-start flex-row mb-4 mx-3">
                 @can('content_category_delete')
-                    <button class="btn btn-rose ml-3 disabled:opacity-50 disabled:cursor-not-allowed" type="button"
+                    <button class="btn btn-danger ml-3 disabled:opacity-50 disabled:cursor-not-allowed" type="button"
                         wire:click="confirm('deleteSelected')" wire:loading.attr="disabled"
                         {{ $this->selectedCount ? '' : 'disabled' }}>
                         {{ __('Delete Selected') }}
