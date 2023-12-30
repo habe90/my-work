@@ -6,8 +6,8 @@
 
 <div class="form-group row align-items-center">
     <label class="col-md-3 control-label text-lg-end mb-0"></label>
-    <div class="col-md-8">
-        <button id="submitBtn-{{ $uniquekey }}" class="btn btn-primary  {{ $formSettings['modalForm'] == 'yes' ? 'reloadMypage' : '' }}" type="submit">{{ __('global.save') }}</button>
+    <div class="mb-5">
+        <button id="submitBtn-{{ $uniquekey }}" class="btn btn-primary mt-6  {{ $formSettings['modalForm'] == 'yes' ? 'reloadMypage' : '' }}" type="submit">{{ __('global.save') }}</button>
     </div>
 </div>
 

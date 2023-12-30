@@ -11,6 +11,7 @@
                <a class="cursor-pointer first-letter:mb-1 mt-1 me-1 modal-with-zoom-anim ws-normal btn btn-primary getMyFormModal"
                     data-title="{{ __('global.add_field') }}" data-url="{{ route('admin.form.getMyForm') }}"
                     data-form-name="{{ encrypt('Form fields') }}" data-id="{{ encrypt('0') }}">
+                    
                     {{ __('global.add_field') }}
                 </a>
             </div>
@@ -99,7 +100,15 @@
 
     <!-- end: page -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Sortable/1.15.0/Sortable.min.js"></script>
     <script type="application/javascript">
+    var example1 = document.getElementById('example1');
+            var sortable = Sortable.create(example1, {
+                animation: 200,
+                ghostClass: 'gu-transit',
+                group: 'shared',
+                
+            });
         $(document).ready(function()
         {
             // get field settings of selectend field
@@ -139,56 +148,6 @@
             @endif
         });    
     </script>
-    <script>
-     function openModal() {
-        $('#modal').removeClass('hidden');
-    }
-
-    function closeModal() {
-        $('#modal').addClass('hidden');
-    }
-
-    $(document).ready(function() {
-        // Initially hide the modal
-        closeModal();
-
-        // Open modal on button click
-        $(document).on('click', '.getMyFormModal', function(e) {
-            e.preventDefault();
-
-            var url = $(this).data('url');
-            var modalTitle = $(this).data('title');
-            var dataString = {
-                recordID: $(this).data('id'),
-                formName: $(this).data('form-name'),
-                modalForm: 'yes'
-            };
-
-            if (url) {
-                $.ajax({
-                    headers: {
-                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                    },
-                    url: url,
-                    type: 'POST',
-                    data: dataString,
-                    success: function(response) {
-                        // set modal content
-                        $("#modalTitle").html(modalTitle);
-                        $("#modalBody").html(response);
-
-                        // Open modal
-                        openModal();
-                    },
-                    error: function(xhr) {
-                        toastr.error(from_not_found);
-                    }
-                });
-            } else {
-                toastr.error(undefined_form_url);
-            }
-        });
-    });
-    </script>
+    
 
 @endsection
