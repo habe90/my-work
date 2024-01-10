@@ -8,7 +8,7 @@
 							<nav id="navigation" class="navigation navigation-landscape">
 								<div class="nav-header">
 									<a class="nav-brand" href="#">
-										<img src="assets/img/logo.png" class="logo" alt="" />
+										<a class="nav-brand static-logo" href="/"><img src="frontend/img/logo-my-work.png" class="logo" alt="" /></a>
 									</a>
 									<div class="nav-toggle"></div>
 								</div>
