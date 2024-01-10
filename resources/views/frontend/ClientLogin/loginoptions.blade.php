@@ -47,7 +47,7 @@
                 <div class="login-form bg-white p-4 border rounded">
                     <h4 class="text-center">Einloggen bei My Work</h4>
                     <div class="user-email mt-3 mb-3">
-                        <span class="user-email-text"><i class="fa fa-user-in mr-1"></i>habetech@gmail.com</span>
+                        <span class="user-email-text"><i class="fa fa-user-in mr-1"></i>{{ session('user_email') }}</span>
                         <a href="/client-login" class="change">Ändern</a>
                     </div>
                     <div class="login-options">

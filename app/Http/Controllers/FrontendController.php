@@ -39,6 +39,7 @@ class FrontendController extends Controller
         
         if($user) {
             // Korisnik postoji
+            session(['user_email' => $email]);
             return response()->json(['userExists' => true]);
         } else {
             // Korisnik ne postoji
