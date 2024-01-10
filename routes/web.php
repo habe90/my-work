@@ -30,6 +30,9 @@ Route::get('/page/{slug}', [FrontendController::class, 'showBySlug']);
 Route::any('/client-login', [FrontendController::class, 'ClientLogin'])->name('client-login');
 Route::post('/check-login', [FrontendController::class, 'checkLogin'])->name('login.check');
 Route::get('/login-options', [FrontendController::class, 'showLoginOptions'])->name('login.options');
+Route::get('/login/verify/{token}', [FrontendController::class, 'verifyLoginLink'])->name('login.verify');
+Route::post('/send-login-link', [FrontendController::class, 'sendLoginLink']);
+
 
 
 
