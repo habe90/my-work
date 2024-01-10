@@ -5,10 +5,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
 		
         <title>My Work Platform</title>
-		
         <!-- All Plugins Css -->
         <link href="{{asset('frontend/css/plugins.css')}}" rel="stylesheet">
-		 
 
         <!-- Custom CSS -->
         <link href="{{asset('frontend/css/styles.css')}}" rel="stylesheet">
@@ -45,8 +43,9 @@
 		<!-- All Jquery -->
 		<!-- ============================================================== -->
 		@livewireScripts
-		@yield('scripts')
 		@stack('scripts')
+		@yield('scripts')
+
 		<script src="{{asset('frontend/js/jquery.min.js')}}"></script>
 		<script src="{{asset('frontend/js/popper.min.js')}}"></script>
 		<script src="{{asset('frontend/js/bootstrap.min.js')}}"></script>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\ContentPage;
+use App\Models\User;
 
 class FrontendController extends Controller
 {
@@ -31,6 +32,26 @@ class FrontendController extends Controller
     public function ClientLogin(){
         return view('frontend.ClientLogin.login');
     }
+
+    public function checkLogin(Request $request) {
+        $email = $request->input('email'); // Koristi input metodu za pristup podacima iz zahtjeva
+        $user = User::where('email', $email)->first();
+        
+        if($user) {
+            // Korisnik postoji
+            return response()->json(['userExists' => true]);
+        } else {
+            // Korisnik ne postoji
+            return response()->json(['userExists' => false]);
+        }
+    }
+
+    public function showLoginOptions() {
+        return view('frontend.ClientLogin.loginoptions'); // Pretpostavka da je 'loginoptions' ime vašeg Blade fajla
+    }
+    
+    
+    
 
 
 }
