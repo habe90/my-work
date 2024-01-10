@@ -28,5 +28,9 @@ class FrontendController extends Controller
         return view('frontend.pages.show', compact('contentPage'));
     }
 
+    public function ClientLogin(){
+        return view('frontend.ClientLogin.login');
+    }
+
 
 }

@@ -28,7 +28,7 @@
 									<ul class="nav-menu nav-menu-social align-to-right">
                             
 										<li>
-											<a href="javascript:void(0);" data-toggle="modal" data-target="#upload-resume">
+											<a href="{{ route('client-login') }}">
 												<i class="fa fa-sign-in mr-1"></i>Anmelden
 											</a>
 										</li>

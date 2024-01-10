@@ -27,6 +27,7 @@ use App\Http\Controllers\Admin\ContentTagController;
 Auth::routes();
 Route::get('/', [FrontendController::class, 'index']);
 Route::get('/page/{slug}', [FrontendController::class, 'showBySlug']);
+Route::get('/client-login', [FrontendController::class, 'ClientLogin'])->name('client-login');
 
 
 Route::resource('categories', ServiceCategoryController::class);
