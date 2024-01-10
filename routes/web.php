@@ -21,6 +21,7 @@ use App\Http\Controllers\PostServicesRequestController;
 use App\Http\Controllers\Admin\ContentCategoryController;
 use App\Http\Controllers\Admin\ContentPageController;
 use App\Http\Controllers\Admin\ContentTagController;
+use App\Http\Controllers\DashboardController;
 
 // Route::redirect('/', '/login');
 
@@ -33,7 +34,7 @@ Route::get('/login-options', [FrontendController::class, 'showLoginOptions'])->n
 Route::get('/login/verify/{token}', [FrontendController::class, 'verifyLoginLink'])->name('login.verify');
 Route::post('/send-login-link', [FrontendController::class, 'sendLoginLink']);
 
-
+Route::get('/dashboard', [DashboardController::class, 'index'])->name('user.dashboard');
 
 
 Route::resource('categories', ServiceCategoryController::class);

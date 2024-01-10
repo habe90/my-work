@@ -33,8 +33,15 @@ class LoginLinkSender extends Component
         ]);
     
         if (Auth::attempt(['email' => $this->email, 'password' => $this->password])) {
-            // Uspješna prijava, redirekcija na željeni put ili emitovanje događaja
-            return redirect()->intended('/dashboard'); // Pretpostavljeni put nakon uspješne prijave
+            // Uspješna prijava, provjera tipa korisnika
+            $user = Auth::user();
+            if ($user->user_type === 'client') {
+                // Ako je korisnik tipa 'client', preusmjeri na klijentski dashboard
+                return redirect()->intended(route('user.dashboard'));
+            } else {
+                // Ako nije, preusmjeri na drugi dashboard ili početnu stranicu
+                return redirect()->intended('/other-dashboard');
+            }
         } else {
             // Neuspješna prijava, prikaz poruke o grešci
             session()->flash('error', 'Pogrešan e-mail ili lozinka.');
