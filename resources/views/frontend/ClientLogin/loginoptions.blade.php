@@ -48,15 +48,22 @@
                 <div class="col-lg-6 col-md-8">
                     <div class="login-form bg-white p-4 border rounded">
                         <h4 class="text-center">Einloggen bei My Work</h4>
+                        @auth
+                        <div class="alert alert-success">
+                            Sie sind bereits eingeloggt. <a href="/dashboard">Zurück zum Dashboard</a> oder <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Ausloggen</a>
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                @csrf
+                            </form>
+                        </div>
+                    @else
                         <div class="user-email mt-3 mb-3">
-                            <span class="user-email-text"><i
-                                    class="fa fa-user-in mr-1"></i>{{ session('user_email') }}</span>
+                            <span class="user-email-text"><i class="fa fa-user-in mr-1"></i>{{ session('user_email') }}</span>
                             <a href="/client-login" class="change">(Ändern)</a>
                         </div>
                         <div class="login-options">
                             @livewire('login-link-sender', ['email' => session('user_email')])
-
                         </div>
+                    @endauth
                     </div>
                 </div>
             </div>

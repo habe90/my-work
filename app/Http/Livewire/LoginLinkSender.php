@@ -7,6 +7,7 @@ use App\Models\User;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
 use App\Mail\LoginLinkEmail;
+use Illuminate\Support\Facades\Auth;
 
 class LoginLinkSender extends Component
 {
@@ -26,8 +27,18 @@ class LoginLinkSender extends Component
 
     public function loginWithPassword()
     {
-        // Ovdje implementirajte logiku za prijavu pomoću lozinke
-        // Ovo može uključivati provjeru lozinke i autentifikaciju korisnika
+        $this->validate([
+            'email' => 'required|email',
+            'password' => 'required',
+        ]);
+    
+        if (Auth::attempt(['email' => $this->email, 'password' => $this->password])) {
+            // Uspješna prijava, redirekcija na željeni put ili emitovanje događaja
+            return redirect()->intended('/dashboard'); // Pretpostavljeni put nakon uspješne prijave
+        } else {
+            // Neuspješna prijava, prikaz poruke o grešci
+            session()->flash('error', 'Pogrešan e-mail ili lozinka.');
+        }
     }
 
     public function sendLoginLink()
