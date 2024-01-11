@@ -125,10 +125,10 @@
 							</div>
 							
 							<div class="row">
-								<div class="col-xl-3 col-lg-6 col-md-6 col-sm-12">
+								<div class="{{ $settings1['column_class'] }}">
 									<div class="dashboard-stat">
 										<div class="dashboard-stat-icon widget-1"><i class="ti-location-pin"></i></div>
-										<div class="dashboard-stat-content"><h4><span class="cto">72</span></h4> <p>Job Posted</p></div>
+										<div class="dashboard-stat-content"><h4><span class="cto"> {{ number_format($settings1['total_number']) }}</span></h4> <p> {{ $settings1['chart_title'] }}</p></div>
 									</div>	
 								</div>
 								
@@ -176,7 +176,7 @@
 															</div>
 															<div class="bid-info">
 																<span class="user-name">{{ $bid->user->name }}</span>
-																<span class="bid-amount">{{ $bid->amount }} KM</span>
+																<span class="bid-amount">{{ $bid->amount }} €</span>
 															</div>				
 														</div>
 													@endforeach
@@ -189,8 +189,9 @@
 
 												</div>
 											</div>
-										</div>
+										</div><hr>
 									@endforeach
+									
 								</div>
 								
 								
