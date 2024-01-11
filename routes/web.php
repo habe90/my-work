@@ -22,6 +22,7 @@ use App\Http\Controllers\Admin\ContentCategoryController;
 use App\Http\Controllers\Admin\ContentPageController;
 use App\Http\Controllers\Admin\ContentTagController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\BidController;
 
 // Route::redirect('/', '/login');
 
@@ -36,6 +37,9 @@ Route::post('/send-login-link', [FrontendController::class, 'sendLoginLink']);
 Route::get('/auftraggeber-info/so-funktionierts', [FrontendController::class, 'howtowork']);
 
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('user.dashboard');
+
+Route::get('/bids/{job}', [BidController::class, 'show'])->name('bids.show');
+
 
 
 Route::resource('categories', ServiceCategoryController::class);

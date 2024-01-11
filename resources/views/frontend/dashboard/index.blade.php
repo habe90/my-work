@@ -1,5 +1,32 @@
 @extends('frontend.layouts.front')
 @section('content')
+<style>
+	.offer-card {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.user-image img {
+    width: 50px; /* Ili bilo koja druga veličina */
+    height: 50px;
+    border-radius: 50%; /* Da bi slika bila u obliku kruga */
+    object-fit: cover;
+    margin-right: 10px;
+}
+
+.bid-info .user-name {
+    font-weight: bold;
+}
+
+.bid-info .bid-amount {
+    background-color: #green; /* Prilagodite boju pozadine */
+    color: black;
+    padding: 5px 10px;
+    border-radius: 15px;
+}
+
+</style>
 
 <!-- ============================ Page Title Start================================== -->
 <div class="page-title bg-cover" style="background:url(https://via.placeholder.com/1920x980)no-repeat;" data-overlay="5">
@@ -128,47 +155,45 @@
 							</div>
 								
 							<div class="row">
-								<div class="col-lg-6 col-md-12">
-									<div class="dashboard-gravity-list with-icons">
-										<h4>{{__('global.activeWorkPosts')}}</h4>
-										<ul>
-											<li>
-												<i class="dash-icon-box ti-layers text-purple bg-light-purple"></i> Your job for <strong><a href="#">IOS Developer</a></strong> has been approved!
-												<a href="#" class="close-list-item"><i class="fa fa-close"></i></a>
-											</li>
+								<div class="_dashboard_content">
+									<!-- Ponude -->
+									@foreach ($jobs as $job)
+										<div class="_grouping_list_task">
+											<div class="_manage_task_list">
+												<!-- Naslov posla i opis -->
+												<div class="_manage_task_list_flex">
+													<h4 class="_jb_title">{{ $job->title }}</h4>
+													<span class="_elopi_designation">{{ $job->description }}</span>
+												</div>
+												<!-- Ponude -->
+												<div class="_manage_task_list_right">
+													<h4>Offers:</h4>
+													@foreach ($job->bids->take(3) as $index => $bid)
+														<div class="offer-card">
+															<div class="user-image">
+																<!-- Ubacite putanju do korisnikove slike -->
+																<img src="https://elouwerse.nl/placecircle/50" alt="{{ $bid->user->name }}">
+															</div>
+															<div class="bid-info">
+																<span class="user-name">{{ $bid->user->name }}</span>
+																<span class="bid-amount">{{ $bid->amount }} KM</span>
+															</div>				
+														</div>
+													@endforeach
+													@if($job->bids->count() > 3)
+													<div class="text-center">
+													<a href="{{ route('bids.show', $job->id) }}" class="btn btn-primary  btn-sm btn-block">See all</a>
+												</div>
+												@endif
+												
 
-											<li>
-												<i class="dash-icon-box ti-star text-success bg-light-success"></i> Jodie Farrell left a review <div class="numerical-rating high" data-rating="5.0"></div> for<strong><a href="#"> Real Estate Logo</a></strong>
-												<a href="#" class="close-list-item"><i class="fa fa-close"></i></a>
-											</li>
-
-											<li>
-												<i class="dash-icon-box ti-heart text-warning bg-light-warning"></i> Someone bookmarked your <strong><a href="#">SEO Expert Job</a></strong> listing!
-												<a href="#" class="close-list-item"><i class="fa fa-close"></i></a>
-											</li>
-
-											<li>
-												<i class="dash-icon-box ti-star text-info bg-light-info"></i> Gracie Mahmood left a review <div class="numerical-rating mid" data-rating="3.8"></div> on <strong><a href="#">Product Design</a></strong>
-												<a href="#" class="close-list-item"><i class="fa fa-close"></i></a>
-											</li>
-
-											<li>
-												<i class="dash-icon-box ti-heart text-danger bg-light-danger"></i> Your Magento Developer job expire<strong><a href="#">Renew</a></strong> now it!
-												<a href="#" class="close-list-item"><i class="fa fa-close"></i></a>
-											</li>
-
-											<li>
-												<i class="dash-icon-box ti-star text-success bg-light-success"></i> Ethan Barrett left a review <div class="numerical-rating high" data-rating="4.7"></div> on <strong><a href="#">New Logo</a></strong>
-												<a href="#" class="close-list-item"><i class="fa fa-close"></i></a>
-											</li>
-
-											<li>
-												<i class="dash-icon-box ti-star text-purple bg-light-purple"></i> Your Magento Developer job expire <strong><a href="#">Renew</a></strong> now it.
-												<a href="#" class="close-list-item"><i class="fa fa-close"></i></a>
-											</li>
-										</ul>
-									</div>
+												</div>
+											</div>
+										</div>
+									@endforeach
 								</div>
+								
+								
 								@if(auth()->user() && auth()->user()->user_type == 'company')
 								<div class="col-lg-6 col-md-12">
 									<div class="dashboard-gravity-list invoices with-icons">

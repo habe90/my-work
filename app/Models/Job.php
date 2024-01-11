@@ -23,4 +23,11 @@ class Job extends Model
     {
         return $this->belongsTo(ServiceCategory::class);
     }
+
+    public function bids()
+    {
+        return $this->hasMany(Bid::class);
+    }
+
+
 }
