@@ -5,8 +5,8 @@
             <div class="col-lg-12 col-md-12 col-sm-12">
                 <nav id="navigation" class="navigation navigation-landscape">
                     <div class="nav-header">
-                        <a class="nav-brand static-logo" href="/"><img src="frontend/img/logo-my-work.png" class="logo" alt="" /></a>
-                        <a class="nav-brand fixed-logo" href="/"><img src="frontend/img/logo-my-work.png" class="logo" alt="" /></a>
+                        <a class="nav-brand static-logo" href="/"><img src="frontend/img/logo-my-work.png" width="180" class="logo" alt="" /></a>
+                        <a class="nav-brand fixed-logo" href="/"><img src="frontend/img/logo-my-work.png" width="180" class="logo" alt="" /></a>
                         <div class="nav-toggle"></div>
                     </div>
                     <div class="nav-menus-wrapper">
@@ -24,6 +24,15 @@
                         
                         <ul class="nav-menu nav-menu-social align-to-right">
                             
+                            @auth <!-- Ako je korisnik logovan -->
+                            <li>
+                                <a href="{{ route('user.dashboard') }}">
+                                    <i class="ti-dashboard fa-lg mr-1"></i>Mein Konto
+                                </a>
+                            </li>
+                        @endauth
+
+                        @guest
                             <li>
                                 <a href="{{ route('client-login') }}">
                                     <i class="fa fa-sign-in mr-1"></i>Anmelden
@@ -31,9 +40,10 @@
                             </li>
                             <li class="add-listing dark-bg">
                                 <a href="#" data-toggle="modal" data-target="#login">
-                                     <i class="ti-user mr-1"></i> Als Handwerker anmeleden
+                                    <i class="ti-user mr-1"></i> Als Handwerker anmelden
                                 </a>
                             </li>
+                        @endguest
                         </ul>
                     </div>
                 </nav>

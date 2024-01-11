@@ -26,7 +26,7 @@ use App\Http\Controllers\DashboardController;
 // Route::redirect('/', '/login');
 
 Auth::routes();
-Route::get('/', [FrontendController::class, 'index']);
+Route::get('/', [FrontendController::class, 'index'])->name('home');
 Route::get('/page/{slug}', [FrontendController::class, 'showBySlug']);
 Route::any('/client-login', [FrontendController::class, 'ClientLogin'])->name('client-login');
 Route::post('/check-login', [FrontendController::class, 'checkLogin'])->name('login.check');

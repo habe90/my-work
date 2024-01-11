@@ -1,11 +1,19 @@
 <?php
 
 return [
+    'client-nav'                           => [
+    'dashboard' => 'Dashboard',
+    'profile' => 'Profile',
+    'messages' => 'Messages',
+    ],
     'all' => 'All',
     'add_field' => 'Add field',
     'edit_field' => 'Edit field',
     'add_page' => 'Add page',
     'add_user' => 'Add user',
+    'searchPlaceholder' => 'Search..',
+    'invoices' => 'Invoices',
+    'activeWorkPosts' => 'My active work-posts',
     'form_fields' => 'Form fields',
     'field_settings' => 'Field settings',
     'load_field_settings' => 'Click on the field to load the settings',

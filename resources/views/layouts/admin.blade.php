@@ -16,11 +16,13 @@
     <link href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" media="screen" href="{{ asset('assets/css/style.css') }}" />
     <link defer rel="stylesheet" type="text/css" media="screen" href="{{ asset('assets/css/animate.css') }}" />
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/quill.snow.css') }}" />
     <link rel="stylesheet" href="{{ asset('assets/magnific-popup/magnific-popup.css') }}" />
     <script src="{{ asset('assets/js/perfect-scrollbar.min.js') }}"></script>
     <script defer src="{{ asset('assets/js/popper.min.js') }}"></script>
     <script defer src="{{ asset('assets/js/tippy-bundle.umd.min.js') }}"></script>
     <script defer src="{{ asset('assets/js/sweetalert.min.js') }}"></script>
+    
     
     @livewireStyles
     @stack('styles')
@@ -91,6 +93,7 @@
     <script defer src="{{ asset('assets/js/alpine.min.js') }}"></script>
     <script src="{{ asset('assets/js/custom.js') }}"></script>
     <script defer src="{{ asset('assets/js/apexcharts.js') }}"></script>
+    <script src="{{ asset('assets/js/quill.js') }}"></script>
     <script>
         document.addEventListener('alpine:init', () => {
             // main section
