@@ -1,5 +1,4 @@
 @foreach ($obtainedData as $key => $optionValue)
-    <label class="checkbox-inline">
         <input 
             type="checkbox" 
             class="{{ $input_object_classes }}" 
@@ -16,5 +15,5 @@
                 disabled
             @endif
         > {{ setTranslationLabel($optionValue) }}
-    </label>
+
 @endforeach

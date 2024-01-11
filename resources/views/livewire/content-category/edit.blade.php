@@ -2,7 +2,7 @@
 
     <div class="form-group {{ $errors->has('contentCategory.name') ? 'invalid' : '' }}">
         <label class="form-label required" for="name">{{ trans('cruds.contentCategory.fields.name') }}</label>
-        <input class="form-control" type="text" name="name" id="name" required wire:model.defer="contentCategory.name">
+        <input class="form-input ltr:rounded-l-none rtl:rounded-r-none" type="text" name="name" id="name" required wire:model.defer="contentCategory.name">
         <div class="validation-message">
             {{ $errors->first('contentCategory.name') }}
         </div>
