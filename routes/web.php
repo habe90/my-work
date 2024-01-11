@@ -33,6 +33,7 @@ Route::post('/check-login', [FrontendController::class, 'checkLogin'])->name('lo
 Route::get('/login-options', [FrontendController::class, 'showLoginOptions'])->name('login.options');
 Route::get('/login/verify/{token}', [FrontendController::class, 'verifyLoginLink'])->name('login.verify');
 Route::post('/send-login-link', [FrontendController::class, 'sendLoginLink']);
+Route::get('/auftraggeber-info/so-funktionierts', [FrontendController::class, 'howtowork']);
 
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('user.dashboard');
 
