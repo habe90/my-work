@@ -23,6 +23,7 @@ use App\Http\Controllers\Admin\ContentPageController;
 use App\Http\Controllers\Admin\ContentTagController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\BidController;
+use App\Http\Controllers\JobController;
 
 // Route::redirect('/', '/login');
 
@@ -39,6 +40,8 @@ Route::get('/auftraggeber-info/so-funktionierts', [FrontendController::class, 'h
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('user.dashboard');
 
 Route::get('/bids/{job}', [BidController::class, 'show'])->name('bids.show');
+Route::get('/jobs/{job}', [JobController::class, 'show'])->name('jobs.show');
+
 
 
 

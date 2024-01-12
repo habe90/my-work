@@ -60,30 +60,14 @@
 										<li class="active"><a href="dashboard.html"><i class="ti-dashboard"></i>{{__('global.client-nav.dashboard')}}</a></li>
 										<li><a href="my-profile.html"><i class="ti-user"></i>{{__('global.client-nav.profile')}}</a></li>
 										<li><a href="messages.html"><i class="ti-email"></i>{{__('global.client-nav.messages')}}</a></li>
+									
+										@can('reviews_access')
+										<li><a href="#"><i class="fa fa-star"></i>Reviews</a></li>
+										@endcan
+									
+										@can('job_access')
 										<li>
-											<a href="javascript:void(0);" class="has-arrow" aria-expanded="false"><i class="ti-bookmark-alt"></i>Bookmark</a>
-											<ul>
-												<li><a href="bookmark-jobs.html">Bookmark jobs</a></li>
-												<li><a href="bookmark-candidates.html">Bookmark Candidates</a></li>
-												<li><a href="bookmark-freelancers.html">Bookmark Freelancers</a></li>
-												<li><a href="bookmark-employers.html">Bookmark Employers</a></li>
-											</ul>
-										</li>
-										<li><a href="reviews.html"><i class="fa fa-star"></i>Reviews</a></li>
-										<li>
-											<a href="javascript:void(0);" class="has-arrow" aria-expanded="false"><i class="fa fa-briefcase"></i>Jobs</a>
-											<ul>
-												<li><a href="manage-jobs.html">Manage Jobs</a></li>
-												<li><a href="manage-candidates.html">Manage Candidates</a></li>
-												<li><a href="manage-freelancers.html">Manage Freelancers</a></li>
-												<li><a href="manage-employers.html">Manage Employers</a></li>
-												<li><a href="create-reume.html">Create Resume</a></li>
-												<li><a href="post-job.html">Post A Job</a></li>
-												
-											</ul>
-										</li>
-										<li>
-											<a href="javascript:void(0);" class="has-arrow" aria-expanded="false"><i class="ti-desktop"></i>Tasks</a>
+											<a href="javascript:void(0);" class="has-arrow" aria-expanded="false"><i class="ti-desktop"></i>Jobs</a>
 											<ul>
 												<li><a href="manage-task.html">Manage Task</a></li>
 												<li><a href="manage-bidders.html">Manage Bidders</a></li>
@@ -91,6 +75,7 @@
 												<li><a href="post-task.html">Post A Task</a></li>
 											</ul>
 										</li>
+										@endcan
                                         <li class="add-listing dark-bg">
                                             <a href="{{ route('logout') }}"
                                                 onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
@@ -162,7 +147,9 @@
 											<div class="_manage_task_list">
 												<!-- Naslov posla i opis -->
 												<div class="_manage_task_list_flex">
-													<h4 class="_jb_title">{{ $job->title }}</h4>
+													<h4 class="_jb_title">
+														<a href="{{ route('jobs.show', $job) }}">{{ $job->title }}</a>
+													</h4>
 													<span class="_elopi_designation">{{ $job->description }}</span>
 												</div>
 												<!-- Ponude -->

@@ -5,6 +5,7 @@ namespace App\Http\Middleware;
 use App\Models\ImConversation;
 use Closure;
 use Illuminate\Http\Request;
+use App\Http\Controllers\JobController;
 
 class ShareUnreadConversations
 {

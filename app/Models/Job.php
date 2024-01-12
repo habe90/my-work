@@ -9,6 +9,12 @@ class Job extends Model
 {
     use HasFactory;
 
+   protected $casts = [
+    'additional_details' => 'array',
+];
+
+
+
     public function user()
     {
         return $this->belongsTo(User::class);
@@ -21,7 +27,7 @@ class Job extends Model
 
     public function category()
     {
-        return $this->belongsTo(ServiceCategory::class);
+        return $this->belongsTo(ServiceCategory::class, 'service_category_id');
     }
 
     public function bids()
