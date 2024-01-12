@@ -195,105 +195,47 @@
                             </div>
                         </div>
 
-                        <div class="_wrap_box_slice">
+                        <div class="_wrap_box_slice">,
+                            @if($job->bids->isNotEmpty())
                             <div class="_job_detail_single">
-                                <h4>Project Bids(03)</h4>
+                                <h4>Projektne Ponude ({{ $job->bids->count() }})</h4>
                                 <div class="_proposal_bids_list">
-
-                                    <!-- Single List -->
-                                    <div class="_proposal_bids_single">
-                                        <div class="_proposal_bids_flex">
-                                            <div class="_proposal_bids_thumb">
-                                                <img src="https://via.placeholder.com/500x500" class="img-fluid circle"
-                                                    alt="" />
+                                    @foreach($bids as $bid)
+                                        <div class="_proposal_bids_single">
+                                            <div class="_proposal_bids_flex">
+                                                <div class="_proposal_bids_thumb">
+                                                    <!-- Umjesto placeholdera ubacite stvarnu sliku korisnika -->
+                                                    <img src="{{ $bid->user->profile_photo_url }}" class="img-fluid circle" alt="{{ $bid->user->name }}" />
+                                                </div>
+                                                <div class="_proposal_bids_caption">
+                                                    <h4><a href="freelancer-detail.html">{{ $bid->user->name }}<img src="assets/img/verify.svg" class="ml-1" width="12" alt=""></a></h4>
+                                                    <div class="_locat124"><i class="ti-location-pin mr-1"></i>{{ $bid->user->location }}</div>
+                                                    <div class="_freelance_review_10">
+                                                        <!-- Ovdje ubacite logiku za prikaz zvjezdica i broja recenzija -->
+                                                        <span class="_overall_rate high">{{ $bid->user->rating }}</span>
+                                                        @for ($i = 0; $i < $bid->user->rating; $i++)
+                                                            <i class="fa fa-star filled"></i>
+                                                        @endfor
+                                                        <a href="#" class="over_reviews_count">({{ $bid->user->reviews_count }} Reviews)</a>
+                                                    </div>
+                                                </div>
                                             </div>
-                                            <div class="_proposal_bids_caption">
-                                                <h4><a href="freelancer-detail.html">Susan K. Worrell<img
-                                                            src="assets/img/verify.svg" class="ml-1" width="12"
-                                                            alt=""></a></h4>
-                                                <div class="_locat124"><i class="ti-location-pin mr-1"></i>London</div>
-                                                <div class="_freelance_review_10">
-                                                    <span class="_overall_rate high">4.7</span>
-                                                    <i class="fa fa-star filled"></i>
-                                                    <i class="fa fa-star filled"></i>
-                                                    <i class="fa fa-star filled"></i>
-                                                    <i class="fa fa-star filled"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <a href="#" class="over_reviews_count">(12 Reviews)</a>
+                                            <div class="_proposal_bids_right">
+                                                <div class="_freelancer_rate">
+                                                    <h4>${{ $bid->amount }}</h4>
+                                                    <span>{{ $bid->created_at->diffForHumans() }}</span>
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="_proposal_bids_right">
-                                            <div class="_freelancer_rate">
-                                                <h4>$470</h4>
-                                                <span>in 07 days</span>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <!-- Single List -->
-                                    <div class="_proposal_bids_single">
-                                        <div class="_proposal_bids_flex">
-                                            <div class="_proposal_bids_thumb">
-                                                <img src="https://via.placeholder.com/500x500" class="img-fluid circle"
-                                                    alt="" />
-                                            </div>
-                                            <div class="_proposal_bids_caption">
-                                                <h4><a href="freelancer-detail.html">Geraldine R. Harrington<img
-                                                            src="assets/img/verify.svg" class="ml-1" width="12"
-                                                            alt=""></a></h4>
-                                                <div class="_locat124"><i class="ti-location-pin mr-1"></i>Canada</div>
-                                                <div class="_freelance_review_10">
-                                                    <span class="_overall_rate mid">4.5</span>
-                                                    <i class="fa fa-star filled"></i>
-                                                    <i class="fa fa-star filled"></i>
-                                                    <i class="fa fa-star filled"></i>
-                                                    <i class="fa fa-star filled"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <a href="#" class="over_reviews_count">(40 Reviews)</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="_proposal_bids_right">
-                                            <div class="_freelancer_rate">
-                                                <h4>$670</h4>
-                                                <span>in 05 days</span>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <!-- Single List -->
-                                    <div class="_proposal_bids_single">
-                                        <div class="_proposal_bids_flex">
-                                            <div class="_proposal_bids_thumb">
-                                                <img src="https://via.placeholder.com/500x500" class="img-fluid circle"
-                                                    alt="" />
-                                            </div>
-                                            <div class="_proposal_bids_caption">
-                                                <h4><a href="freelancer-detail.html">Ankur Mahiraj</a></h4>
-                                                <div class="_locat124"><i class="ti-location-pin mr-1"></i>India</div>
-                                                <div class="_freelance_review_10">
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <a href="#" class="over_reviews_count">(0 Reviews)</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="_proposal_bids_right">
-                                            <div class="_freelancer_rate">
-                                                <h4>$700</h4>
-                                                <span>in 08 days</span>
-                                            </div>
-                                        </div>
-                                    </div>
-
+                                    @endforeach
+                            
                                 </div>
+                           
                             </div>
+                            {{ $bids->links() }}
+                            @endif
                         </div>
-
+                        @if(!$userHasMadeBid)
                         <div class="_wrap_box_slice">
                             <div class="_job_detail_single">
                                 <h4>Send Proposal</h4>
@@ -348,6 +290,7 @@
                                 </form>
                             </div>
                         </div>
+                        @endif
 
                     </div>
                 </div>
@@ -395,5 +338,18 @@
         </div>
     </section>
     <!-- ============================ Main Section End ================================== -->
-
+    <script>
+        window.addEventListener('load', (event) => {
+            const successMessage = "{{ session('successMessage') }}";
+            if(successMessage) {
+                Swal.fire({
+                    title: 'Uspjeh!',
+                    text: successMessage,
+                    icon: 'success',
+                    confirmButtonText: 'U redu'
+                });
+            }
+        });
+        </script>
+        
 @endsection

@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Bid;
-use Alert;
 
 class ProposalController extends Controller
 {
@@ -17,7 +16,7 @@ class ProposalController extends Controller
             'comment' => 'sometimes|string'
         ]);
     
-        // Create new offer
+        //create new offer
         $proposal = new Bid();
         $proposal->job_id = $validatedData['job_id'];
         $proposal->user_id = $validatedData['user_id'];
@@ -25,9 +24,8 @@ class ProposalController extends Controller
         $proposal->comment = $validatedData['comment'] ?? null; 
         $proposal->save();
     
-        Alert::success('Success', 'Your offer has been successfully sent!');
-        // Redirect sa porukom o uspješnom slanju ponude
-        return redirect()->back();
+        // Redirect
+        return redirect()->back()->with('success', 'Your offer has been successfully sent!');
     }
 
 

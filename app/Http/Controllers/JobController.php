@@ -8,21 +8,19 @@ use Illuminate\Http\Response;
 use App\Models\Job;
 use App\Http\Controllers\Admin\FormController;
 
-
 class JobController extends Controller
 {
     public function show(Job $job)
     {
+        //paginate bid
+        $bids = $job->bids()->paginate(4); 
 
-        // $encryptedJobId = encrypt($job->id);
-        //   // get send proposal form
-        //   $request = new Request([
-        //     'recordID' => $encryptedJobId,
-        //     'formName' => encrypt('Send Proposal'),
-        // ]);
-        // $proposalForm = (new FormController)->loadMyForm( $request );
+        // check if logged user already bided
+        $userHasMadeBid = $job
+            ->bids()
+            ->where('user_id', auth()->id())
+            ->exists();
 
-        
-        return view('frontend.jobs.show', compact('job'));
+        return view('frontend.jobs.show', compact('job', 'bids', 'userHasMadeBid'));
     }
 }
