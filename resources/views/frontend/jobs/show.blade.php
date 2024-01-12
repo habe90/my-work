@@ -198,7 +198,7 @@
                         <div class="_wrap_box_slice">,
                             @if($job->bids->isNotEmpty())
                             <div class="_job_detail_single">
-                                <h4>Projektne Ponude ({{ $job->bids->count() }})</h4>
+                                <h4>Project Offers ({{ $job->bids->count() }})</h4>
                                 <div class="_proposal_bids_list">
                                     @foreach($bids as $bid)
                                         <div class="_proposal_bids_single">
@@ -232,7 +232,7 @@
                                 </div>
                            
                             </div>
-                            {{ $bids->links() }}
+                            {{-- {{ $bids->links() }} --}}
                             @endif
                         </div>
                         @if(!$userHasMadeBid)
