@@ -60,7 +60,7 @@
 										<li class="active"><a href="dashboard.html"><i class="ti-dashboard"></i>{{__('global.client-nav.dashboard')}}</a></li>
 										<li><a href="my-profile.html"><i class="ti-user"></i>{{__('global.client-nav.profile')}}</a></li>
 										<li><a href="messages.html"><i class="ti-email"></i>{{__('global.client-nav.messages')}}</a></li>
-									
+									 
 										@can('reviews_access')
 										<li><a href="#"><i class="fa fa-star"></i>Reviews</a></li>
 										@endcan

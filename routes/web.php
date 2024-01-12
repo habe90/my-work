@@ -24,6 +24,8 @@ use App\Http\Controllers\Admin\ContentTagController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\BidController;
 use App\Http\Controllers\JobController;
+use App\Http\Controllers\ProposalController;
+
 
 // Route::redirect('/', '/login');
 
@@ -41,6 +43,10 @@ Route::get('/dashboard', [DashboardController::class, 'index'])->name('user.dash
 
 Route::get('/bids/{job}', [BidController::class, 'show'])->name('bids.show');
 Route::get('/jobs/{job}', [JobController::class, 'show'])->name('jobs.show');
+
+Route::post('/proposals', [ProposalController::class, 'store'])->name('proposals.store');
+
+
 
 
 

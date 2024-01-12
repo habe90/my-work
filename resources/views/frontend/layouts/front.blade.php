@@ -11,6 +11,7 @@
 			
         <!-- Custom CSS -->
         <link href="{{asset('frontend/css/styles.css')}}" rel="stylesheet">
+		<script defer src="{{ asset('assets/js/sweetalert.min.js') }}"></script>
 	    @livewireStyles
 		 @stack('styles')
     </head>

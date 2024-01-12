@@ -14,13 +14,15 @@ class JobController extends Controller
     public function show(Job $job)
     {
 
-          // get send proposal form
-          $request = new Request([
-            'formName' => encrypt('Form')
-        ]);
-        $proposalForm = (new FormController)->loadMyForm( $request );
+        // $encryptedJobId = encrypt($job->id);
+        //   // get send proposal form
+        //   $request = new Request([
+        //     'recordID' => $encryptedJobId,
+        //     'formName' => encrypt('Send Proposal'),
+        // ]);
+        // $proposalForm = (new FormController)->loadMyForm( $request );
 
         
-        return view('frontend.jobs.show', compact('job','proposalForm'));
+        return view('frontend.jobs.show', compact('job'));
     }
 }

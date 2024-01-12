@@ -4,9 +4,9 @@
 <input type="hidden" name="formName" value="{{ encrypt($formName) }}">
 <input type="hidden" name="recordID" value="{{ encrypt($formSettings['recordID']) }}">
 
-<div class="form-group row align-items-center">
+<div class="row mt-3">
     <label class="col-md-3 control-label text-lg-end mb-0"></label>
-    <div class="mb-5">
+    <div class="col-lg-12 col-md-12 col-sm-12">
         <button id="submitBtn-{{ $uniquekey }}" class="btn btn-primary mt-6  {{ $formSettings['modalForm'] == 'yes' ? 'reloadMypage' : '' }}" type="submit">{{ __('global.save') }}</button>
     </div>
 </div>

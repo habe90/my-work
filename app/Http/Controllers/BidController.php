@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Job;
+use App\Models\Bid;
 
 class BidController extends Controller
 {
@@ -14,4 +15,6 @@ class BidController extends Controller
         // Pretpostavimo da imate view fajl koji se zove 'bids.show'
         return view('frontend.bids.show', compact('job'));
     }
+
+  
 }
