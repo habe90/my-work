@@ -8,6 +8,7 @@ use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Http\Request;
 
 class RegisterController extends Controller
 {
@@ -69,5 +70,57 @@ class RegisterController extends Controller
             'email'    => $data['email'],
             'password' => Hash::make($data['password']),
         ]);
+    }
+
+
+    public function CompanyRegister(){
+        if (auth()->check()) {
+            return redirect('/');
+        }
+        
+        return view('frontend.CompanyRegister.index');
+    }
+
+
+        public function store(Request $request)
+    {
+        // Pravila za validaciju
+        $rules = [
+            'name' => 'required|max:255',
+            'last_name' => 'required|max:255',
+            'email' => 'required|email|unique:users,email',
+            'phone' => 'required|max:20',
+            'address' => 'required|max:255',
+            'password' => 'required|min:6',
+            'activity' => 'required'
+        ];
+
+        // Poruke za greške
+        $messages = [
+            'required' => 'Das Feld :attribute ist erforderlich.',
+            'email' => 'Das Feld :attribute muss eine gültige E-Mail-Adresse sein.',
+            'unique' => 'Das Feld :attribute existiert bereits.',
+            'min' => 'Das Feld :attribute muss mindestens :min Zeichen enthalten.'
+        ];
+        
+
+        // Izvršavanje validacije
+        $this->validate($request, $rules, $messages);
+
+        // Kreiranje novog korisnika
+        $user = new User;
+        $user->name = $request->name;
+        $user->last_name = $request->last_name;
+        $user->email = $request->email;
+        $user->phone = $request->phone;
+        $user->address = $request->address;
+        $user->password = bcrypt($request->password); 
+        $user->user_type = 'company'; 
+        $user->activity = $request->activity; 
+
+        $user->save(); 
+
+        // Redirect nakon uspješne registracije
+        return redirect()->to('/client-login')->with('success', 'Registration successful.');
     }
 }

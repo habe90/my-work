@@ -74,67 +74,51 @@
 								<div class="col-xl-3 col-lg-6 col-md-6 col-sm-12">
 									<div class="dashboard-stat">	
 										<div class="dashboard-stat-icon widget-2"><i class="ti-pie-chart"></i></div>
-										<div class="dashboard-stat-content"><h4><span class="cto">12</span></h4> <p>Total Viewes</p></div>
+										<div class="dashboard-stat-content"><h4><span class="cto">{{ number_format($settings2['total_number']) }}</span></h4> <p>{{ $settings2['chart_title'] }}</p></div>
 									</div>	
 								</div>
 								
 								<div class="col-xl-3 col-lg-6 col-md-6 col-sm-12">
 									<div class="dashboard-stat">
 										<div class="dashboard-stat-icon widget-3"><i class="ti-user"></i></div>
-										<div class="dashboard-stat-content"><h4><span class="cto">72</span></h4> <p>Completed</p></div>
+										<div class="dashboard-stat-content"><h4><span class="cto">{{ number_format($settings3['total_number']) }}</span></h4> <p>{{ $settings3['chart_title'] }}</p></div>
 									</div>	
 								</div>
 								
 								<div class="col-xl-3 col-lg-6 col-md-6 col-sm-12">
 									<div class="dashboard-stat">
 										<div class="dashboard-stat-icon widget-4"><i class="ti-bookmark"></i></div>
-										<div class="dashboard-stat-content"><h4><span class="cto">8</span></h4> <p>Draft</p></div>
+										<div class="dashboard-stat-content"><h4><span class="cto">0</span></h4> <p>Saved</p></div>
 									</div>	
 								</div>
 							</div>
 								
 							<div class="row">
-								<div class="_dashboard_content">
-									<!-- Ponude -->
-									@foreach ($jobs as $job)
-										<div class="_grouping_list_task">
-											<div class="_manage_task_list">
-												<!-- Naslov posla i opis -->
-												<div class="_manage_task_list_flex">
-													<h4 class="_jb_title">
-														<a href="{{ route('jobs.show', $job) }}">{{ $job->title }}</a>
-													</h4>
-													<span class="_elopi_designation">{{ $job->description }}</span>
-												</div>
-												<!-- Ponude -->
-												<div class="_manage_task_list_right">
-													<h4>Offers:</h4>
-													@forelse  ($job->bids->take(3) as $index => $bid)
-														<div class="offer-card">
-															<div class="user-image">
-																<!-- Ubacite putanju do korisnikove slike -->
-																<img src="https://elouwerse.nl/placecircle/50" alt="{{ $bid->user->name }}">
-															</div>
-															<div class="bid-info">
-																<span class="user-name">{{ $bid->user->name }}</span>
-																<span class="bid-amount">{{ $bid->amount }} €</span>
-															</div>				
-														</div>
-												
-													@empty
-													<p>There is no active offers!</p>
-													@endforelse
-													@if($job->bids->count() > 3)
-													<div class="text-center">
-													<a href="{{ route('bids.show', $job->id) }}" class="btn btn-primary  btn-sm btn-block">See all</a>
-												</div>
-												@endif											
-												</div>
-											</div>
-										</div><hr>
-									@endforeach
-									
-								</div>
+                                <div class="col-lg-6 col-md-12">
+                                    <div class="dashboard-gravity-list with-icons">
+                                        <h4>Recent Activities</h4>
+                                        <ul>
+                                            @if($bids->isEmpty())
+                                                <li>
+                                                    No recent activity.
+                                                </li>
+                                            @else
+                                                @foreach($bids as $bid)
+                                                    <li>
+                                                        @if($bid->status === 'accepted')
+                                                            <i class="dash-icon-box ti-layers text-purple bg-light-purple"></i> Your bid for <strong><a href="{{ route('jobs.show', $bid->job->id) }}">{{ $bid->job->title }}</a></strong> is <span class="badge badge-success">accepted!</span>
+                                                        @elseif($bid->status === 'rejected')
+                                                            <i class="dash-icon-box ti-heart text-danger bg-light-danger"></i> Your bid for <strong><a href="{{ route('jobs.show', $bid->job->id) }}">{{ $bid->job->title }}</a></strong> is <span class="badge badge-danger">declined!</span>
+                                                        @endif
+                                                        <a href="#" class="close-list-item"><i class="fa fa-close"></i></a>
+                                                    </li>
+                                                @endforeach
+                                            @endif
+                                        </ul>
+                                    </div>
+                                </div>
+                                
+                                
 								
 								
 								@if(auth()->user() && auth()->user()->user_type == 'company')
@@ -148,7 +132,7 @@
 												<ul>
 													<li class="unpaid">Unpaid</li>
 													<li>Order: #20551</li>
-													<li>Date: 01/08/2019</li>
+													<li>Date: 01/08/2024</li>
 												</ul>
 												<div class="buttons-to-right">
 													<a href="dashboard-invoice.html" class="button gray">View Invoice</a>

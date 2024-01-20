@@ -4,6 +4,12 @@
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 		<meta name="csrf-token" content="{{ csrf_token() }}">
+		<meta property="og:url"           content="http://127.0.0.1:8000" />
+		<meta property="og:type"          content="website" />
+		<meta property="og:title"         content="Naslov_posla" />
+		<meta property="og:description"   content="Kratki_opis_posla" />
+		<meta property="og:image"         content="URL_slike_posla" />
+
 
         <title>My Work Platform</title>
         <!-- All Plugins Css -->
@@ -16,7 +22,7 @@
 		 @stack('styles')
     </head>
 	
-    <body class="blue-skin">
+    <body class="blue-skin" style="overflow: visible;">
         <!-- ============================================================== -->
         <!-- Preloader - style you can find in spinners.css -->
         <!-- ============================================================== -->
@@ -28,13 +34,13 @@
         <div id="main-wrapper">
 			@if(Request::is('/'))
 			@include('frontend.includes.navbar')
-		@else
-			@include('frontend.includes.navbar2')
-		@endif
-            @yield('content')
-			@include('frontend.includes.footer')
+			@else
+				@include('frontend.includes.navbar2')
+			@endif
 
-	
+            @yield('content')
+		
+			@include('frontend.includes.footer')
 
 		</div>
 		<!-- ============================================================== -->
@@ -47,7 +53,7 @@
 		@livewireScripts
 		@stack('scripts')
 		@yield('scripts')
-
+		
 		<script src="{{asset('frontend/js/jquery.min.js')}}"></script>
 		<script src="{{asset('frontend/js/popper.min.js')}}"></script>
 		<script src="{{asset('frontend/js/bootstrap.min.js')}}"></script>
@@ -58,6 +64,7 @@
 		<script src="{{asset('frontend/js/materialize.min.js')}}"></script>
 		<script src="{{asset('frontend/js/metisMenu.min.js')}}"></script>
 		<script src="{{asset('frontend/js/custom.js')}}"></script>
+		<script src="{{ mix('js/app.js') }}" defer></script>
 		<!-- ============================================================== -->
 		<!-- This page plugins -->
 		<!-- ============================================================== -->

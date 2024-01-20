@@ -26,9 +26,15 @@
                             
                             @auth <!-- Ako je korisnik logovan -->
                             <li>
-                                <a href="{{ route('user.dashboard') }}">
-                                    <i class="ti-dashboard fa-lg mr-1"></i>Mein Konto
-                                </a>
+                                @if(auth()->user()->user_type == 'company')
+                                    <a href="{{ route('company.dashboard') }}">
+                                        <i class="ti-dashboard fa-lg mr-1"></i>Mein Konto
+                                    </a>
+                                @else
+                                    <a href="{{ route('user.dashboard') }}">
+                                        <i class="ti-dashboard fa-lg mr-1"></i>Mein Konto
+                                    </a>
+                                @endif
                             </li>
                         @endauth
 

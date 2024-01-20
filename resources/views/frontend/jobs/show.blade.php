@@ -185,111 +185,126 @@
                                         <li><a href="#" class="share gp"><i class="fa fa-google"></i></a></li>
                                     </ul>
                                 </div>
-
-                                <div class="_exlio_buttons">
-                                    <ul class="bottoms_applies">
-                                        <li><a href="#" class="_saveed_jb">Save Project</a></li>
-                                        <li><a href="#" class="_applied_jb">Send Proposal</a></li>
-                                    </ul>
-                                </div>
                             </div>
                         </div>
 
                         <div class="_wrap_box_slice">,
-                            @if($job->bids->isNotEmpty())
-                            <div class="_job_detail_single">
-                                <h4>Project Offers ({{ $job->bids->count() }})</h4>
-                                <div class="_proposal_bids_list">
-                                    @foreach($bids as $bid)
-                                        <div class="_proposal_bids_single">
-                                            <div class="_proposal_bids_flex">
-                                                <div class="_proposal_bids_thumb">
-                                                    <!-- Umjesto placeholdera ubacite stvarnu sliku korisnika -->
-                                                    <img src="{{ $bid->user->profile_photo_url }}" class="img-fluid circle" alt="{{ $bid->user->name }}" />
+                            @if ($job->bids->isNotEmpty())
+                                <div class="_job_detail_single">
+                                    <h4>Project Offers ({{ $job->bids->count() }})</h4>
+                                    <div class="_proposal_bids_list">
+                                        @foreach ($bids as $bid)
+                                            <div class="_proposal_bids_single">
+                                                <div class="_proposal_bids_flex">
+                                                    <div class="_proposal_bids_thumb">
+                                                        <!-- Umjesto placeholdera ubacite stvarnu sliku korisnika -->
+                                                        <img src="{{ $bid->user->image }}" class="img-fluid circle"
+                                                            alt="{{ $bid->user->name }}" />
+                                                    </div>
+                                                    <div class="_proposal_bids_caption">
+                                                        <h4><a href="freelancer-detail.html">{{ $bid->user->name }}<img
+                                                                    src="assets/img/verify.svg" class="ml-1"
+                                                                    width="12" alt=""></a></h4>
+                                                        <div class="_locat124"><i
+                                                                class="ti-location-pin mr-1"></i>{{ $bid->user->address }}
+                                                        </div>
+                                                        <div class="_freelance_review_10">
+                                                           <!-- Prikaz zvjezdica i broja recenzija -->
+                                                            <span class="_overall_rate high">{{ $bid->user->rating }}</span>
+                                                            @for ($i = 0; $i < 5; $i++)
+                                                                @if ($i < $bid->user->rating)
+                                                                    <i class="fa fa-star filled"></i>
+                                                                @else
+                                                                    <i class="fa fa-star"></i>
+                                                                @endif
+                                                            @endfor
+                                                            <a href="#" class="over_reviews_count">({{ $bid->user->reviews_count }} Reviews)</a>
+                                                        </div>
+                                                    </div>
                                                 </div>
-                                                <div class="_proposal_bids_caption">
-                                                    <h4><a href="freelancer-detail.html">{{ $bid->user->name }}<img src="assets/img/verify.svg" class="ml-1" width="12" alt=""></a></h4>
-                                                    <div class="_locat124"><i class="ti-location-pin mr-1"></i>{{ $bid->user->location }}</div>
-                                                    <div class="_freelance_review_10">
-                                                        <!-- Ovdje ubacite logiku za prikaz zvjezdica i broja recenzija -->
-                                                        <span class="_overall_rate high">{{ $bid->user->rating }}</span>
-                                                        @for ($i = 0; $i < $bid->user->rating; $i++)
-                                                            <i class="fa fa-star filled"></i>
-                                                        @endfor
-                                                        <a href="#" class="over_reviews_count">({{ $bid->user->reviews_count }} Reviews)</a>
+                                                <div class="_proposal_bids_right">
+                                                    <div class="_freelancer_rate">
+                                                        <h4>{{ $bid->amount }} €</h4>
+                                                        <span>{{ $bid->created_at->diffForHumans() }}</span>
+                                                        <span class="badge badge-warning text-white">{{ $bid->status }}</span>
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="_proposal_bids_right">
-                                                <div class="_freelancer_rate">
-                                                    <h4>${{ $bid->amount }}</h4>
-                                                    <span>{{ $bid->created_at->diffForHumans() }}</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    @endforeach
-                            
+                                        @endforeach
+
+                                    </div>
+
                                 </div>
-                           
-                            </div>
-                            {{-- {{ $bids->links() }} --}}
-                            @endif
-                        </div>
-                        @if(!$userHasMadeBid)
-                        <div class="_wrap_box_slice">
+                                {{-- {{ $bids->links() }} --}}
+                       
+                            @else
                             <div class="_job_detail_single">
-                                <h4>Send Proposal</h4>
-                                <form class="proposal-form"  method="POST" action="{{ route('proposals.store') }}">
-                                    @csrf 
-                                    <input type="hidden" name="job_id" value="{{ $job->id }}">
-                                    <input type="hidden" name="user_id" value="{{ auth()->user()->id }}"> 
-                                    <div class="row">
-
-                                        <div class="col-lg-6 col-md-12 col-sm-12">
-                                            <div class="form-group">
-                                                <label>Your Price</label>
-                                                <div class="input-group">
-                                                    <div class="input-group-prepend">
-                                                        <span class="input-group-text">€</span>
-                                                    </div>
-                                                    <input type="text" name="amount" class="form-control">
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                       
-                                        <div class="col-lg-12 col-md-12 col-sm-12">
-                                            <div class="form-group">
-                                                <label>Cover Letter</label>
-                                                <textarea class="form-control" name="comment" rows="3"></textarea>
-                                            </div>
-                                        </div>
-
-                                    </div>
-
-                              
-
-                                    <div class="row">
-                                        <div class="col-lg-12 col-md-12 col-sm-12">
-                                            <div class="_terms_policy">
-                                                <div class="_mercurt10">
-                                                    <input id="tm" class="checkbox-custom" name="terms"
-                                                        type="checkbox">
-                                                    <label for="tm" class="checkbox-custom-label"></label>
-                                                </div>
-                                                <div>I agree to the <a
-                                                        href="https://marketplace.exertiowp.com/terms-and-conditions/">terms
-                                                        and conditions</a></div>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-12 col-md-12 col-sm-12">
-                                            <button type="submit" class="btn_proposal_send">Send Proposal</button>
-                                        </div>
-                                    </div>
-
-                                </form>
+                                <h4>Project Offers (0)</h4>
+                                <p>There is no Offers.</p>
                             </div>
+                        @endif
                         </div>
+                        @if (!$userHasMadeBid && auth()->user()->id !== $job->user_id)
+                            <div class="_wrap_box_slice">
+                                <div class="_job_detail_single">
+                                    <h4>Send Proposal</h4>
+                                    <form class="proposal-form" method="POST" action="{{ route('proposals.store') }}">
+                                        @csrf
+                                        <input type="hidden" name="job_id" value="{{ $job->id }}">
+                                        <input type="hidden" name="user_id" value="{{ auth()->user()->id }}">
+                                        <div class="row">
+
+                                            <div class="col-lg-6 col-md-12 col-sm-12">
+                                                <div class="form-group">
+                                                    <label>Your Price</label>
+                                                    <div class="input-group">
+                                                        <div class="input-group-prepend">
+                                                            <span class="input-group-text">€</span>
+                                                        </div>
+                                                        <input type="text" name="amount" class="form-control">
+                                                    </div>
+                                                </div>
+                                            </div>
+
+
+                                            <div class="col-lg-12 col-md-12 col-sm-12">
+                                                <div class="form-group">
+                                                    <label>Cover Letter</label>
+                                                    <textarea class="form-control" name="comment" rows="3"></textarea>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+
+
+                                        <div class="row">
+                                            <div class="col-lg-12 col-md-12 col-sm-12">
+                                                <div class="_terms_policy">
+                                                    <div class="_mercurt10">
+                                                        <input id="tm" class="checkbox-custom" name="terms"
+                                                            type="checkbox">
+                                                        <label for="tm" class="checkbox-custom-label"></label>
+                                                    </div>
+                                                    <div>I agree to the <a
+                                                            href="https://marketplace.exertiowp.com/terms-and-conditions/">terms
+                                                            and conditions</a></div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-12 col-md-12 col-sm-12">
+                                                <button type="submit" class="btn_proposal_send">Send Proposal</button>
+                                            </div>
+                                        </div>
+
+                                    </form>
+                                </div>
+                            </div>
+                        @else
+                            <div class="alert alert-success" role="alert">
+                                You have already submitted an offer for this job or you are owner of this job. You can
+                                review your offer in the My Offers
+                                section.
+                            </div>
                         @endif
 
                     </div>
@@ -341,7 +356,7 @@
     <script>
         window.addEventListener('load', (event) => {
             const successMessage = "{{ session('successMessage') }}";
-            if(successMessage) {
+            if (successMessage) {
                 Swal.fire({
                     title: 'Uspjeh!',
                     text: successMessage,
@@ -350,6 +365,6 @@
                 });
             }
         });
-        </script>
-        
+    </script>
+
 @endsection

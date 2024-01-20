@@ -22,31 +22,51 @@ use App\Http\Controllers\Admin\ContentCategoryController;
 use App\Http\Controllers\Admin\ContentPageController;
 use App\Http\Controllers\Admin\ContentTagController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\CompanyDashboardController;
 use App\Http\Controllers\BidController;
 use App\Http\Controllers\JobController;
 use App\Http\Controllers\ProposalController;
-
+use App\Http\Controllers\MessagesController;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\Auth\RegisterController;
 
 // Route::redirect('/', '/login');
 
 Auth::routes();
 Route::get('/', [FrontendController::class, 'index'])->name('home');
 Route::get('/page/{slug}', [FrontendController::class, 'showBySlug']);
+
+//clinet login routes
 Route::any('/client-login', [FrontendController::class, 'ClientLogin'])->name('client-login');
 Route::post('/check-login', [FrontendController::class, 'checkLogin'])->name('login.check');
 Route::get('/login-options', [FrontendController::class, 'showLoginOptions'])->name('login.options');
 Route::get('/login/verify/{token}', [FrontendController::class, 'verifyLoginLink'])->name('login.verify');
 Route::post('/send-login-link', [FrontendController::class, 'sendLoginLink']);
+
+//company register routes
+Route::any('/company-register', [RegisterController::class, 'CompanyRegister'])->name('company-login');
+Route::any('/company-save', [RegisterController::class, 'store'])->name('company-save');
+
+//dashboard and bids jobs
 Route::get('/auftraggeber-info/so-funktionierts', [FrontendController::class, 'howtowork']);
-
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('user.dashboard');
-
 Route::get('/bids/{job}', [BidController::class, 'show'])->name('bids.show');
 Route::get('/jobs/{job}', [JobController::class, 'show'])->name('jobs.show');
 
+
 Route::post('/proposals', [ProposalController::class, 'store'])->name('proposals.store');
 
+//messages
+Route::get('/user/messages', [MessagesController::class, 'index'])->name('messages.index');
 
+//profile
+Route::get('/user/my-profile', [ProfileController::class, 'index'])->name('users.profile');
+Route::put('/user/update-profile', [ProfileController::class, 'update'])->name('user.update.profile');
+
+
+//company
+
+Route::get('/company-dashboard', [CompanyDashboardController::class, 'index'])->name('company.dashboard');
 
 
 

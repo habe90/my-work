@@ -35,16 +35,17 @@ class LoginLinkSender extends Component
         if (Auth::attempt(['email' => $this->email, 'password' => $this->password])) {
             // Uspješna prijava, provjera tipa korisnika
             $user = Auth::user();
+            $user->update(['last_activity' => now()]);
             if ($user->user_type === 'client') {
                 // Ako je korisnik tipa 'client', preusmjeri na klijentski dashboard
                 return redirect()->intended(route('user.dashboard'));
             } else {
                 // Ako nije, preusmjeri na drugi dashboard ili početnu stranicu
-                return redirect()->intended('/other-dashboard');
+                return redirect()->intended('/company-dashboard');
             }
         } else {
             // Neuspješna prijava, prikaz poruke o grešci
-            session()->flash('error', 'Pogrešan e-mail ili lozinka.');
+            session()->flash('error', 'Incorrect email or password.');
         }
     }
 
@@ -53,7 +54,7 @@ class LoginLinkSender extends Component
         $user = User::where('email', $this->email)->first();
 
         if (!$user) {
-            session()->flash('error', 'Nismo mogli pronaći vaš korisnički račun.');
+            session()->flash('error', 'We could not find your account.');
             return;
         }
 
@@ -65,7 +66,7 @@ class LoginLinkSender extends Component
         $loginLink = url('/login/verify', $token);
         Mail::to($user->email)->send(new LoginLinkEmail($loginLink));
 
-        session()->flash('message', 'Link za prijavu poslan na e-mail.');
+        session()->flash('message', 'Login link sent to e-mail.');
     }
 
     public function render()

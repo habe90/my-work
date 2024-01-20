@@ -26,5 +26,9 @@
         "resolve-url-loader": "^3.1.2",
         "select2": "^4.0.13",
         "tailwindcss": "^2.1.2"
+    },
+    "dependencies": {
+        "laravel-echo": "^1.15.3",
+        "pusher-js": "^8.4.0-rc2"
     }
 }

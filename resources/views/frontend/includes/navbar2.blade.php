@@ -28,15 +28,20 @@
 
                          <ul class="nav-menu nav-menu-social align-to-right">
 
-                             @auth <!-- Ako je korisnik logovan -->
-                                 <li>
-                                     <a href="{{ route('user.dashboard') }}">
-                                         <i class="ti-dashboard fa-lg mr-1"></i>Mein Konto
-                                     </a>
-                                 </li>
-                                 
-                             @endauth
-
+                            @auth <!-- Ako je korisnik logovan -->
+                            <li>
+                                @if(auth()->user()->user_type == 'company')
+                                    <a href="{{ route('company.dashboard') }}">
+                                        <i class="ti-dashboard fa-lg mr-1"></i>Mein Konto
+                                    </a>
+                                @else
+                                    <a href="{{ route('user.dashboard') }}">
+                                        <i class="ti-dashboard fa-lg mr-1"></i>Mein Konto
+                                    </a>
+                                @endif
+                            </li>
+                        @endauth
+                        
                              @guest <!-- Ako korisnik nije logovan -->
                                  <li>
                                      <a href="{{ route('client-login') }}">

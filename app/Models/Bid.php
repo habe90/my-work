@@ -22,6 +22,6 @@ class Bid extends Model
     // Ako imate povezane razgovore s ponudama
     public function conversation()
     {
-        return $this->belongsTo(Conversation::class);
+        return $this->belongsTo(ImConversation::class, 'conversation_id');
     }
 }

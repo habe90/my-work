@@ -11,12 +11,14 @@ use Illuminate\Contracts\Translation\HasLocalePreference;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\InteractsWithMedia;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
-class User extends Authenticatable implements HasLocalePreference
+class User extends Authenticatable implements HasLocalePreference, HasMedia
 {
-    use HasFactory, HasAdvancedFilter, Notifiable, SoftDeletes;
+    use HasFactory, HasAdvancedFilter, Notifiable, SoftDeletes, InteractsWithMedia;
 
     public $table = 'users';
 
@@ -126,4 +128,11 @@ class User extends Authenticatable implements HasLocalePreference
     {
         return $value ? Carbon::createFromFormat('Y-m-d H:i:s', $value)->format(config('project.datetime_format')) : null;
     }
+
+     
+    public function recipients()
+    {
+        return $this->hasMany(ImRecipient::class);
+    }
+
 }

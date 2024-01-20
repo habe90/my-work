@@ -88,4 +88,13 @@ class ImConversation extends Model
 
         return $unreadConversations;
     }
+
+
+    public function bids()
+    {
+        return $this->hasMany(Bid::class, 'conversation_id');
+    }
+
+
+
 }
