@@ -24,14 +24,13 @@
 
                                     <div class="message-by">
                                         <div class="message-by-headline">
-                                            @if ($conversation->bids->isNotEmpty() && $conversation->bids->first()->user)
-                                                {{-- Sada možete sigurno pristupiti korisniku --}}
-                                                <h5>{{ $conversation->bids->first()->user->name }}</h5>
-                                            @else
-                                                {{-- Ako nema ponuda ili korisnika, prikažite odgovarajuću poruku --}}
-                                                <h5>User is offline</h5>
-                                            @endif
+                                            @if ($conversation->bids->isNotEmpty() && optional($conversation->bids->first())->user)
+                                            <h5>{{ $conversation->bids->first()->user->name }}</h5>
                                             <span>{{ $conversation->bids->first()->created_at->diffForHumans() }}</span>
+                                        @else
+                                            <h5>Korisnik nije dostupan</h5>
+                                        @endif
+                                        
                                         </div>
                                         <p>On ad: {{ $conversation->bids->first()->job->title }}</p>
                                     </div>
