@@ -22,7 +22,7 @@ class JobFilter extends Component
     public function render()
     {
         $loggedInUser = Auth::user();
-        if (!is_null($loggedUser)) {
+        if (!is_null($loggedInUser)) {
         $activity = $loggedInUser->activity;
         $location = $loggedInUser->address; 
         $radius = $loggedInUser->radius; 
