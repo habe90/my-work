@@ -22,24 +22,35 @@ class JobFilter extends Component
     public function render()
     {
         $loggedInUser = Auth::user();
-        $activity = $loggedInUser->activity;
         $location = $loggedInUser->address; 
         $radius = $loggedInUser->radius; 
         
         // Prvo, pretvorite adresu korisnika u geografske koordinate
         $coordinates = $this->getCoordinatesFromAddress($location);
+        \Log::info('Dobijene koordinate: ', $coordinates);
+    
+        // Provjera da li su koordinate prazne ili ne
+        if (empty($coordinates)) {
+            \Log::error('Koordinate su prazne, provjeriti getCoordinatesFromAddress funkciju.');
+            return view('livewire.job-filter', ['jobs' => collect()]);
+        }
         
-        // Zatim filtrirajte poslove na temelju aktivnosti i geografske udaljenosti
-        $jobs = Job::where('service_category_id', $activity)
-                    ->whereRaw("ST_Distance_Sphere(point(longitude, latitude), point(?, ?)) <= ?", [
+        // Filtriranje poslova na temelju geografske udaljenosti
+        $jobsQuery = Job::whereRaw("ST_Distance_Sphere(point(longitude, latitude), point(?, ?)) <= ?", [
                         $coordinates['longitude'], 
                         $coordinates['latitude'], 
                         $radius * 1000 
-                    ])
-                    ->paginate($this->perPage, ['*'], 'page', $this->currentPage);
+                    ]);
+    
+        // Logovanje upita za provjeru
+        \Log::info('SQL upit: ', [$jobsQuery->toSql(), $jobsQuery->getBindings()]);
+    
+        $jobs = $jobsQuery->paginate($this->perPage, ['*'], 'page', $this->currentPage);
         
         return view('livewire.job-filter', ['jobs' => $jobs]);
     }
+    
+    
 
     private function getCoordinatesFromAddress($address)
     {
@@ -68,6 +79,7 @@ class JobFilter extends Component
     
             if ($data && $data->status == 'OK' && !empty($data->results)) {
                 $coordinates = $data->results[0]->geometry->location;
+                \Log::info('Koordinate za adresu ' . $address . ': ', (array) $coordinates);
                 return [
                     'latitude' => $coordinates->lat,
                     'longitude' => $coordinates->lng
@@ -83,6 +95,7 @@ class JobFilter extends Component
             return null;
         }
     }
+    
     
     
 }
