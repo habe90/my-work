@@ -22,10 +22,11 @@ class JobFilter extends Component
     public function render()
     {
         $loggedInUser = Auth::user();
+        if (!is_null($loggedUser)) {
         $activity = $loggedInUser->activity;
         $location = $loggedInUser->address; 
         $radius = $loggedInUser->radius; 
-        
+    } else {
         // Prvo, pretvorite adresu korisnika u geografske koordinate
         $coordinates = $this->getCoordinatesFromAddress($location);
         
@@ -40,6 +41,7 @@ class JobFilter extends Component
         
         return view('livewire.job-filter', ['jobs' => $jobs]);
     }
+}
 
     private function getCoordinatesFromAddress($address)
     {
