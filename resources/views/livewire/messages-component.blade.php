@@ -33,7 +33,7 @@
                                         @endif
                                         
                                         </div>
-                                        <p>On ad: {{ $conversation->bids->first()->job->title }}</p>
+                                        <p>On ad: {{ optional($conversation->bids->first()->job->title) }}</p>
                                     </div>
                                 </a>
                             </li>
