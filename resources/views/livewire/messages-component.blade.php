@@ -18,8 +18,9 @@
                             <li @if ($selectedConversationId == $conversation->id) class="active-message" @endif>
                                 <a href="#" wire:click="selectConversation({{ $conversation->id }})">
                                     <div class="dash-msg-avatar"><img src="https://via.placeholder.com/500x500"
-                                            alt=""><span
-                                            class="_user_status {{ $this->isUserOnline($conversation->bids->first()->user->id) ? 'online' : 'offline' }}"></span>
+                                            alt="">
+                                            <span class="_user_status {{ optional(optional($conversation->bids->first())->user)->isUserOnline() ? 'online' : 'offline' }}"></span>
+
                                     </div>
 
                                     <div class="message-by">
