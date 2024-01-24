@@ -33,7 +33,8 @@
                                         @endif
                                         
                                         </div>
-                                        <p>On ad: {{ optional($conversation->bids->first()->job->title) }}</p>
+                                        <p>On ad: {{ optional(optional($conversation->bids->first())->job)->title ?? 'Naslov nije dostupan' }}</p>
+
                                     </div>
                                 </a>
                             </li>
