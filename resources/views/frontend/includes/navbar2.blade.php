@@ -8,7 +8,7 @@
                  <nav id="navigation" class="navigation navigation-landscape">
                      <div class="nav-header">
                          <a class="nav-brand" href="#">
-                             <a class="nav-brand static-logo" href="/"><img src="frontend/img/logo-my-work.png"
+                             <a class="nav-brand static-logo" href="/"><img src="{{asset('frontend/img/logo-my-work.png')}}"
                                      class="logo" width="180" alt="" /></a>
                          </a>
                          <div class="nav-toggle"></div>
@@ -21,8 +21,10 @@
 
 
                              @foreach ($contentPages as $page)
+                             @if($page->category->contains('name', 'Menu'))
                                  <li><a href="{{ url('/page/' . $page->slug) }}">{{ $page->title }}</a></li>
-                             @endforeach
+                             @endif
+                         @endforeach
 
                          </ul>
 
@@ -49,7 +51,7 @@
                                      </a>
                                  </li>
                                  <li class="add-listing dark-bg">
-                                     <a href="#" data-toggle="modal" data-target="#login">
+                                     <a href="{{ route('company-login') }}" >
                                          <i class="ti-user mr-1"></i> Als Handwerker anmelden
                                      </a>
                                  </li>

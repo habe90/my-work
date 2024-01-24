@@ -15,3 +15,11 @@ Breadcrumbs::for('my-profile', function ($trail) {
     $trail->parent('home');
     $trail->push('My Profile', route('users.profile'));
 });
+
+
+Breadcrumbs::for('user-reviews', function ($trail) {
+    $trail->parent('home');
+    $trail->push('My reviews', route('review.show'));
+});
+
+

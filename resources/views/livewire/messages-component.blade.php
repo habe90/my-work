@@ -76,8 +76,14 @@
                 <!-- Forma za slanje poruke -->
                 <div class="message-reply">
                     <form wire:submit.prevent="sendMessage">
-                        <textarea wire:model="newMessage" cols="40" rows="3" class="form-control with-light"
-                            placeholder="Your message here.."></textarea>
+                        <div class="emoji-picker-container">
+                            <button type="button" wire:click="toggleEmojiPicker">😊</button>
+                            <div class="emoji-picker {{ $showEmojiPicker ? 'active' : '' }}">
+                                <emoji-picker></emoji-picker>
+                            </div>
+                            <textarea wire:model="newMessage" cols="40" rows="3" class="form-control with-light"
+                                      placeholder="Vaša poruka ovdje.."></textarea>
+                        </div>
                         <button type="submit" class="btn dark-2">Send message</button>
                     </form>
                 </div>

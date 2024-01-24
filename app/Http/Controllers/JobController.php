@@ -29,4 +29,8 @@ class JobController extends Controller
 
         return view('frontend.jobs.show', compact('job', 'bids', 'userHasMadeBid'));
     }
+
+
+   
+
 }

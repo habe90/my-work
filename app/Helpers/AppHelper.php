@@ -1,5 +1,33 @@
 <?php
 
+use App\Models\UserSetting;
+
+
+if (!function_exists('userSetting')) {
+    /**
+     * Dohvata ili postavlja korisničku postavku.
+     *
+     * @param  int    $userId
+     * @param  string $key
+     * @param  mixed  $value (opcionalno)
+     * @return mixed
+     */
+    function userSetting($userId, $key, $value = null)
+    {
+        if ($value === null) {
+            // Dohvatanje postavke
+            return UserSetting::where('user_id', $userId)->where('key', $key)->value('value');
+        } else {
+            // Postavljanje ili ažuriranje postavke
+            $setting = UserSetting::updateOrCreate(
+                ['user_id' => $userId, 'key' => $key],
+                ['value' => $value]
+            );
+            return $setting->value;
+        }
+    }
+}
+
 if(!function_exists('generateValidPassword')){
     function generateValidPassword($length = 10) {
         $password = '';

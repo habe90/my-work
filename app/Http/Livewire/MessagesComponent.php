@@ -13,8 +13,19 @@ class MessagesComponent extends Component
     public $selectedConversation;
     public $selectedConversationId;
     public $newMessage = '';
-    protected $listeners = ['messageReceived'];
+    protected $listeners = [
+        'messageReceived',
+        'emojiSelected',
+        'closeEmojiPicker',
+        'toggleEmojiPicker'
+    ];
+    
+    public $showEmojiPicker = false;
 
+    public function toggleEmojiPicker()
+    {
+        $this->showEmojiPicker = !$this->showEmojiPicker;
+    }
 
 
 
@@ -94,6 +105,13 @@ class MessagesComponent extends Component
         $fiveMinutesAgo = strtotime('-5 minutes'); 
     
         return $lastActivity > $fiveMinutesAgo; // Provjerava da li je posljednja aktivnost unutar vremenskog okvira
+    }
+
+
+
+    public function emojiSelected($emoji)
+    {
+        $this->newMessage .= $emoji;
     }
     
 

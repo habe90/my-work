@@ -29,10 +29,14 @@ use App\Http\Controllers\ProposalController;
 use App\Http\Controllers\MessagesController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\UserRatingController;
+use App\Http\Controllers\InvoiceController;
+
 
 // Route::redirect('/', '/login');
 
 Auth::routes();
+Auth::routes(['verify' => true]);
 Route::get('/', [FrontendController::class, 'index'])->name('home');
 Route::get('/page/{slug}', [FrontendController::class, 'showBySlug']);
 
@@ -52,6 +56,17 @@ Route::get('/auftraggeber-info/so-funktionierts', [FrontendController::class, 'h
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('user.dashboard');
 Route::get('/bids/{job}', [BidController::class, 'show'])->name('bids.show');
 Route::get('/jobs/{job}', [JobController::class, 'show'])->name('jobs.show');
+
+//user reviews
+
+Route::get('/user-reviews', [UserRatingController::class, 'showRatings'])->name('review.show');
+
+
+
+//invoices
+Route::get('/invoices', [InvoiceController::class, 'showInvoices'])->name('invoices.show');
+Route::get('/invoices/{invoiceId}/view', [InvoiceController::class, 'showInvoices'])->name('invoices.view');
+Route::get('/invoices/{invoiceId}/download', [InvoiceController::class, 'downloadInvoice'])->name('invoices.download');
 
 
 Route::post('/proposals', [ProposalController::class, 'store'])->name('proposals.store');

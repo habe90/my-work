@@ -117,40 +117,44 @@
                                         </ul>
                                     </div>
                                 </div>
-                                
-                                
-								
-								
+                           
 								@if(auth()->user() && auth()->user()->user_type == 'company')
 								<div class="col-lg-6 col-md-12">
 									<div class="dashboard-gravity-list invoices with-icons">
-										<h4>{{ __('global.invoices')}}</h4>
+										<h4>{{ __('global.invoices') }}</h4>
 										<ul>
-											
-											<li><i class="dash-icon-box ti-files text-warning bg-light-warning"></i>
-												<strong>Starter Plan</strong>
-												<ul>
-													<li class="unpaid">Unpaid</li>
-													<li>Order: #20551</li>
-													<li>Date: 01/08/2024</li>
-												</ul>
-												<div class="buttons-to-right">
-													<a href="dashboard-invoice.html" class="button gray">View Invoice</a>
-												</div>
-											</li>
-										
+											@forelse ($invoices as $invoice)
+												<li><i class="dash-icon-box ti-files text-warning bg-light-warning"></i>
+													<strong>{{ $invoice->title }}</strong>
+													<ul>
+														<li class="{{ $invoice->status }}">Unpaid</li>
+														<li>Order: #{{ $invoice->id }}</li>
+														<li>Date: {{ \Carbon\Carbon::parse($invoice->invoice_date)->format('d/m/Y') }}</li>
 
+													</ul>
+													<div class="buttons-to-right">
+														<a href="{{ route('invoices.view', $invoice->id) }}" class="button gray">View Invoice</a>
+														<a href="{{ route('invoices.download', $invoice->id) }}" class="button">Download PDF</a>
+													</div>
+												</li>
+											@empty
+												<p class="text-center mb-4">{{ __('global.no_invoices') }}</p>
+											@endforelse
 										</ul>
 									</div>
-								</div>	
+								</div>
+								
 								@else
 									{{-- Sadržaj koji se prikazuje samo za korisnike koji nisu tipa "company", ili za neautentificirane korisnike --}}
 								@endif
+								
 							</div>	
-							
+							<h4 class="text-center mb-4">Relevant jobs near you</h4>
+							@livewire('job-filter')
 						</div>
 						
 					</div>
+			
 				</div>
 			</section>
 			<!-- ============================ Main Section End ================================== -->

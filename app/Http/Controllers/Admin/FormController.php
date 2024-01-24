@@ -369,7 +369,8 @@ class FormController extends Controller
 
             // complete a complete form and return it
             $uniquekey = rand(5, 1500000000000);
-            $return = '<form action="'. route($formSettings['action']) .'" method="'. $formSettings['method'] .'" id="myForm-'. $uniquekey .'">';
+            $return = '<form class="my-dynamic-form" action="'. route($formSettings['action']) .'" method="'. $formSettings['method'] .'" id="myForm-'. $uniquekey .'">';
+     
             $return .= $myFormFields;
             $return .= view('admin.forms.fields.saveBtn', compact('formSettings', 'formName', 'uniquekey'));
             $return .= '</form>';
@@ -425,9 +426,12 @@ class FormController extends Controller
 
             //if is form name Add page
             if ($formName == 'Add Page') {
+
+                Log::info($data);
                 if (!isset($data['slug']) && isset($data['title'])) {
                     $data['slug'] = Str::slug($data['title']);
                 }
+
                 DB::beginTransaction();
                 try {
                     if ($recordID > 0) {

@@ -19,10 +19,15 @@
     <section class="gray-light min-sec">
         <div class="container">
             <div class="row justify-content-center">
-                <!-- ... Ostali HTML elementi ... -->
+          
 
                 <!-- Livewire formular za renovaciju -->
                 <div class="col-lg-6 col-md-8">
+                    @if (session('success'))
+                    <div class="alert alert-success">
+                        {{ session('success') }}
+                      </div>
+                @endif
                     <div class="login-form bg-white p-4 border rounded">
                         <h4>Anmelden</h4>
                         <form id="login-form" method="post">

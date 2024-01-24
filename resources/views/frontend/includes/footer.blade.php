@@ -6,7 +6,7 @@
                 
                 <div class="col-lg-4 col-md-6">
                     <div class="footer-widget">
-                        <img src="frontend/img/logo-my-work-white.png" class="img-fluid f-logo" width="180" alt="">
+                        <img src="{{ asset('frontend/img/logo-my-work-white.png') }}" class="img-fluid f-logo" width="180" alt="">
                         <p>407-472 Rue Saint-Sulpice, Montreal<br>Quebec, H2Y 2V8</p>
                         <ul class="footer-bottom-social">
                             <li><a href="#"><i class="ti-facebook"></i></a></li>
@@ -54,11 +54,13 @@
                         
                 <div class="col-lg-2 col-md-4">
                     <div class="footer-widget">
-                        <h4 class="widget-title">Useful links</h4>
+                        <h4 class="widget-title">Legale Dokumente</h4>
                         <ul class="footer-menu">
-                            <li><a href="#">Support</a></li>
-                            <li><a href="#">Contact Us</a></li>
-                            <li><a href="#">Privacy &amp; Terms</a></li>
+                            @foreach ($contentPages as $page)
+                            @if($page->category->contains('name', 'Footer'))
+                                <li><a href="{{ url('/page/' . $page->slug) }}">{{ $page->title }}</a></li>
+                            @endif
+                        @endforeach
                         </ul>
                     </div>
                 </div>

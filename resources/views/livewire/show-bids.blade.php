@@ -10,7 +10,7 @@
                 </div>
                 <div class="_dash_grid_box_caption">
                     <span class="_elopi_location"><i class="ti-location-pin mr-1"></i>{{ $bid->user->location }}</span>
-                    <h4 class="_elcio_title"><a href="#">{{ $bid->user->name }}</a></h4>
+                    <h4 class="_elcio_title"><a href="#">{{ $bid->user->company_id }}</a></h4>
                     <div class="_dash_usr_rates">
                         <span class="{{ $bid->user->rating >= 4.5 ? 'good' : ($bid->user->rating >= 4.0 ? 'mid' : 'high') }}">{{ $bid->user->rating }}</span>
                         @for ($i = 1; $i <= 5; $i++)

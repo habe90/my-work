@@ -2,6 +2,7 @@
 
 return [
     'actions'                        => 'Aktionen',
+    'no_invoices'                    => 'Für diesen Monat sind keine Rechnungen verfügbar..',
     'add'                            => 'Hinzufügen',
     'allRightsReserved'              => 'Alle Rechte vorbehalten.',
     'areYouSure'                     => 'Sind Sie sich sicher?',

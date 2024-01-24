@@ -8,6 +8,7 @@ use App\Models\Bid;
 use App\Models\ImConversation;
 use App\Models\ImMessage;
 use Illuminate\Support\Facades\DB;
+use App\Models\SuccessfulJob;
 
 class ShowBids extends Component
 {
@@ -29,17 +30,31 @@ class ShowBids extends Component
         
         if ($bid) {
             $bid->status = 'accepted';
-    
+            
             $conversationId = $this->findOrCreateConversation($bid->user_id, $bidId);
-    
+            
             $bid->conversation_id = $conversationId;
             $bid->save();
-    
+            
             // Slanje automatske poruke korisniku
             $this->sendAutomaticMessage($conversationId, "Vaša ponuda #$bidId je prihvaćena. Sada možete komunicirati sa kupcem.");
+            
+            // Evidentirajte uspješan projekt
+            $successfulJob = new SuccessfulJob();
+            $successfulJob->offer_id = $bidId;
+            $successfulJob->completion_date = now(); // Pretpostavimo da se projekt odmah smatra završenim, inače trebate dodati logiku za praćenje stvarnog završetka
+            $successfulJob->amount_due = $this->calculateAmountDue($bid); // Pretpostavimo da imate metodu za izračunavanje duga
+            $successfulJob->save();
     
             $this->emit('refreshComponent');
         }
+    }
+
+    protected function calculateAmountDue(Bid $bid)
+    {
+        // Implementirajte logiku za izračunavanje iznosa koji firma duguje platformi
+        // Može biti fiksni iznos, postotak od ponude, ili neki drugi kriterijum
+        return 100; // Ovo je samo primjer
     }
 
     public function sendAutomaticMessage($conversationId, $messageText)

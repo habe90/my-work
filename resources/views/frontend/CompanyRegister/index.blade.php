@@ -34,7 +34,35 @@
                                 </select>
                             </div>
                             <!-- Polja za unos podataka -->
+                            
                             <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label>Firmenname</label> <!-- Ime Firme -->
+                                        <input type="text" name="company_name" class="form-control" placeholder="Firmenname">
+                                        @if ($errors->has('company_name'))
+                                            <span class="text-danger">{{ $errors->first('company_name') }}</span>
+                                        @endif
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label>Umsatzsteuer-Identifikationsnummer</label> <!-- Broj firme (VAT) -->
+                                        <input type="text" name="vat_number" class="form-control" placeholder="Umsatzsteuer-Identifikationsnummer">
+                                        @if ($errors->has('vat_number'))
+                                            <span class="text-danger">{{ $errors->first('vat_number') }}</span>
+                                        @endif
+                                    </div>
+                                </div>
+                                <div class="col-lg-12">
+                                    <div class="form-group">
+                                        <label>Steueridentifikationsnummer</label> <!-- Poreski broj -->
+                                        <input type="text" name="tax_number" class="form-control" placeholder="Steueridentifikationsnummer">
+                                        @if ($errors->has('tax_number'))
+                                            <span class="text-danger">{{ $errors->first('tax_number') }}</span>
+                                        @endif
+                                    </div>
+                                </div>
                                 <div class="col-lg-6">
                                     <div class="form-group">
                                         <label>Vorname</label>

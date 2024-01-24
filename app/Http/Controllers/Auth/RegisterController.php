@@ -92,7 +92,10 @@ class RegisterController extends Controller
             'phone' => 'required|max:20',
             'address' => 'required|max:255',
             'password' => 'required|min:6',
-            'activity' => 'required'
+            'activity' => 'required',
+            'company_name' => 'required|max:255',
+            'vat_number' => 'required|max:255',
+            'tax_number' => 'required|max:255'
         ];
 
         // Poruke za greške
@@ -107,6 +110,16 @@ class RegisterController extends Controller
         // Izvršavanje validacije
         $this->validate($request, $rules, $messages);
 
+        $latestCompanyUser = User::where('user_type', 'company')->orderBy('company_id', 'desc')->first();
+
+        if ($latestCompanyUser) {
+            // Ako postoje korisnici firmi, povećajte 'company_id' za 100
+            $newCompanyId = $latestCompanyUser->company_id + 100;
+        } else {
+            // Ako nema postojećih korisnika firmi, postavite početni 'company_id' na 100
+            $newCompanyId = 100;
+        }
+
         // Kreiranje novog korisnika
         $user = new User;
         $user->name = $request->name;
@@ -116,11 +129,21 @@ class RegisterController extends Controller
         $user->address = $request->address;
         $user->password = bcrypt($request->password); 
         $user->user_type = 'company'; 
-        $user->activity = $request->activity; 
+        $user->status = 'pending'; 
+        $user->activity = $request->activity;
+        $user->company_name = $request->company_name;
+        $user->vat_number = $request->vat_number;
+        $user->company_id = $newCompanyId;
+        $user->tax_number = $request->tax_number;
 
         $user->save(); 
 
+        $user->sendEmailVerificationNotification();
+
+
         // Redirect nakon uspješne registracije
-        return redirect()->to('/client-login')->with('success', 'Registration successful.');
+ 
+       return redirect()->to('/client-login')->with('success', 'Ihr Konto wurde registriert. Bitte bestätigen Sie Ihre E-Mail.');
+
     }
 }

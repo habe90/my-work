@@ -64,6 +64,9 @@
 		<script src="{{asset('frontend/js/materialize.min.js')}}"></script>
 		<script src="{{asset('frontend/js/metisMenu.min.js')}}"></script>
 		<script src="{{asset('frontend/js/custom.js')}}"></script>
+		<script src="{{asset('frontend/js/ion.rangeSlider.min.js')}}"></script>
+		<script src="https://js.pusher.com/7.0/pusher.min.js"></script>
+
 		<script src="{{ mix('js/app.js') }}" defer></script>
 		<!-- ============================================================== -->
 		<!-- This page plugins -->

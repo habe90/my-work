@@ -10,7 +10,7 @@
                 <!-- Ovdje ispisujete naslov stranice koristeći $contentPage varijablu -->
                 <h2 class="ipt-title">{{ $contentPage->title }}</h2>
                 <!-- Ako imate i podnaslov, možete ga ovdje dodati -->
-                <span class="ipn-subtitle">{{ $contentPage->subtitle ?? 'Podnaslov nije definisan' }}</span>
+                {{-- <span class="ipn-subtitle">{{ $contentPage->subtitle ?? 'Podnaslov nije definisan' }}</span> --}}
                 
             </div>
         </div>

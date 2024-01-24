@@ -18,4 +18,10 @@ class UserRating extends Model
     {
         return $this->belongsTo(User::class, 'rated_user_id');
     }
+
+    public function user()
+{
+    return $this->belongsTo(User::class, 'rated_user_id'); // ili 'rater_id', ovisno o tome kako je strukturirana vaša baza
+}
+
 }

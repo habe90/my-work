@@ -3,11 +3,20 @@
 								
     <div class="d-user-avater">
         @if(Auth::check()) <!-- Provjera da li je korisnik prijavljen -->
-            <img src="{{Auth::user()->image}}" class="img-fluid rounded" alt="{{ Auth::user()->name }}">
-            <h4>{{ Auth::user()->name }}</h4>
-            <span>{{ Auth::user()->address }}</span>
+            @if(Auth::user()->user_type == 'company')
+                <!-- Logika za firme -->
+                <img src="{{ Auth::user()->image ? Auth::user()->image : asset('frontend/img/no-image.jpg') }}" class="img-fluid rounded" alt="Firma">
+                <h4>#{{ Auth::user()->company_id }}</h4> <!-- Prikazuje ID firme -->
+                <span><i class="ti-location-pin"></i>{{ Auth::user()->address }}</span>
+            @else
+                <!-- Logika za obične korisnike -->
+                <img src="{{ Auth::user()->image ? Auth::user()->image : asset('frontend/img/no-image.jpg') }}" class="img-fluid rounded" alt="{{ Auth::user()->name }}">
+                <h4>{{ Auth::user()->name }}</h4>
+                <span><i class="ti-location-pin"></i>{{ Auth::user()->address }}</span>
+            @endif
         @endif
     </div>
+    
     
     
     <div class="d-navigation">
@@ -15,6 +24,9 @@
             @if(Auth::user()->user_type == 'company')
                 <li class="{{ request()->is('company-dashboard') ? 'active' : '' }}">
                     <a href="{{ route('company.dashboard') }}"><i class="ti-dashboard"></i>{{__('global.client-nav.dashboard')}}</a>
+                </li>
+                <li class="{{ request()->is('user-reviews') ? 'active' : '' }}">
+                    <a href="{{ route('review.show') }}"><i class="ti-star"></i>{{__('global.client-nav.reviews')}}</a>
                 </li>
             @else
                 <li class="{{ request()->is('dashboard') ? 'active' : '' }}">

@@ -41,6 +41,7 @@ class User extends Authenticatable implements HasLocalePreference, HasMedia
         'email',
         'password',
         'locale',
+        'radius',
         'user_type',
     ];
 
@@ -66,6 +67,11 @@ class User extends Authenticatable implements HasLocalePreference, HasMedia
         'locale',
         'user_type',
     ];
+
+    protected $casts = [
+        'radius' => 'integer',
+    ];
+    
 
     public function getIsAdminAttribute()
     {
@@ -134,5 +140,12 @@ class User extends Authenticatable implements HasLocalePreference, HasMedia
     {
         return $this->hasMany(ImRecipient::class);
     }
+
+    public function ratings()
+    {
+        return $this->hasMany(UserRating::class, 'rated_user_id');
+    }
+
+
 
 }

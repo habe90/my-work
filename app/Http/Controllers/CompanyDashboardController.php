@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Models\Job;
 use App\Models\Bid;
 use App\Models\UserRating;
+use App\Models\Invoice;
+use Auth;
 use LaravelDaily\LaravelCharts\Classes\LaravelChart;
 
 class CompanyDashboardController extends Controller
@@ -105,7 +107,9 @@ class CompanyDashboardController extends Controller
                     ->with('job') 
                     ->get();
 
+        $invoices = Invoice::where('company_id', Auth::id())->get();
+
        
-        return view('frontend.dashboard.company_dash', compact('settings1','settings2','settings3','jobs','bids'));
+        return view('frontend.dashboard.company_dash', compact('settings1','settings2','settings3','jobs','bids', 'invoices'));
     }
 }

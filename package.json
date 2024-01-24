@@ -28,7 +28,9 @@
         "tailwindcss": "^2.1.2"
     },
     "dependencies": {
+        "emoji-picker-element": "^1.21.0",
         "laravel-echo": "^1.15.3",
-        "pusher-js": "^8.4.0-rc2"
+        "pusher-js": "^8.4.0-rc2",
+        "tinymce": "^6.8.2"
     }
 }

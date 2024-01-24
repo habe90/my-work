@@ -53,6 +53,10 @@ class ProfileController extends Controller
         $user->phone = $request->phone;
         $user->address = $request->address;
         $user->about = $request->about;
+        if ($request->has('radius')) {
+            $user->radius = (int) filter_var($request->radius, FILTER_SANITIZE_NUMBER_INT);
+        }
+
 
         if ($request->filled('new_password')) {
             $user->password = Hash::make($request->new_password);
