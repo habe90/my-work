@@ -5,17 +5,17 @@
         
             <div class="col-md-6 col-sm-6 bl-dark">
                 <div class="call-to-act-caption">
-                    <h2>We Are Expert In Web design and development</h2>
-                    <h3>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo</h3>
-                    <a href="#" class="btn bat-call-to-act">Hire Us</a>
+                    <h2>Sind Sie auf der Suche nach einem Experten?</h2>
+                    <h3>Erstellen Sie ein Projekt und erreichen Sie professionelle Dienstleister in Ihrer Nähe. Je detaillierter Ihre Projektbeschreibung, desto besser die Angebote, die Sie erhalten.</h3>
+                    <a href="#" class="btn bat-call-to-act">Projekt einstellen</a>
                 </div>
             </div>
             
             <div class="col-md-6 col-sm-6 dark-2">
                 <div class="call-to-act-caption">
-                    <h2>We Are Expert In Web design and development</h2>
-                    <h3>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo</h3>
-                    <a href="#" class="btn bat-call-to-act">Join Us</a>
+                    <h2>Sind Sie ein Dienstleister?</h2>
+                    <h3>Registrieren Sie sich bei uns und bieten Sie Ihre Dienstleistungen Tausenden potentiellen Kunden an. Machen Sie den ersten Schritt zur Erweiterung Ihres Kundenstamms.</h3>
+                    <a href="{{route('company-login')}}" class="btn bat-call-to-act">Registrieren</a>
                 </div>
             </div>
             
