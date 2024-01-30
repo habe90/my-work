@@ -99,6 +99,22 @@ class HomeController
         
         $lastPayingCompany = optional($lastPaidInvoice)->company->name ?? 'N/A';
 
+        // Ukupan broj ponuda
+        $totalBids = Bid::count();
+
+        // Izračunavanje promjene broja ponuda u posljednjih 7 dana
+        $bidsLastWeek = Bid::whereBetween('created_at', [Carbon::now()->subWeek(), Carbon::now()])->count();
+        $bidsWeekBefore = Bid::whereBetween('created_at', [Carbon::now()->subWeeks(2), Carbon::now()->subWeek()])->count();
+
+        $bidGrowthRate = $bidsWeekBefore > 0 ? (($bidsLastWeek - $bidsWeekBefore) / $bidsWeekBefore) * 100 : 0;
+
+        $totalInvoices = Invoice::count();
+
+        $invoicesLastWeek = Invoice::whereBetween('created_at', [Carbon::now()->subWeek(), Carbon::now()])->count();
+        $invoicesWeekBefore = Invoice::whereBetween('created_at', [Carbon::now()->subWeeks(2), Carbon::now()->subWeek()])->count();
+
+        $invoiceGrowthRate = $invoicesWeekBefore > 0 ? (($invoicesLastWeek - $invoicesWeekBefore) / $invoicesWeekBefore) * 100 : 0;
+
         // Povrat podataka u view
         return view('admin.home', compact(
             'userCountSettings', 
@@ -107,7 +123,12 @@ class HomeController
             'paidAmount', 
             'lastPaymentDate', 
             'lastPayingCompany',
-            'invoices'
+            'invoices',
+            'totalBids', 
+            'bidGrowthRate',
+            'totalInvoices', 
+            'invoiceGrowthRate', 
+            'invoicesLastWeek'
         ));
     }
 }
