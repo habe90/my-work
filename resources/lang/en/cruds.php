@@ -1,6 +1,14 @@
 <?php
 
 return [
+    'review_create' => 'Add review',
+
+    'reviews' => [
+        'image' => 'Image',
+        'title' => 'Title',
+        'id' => 'ID',
+        'edit_review' => 'Edit review',
+    ],
     'userManagement' => [
         'title'          => 'User management',
         'title_singular' => 'User management',

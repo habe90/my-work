@@ -31,6 +31,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\UserRatingController;
 use App\Http\Controllers\InvoiceController;
+use App\Http\Controllers\MyWorkReviewController;
 
 
 // Route::redirect('/', '/login');
@@ -39,6 +40,8 @@ Auth::routes();
 Auth::routes(['verify' => true]);
 Route::get('/', [FrontendController::class, 'index'])->name('home');
 Route::get('/page/{slug}', [FrontendController::class, 'showBySlug']);
+
+
 
 //clinet login routes
 Route::any('/client-login', [FrontendController::class, 'ClientLogin'])->name('client-login');
@@ -52,7 +55,7 @@ Route::any('/company-register', [RegisterController::class, 'CompanyRegister'])-
 Route::any('/company-save', [RegisterController::class, 'store'])->name('company-save');
 
 //dashboard and bids jobs
-Route::get('/auftraggeber-info/so-funktionierts', [FrontendController::class, 'howtowork']);
+Route::get('/auftraggeber-info/so-funktionierts', [FrontendController::class, 'howtowork'])->name('how-to-work');
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('user.dashboard');
 Route::get('/bids/{job}', [BidController::class, 'show'])->name('bids.show');
 Route::get('/jobs/{job}', [JobController::class, 'show'])->name('jobs.show');
@@ -94,6 +97,10 @@ Route::get('/post-service-request/{categoryId}', [PostServicesRequestController:
 
 Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth']], function () {
     Route::get('/', [HomeController::class, 'index'])->name('home');
+
+
+    // my work reviews
+    Route::resource('my-work-reviews', MyWorkReviewController::class, ['except' => ['store', 'update', 'destroy']])->names('mywork.reviews');
 
     // Permissions
     Route::resource('permissions', PermissionController::class, ['except' => ['store', 'update', 'destroy']]);

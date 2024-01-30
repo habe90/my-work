@@ -23,6 +23,8 @@ class Index extends Component
     public array $selected = [];
 
     public array $paginationOptions;
+    protected $listeners = ['deleteConfirmed' => 'deleteSelected'];
+
 
     protected $queryString = [
         'search' => [

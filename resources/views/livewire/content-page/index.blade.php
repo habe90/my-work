@@ -6,12 +6,12 @@
                 <!-- Kolona 1 u redu 2 -->
                 <div class="flex-initial mr-3">
                     @can('content_page_delete')
-                <button class="btn btn-danger ml-3 disabled:opacity-50 disabled:cursor-not-allowed" type="button"
-                    wire:click="confirm('deleteSelected')" wire:loading.attr="disabled"
-                    {{ $this->selectedCount ? '' : 'disabled' }}>
-                    {{ __('Delete Selected') }}
-                </button>
-            @endcan
+                        <button class="btn btn-danger ml-3 disabled:opacity-50 disabled:cursor-not-allowed" type="button"
+                            wire:click="confirm('deleteSelected')" wire:loading.attr="disabled"
+                            {{ $this->selectedCount ? '' : 'disabled' }}>
+                            {{ __('Delete Selected') }}
+                        </button>
+                    @endcan
                 </div>
                 <!--Kolona 2 u redu 2 -->
                 <div class="dataTable-search">
@@ -99,9 +99,12 @@
                                         </a>
                                     @endcan
                                     @can('content_page_edit')
-                                        <a class="btn btn-sm btn-success mr-2"
-                                            href="{{ route('admin.content-pages.edit', $contentPage) }}">
-                                            {{ trans('global.edit') }}
+                                        <a class="btn btn-sm btn-success mr-2 getMyFormModal"
+                                            data-title="{{ __('cruds.reviews.edit_review') }}"
+                                            data-url="{{ route('admin.form.getMyForm') }}"
+                                            data-form-name="{{ encrypt('Add Page') }}"
+                                            data-id="{{ encrypt($contentPage->id) }}">
+                                            <i class='bx bx-pencil'></i> {{ trans('global.edit') }}
                                         </a>
                                     @endcan
                                     @can('content_page_delete')

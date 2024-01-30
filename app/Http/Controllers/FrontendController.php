@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\ContentPage;
 use App\Models\User;
+use App\Models\MyWorkReview;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
 use App\Mail\LoginLinkEmail;
@@ -15,7 +16,12 @@ class FrontendController extends Controller
 {
     public function index()
     {
-        return view('frontend.index');
+
+        $reviews = MyWorkReview::all();
+
+        
+
+        return view('frontend.index', compact('reviews'));
     }
 
     public function showMenu()

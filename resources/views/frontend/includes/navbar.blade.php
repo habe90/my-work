@@ -14,7 +14,8 @@
                         
                             <li class="active"><a href="/">Home<span class="submenu-indicator"></span></a>
                             </li>
-                            
+                            <li ><a href="{{route('how-to-work')}}">So funktioniert's<span class="submenu-indicator"></span></a>
+                            </li>
                             
                             @foreach ($contentPages as $page)
                             @if($page->category->contains('name', 'Menu'))
