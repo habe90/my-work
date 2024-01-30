@@ -79,7 +79,9 @@ class HomeController
         $userCountSettings['new_last_week'] = $newUsersLastWeek;
         $jobCountSettings['new_last_week'] = $newJobsLastWeek;
 
+        $jobs = Job::all(); 
+
         // Povrat podataka u view
-        return view('admin.home', compact('userCountSettings', 'jobCountSettings'));
+        return view('admin.home', compact('userCountSettings', 'jobCountSettings', 'jobs'));
     }
 }

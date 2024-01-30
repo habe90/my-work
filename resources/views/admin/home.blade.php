@@ -712,77 +712,37 @@
 
                 <!-- Recent Transactions -->
                 <div class="panel">
-                    <div class="mb-5 text-lg font-bold">Recent Transactions</div>
+                    <div class="mb-5 text-lg font-bold">Recent Jobs</div>
                     <div class="table-responsive">
                         <table>
                             <thead>
                                 <tr>
-                                    <th class="ltr:rounded-l-md rtl:rounded-r-md">ID</th>
+                                    <th>ID</th>
                                     <th>DATE</th>
                                     <th>NAME</th>
                                     <th>AMOUNT</th>
-                                    <th class="text-center ltr:rounded-r-md rtl:rounded-l-md">STATUS</th>
+                                    <th class="text-center">STATUS</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td class="font-semibold">#01</td>
-                                    <td class="whitespace-nowrap">Oct 08, 2021</td>
-                                    <td class="whitespace-nowrap">Eric Page</td>
-                                    <td>$1,358.75</td>
-                                    <td class="text-center">
-                                        <span class="badge rounded-full bg-success/20 text-success hover:top-0">Completed</span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="font-semibold">#02</td>
-                                    <td class="whitespace-nowrap">Dec 18, 2021</td>
-                                    <td class="whitespace-nowrap">Nita Parr</td>
-                                    <td>-$1,042.82</td>
-                                    <td class="text-center">
-                                        <span class="badge rounded-full bg-info/20 text-info hover:top-0">In Process</span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="font-semibold">#03</td>
-                                    <td class="whitespace-nowrap">Dec 25, 2021</td>
-                                    <td class="whitespace-nowrap">Carl Bell</td>
-                                    <td>$1,828.16</td>
-                                    <td class="text-center">
-                                        <span class="badge rounded-full bg-danger/20 text-danger hover:top-0">Pending</span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="font-semibold">#04</td>
-                                    <td class="whitespace-nowrap">Nov 29, 2021</td>
-                                    <td class="whitespace-nowrap">Dan Hart</td>
-                                    <td>$1,647.55</td>
-                                    <td class="text-center">
-                                        <span class="badge rounded-full bg-success/20 text-success hover:top-0">Completed</span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="font-semibold">#05</td>
-                                    <td class="whitespace-nowrap">Nov 24, 2021</td>
-                                    <td class="whitespace-nowrap">Jake Ross</td>
-                                    <td>$927.43</td>
-                                    <td class="text-center">
-                                        <span class="badge rounded-full bg-success/20 text-success hover:top-0">Completed</span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="font-semibold">#06</td>
-                                    <td class="whitespace-nowrap">Jan 26, 2022</td>
-                                    <td class="whitespace-nowrap">Anna Bell</td>
-                                    <td>$250.00</td>
-                                    <td class="text-center">
-                                        <span class="badge rounded-full bg-info/20 text-info hover:top-0">In Process</span>
-                                    </td>
-                                </tr>
+                                @foreach ($jobs as $job)
+                                    <tr>
+                                        <td class="font-semibold">{{ $job->id }}</td>
+                                        <td class="whitespace-nowrap">{{ $job->created_at->format('M d, Y') }}</td>
+                                        <td class="whitespace-nowrap">{{ $job->title }}</td>
+                                        <td>{{ $job->amount }}</td>
+                                        <td class="text-center">
+                                            <span class="badge rounded-full {{ $job->status_class }}">
+                                                {{ $job->status }}
+                                            </span>
+                                        </td>
+                                    </tr>
+                                @endforeach
                             </tbody>
                         </table>
                     </div>
                 </div>
+                
             </div>
         </div>
     </div>

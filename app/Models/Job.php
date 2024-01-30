@@ -9,11 +9,9 @@ class Job extends Model
 {
     use HasFactory;
 
-   protected $casts = [
-    'additional_details' => 'array',
-];
-
-
+    protected $casts = [
+        'additional_details' => 'array',
+    ];
 
     public function user()
     {
@@ -35,5 +33,13 @@ class Job extends Model
         return $this->hasMany(Bid::class);
     }
 
-
+    public function getStatusClassAttribute()
+    {
+        return match ($this->status) {
+            'Completed' => 'bg-success/20 text-success',
+            'In Process' => 'bg-info/20 text-info',
+            'Cancelled' => 'bg-danger/20 text-danger',
+            default => 'bg-warning/20 text-warning',
+        };
+    }
 }
