@@ -17,7 +17,7 @@ class HomeController
     public function index()
     {
         $userCountSettings = [
-            'chart_title' => 'Total Users',
+            'chart_title' => 'Gesamtzahl der Benutzer',
             'chart_type' => 'number_block',
             'report_type' => 'group_by_date',
             'model' => 'App\Models\User',

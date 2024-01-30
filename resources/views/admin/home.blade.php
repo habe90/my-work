@@ -7,9 +7,7 @@
             <li>
                 <a href="javascript:;" class="text-primary hover:underline">Dashboard</a>
             </li>
-            <li class="before:content-['/'] ltr:before:mr-1 rtl:before:ml-1">
-                <span>Finance</span>
-            </li>
+         
         </ul>
         <div class="pt-5">
             <div class="mb-6 grid grid-cols-1 gap-6 text-white sm:grid-cols-2 xl:grid-cols-4">
@@ -46,7 +44,15 @@
                     </div>
                     <div class="mt-5 flex items-center">
                         <div class="text-3xl font-bold ltr:mr-3 rtl:ml-3">{{ number_format($userCountSettings['total_number']) }}</div>
-                        <div class="badge bg-white/30">  {{ $userCountSettings['growth_rate'] >= 0 ? '+' : '' }}{{ number_format($userCountSettings['growth_rate'], 2) }}%</div>
+                        <div class="badge bg-white/30">
+                            {{ $userCountSettings['growth_rate'] >= 0 ? '+' : '' }}{{ number_format($userCountSettings['growth_rate'], 2) }}%
+                            @if($userCountSettings['growth_rate'] >= 0)
+                                (Anstieg im Vergleich zum letzten Monat)
+                            @else
+                                (Rückgang im Vergleich zum letzten Monat)
+                            @endif
+                        </div>
+                        
                     </div>
                     <div class="mt-5 flex items-center font-semibold">
                         <svg
