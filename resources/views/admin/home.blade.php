@@ -712,15 +712,15 @@
 
                 <!-- Recent Transactions -->
                 <div class="panel">
-                    <div class="mb-5 text-lg font-bold">Recent Jobs</div>
+                    <div class="mb-5 text-lg font-bold">Aktuelle Jobs</div>
                     <div class="table-responsive">
                         <table>
                             <thead>
                                 <tr>
                                     <th>ID</th>
-                                    <th>DATE</th>
+                                    <th>DATUM</th>
                                     <th>NAME</th>
-                                    <th>AMOUNT</th>
+                                    <th>MENGE</th>
                                     <th class="text-center">STATUS</th>
                                 </tr>
                             </thead>
