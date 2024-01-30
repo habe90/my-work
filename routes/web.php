@@ -11,6 +11,7 @@ use App\Http\Controllers\Admin\TaskCalendarController;
 use App\Http\Controllers\Admin\TaskController;
 use App\Http\Controllers\Admin\TaskStatusController;
 use App\Http\Controllers\Admin\TaskTagController;
+use App\Http\Controllers\Admin\JobsController;
 use App\Http\Controllers\Admin\UserAlertController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Auth\UserProfileController;
@@ -99,6 +100,9 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth']], 
     Route::get('/', [HomeController::class, 'index'])->name('home');
 
 
+    // my work list all jobs
+    Route::get('jobs',  [JobsController::class, 'index'])->name('admin-jobs');
+    
     // my work reviews
     Route::resource('my-work-reviews', MyWorkReviewController::class, ['except' => ['store', 'update', 'destroy']])->names('mywork.reviews');
 
