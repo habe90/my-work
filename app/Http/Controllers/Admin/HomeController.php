@@ -32,7 +32,7 @@ class HomeController
         ];
 
         $jobCountSettings = [
-            'chart_title' => 'Total Jobs',
+            'chart_title' => 'Gesamtzahl der Jobs',
             'chart_type' => 'number_block',
             'report_type' => 'group_by_date',
             'model' => 'App\Models\Job',
@@ -81,7 +81,33 @@ class HomeController
 
         $jobs = Job::all(); 
 
+        // Dohvat svih plaćenih faktura
+        $paidInvoices = Invoice::where('status', 'paid')->get();
+
+        // Ukupan iznos plaćenih faktura
+        $paidAmount = $paidInvoices->sum('amount');
+
+        // Dohvat posljednje plaćene fakture
+        $lastPaidInvoice = $paidInvoices->sortByDesc('invoice_date')->first();
+
+        // Prikupljanje informacija o posljednjoj uplati
+        $lastPaymentDate = optional(optional($lastPaidInvoice)->invoice_date)->format('Y-m-d') ?? 'N/A';
+        $invoices = Invoice::where('status', 'unpaid')
+        ->with('company') // Pretpostavljam da imate relaciju 'company' u modelu Invoice
+        ->get();
+
+        
+        $lastPayingCompany = optional($lastPaidInvoice)->company->name ?? 'N/A';
+
         // Povrat podataka u view
-        return view('admin.home', compact('userCountSettings', 'jobCountSettings', 'jobs'));
+        return view('admin.home', compact(
+            'userCountSettings', 
+            'jobCountSettings', 
+            'jobs',
+            'paidAmount', 
+            'lastPaymentDate', 
+            'lastPayingCompany',
+            'invoices'
+        ));
     }
 }
