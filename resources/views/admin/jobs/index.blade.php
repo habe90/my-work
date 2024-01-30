@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 @section('content')
     <div class="animate__animated p-6" :class="[$store.app.animation]">
-        <div x-data="exportTable">
+        <div>
             <div class="panel flex items-center overflow-x-auto whitespace-nowrap p-3 text-primary">
 
                 @can('content_page_create')
@@ -17,7 +17,8 @@
 
             </div>
             <div class="panel mt-6">
-                @livewire('content-page.index')
+                @livewire('jobs.jobs-table')
+
             </div>
         </div>
     </div>
