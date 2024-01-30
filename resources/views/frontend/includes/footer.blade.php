@@ -7,10 +7,9 @@
                 <div class="col-lg-4 col-md-6">
                     <div class="footer-widget">
                         <img src="{{ asset('frontend/img/logo-my-work-white.png') }}" class="img-fluid f-logo" width="180" alt="">
-                        <p>407-472 Rue Saint-Sulpice, Montreal<br>Quebec, H2Y 2V8</p>
+                        <p>Austria<br>office@my-work.at <br> +436646333336 </p>
                         <ul class="footer-bottom-social">
                             <li><a href="#"><i class="ti-facebook"></i></a></li>
-                            <li><a href="#"><i class="ti-twitter"></i></a></li>
                             <li><a href="#"><i class="ti-instagram"></i></a></li>
                             <li><a href="#"><i class="ti-linkedin"></i></a></li>
                         </ul>
