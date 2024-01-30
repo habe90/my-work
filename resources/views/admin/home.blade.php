@@ -16,7 +16,7 @@
                 <!-- Users Visit -->
                 <div class="panel bg-gradient-to-r from-cyan-500 to-cyan-400">
                     <div class="flex justify-between">
-                        <div class="text-md font-semibold ltr:mr-1 rtl:ml-1">Users Visit</div>
+                        <div class="text-md font-semibold ltr:mr-1 rtl:ml-1">{{ $userCountSettings['chart_title'] }}</div>
                         <div x-data="dropdown" @click.outside="open = false" class="dropdown">
                             <a href="javascript:;" @click="toggle">
                                 <svg
@@ -45,8 +45,8 @@
                         </div>
                     </div>
                     <div class="mt-5 flex items-center">
-                        <div class="text-3xl font-bold ltr:mr-3 rtl:ml-3">$170.46</div>
-                        <div class="badge bg-white/30">+ 2.35%</div>
+                        <div class="text-3xl font-bold ltr:mr-3 rtl:ml-3">{{ number_format($userCountSettings['total_number']) }}</div>
+                        <div class="badge bg-white/30">  {{ $userCountSettings['growth_rate'] >= 0 ? '+' : '' }}{{ number_format($userCountSettings['growth_rate'], 2) }}%</div>
                     </div>
                     <div class="mt-5 flex items-center font-semibold">
                         <svg
@@ -69,14 +69,14 @@
                                 stroke-width="1.5"
                             ></path>
                         </svg>
-                        Last Week 44,700
+                        Last Week {{ number_format($userCountSettings['new_last_week']) }}
                     </div>
                 </div>
 
                 <!-- Sessions -->
                 <div class="panel bg-gradient-to-r from-violet-500 to-violet-400">
                     <div class="flex justify-between">
-                        <div class="text-md font-semibold ltr:mr-1 rtl:ml-1">Sessions</div>
+                        <div class="text-md font-semibold ltr:mr-1 rtl:ml-1">{{ $jobCountSettings['chart_title'] }}</div>
                         <div x-data="dropdown" @click.outside="open = false" class="dropdown">
                             <a href="javascript:;" @click="toggle">
                                 <svg
@@ -105,8 +105,8 @@
                         </div>
                     </div>
                     <div class="mt-5 flex items-center">
-                        <div class="text-3xl font-bold ltr:mr-3 rtl:ml-3">74,137</div>
-                        <div class="badge bg-white/30">- 2.35%</div>
+                        <div class="text-3xl font-bold ltr:mr-3 rtl:ml-3">{{ number_format($jobCountSettings['total_number']) }}</div>
+                   
                     </div>
                     <div class="mt-5 flex items-center font-semibold">
                         <svg
@@ -129,7 +129,7 @@
                                 stroke-width="1.5"
                             ></path>
                         </svg>
-                        Last Week 84,709
+                        Last Week {{ number_format($jobCountSettings['new_last_week']) }}
                     </div>
                 </div>
 
