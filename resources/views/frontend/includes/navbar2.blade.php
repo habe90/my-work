@@ -14,20 +14,23 @@
                          <div class="nav-toggle"></div>
                      </div>
                      <div class="nav-menus-wrapper">
-                         <ul class="nav-menu">
-
-                             <li class="active"><a href="/">Home<span class="submenu-indicator"></span></a>
-                             </li>
-                             <li ><a href="{{route('how-to-work')}}">So funktioniert's<span class="submenu-indicator"></span></a>
-                             </li>
-
-                             @foreach ($contentPages as $page)
-                             @if($page->category->contains('name', 'Menu'))
-                                 <li><a href="{{ url('/page/' . $page->slug) }}">{{ $page->title }}</a></li>
-                             @endif
-                         @endforeach
-
-                         </ul>
+                        <ul class="nav-menu">
+                            <li class="{{ Request::is('/') ? 'active' : '' }}">
+                                <a href="/">Home<span class="submenu-indicator"></span></a>
+                            </li>
+                            <li class="{{ Request::is('auftraggeber-info/so-funktionierts') ? 'active' : '' }}">
+                                <a href="{{route('how-to-work')}}">So funktioniert's<span class="submenu-indicator"></span></a>
+                            </li>
+                        
+                            @foreach ($contentPages as $page)
+                                @if($page->category->contains('name', 'Menu'))
+                                    <li class="{{ Request::is('page/' . $page->slug) ? 'active' : '' }}">
+                                        <a href="{{ url('/page/' . $page->slug) }}">{{ $page->title }}</a>
+                                    </li>
+                                @endif
+                            @endforeach
+                        </ul>
+                        
 
                          <ul class="nav-menu nav-menu-social align-to-right">
 
