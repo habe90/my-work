@@ -86,8 +86,8 @@
             <!-- Single Box -->
             <div class="col-lg-6 col-md-6 col-sm-12">
                 <div class="about-captione">
-                    <h6 class="text-blue">Über Workoo</h6>
-                    <h2>Kurze Geschichte über den Workoo<br>Dienstleistungsservice.</h2>
+                    <h6 class="text-blue">Über My Work</h6>
+                    <h2>Kurze Geschichte über den  My Work<br>Dienstleistungsservice.</h2>
                     <p>Workoo verbindet Sie in wenigen einfachen Schritten mit qualifizierten Handwerkern in Ihrer Nähe. Je detaillierter Sie Ihren Auftrag beschreiben, desto präzisere Angebote können Sie von den Handwerkern erwarten.</p>
                     <ul class="lists-3 mt-3">
                         <li><strong>Stellen Sie Ihren Auftrag ein:</strong> Definieren Sie Ihren Bedarf und die Handwerker stellen sich mit ihren Angeboten vor.</li>
