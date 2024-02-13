@@ -15,5 +15,10 @@ class ServiceCategory extends Model
     {
         return $this->hasMany(ServiceDetail::class, 'category_id');
     }
+
+    public function forms()
+    {
+        return $this->hasMany(Forms::class, 'category_id');
+    }
     
 }

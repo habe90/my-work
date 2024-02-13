@@ -13,20 +13,20 @@ class SearchCategories extends Component
 
     public function updatedSearchTerm()
     {
-        // Sakrij rezultate pretrage ako je searchTerm prazan
         if (strlen($this->searchTerm) < 1) {
             $this->searchResults = [];
             $this->showDropdown = false;
         } else {
-            // Ako postoji searchTerm, izvrši pretragu
-            $this->searchResults = ServiceCategory::where('name', 'like', '%' . $this->searchTerm . '%')
+            // Dohvati kategorije koje odgovaraju kriterijumima pretrage i učitaj povezane forme
+            $this->searchResults = ServiceCategory::with('forms') // 'forms' je metoda definisana u modelu ServiceCategory
+                ->where('name', 'like', '%' . $this->searchTerm . '%')
                 ->orWhere('description', 'like', '%' . $this->searchTerm . '%')
                 ->get();
-
-            // Prikaži dropdown jer imamo rezultate
+    
             $this->showDropdown = true;
         }
     }
+    
 
     public function render()
     {
@@ -57,6 +57,19 @@ class SearchCategories extends Component
             // Prikažite dropdown jer imate rezultate
             $this->showDropdown = true;
         }
+    }
+
+    public function selectForm($formId)
+    {
+        // Ovdje možete napisati logiku koja će se desiti kada se odabere forma.
+        // Na primjer, možete sačuvati odabranu formu u sesiji, ili
+        // preusmjeriti korisnika na stranicu te forme.
+
+        // Sačuvajte odabranu formu u sesiji
+        session(['selectedForm' => $formId]);
+
+        // Primjer preusmjeravanja na stranicu forme
+        return redirect()->to('/post-service-request/' . $formId);
     }
 
     public function highlightResult()

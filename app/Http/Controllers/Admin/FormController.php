@@ -15,6 +15,7 @@ use Collective\Html\FormFacade as Form;
 use App\Models\User;
 use Modules\Superadmin\App\Http\Controllers\AccountController;
 use Log;
+use Auth;
 
 class FormController extends Controller
 {
@@ -386,6 +387,12 @@ class FormController extends Controller
      */
     public function insertData(Request $request)
     {
+
+        if (!Auth::check()) {
+            session(['form_data' => $request->all()]);
+            return redirect()->route('company-login');
+        }
+
         \Log::info($request);
         if( $request->formName != '' ){
             $formName = decrypt($request->formName);

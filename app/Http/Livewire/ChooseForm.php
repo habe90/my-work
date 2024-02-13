@@ -4,27 +4,28 @@ namespace App\Http\Livewire;
 
 use App\Http\Controllers\Admin\FormController;
 use App\Models\ServiceCategory;
+use App\Models\Forms;
 use Illuminate\Http\Request;
 use Livewire\Component;
 
 class ChooseForm extends Component
-{
-    public $categoryId;
+{  
+    public $formId;
 
-    public function mount($categoryId)
+    public function mount($formId)
     {
-        $this->categoryId = $categoryId;
+        $this->formId = $formId;
     }
 
     public function render()
     {
-        $category = ServiceCategory::findOrFail($this->categoryId);
+        $category = Forms::findOrFail($this->formId);
 
         $formName = $category->name;  // Ime kategorije odgovara imenu forme
        
         // Kreirajte Request objekt za učitavanje forme
         $request = new Request([
-            'recordID' => encrypt($this->categoryId),  // ID kategorije se koristi ovdje
+            'recordID' => encrypt($this->formId),  // ID kategorije se koristi ovdje
             'formName' => encrypt($formName),  // Ime forme se šifrira i šalje
         ]);
 

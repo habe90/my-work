@@ -23,7 +23,8 @@
 
             <!-- Livewire formular za renovaciju -->
             <div class="col-lg-8 col-md-12 col-sm-12">
-                @livewire('choose-form', ['categoryId' => $categoryId])
+                @livewire('choose-form', ['formId' => $formId])
+
             </div>
 
             <!-- ... Ostali HTML elementi ... -->

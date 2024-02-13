@@ -6,9 +6,9 @@ use Illuminate\Http\Request;
 
 class PostServicesRequestController extends Controller
 {
-    public function index($categoryId)
+    public function index($formId)
     {
-        return view('frontend.services-request', ['categoryId' => $categoryId]);
+        return view('frontend.services-request', ['formId' => $formId]);
     }
 
 }

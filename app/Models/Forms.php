@@ -21,6 +21,7 @@ class Forms extends Model
         'created_by',
         'updated_by',
         'deleted_by',
+        'category_id',
     ];
 
     public function formField()
@@ -47,6 +48,11 @@ class Forms extends Model
     public function deleter()
     {
         return $this->belongsTo(UserInfo::class, 'deleted_by');
+    }
+
+    public function category()
+    {
+        return $this->belongsTo(ServiceCategory::class, 'category_id');
     }
 
     /**

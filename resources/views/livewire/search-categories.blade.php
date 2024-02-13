@@ -9,22 +9,27 @@
                 </div>
             </div>
             @if (strlen($searchTerm) > 2)
-                <div class="list-group position-absolute w-100" style="z-index: 1000; top: 100%;">
-                    @if ($showDropdown)
-                        <!-- Prikazuje se samo ako je showDropdown true -->
-                        @forelse($searchResults as $category)
-                            <a href="#" class="list-group-item list-group-item-action text-left"
-                                style="font-weight: bold;" wire:mouseover="highlightResult"
-                                wire:click="selectCategory({{ $category->id }})">
-                                {{ $category->name }}
+            <div class="list-group position-absolute w-100" style="z-index: 1000; top: 100%;">
+                @if ($showDropdown)
+                    <!-- Prikazuje se samo ako je showDropdown true -->
+                    @forelse($searchResults as $category)
+                        <a href="#" class="list-group-item list-group-item-action text-left" style="font-weight: bold;" wire:mouseover="highlightResult" wire:click="selectCategory({{ $category->id }})">
+                            {{ $category->name }}
+                        </a>
+                        <!-- Dodajte ispis povezanih formi za svaku kategoriju -->
+                        @foreach($category->forms as $form)
+                            <a href="#" class="list-group-item list-group-item-action text-left" wire:click="selectForm({{ $form->id }})">
+                                -- {{ $form->name }}
                             </a>
-
-                        @empty
-                            <div class="list-group-item">Nicht für den Preis geeignet.</div>
-                        @endforelse
-                    @endif
-                </div>
-            @endif
+                        @endforeach
+        
+                    @empty
+                        <div class="list-group-item">Nicht für den Preis geeignet.</div>
+                    @endforelse
+                @endif
+            </div>
+        @endif
+        
         </div>
     </div>
 </div>

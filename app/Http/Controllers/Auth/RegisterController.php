@@ -146,4 +146,21 @@ class RegisterController extends Controller
        return redirect()->to('/client-login')->with('success', 'Ihr Konto wurde registriert. Bitte bestätigen Sie Ihre E-Mail.');
 
     }
+
+
+    public function afterRegistration()
+{
+    // Provjerite da li u sesiji postoje podaci forme
+    if (session()->has('form_data')) {
+        // Ako postoji, preuzmite podatke forme
+        $formData = session('form_data');
+        // Ovdje pozovite insertData ili drugu metodu za obradu podataka forme
+        $this->insertData(new Request($formData));
+
+        // Nakon obrade, uklonite podatke iz sesije
+        session()->forget('form_data');
+    }
+
+    return redirect()->to('/dashboard')->with('success', 'Ihr Konto wurde registriert. Bitte bestätigen Sie Ihre E-Mail.');
+}
 }
