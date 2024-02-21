@@ -1,9 +1,9 @@
 <div class="col-lg-12 col-md-12 col-sm-12">
     <div class="messages-container margin-top-0">
         <div class="messages-headline">
-            <h4>Message History</h4>
+            <h4>Mitteilungsverlauf</h4>
             @if (!$conversations->isEmpty())
-                <a href="#" class="message-action"><i class="ti-trash"></i> Delete Conversation</a>
+                <a href="#" class="message-action"><i class="ti-trash"></i> Konversation löschen</a>
             @endif
 
         </div>
@@ -11,7 +11,7 @@
 
             <div class="dash-msg-inbox">
                 @if ($conversations->isEmpty())
-                    <p class="text-center mt-4">You currently have no recent conversations.</p>
+                    <p class="text-center mt-4">Sie führen derzeit keine aktuellen Gespräche.</p>
                 @else
                     @foreach ($conversations as $conversation)
                         <ul>
@@ -31,11 +31,11 @@
                                             <h5>{{ $conversation->bids->first()->user->name }}</h5>
                                             <span>{{ $conversation->bids->first()->created_at->diffForHumans() }}</span>
                                         @else
-                                            <h5>Korisnik nije dostupan</h5>
+                                            <h5>Der Benutzer ist nicht verfügbar</h5>
                                         @endif
                                         
                                         </div>
-                                        <p>On ad: {{ optional(optional($conversation->bids->first())->job)->title ?? 'Naslov nije dostupan' }}</p>
+                                        <p>In der Anzeige:: {{ optional(optional($conversation->bids->first())->job)->title ?? 'Titel nicht verfügbar' }}</p>
 
                                     </div>
                                 </a>
@@ -92,7 +92,7 @@
                                 <textarea wire:model="newMessage" cols="40" rows="3" class="form-control with-light"
                                     placeholder="Vaša poruka ovdje.."></textarea>
                             </div>
-                            <button type="submit" class="btn dark-2">Send message</button>
+                            <button type="submit" class="btn dark-2">Nachricht senden</button>
                         </form>
                     </div>
                 </div>

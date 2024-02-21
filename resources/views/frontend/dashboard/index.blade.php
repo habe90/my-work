@@ -29,13 +29,13 @@
 </style>
 
 <!-- ============================ Page Title Start================================== -->
-<div class="page-title bg-cover" style="background:url(https://via.placeholder.com/1920x980)no-repeat;" data-overlay="5">
+{{-- <div class="page-title bg-cover" style="background:url(https://via.placeholder.com/1920x980)no-repeat;" data-overlay="5">
     <div class="container">
         <div class="row">
             <div class="col-lg-12 col-md-12"></div>
         </div>
     </div>
-</div>
+</div> --}}
 <!-- ============================ Page Title End ================================== -->
 	
 			<!-- ============================ Main Section Start ================================== -->
@@ -74,21 +74,21 @@
 								<div class="col-xl-3 col-lg-6 col-md-6 col-sm-12">
 									<div class="dashboard-stat">	
 										<div class="dashboard-stat-icon widget-2"><i class="ti-pie-chart"></i></div>
-										<div class="dashboard-stat-content"><h4><span class="cto">12</span></h4> <p>Total Viewes</p></div>
+										<div class="dashboard-stat-content"><h4><span class="cto">12</span></h4> <p>{{__('global.total_views')}}</p></div>
 									</div>	
 								</div>
 								
 								<div class="col-xl-3 col-lg-6 col-md-6 col-sm-12">
 									<div class="dashboard-stat">
 										<div class="dashboard-stat-icon widget-3"><i class="ti-user"></i></div>
-										<div class="dashboard-stat-content"><h4><span class="cto">72</span></h4> <p>Completed</p></div>
+										<div class="dashboard-stat-content"><h4><span class="cto">72</span></h4> <p>{{__('global.completed_jobs')}}</p></div>
 									</div>	
 								</div>
 								
 								<div class="col-xl-3 col-lg-6 col-md-6 col-sm-12">
 									<div class="dashboard-stat">
 										<div class="dashboard-stat-icon widget-4"><i class="ti-bookmark"></i></div>
-										<div class="dashboard-stat-content"><h4><span class="cto">8</span></h4> <p>Draft</p></div>
+										<div class="dashboard-stat-content"><h4><span class="cto">8</span></h4> <p>{{__('global.draft')}}</p></div>
 									</div>	
 								</div>
 							</div>
@@ -175,22 +175,22 @@
 			<section class="call-to-act" style="background:#0b85ec url(assets/img/landing-bg.png) no-repeat">
 				<div class="container">
 					<div class="row justify-content-center">
-					
 						<div class="col-lg-7 col-md-8">
 							<div class="clt-caption text-center mb-4">
-								<h2 class="text-light">Subscribe Now!</h2>
-								<p class="text-light">Simple pricing plans. Unlimited web maintenance service</p>
+								<h2 class="text-light">{{ __('global.subscribe')}}</h2>
+								<p class="text-light">{{ __('global.subscribe_description')}}</p>
 							</div>
 							<div class="inner-flexible-box subscribe-box">
 								<div class="input-group">
-									<input type="text" class="form-control large" placeholder="Enter your mail here">
+									<input type="text" class="form-control large" placeholder="{{ __('global.enter_email')}}">
 									<button class="btn btn-subscribe bg-dark" type="button"><i class="fa fa-arrow-right"></i></button>
 								</div>
 							</div>
-						</div>				
+						</div>              
 					</div>
 				</div>
 			</section>
+			
 			<!-- ============================ Call To Action End ================================== -->
 
 @endsection

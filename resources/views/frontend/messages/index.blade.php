@@ -30,13 +30,13 @@
         }
     </style>
     <!-- ============================ Page Title Start================================== -->
-    <div class="page-title bg-cover" style="background:url(https://via.placeholder.com/1920x980)no-repeat;" data-overlay="5">
+    {{-- <div class="page-title bg-cover" style="background:url(https://via.placeholder.com/1920x980)no-repeat;" data-overlay="5">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 col-md-12"></div>
             </div>
         </div>
-    </div>
+    </div> --}}
     <!-- ============================ Page Title End ================================== -->
     <section class="gray-bg pt-4">
         <div class="container-fluid">
@@ -54,9 +54,9 @@
                             <div class="bredcrumb_wrap">
                                 <nav aria-label="breadcrumb">
                                     <ol class="breadcrumb">
-                                        <li class="breadcrumb-item"><a href="#">Home</a></li>
+                                        <li class="breadcrumb-item"><a href="#">Startseite</a></li>
                                         <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
-                                        <li class="breadcrumb-item active" aria-current="page">Messages</li>
+                                        <li class="breadcrumb-item active" aria-current="page">Mitteilungen</li>
                                     </ol>
                                 </nav>
                             </div>
@@ -77,15 +77,15 @@
             });
 
             window.addEventListener('click', function(event) {
-    // Pretpostavljamo da imate definisanu komponentu emoji-picker i da se može pristupiti preko ref-a ili klase
-    let emojiPicker = document.querySelector('.emoji-picker');
-    let toggleButton = document.querySelector('.emoji-picker-toggle'); // Dodajte klasu ili ref na vaše dugme
+                // Pretpostavljamo da imate definisanu komponentu emoji-picker i da se može pristupiti preko ref-a ili klase
+                let emojiPicker = document.querySelector('.emoji-picker');
+                let toggleButton = document.querySelector(
+                '.emoji-picker-toggle'); // Dodajte klasu ili ref na vaše dugme
 
-    if (!emojiPicker.contains(event.target) && !toggleButton.contains(event.target)) {
-        window.livewire.emit('closeEmojiPicker');
-    }
-});
-
+                if (!emojiPicker.contains(event.target) && !toggleButton.contains(event.target)) {
+                    window.livewire.emit('closeEmojiPicker');
+                }
+            });
         </script>
 
     </section>

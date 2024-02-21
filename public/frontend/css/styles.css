@@ -4387,7 +4387,7 @@ h5._frc_title a {
 }
 .overlio-top {
     position: relative;
-    margin-top: -80px;
+    margin-top: -2px;
 }
 .urip_cated.light {
     display: block;
@@ -8514,7 +8514,7 @@ h3.pa-name {
 }
 .d-user-avater {
     text-align: center;
-    margin: 0 1rem 2rem;
+    margin: 0 12rem 2rem;
 }
 .d-user-avater h4 {
     margin: 10px 0 3px 0;
@@ -9375,7 +9375,7 @@ ul._act_tsk_list li:first-child {
 }
 ul._act_tsk_list li:last-child {
     border-radius:0px 50px 50px 0px;
-	background:#2eb95f;
+	
 	color:#ffffff;
 }
 ul._act_tsk_list li:last-child h5{
@@ -9384,6 +9384,10 @@ ul._act_tsk_list li:last-child h5{
 button.btn.btn-save {
     background: #0f92fb;
 }
+
+
+
+
 
 /*------------------- Review Design -------------*/
 ._grouping_single_reviews {

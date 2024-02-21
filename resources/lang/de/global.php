@@ -1,6 +1,26 @@
 <?php
 
 return [
+
+    'client-nav' => [
+        'dashboard' => 'Dashboard',
+        'profile' => 'Profil',
+        'messages' => 'Nachrichten',
+        'reviews' => 'Bewertungen',
+        'jobs' => 'Jobs',
+        'active_jobs' => 'Meine Jobs',
+        'post_job' => 'Einen Job veröffentlichen',
+    ],
+    
+    'total_views'                    => 'Gesamtanzahl der Aufrufe',
+    'completed_jobs'                 => 'Abgeschlossene Jobs',
+    'job_status'                     => 'Jobstatus',
+    'draft'                          => 'Entwurf',
+    'subscribe'                      => 'Abonniere jetzt!',
+    'enter_email'                    => 'Geben sie ihre E-Mailadresse ein',
+    'subscribe_description'          => 'Abonnieren Sie und seien Sie einer der Ersten, die Benachrichtigungen über neue Jobs erhalten.',
+    'reviews'                        => 'Bewertungen', 
+    'my_account'                     => 'Mein Konto',
     'actions'                        => 'Aktionen',
     'no_invoices'                    => 'Für diesen Monat sind keine Rechnungen verfügbar..',
     'add'                            => 'Hinzufügen',

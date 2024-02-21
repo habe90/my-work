@@ -41,13 +41,13 @@
                             <div class="_dashboard_content">
                                 <div class="_dashboard_content_header">
                                     <div class="_dashboard__header_flex">
-                                        <h4><i class="fa fa-star mr-1"></i>Reviews</h4>	
+                                        <h4><i class="fa fa-star mr-1"></i>Rezensionen</h4>	
                                     </div>
                                 </div>
                                 
                                 <div class="_dashboard_content_body p-0">
                                     <div class="_grouping_reviews_wrap">
-                                        @foreach ($ratings as $rating)
+                                        @forelse ($ratings as $rating)
                                             <!-- Single Reviews -->
                                             <div class="_grouping_single_reviews">
                                                 <div class="_grouping_single_reviews_thumb">
@@ -63,11 +63,15 @@
                                                             <i class="fa fa-star"></i>
                                                         @endfor
                                                     </div>
-                                                    <h5 class="_rev_subject_cats">Comment:</h5>
+                                                    <h5 class="_rev_subject_cats">Kommentar:</h5>
                                                     <p>{{ $rating->comment }}</p>
                                                 </div>
                                             </div>
-                                        @endforeach
+                                            @empty
+                                            <div class="_grouping_single_reviews text-center">
+                                                <p>Keine Bewertungen verfügbar.</p>
+                                            </div>
+                                            @endforelse
                                         {{ $ratings->links() }}
                                     </div>
                                 </div>

@@ -60,6 +60,15 @@ Route::get('/auftraggeber-info/so-funktionierts', [FrontendController::class, 'h
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('user.dashboard');
 Route::get('/bids/{job}', [BidController::class, 'show'])->name('bids.show');
 Route::get('/jobs/{job}', [JobController::class, 'show'])->name('jobs.show');
+Route::get('/my-jobs', [JobController::class, 'myJobs'])->name('my-jobs');
+// Route for showing the job edit form
+Route::get('/jobs/edit/{job}', [JobController::class, 'edit'])->name('jobs.edit')->middleware('auth');
+// Route for deleting a job
+Route::delete('/jobs/delete/{job}', [JobController::class, 'destroy'])->name('jobs.delete')->middleware('auth');
+
+// update job
+Route::put('/jobs/update/{job}', [JobController::class, 'update'])->name('jobs.update')->middleware('auth');
+
 
 //user reviews
 

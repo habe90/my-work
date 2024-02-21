@@ -34,22 +34,34 @@
                 </li>
             @endif
             <li class="{{ request()->is('user/my-profile') ? 'active' : '' }}"><a href="{{ route('users.profile') }}"><i class="ti-user"></i>{{__('global.client-nav.profile')}}</a></li>
-            <li class="{{ request()->is('user/messages') ? 'active' : '' }}"><a href="{{ route('messages.index') }}"><i class="ti-email"></i>{{__('global.client-nav.messages')}}</a></li>
+            <li class="{{ request()->is('user/messages') ? 'active' : '' }}">
+                <a href="{{ route('messages.index') }}">
+                    <i class="ti-email"></i>{{__('global.client-nav.messages')}}
+                    @php
+                        $unreadConversations = \App\Models\ImConversation::getUnreadConversations();
+                        $unreadCount = $unreadConversations['all']; 
+                    @endphp
+                    @if($unreadCount > 0)
+                        <span class="badge badge-danger">{{ $unreadCount }}</span> 
+                    @endif
+                </a>
+            </li>
+            
        
             
          
             @can('reviews_access')
-            <li><a href="#"><i class="fa fa-star"></i>Reviews</a></li>
+            <li><a href="#"><i class="fa fa-star"></i>{{__('global.reviews')}}</a></li>
             @endcan
         
             @can('job_access')
-            <li>
-                <a href="javascript:void(0);" class="has-arrow" aria-expanded="false"><i class="ti-desktop"></i>Jobs</a>
+            <li class="{{ request()->is('manage-task', 'manage-bidders', 'active-jobs', 'post-job') ? 'active' : '' }}">
+                <a href="javascript:void(0);" class="has-arrow" aria-expanded="false"><i class="ti-desktop"></i>{{__('global.client-nav.jobs')}}</a>
                 <ul>
-                    <li><a href="manage-task.html">Manage Task</a></li>
-                    <li><a href="manage-bidders.html">Manage Bidders</a></li>
-                    <li><a href="active-bids.html">My Active Bids</a></li>
-                    <li><a href="post-task.html">Post A Task</a></li>
+                    <li><a href="#">Manage Task</a></li>
+                    <li><a href="#">Manage Bidders</a></li>
+                    <li><a href="{{ route('my-jobs') }}">{{__('global.client-nav.active_jobs')}}</a></li>
+                    <li><a href="/">{{__('global.client-nav.post_job')}}</a></li>
                 </ul>
             </li>
             @endcan

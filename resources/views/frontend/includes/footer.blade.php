@@ -15,7 +15,7 @@
                         </ul>
                     </div>
                 </div>		
-                <div class="col-lg-2 col-md-4">
+                {{-- <div class="col-lg-2 col-md-4">
                     <div class="footer-widget">
                         <h4 class="widget-title">Useful links</h4>
                         <ul class="footer-menu">
@@ -49,7 +49,7 @@
                             <li><a href="#">Press</a></li>
                         </ul>
                     </div>
-                </div>
+                </div> --}}
                         
                 <div class="col-lg-2 col-md-4">
                     <div class="footer-widget">
@@ -73,7 +73,7 @@
             <div class="row align-items-center">
                 
                 <div class="col-lg-12 col-md-12 text-center">
-                    <p class="mb-0">© 2024 My-Work. Designd By <a href="#">HabeTech</a> All Rights Reserved</p>
+                    <p class="mb-0">© 2024 My-Work. Designd By <a href="https://www.octagonsolution.com">OctagonSolution</a> All Rights Reserved</p>
                 </div>
                 
             </div>
