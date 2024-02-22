@@ -146,6 +146,8 @@ class User extends Authenticatable implements HasLocalePreference, HasMedia
         return $this->hasMany(UserRating::class, 'rated_user_id');
     }
 
+    
+
 
 
 }

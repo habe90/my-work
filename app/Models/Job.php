@@ -42,4 +42,21 @@ class Job extends Model
             default => 'bg-warning/20 text-warning',
         };
     }
+
+     /**
+     * Provjerava da li je korisnik sa datim ID-jem dodao ovaj posao u bookmark-e.
+     *
+     * @param int $userId ID korisnika
+     * @return bool
+     */
+    public function isBookmarkedByUser($userId)
+    {
+        return $this->bookmarks()->where('user_id', $userId)->exists();
+    }
+
+    // Metoda za definisanje relacije sa modelom Bookmark
+    public function bookmarks()
+    {
+        return $this->hasMany(Bookmark::class);
+    }
 }

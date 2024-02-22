@@ -33,6 +33,7 @@ use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\UserRatingController;
 use App\Http\Controllers\InvoiceController;
 use App\Http\Controllers\MyWorkReviewController;
+use App\Http\Controllers\BookmarkController;
 
 
 // Route::redirect('/', '/login');
@@ -73,6 +74,11 @@ Route::put('/jobs/update/{job}', [JobController::class, 'update'])->name('jobs.u
 //user reviews
 
 Route::get('/user-reviews', [UserRatingController::class, 'showRatings'])->name('review.show');
+
+
+//bookmark
+Route::post('/bookmarks', [BookmarkController::class, 'store'])->name('bookmarks.store');
+Route::delete('/bookmarks/{id}', [BookmarkController::class ,'destroy'])->name('bookmarks.destroy');
 
 
 

@@ -25,18 +25,30 @@
                                 </ul>
                                 <ul class="jbx_info_list">
                                     <li>
-                                        <div class="jb_types urgent">Urgent</div>
+                                        <div class="jb_types urgent">Dringend</div>
                                     </li>
                                 </ul>
                             </div>
                         </div>
 
+                        @php
+                        $isBookmarked = $job->isBookmarkedByUser(auth()->id());
+                        @endphp
+                        
                         <div class="_jb_details01_last">
                             <ul class="_flex_btn">
-                                <li><a href="#" class="_saveed_jb"><i class="fa fa-heart"></i></a></li>
-                                <li><a href="#" class="_applied_jb">Send Proposal</a></li>
+                                <li>
+                                    <button type="button" id="bookmark-btn" 
+                                        class="_saveed_jb {{ $isBookmarked ? 'bookmarked' : '' }}" 
+                                        data-job-id="{{ $job->id }}"
+                                        data-bookmarked="{{ $isBookmarked ? 'true' : 'false' }}">
+                                        <i class="fa fa-heart {{ $isBookmarked ? 'fas' : 'far' }}"></i>
+                                    </button>
+                                </li>
+                                <li><a href="#" class="_applied_jb">{{ __('global.send_proposal') }}</a></li>
                             </ul>
                         </div>
+                        
 
                     </div>
 
@@ -56,7 +68,7 @@
 
                         <div class="_wrap_box_slice">
                             <div class="_job_detail_single">
-                                <h4 class="mb-0">Project Info</h4>
+                                <h4 class="mb-0">{{ __('global.project_info')}}</h4>
                                 <div class="row">
 
                                     @if ($job->additional_details)
@@ -97,92 +109,19 @@
 
                         <div class="_wrap_box_slice">
                             <div class="_job_detail_single">
-                                <h4>Job Description</h4>
+                                <h4>{{__('global.job_desc')}}</h4>
                                 <p>{!! $job->description !!}</p>
                             </div>
 
-                            <div class="_job_detail_single">
-                                <h4>Files Attachments</h4>
-                                <div class="row">
-
-                                    <div class="col-lg-6 col-md-6 col-sm-12">
-                                        <div class="_file_caption">
-                                            <div class="_file_caption_flex">
-                                                <div class="_eltio_caption_icon">
-                                                    <img src="assets/img/pdf.png" class="img-fluid" alt="" />
-                                                </div>
-                                                <div class="_eltio_caption_body">
-                                                    <h4>project_sample.pdf</h4>
-                                                    <span>File size 25kb</span>
-                                                </div>
-                                            </div>
-                                            <div class="_file_caption_right">
-                                                <a href="javascript:void(0);"><i class="fa fa-download"></i></a>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-lg-6 col-md-6 col-sm-12">
-                                        <div class="_file_caption">
-                                            <div class="_file_caption_flex">
-                                                <div class="_eltio_caption_icon">
-                                                    <img src="assets/img/word.png" class="img-fluid" alt="" />
-                                                </div>
-                                                <div class="_eltio_caption_body">
-                                                    <h4>project_doc.docx</h4>
-                                                    <span>File size 182 kb</span>
-                                                </div>
-                                            </div>
-                                            <div class="_file_caption_right">
-                                                <a href="javascript:void(0);"><i class="fa fa-download"></i></a>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-lg-6 col-md-6 col-sm-12">
-                                        <div class="_file_caption">
-                                            <div class="_file_caption_flex">
-                                                <div class="_eltio_caption_icon">
-                                                    <img src="assets/img/picture.png" class="img-fluid" alt="" />
-                                                </div>
-                                                <div class="_eltio_caption_body">
-                                                    <h4>Project_image.png</h4>
-                                                    <span>File size 18 kb</span>
-                                                </div>
-                                            </div>
-                                            <div class="_file_caption_right">
-                                                <a href="javascript:void(0);"><i class="ti-image"></i></a>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-lg-6 col-md-6 col-sm-12">
-                                        <div class="_file_caption">
-                                            <div class="_file_caption_flex">
-                                                <div class="_eltio_caption_icon">
-                                                    <img src="assets/img/txt-file.png" class="img-fluid" alt="" />
-                                                </div>
-                                                <div class="_eltio_caption_body">
-                                                    <h4>Project_detail.txt</h4>
-                                                    <span>File size 63 kb</span>
-                                                </div>
-                                            </div>
-                                            <div class="_file_caption_right">
-                                                <a href="javascript:void(0);"><i class="fa fa-download"></i></a>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                </div>
-                            </div>
+                         
 
                             <div class="_job_detail_single flexeo">
                                 <div class="_job_detail_single_flex">
                                     <ul class="shares_jobs">
-                                        <li>Share The Job</li>
-                                        <li><a href="#" class="share fb"><i class="fa fa-facebook"></i></a></li>
-                                        <li><a href="#" class="share tw"><i class="fa fa-twitter"></i></a></li>
-                                        <li><a href="#" class="share gp"><i class="fa fa-google"></i></a></li>
+                                        <li>{{__('global.share_link')}}</li>
+                                        <li><a href="https://www.facebook.com/sharer/sharer.php?u={{ urlencode(Request::fullUrl()) }}" target="_blank" class="share fb"><i class="fa fa-facebook"></i></a></li>
+                                        <li><a href="https://twitter.com/share?url={{ urlencode(Request::fullUrl()) }}&text={{ urlencode('Pogledajte ovaj posao na našoj stranici: ' . $job->title) }}" target="_blank" class="share tw"><i class="fa fa-twitter"></i></a></li>
+                                        {{-- <li><a href="#" class="share gp"><i class="fa fa-google"></i></a></li> --}}
                                     </ul>
                                 </div>
                             </div>
@@ -218,7 +157,7 @@
                                                                     <i class="fa fa-star"></i>
                                                                 @endif
                                                             @endfor
-                                                            <a href="#" class="over_reviews_count">({{ $bid->user->reviews_count }} Reviews)</a>
+                                                            <a href="#" class="over_reviews_count">({{ $bid->user->reviews_count }} Rezensionen)</a>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -239,15 +178,15 @@
                        
                             @else
                             <div class="_job_detail_single">
-                                <h4>Project Offers (0)</h4>
-                                <p>There is no Offers.</p>
+                                <h4>{{ __('global.project_offers')}} (0)</h4>
+                                <p>{{__('global.no_offer')}}.</p>
                             </div>
                         @endif
                         </div>
                         @if (!$userHasMadeBid && auth()->user()->id !== $job->user_id)
                             <div class="_wrap_box_slice">
                                 <div class="_job_detail_single">
-                                    <h4>Send Proposal</h4>
+                                    <h4>{{ __('global.send_proposal') }}</h4>
                                     <form class="proposal-form" method="POST" action="{{ route('proposals.store') }}">
                                         @csrf
                                         <input type="hidden" name="job_id" value="{{ $job->id }}">
@@ -282,28 +221,24 @@
                                             <div class="col-lg-12 col-md-12 col-sm-12">
                                                 <div class="_terms_policy">
                                                     <div class="_mercurt10">
-                                                        <input id="tm" class="checkbox-custom" name="terms"
-                                                            type="checkbox">
+                                                        <input id="tm" class="checkbox-custom" name="terms" type="checkbox">
                                                         <label for="tm" class="checkbox-custom-label"></label>
                                                     </div>
-                                                    <div>I agree to the <a
-                                                            href="https://marketplace.exertiowp.com/terms-and-conditions/">terms
-                                                            and conditions</a></div>
+                                                    <div>{{ __('forms.agree_terms') }} <a href="{{ __('global.terms_and_conditions_link') }}">{{ __('global.terms_and_conditions') }}</a></div>
                                                 </div>
                                             </div>
                                             <div class="col-lg-12 col-md-12 col-sm-12">
-                                                <button type="submit" class="btn_proposal_send">Send Proposal</button>
+                                                <button type="submit" class="btn_proposal_send">{{ __('global.send_proposal') }}</button>
                                             </div>
                                         </div>
+                                        
 
                                     </form>
                                 </div>
                             </div>
                         @else
                             <div class="alert alert-success" role="alert">
-                                You have already submitted an offer for this job or you are owner of this job. You can
-                                review your offer in the My Offers
-                                section.
+                               {{ __('global.offer_error_message') }}
                             </div>
                         @endif
 
@@ -314,38 +249,52 @@
 
                     <div class="_jb_summary light_box">
                         <div class="_jb_summary_largethumb">
-                            <span>125 days left</span>
-                            <img src="https://via.placeholder.com/640x440" class="img-fluid" alt="" />
+                            <img src="{{ $job->featured_image ? $job->featured_image : 'https://via.placeholder.com/640x440' }}" class="img-fluid" alt="" />
                         </div>
+                    
+                        <!-- Ovdje počinje galerija slika -->
                         <div class="_jb_summary_thumb">
-                            <img src="https://via.placeholder.com/250x250" class="img-fluid" alt="" />
+                            @if ($job->image_gallery)
+                                @php
+                                    $images = json_decode($job->image_gallery, true);
+                                @endphp
+                    
+                                @foreach ($images as $image)
+                                    <div class="gallery-image">
+                                        <img src="{{ $image }}" class="img-fluid" alt="" />
+                                    </div>
+                                @endforeach
+                            @else
+                                <!-- Ako nema slika u galeriji, prikazuje se placeholder slika -->
+                                <img src="https://via.placeholder.com/250x250" class="img-fluid" alt="" />
+                            @endif
                         </div>
-                        <div class="_jb_summary_caption">
+                        <!-- Kraj galerije slika -->
+                    
+                        {{-- <div class="_jb_summary_caption">
                             <h4>Accenture Private Limited</h4>
                             <span>Since 10th July 2017</span>
-                            <h4 class="pises_price">$35<sub>/hourly</sub></h4>
-                        </div>
+                        </div> --}}
+                    
                         <div class="_jb_summary_body">
-
                             <div class="_view_profile_btns">
-                                <a href="employer-detail.html" class="btn btn_emplo_eloi">View Profile</a>
+                                <a href="#" class="btn btn_emplo_eloi">View company profile</a>
                             </div>
                         </div>
                     </div>
+                    
 
                     <div class="_jb_summary light_box p-4">
-                        <h4>Job Explain</h4>
+                        <h4>{{ __('global.job_info') }}</h4>
                         <ul>
-                            <li>Company:<span>Invision</span></li>
-                            <li>Vacancy:<span>03 Open</span></li>
-                            <li>Post Date:<span>10 Dec 2020</span></li>
-                            <li>Expire Date:<span>10 Oct 2021</span></li>
-                            <li>Location:<span>Canada, USA</span></li>
-                            <li>Salary:<span>$40k - $80k</span></li>
-                            <li>Rate:<span>$20-$25 hourly</span></li>
-                            <li>Hours:<span>45h/week</span></li>
+                            <li>{{ __('global.company') }}: <span>{{ $job->user->company_name ?? __('global.not_available') }}</span></li>
+                            <li>{{ __('global.post_date') }}: <span>{{ $job->created_at ? $job->created_at->format('d M Y') : __('global.not_available') }}</span></li>
+                            <li>{{ __('global.expire_date') }}: <span>{{ $job->deadline ? $job->deadline->format('d M Y') : __('global.not_available') }}</span></li>
+                            <li>{{ __('global.location') }}: <span>{{ $job->location ?? __('global.not_available') }}</span></li>
                         </ul>
                     </div>
+                    
+                    
 
                 </div>
 
@@ -366,5 +315,50 @@
             }
         });
     </script>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script> +
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<script>
+    $('#bookmark-btn').on('click', function() {
+        var $this = $(this);
+        var job_id = $this.data('job-id');
+        var isBookmarked = $this.data('bookmarked');
+
+        var ajaxUrl = isBookmarked ? "{{ route('bookmarks.destroy', '') }}/" + job_id : "{{ route('bookmarks.store') }}";
+        var ajaxType = isBookmarked ? 'DELETE' : 'POST';
+
+        $.ajax({
+            url: ajaxUrl,
+            type: ajaxType,
+            data: {
+                _token: "{{ csrf_token() }}",
+                job_id: job_id
+            },
+            success: function(response) {
+                $this.data('bookmarked', !isBookmarked);
+                $this.toggleClass('bookmarked');
+                $this.find('i').toggleClass('fas far');
+
+                Swal.fire({
+                    title: isBookmarked ? 'Wurde entfernt!' : 'Hinzugefügt!',
+                    text: isBookmarked ? 'Der Job wurde aus Ihren Lesezeichen entfernt.' : 'Der Job wurde zu Ihren Lesezeichen hinzugefügt.',
+                    icon: 'success',
+                    confirmButtonText: 'In Ordnung'
+                });
+            },
+            error: function() {
+                Swal.fire({
+                    title: 'Fehler!',
+                    text: 'Ein Fehler ist aufgetreten.',
+                    icon: 'error',
+                    confirmButtonText: 'In Ordnung'
+                });
+            }
+        });
+    });
+</script>
+
+
 
 @endsection
