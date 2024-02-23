@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\ContentPage;
 use App\Models\User;
 use App\Models\MyWorkReview;
+use App\Models\CompanyAdvertisement;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
 use App\Mail\LoginLinkEmail;
@@ -18,10 +19,11 @@ class FrontendController extends Controller
     {
 
         $reviews = MyWorkReview::all();
+        $activeCompanies = CompanyAdvertisement::where('is_active', 1)->get();
 
         
 
-        return view('frontend.index', compact('reviews'));
+        return view('frontend.index', compact('reviews', 'activeCompanies'));
     }
 
     public function showMenu()

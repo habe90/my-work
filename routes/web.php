@@ -34,6 +34,7 @@ use App\Http\Controllers\UserRatingController;
 use App\Http\Controllers\InvoiceController;
 use App\Http\Controllers\MyWorkReviewController;
 use App\Http\Controllers\BookmarkController;
+use App\Http\Controllers\CompanyAdvertisementController;
 
 
 // Route::redirect('/', '/login');
@@ -79,6 +80,9 @@ Route::get('/user-reviews', [UserRatingController::class, 'showRatings'])->name(
 //bookmark
 Route::post('/bookmarks', [BookmarkController::class, 'store'])->name('bookmarks.store');
 Route::delete('/bookmarks/{id}', [BookmarkController::class ,'destroy'])->name('bookmarks.destroy');
+
+
+
 
 
 
@@ -182,6 +186,15 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth']], 
     Route::delete('form/fields/destroy/', [FormController::class, 'destroyFormFields'])->name('form.fields.destroy');
     Route::delete('form/destroy/', [FormController::class, 'destroyForm'])->name('form.destroy');
     Route::get('form/copy/{id}', [FormController::class, 'formCopy'])->name('superadmin.formCopy');
+
+    //company ads
+    Route::get('/ads', [CompanyAdvertisementController::class, 'index'])->name('ads.index');
+    Route::post('/ads', [CompanyAdvertisementController::class, 'store'])->name('ads.store');
+    Route::get('/ads/create', [CompanyAdvertisementController::class, 'create'])->name('ads.create');
+    Route::put('/ads/{ad}', [CompanyAdvertisementController::class, 'update'])->name('ads.update');
+    Route::delete('/ads/{ad}', [CompanyAdvertisementController::class, 'destroy'])->name('ads.destroy');
+    Route::get('/ads/{ad}/edit', [CompanyAdvertisementController::class, 'edit'])->name('ads.edit');
+
     
 });
 

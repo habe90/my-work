@@ -91,6 +91,22 @@
                                  </div>
                              </a>
                          </li>
+                         <li class="nav-item">
+                            <a href="{{ route('admin.ads.index') }}" class="group">
+                                <div class="flex items-center">
+                                    <svg class="shrink-0 group-hover:!text-primary" width="20" height="20"
+                                        xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                        stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M3 11l18-5v2l-6.4 2.5L21 16v2l-18-5v-2m6 0h.01"></path> <!-- Ovo je SVG za megafon -->
+                                    </svg>
+                                    <span
+                                        class="text-black ltr:pl-3 rtl:pr-3 dark:text-[#506690] dark:group-hover:text-white-dark">
+                                        Werbung</span> <!-- Ovdje sam pretpostavio da je 'Werbung' riječ za oglase -->
+                                </div>
+                            </a>
+                        </li>
+                        
 
                          <li class="nav-item">
                             <a href="{{ route('admin.admin-jobs') }}" class="group">

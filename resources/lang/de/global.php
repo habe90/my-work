@@ -13,6 +13,9 @@ return [
     ],
 
     'job_info' => 'Jobinformation',
+    'featured_companies' => 'Ausgewählte Unternehmen',
+    'featured_jobs' => 'Top-Angebote',
+    'featured_jobs_description' => 'Entdecken Sie führende Unternehmen, die durch Innovation, Teamgeist und herausragende Leistungen in ihrer Branche herausstechen. Schließen Sie sich den Teams an, die die Zukunft gestalten.',
     'company' => 'Firma',
     'post_date' => 'Veröffentlichungsdatum',
     'expire_date' => 'Ablaufdatum',

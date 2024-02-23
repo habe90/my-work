@@ -1,6 +1,15 @@
 <?php
 
 return [
+    'ads_create' => 'Anzeige hinzufügen',
+    'ads' => [
+        'id'          => 'ID',
+        'name' => 'Name',
+        'image' => 'Bild',
+        'details' => 'Einzelheiten',
+        'price' => 'Preis',
+        'status' => 'Status',
+    ],
     'userManagement' => [
         'title'          => 'Benutzerverwaltung',
         'title_singular' => 'Benutzerverwaltung',
