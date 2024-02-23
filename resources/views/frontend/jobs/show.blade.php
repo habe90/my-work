@@ -32,14 +32,14 @@
                         </div>
 
                         @php
-                        $isBookmarked = $job->isBookmarkedByUser(auth()->id());
+                            $isBookmarked = $job->isBookmarkedByUser(auth()->id());
                         @endphp
-                        
+
                         <div class="_jb_details01_last">
                             <ul class="_flex_btn">
                                 <li>
-                                    <button type="button" id="bookmark-btn" 
-                                        class="_saveed_jb {{ $isBookmarked ? 'bookmarked' : '' }}" 
+                                    <button type="button" id="bookmark-btn"
+                                        class="_saveed_jb {{ $isBookmarked ? 'bookmarked' : '' }}"
                                         data-job-id="{{ $job->id }}"
                                         data-bookmarked="{{ $isBookmarked ? 'true' : 'false' }}">
                                         <i class="fa fa-heart {{ $isBookmarked ? 'fas' : 'far' }}"></i>
@@ -48,7 +48,7 @@
                                 <li><a href="#" class="_applied_jb">{{ __('global.send_proposal') }}</a></li>
                             </ul>
                         </div>
-                        
+
 
                     </div>
 
@@ -68,11 +68,16 @@
 
                         <div class="_wrap_box_slice">
                             <div class="_job_detail_single">
-                                <h4 class="mb-0">{{ __('global.project_info')}}</h4>
+                                <h4 class="mb-0">{{ __('global.project_info') }}</h4>
                                 <div class="row">
 
                                     @if ($job->additional_details)
-                                        @foreach ($job->additional_details as $detailKey => $detailValue)
+                                        @php
+                                            // Pretvorite JSON string u niz
+                                            $additionalDetails = json_decode($job->additional_details, true);
+                                        @endphp
+                                         @if ($additionalDetails)
+                                         @foreach ($additionalDetails as $detailKey => $detailValue)
                                             <div class="col-lg-4 col-md-6 col-sm-12">
                                                 <div class="_eltio_caption">
                                                     <div class="_eltio_caption_icon">
@@ -80,6 +85,7 @@
                                                             $iconMap = [
                                                                 'kvadratura' => 'ti-ruler',
                                                                 'broj_vata' => 'ti-bolt',
+                                                                'm2' => 'ti-bolt',
                                                                 // Dodajte ostale  ikone ovdje
                                                             ];
                                                             $icon = $iconMap[$detailKey] ?? 'ti-info-alt';
@@ -102,6 +108,7 @@
                                                 </div>
                                             </div>
                                         @endforeach
+                                        @endif
                                     @endif
                                 </div>
                             </div>
@@ -109,18 +116,20 @@
 
                         <div class="_wrap_box_slice">
                             <div class="_job_detail_single">
-                                <h4>{{__('global.job_desc')}}</h4>
+                                <h4>{{ __('global.job_desc') }}</h4>
                                 <p>{!! $job->description !!}</p>
                             </div>
 
-                         
+
 
                             <div class="_job_detail_single flexeo">
                                 <div class="_job_detail_single_flex">
                                     <ul class="shares_jobs">
-                                        <li>{{__('global.share_link')}}</li>
-                                        <li><a href="https://www.facebook.com/sharer/sharer.php?u={{ urlencode(Request::fullUrl()) }}" target="_blank" class="share fb"><i class="fa fa-facebook"></i></a></li>
-                                        <li><a href="https://twitter.com/share?url={{ urlencode(Request::fullUrl()) }}&text={{ urlencode('Pogledajte ovaj posao na našoj stranici: ' . $job->title) }}" target="_blank" class="share tw"><i class="fa fa-twitter"></i></a></li>
+                                        <li>{{ __('global.share_link') }}</li>
+                                        <li><a href="https://www.facebook.com/sharer/sharer.php?u={{ urlencode(Request::fullUrl()) }}"
+                                                target="_blank" class="share fb"><i class="fa fa-facebook"></i></a></li>
+                                        <li><a href="https://twitter.com/share?url={{ urlencode(Request::fullUrl()) }}&text={{ urlencode('Pogledajte ovaj posao na našoj stranici: ' . $job->title) }}"
+                                                target="_blank" class="share tw"><i class="fa fa-twitter"></i></a></li>
                                         {{-- <li><a href="#" class="share gp"><i class="fa fa-google"></i></a></li> --}}
                                     </ul>
                                 </div>
@@ -148,8 +157,9 @@
                                                                 class="ti-location-pin mr-1"></i>{{ $bid->user->address }}
                                                         </div>
                                                         <div class="_freelance_review_10">
-                                                           <!-- Prikaz zvjezdica i broja recenzija -->
-                                                            <span class="_overall_rate high">{{ $bid->user->rating }}</span>
+                                                            <!-- Prikaz zvjezdica i broja recenzija -->
+                                                            <span
+                                                                class="_overall_rate high">{{ $bid->user->rating }}</span>
                                                             @for ($i = 0; $i < 5; $i++)
                                                                 @if ($i < $bid->user->rating)
                                                                     <i class="fa fa-star filled"></i>
@@ -157,7 +167,9 @@
                                                                     <i class="fa fa-star"></i>
                                                                 @endif
                                                             @endfor
-                                                            <a href="#" class="over_reviews_count">({{ $bid->user->reviews_count }} Rezensionen)</a>
+                                                            <a href="#"
+                                                                class="over_reviews_count">({{ $bid->user->reviews_count }}
+                                                                Rezensionen)</a>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -165,7 +177,8 @@
                                                     <div class="_freelancer_rate">
                                                         <h4>{{ $bid->amount }} €</h4>
                                                         <span>{{ $bid->created_at->diffForHumans() }}</span>
-                                                        <span class="badge badge-warning text-white">{{ $bid->status }}</span>
+                                                        <span
+                                                            class="badge badge-warning text-white">{{ $bid->status }}</span>
                                                     </div>
                                                 </div>
                                             </div>
@@ -175,13 +188,12 @@
 
                                 </div>
                                 {{-- {{ $bids->links() }} --}}
-                       
                             @else
-                            <div class="_job_detail_single">
-                                <h4>{{ __('global.project_offers')}} (0)</h4>
-                                <p>{{__('global.no_offer')}}.</p>
-                            </div>
-                        @endif
+                                <div class="_job_detail_single">
+                                    <h4>{{ __('global.project_offers') }} (0)</h4>
+                                    <p>{{ __('global.no_offer') }}.</p>
+                                </div>
+                            @endif
                         </div>
                         @if (!$userHasMadeBid && auth()->user()->id !== $job->user_id)
                             <div class="_wrap_box_slice">
@@ -221,24 +233,28 @@
                                             <div class="col-lg-12 col-md-12 col-sm-12">
                                                 <div class="_terms_policy">
                                                     <div class="_mercurt10">
-                                                        <input id="tm" class="checkbox-custom" name="terms" type="checkbox">
+                                                        <input id="tm" class="checkbox-custom" name="terms"
+                                                            type="checkbox">
                                                         <label for="tm" class="checkbox-custom-label"></label>
                                                     </div>
-                                                    <div>{{ __('forms.agree_terms') }} <a href="{{ __('global.terms_and_conditions_link') }}">{{ __('global.terms_and_conditions') }}</a></div>
+                                                    <div>{{ __('forms.agree_terms') }} <a
+                                                            href="{{ __('global.terms_and_conditions_link') }}">{{ __('global.terms_and_conditions') }}</a>
+                                                    </div>
                                                 </div>
                                             </div>
                                             <div class="col-lg-12 col-md-12 col-sm-12">
-                                                <button type="submit" class="btn_proposal_send">{{ __('global.send_proposal') }}</button>
+                                                <button type="submit"
+                                                    class="btn_proposal_send">{{ __('global.send_proposal') }}</button>
                                             </div>
                                         </div>
-                                        
+
 
                                     </form>
                                 </div>
                             </div>
                         @else
                             <div class="alert alert-success" role="alert">
-                               {{ __('global.offer_error_message') }}
+                                {{ __('global.offer_error_message') }}
                             </div>
                         @endif
 
@@ -249,16 +265,17 @@
 
                     <div class="_jb_summary light_box">
                         <div class="_jb_summary_largethumb">
-                            <img src="{{ $job->featured_image ? $job->featured_image : 'https://via.placeholder.com/640x440' }}" class="img-fluid" alt="" />
+                            <img src="{{ $job->featured_image ? $job->featured_image : 'https://via.placeholder.com/640x440' }}"
+                                class="img-fluid" alt="" />
                         </div>
-                    
+
                         <!-- Ovdje počinje galerija slika -->
                         <div class="_jb_summary_thumb">
                             @if ($job->image_gallery)
                                 @php
                                     $images = json_decode($job->image_gallery, true);
                                 @endphp
-                    
+
                                 @foreach ($images as $image)
                                     <div class="gallery-image">
                                         <img src="{{ $image }}" class="img-fluid" alt="" />
@@ -270,31 +287,37 @@
                             @endif
                         </div>
                         <!-- Kraj galerije slika -->
-                    
+
                         {{-- <div class="_jb_summary_caption">
                             <h4>Accenture Private Limited</h4>
                             <span>Since 10th July 2017</span>
                         </div> --}}
-                    
+
                         <div class="_jb_summary_body">
                             <div class="_view_profile_btns">
                                 <a href="#" class="btn btn_emplo_eloi">View company profile</a>
                             </div>
                         </div>
                     </div>
-                    
+
 
                     <div class="_jb_summary light_box p-4">
                         <h4>{{ __('global.job_info') }}</h4>
                         <ul>
-                            <li>{{ __('global.company') }}: <span>{{ $job->user->company_name ?? __('global.not_available') }}</span></li>
-                            <li>{{ __('global.post_date') }}: <span>{{ $job->created_at ? $job->created_at->format('d M Y') : __('global.not_available') }}</span></li>
-                            <li>{{ __('global.expire_date') }}: <span>{{ $job->deadline ? $job->deadline->format('d M Y') : __('global.not_available') }}</span></li>
-                            <li>{{ __('global.location') }}: <span>{{ $job->location ?? __('global.not_available') }}</span></li>
+                            <li>{{ __('global.company') }}:
+                                <span>{{ $job->user->company_name ?? __('global.not_available') }}</span></li>
+                            <li>{{ __('global.post_date') }}:
+                                <span>{{ $job->created_at ? $job->created_at->format('d M Y') : __('global.not_available') }}</span>
+                            </li>
+                            <li>{{ __('global.expire_date') }}:
+                                <span>{{ $job->deadline ? \Carbon\Carbon::parse($job->deadline)->format('d M Y') : __('global.not_available') }}</span>
+                            </li>
+                            <li>{{ __('global.location') }}:
+                                <span>{{ $job->location ?? __('global.not_available') }}</span></li>
                         </ul>
                     </div>
-                    
-                    
+
+
 
                 </div>
 
@@ -316,48 +339,50 @@
         });
     </script>
 
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script> +
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script> +
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
-<script>
-    $('#bookmark-btn').on('click', function() {
-        var $this = $(this);
-        var job_id = $this.data('job-id');
-        var isBookmarked = $this.data('bookmarked');
+    <script>
+        $('#bookmark-btn').on('click', function() {
+            var $this = $(this);
+            var job_id = $this.data('job-id');
+            var isBookmarked = $this.data('bookmarked');
 
-        var ajaxUrl = isBookmarked ? "{{ route('bookmarks.destroy', '') }}/" + job_id : "{{ route('bookmarks.store') }}";
-        var ajaxType = isBookmarked ? 'DELETE' : 'POST';
+            var ajaxUrl = isBookmarked ? "{{ route('bookmarks.destroy', '') }}/" + job_id :
+                "{{ route('bookmarks.store') }}";
+            var ajaxType = isBookmarked ? 'DELETE' : 'POST';
 
-        $.ajax({
-            url: ajaxUrl,
-            type: ajaxType,
-            data: {
-                _token: "{{ csrf_token() }}",
-                job_id: job_id
-            },
-            success: function(response) {
-                $this.data('bookmarked', !isBookmarked);
-                $this.toggleClass('bookmarked');
-                $this.find('i').toggleClass('fas far');
+            $.ajax({
+                url: ajaxUrl,
+                type: ajaxType,
+                data: {
+                    _token: "{{ csrf_token() }}",
+                    job_id: job_id
+                },
+                success: function(response) {
+                    $this.data('bookmarked', !isBookmarked);
+                    $this.toggleClass('bookmarked');
+                    $this.find('i').toggleClass('fas far');
 
-                Swal.fire({
-                    title: isBookmarked ? 'Wurde entfernt!' : 'Hinzugefügt!',
-                    text: isBookmarked ? 'Der Job wurde aus Ihren Lesezeichen entfernt.' : 'Der Job wurde zu Ihren Lesezeichen hinzugefügt.',
-                    icon: 'success',
-                    confirmButtonText: 'In Ordnung'
-                });
-            },
-            error: function() {
-                Swal.fire({
-                    title: 'Fehler!',
-                    text: 'Ein Fehler ist aufgetreten.',
-                    icon: 'error',
-                    confirmButtonText: 'In Ordnung'
-                });
-            }
+                    Swal.fire({
+                        title: isBookmarked ? 'Wurde entfernt!' : 'Hinzugefügt!',
+                        text: isBookmarked ? 'Der Job wurde aus Ihren Lesezeichen entfernt.' :
+                            'Der Job wurde zu Ihren Lesezeichen hinzugefügt.',
+                        icon: 'success',
+                        confirmButtonText: 'In Ordnung'
+                    });
+                },
+                error: function() {
+                    Swal.fire({
+                        title: 'Fehler!',
+                        text: 'Ein Fehler ist aufgetreten.',
+                        icon: 'error',
+                        confirmButtonText: 'In Ordnung'
+                    });
+                }
+            });
         });
-    });
-</script>
+    </script>
 
 
 
