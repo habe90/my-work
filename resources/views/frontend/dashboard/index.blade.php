@@ -133,7 +133,7 @@
 											</div>
 										</div><hr>
 									@endforeach
-									
+									{{ $jobs->links('vendor.pagination.bootstrap-4') }}
 								</div>
 								
 								

@@ -51,8 +51,8 @@ class DashboardController extends Controller
         }
 
         $jobs = Job::with(['bids'])
-                    ->where('user_id', auth()->id())
-                    ->get();
+        ->where('user_id', auth()->id())
+        ->paginate(6);
 
        
         return view('frontend.dashboard.index', compact('settings1','jobs'));
