@@ -40,7 +40,7 @@
                             <div class="_jb_list73_middle">
                                 <!-- Ostatak koda ... -->
                                 <div class="_jb_list73_middle_flex">
-                                    <h4 class="_jb_title"><a href="{{ Str::startsWith($company->link, ['http://', 'https://']) ? $company->link : 'http://' . $company->link }}">Visit company</a></h4>
+                                    <h4 class="_jb_title"><a href="{{ Str::startsWith($company->link, ['http://', 'https://']) ? $company->link : 'http://' . $company->link }}">Besuchen Sie die Firmenseite</a></h4>
                                     <!-- Ostatak koda ... -->
                                 </div>
                                 <!-- Ostatak koda ... -->
