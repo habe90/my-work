@@ -22,11 +22,13 @@ class ChooseForm extends Component
         $category = Forms::findOrFail($this->formId);
 
         $formName = $category->name;  // Ime kategorije odgovara imenu forme
-       
+        $categoryId = $category->category_id; 
+        session(['service_category_id' => $categoryId]);
         // Kreirajte Request objekt za učitavanje forme
         $request = new Request([
             'recordID' => encrypt($this->formId),  // ID kategorije se koristi ovdje
-            'formName' => encrypt($formName),  // Ime forme se šifrira i šalje
+            'formName' => encrypt($formName),
+            'service_category_id' => $categoryId
         ]);
 
         // Učitajte formu koristeći FormController
@@ -35,6 +37,7 @@ class ChooseForm extends Component
         return view('livewire.choose-form', [
             'dynamicForm' => $dynamicForm,
             'categoryName' => $category->name,
+            'serviceCategoryId' => $categoryId 
         ]);
     }
 }

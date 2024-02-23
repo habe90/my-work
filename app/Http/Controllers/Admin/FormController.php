@@ -7,6 +7,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use App\Models\Forms;
+use App\Models\Job;
 use App\Models\FormFiledsData;
 use App\Models\FormFields;
 use DB;
@@ -149,25 +150,31 @@ class FormController extends Controller
      */
     public function loadMyForm(Request $request)
     {
-        if( $request->has('recordID') ){
-            // dencrypt sended data
+        if ($request->has('recordID')) {
+            // Dekriptovanje poslatih podataka
             $recordID = decrypt($request->recordID);
             $formName = decrypt($request->formName);
-
-            // check if it is a create or edit form
+            $serviceCategoryId = $request->input('service_category_id', null); 
+    
+            // Postavke forme za kreiranje ili uređivanje
             $formSettings['method'] = $recordID == 0 ? 'POST' : 'POST';
             $formSettings['recordID'] = $recordID;
+            $formSettings['service_category_id'] = $serviceCategoryId;
             $formSettings['action'] = 'admin.form.insertData';
             $formSettings['modalForm'] = $request->modalForm ? $request->modalForm : 'no';
-
-            // create my form and return it
-            $form = $this->createMyForm( $formName, $formSettings );
-            return $form;
+    
+            // Kreiranje forme
+            $formHtml = $this->createMyForm($formName, $formSettings);
+    
+            // Ako treba dodati skriveni input za 'service_category_id' direktno
+            $formHtml .= "<input type='hidden' name='service_category_id' value='" . htmlspecialchars($serviceCategoryId, ENT_QUOTES) . "'>";
+    
+            return $formHtml;
         }
-
+    
         return false;
     }
-
+    
     /**
      * Create the form.
      */
@@ -397,7 +404,7 @@ class FormController extends Controller
         if( $request->formName != '' ){
             $formName = decrypt($request->formName);
             $recordID = decrypt($request->recordID);
-           
+        
             // check the validation
             $formAttr = $this->createMyForm($formName, [], true);
             $validatedData = $request->validate($formAttr['rules']);
@@ -420,6 +427,8 @@ class FormController extends Controller
                 }
             }
 
+
+
             // some forms require data optimization because they are stored in several tables
             if($formName == 'Super admin accounts'){
                 $return = (new AccountController)->storeSuperAdmin($data, $recordID);
@@ -430,6 +439,50 @@ class FormController extends Controller
                 $return = $appController->storeApp($data, $recordID);
                 return $return;
             }
+
+            $formsForJobs = ['Rohbau Mauerarbeiten', 'Forma2', 'Forma3'];
+        
+            if (!Auth::check()) {
+                // Ako korisnik nije ulogovan, sačuvajte podatke u sesiji i preusmjerite na prijavu/registraciju
+                session(['form_data' => $request->all()]);
+                return redirect()->route('login'); // Pretpostavimo da je 'login' ruta za prijavu
+            }
+           
+            // Provjera da li je trenutna forma jedna od formi koje trebaju biti obrađene posebno
+            if (in_array($formName, $formsForJobs)) {
+                $serviceCategoryId = session('service_category_id', null);
+                // Priprema podataka za 'jobs' tabelu
+                $jobData = [
+                    'title' => $data['title'], // Pretpostavljamo da postoji 'title' u $data
+                    'description' => $data['description'], // Pretpostavljamo da postoji 'description' u $data
+                    'service_category_id' => $serviceCategoryId,  // Pretpostavljamo da postoji 'service_category_id' u $data
+                    'is_active' => 0, // Postavite 'is_active' na 0
+                    'status' => 'pending',
+                    'featured_image' => $data['featured_image'] ?? null, // Provjerite i postavite 'featured_image'
+                    'image_gallery' => $data['image_gallery'] ?? null, // Provjerite i postavite 'image_gallery'
+                ];
+
+                // dd($jobData);
+    
+            
+                // Dodajte 'user_id' ako je korisnik ulogovan
+                if (Auth::check()) {
+                    $jobData['user_id'] = Auth::id();
+                }
+            
+                // Spremite ostale podatke u 'additional_details'
+                $additionalDetails = array_diff_key($data, array_flip(['title', 'description', 'service_category_id', 'featured_image', 'image_gallery']));
+                if (!empty($additionalDetails)) {
+                    $jobData['additional_details'] = json_encode($additionalDetails);
+                }
+            
+                // Kreirajte i sačuvajte novi 'Job'
+                $job = new Job($jobData);
+                $job->save();
+            
+                return redirect()->route('my-jobs')->with('success', __('global.data_add_sussesfully'));
+            }
+            
 
             //if is form name Add page
             if ($formName == 'Add Page') {

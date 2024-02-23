@@ -82,10 +82,6 @@ Route::post('/bookmarks', [BookmarkController::class, 'store'])->name('bookmarks
 Route::delete('/bookmarks/{id}', [BookmarkController::class ,'destroy'])->name('bookmarks.destroy');
 
 
-
-
-
-
 //invoices
 Route::get('/invoices', [InvoiceController::class, 'showInvoices'])->name('invoices.show');
 Route::get('/invoices/{invoiceId}/view', [InvoiceController::class, 'showInvoices'])->name('invoices.view');

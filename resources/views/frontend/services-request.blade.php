@@ -1,36 +1,38 @@
 @extends('frontend.layouts.front')
 @section('content')
-<!-- ============================ Page Title Start================================== -->
-<div class="page-title">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12 col-md-12">
-                
-                <h2 class="ipt-title">Post Services</h2>
-                <span class="ipn-subtitle">Services Request</span>
-                
+    <!-- ============================ Page Title Start================================== -->
+    <div class="page-title">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 col-md-12">
+
+                    <h2 class="ipt-title">Post Services</h2>
+                    <span class="ipn-subtitle">Services Request</span>
+
+                </div>
             </div>
         </div>
     </div>
-</div>
-<!-- ============================ Page Title End ================================== -->
+    <!-- ============================ Page Title End ================================== -->
 
-<!-- Ovdje započinje vaš postojeći HTML -->
-<section class="gray-light min-sec">
-    <div class="container">
-        <div class="row form-submit">
-            <!-- ... Ostali HTML elementi ... -->
+    <!-- Ovdje započinje vaš postojeći HTML -->
+    <section class="gray-light min-sec">
+        <div class="container">
+            @if (session('success'))
+                <div class="alert alert-success">
+                    {{ session('success') }}
+                </div>
+            @endif
 
-            <!-- Livewire formular za renovaciju -->
-            <div class="col-lg-8 col-md-12 col-sm-12">
-                @livewire('choose-form', ['formId' => $formId])
+            <div class="row form-submit">
+
+                <!-- Livewire formular za renovaciju -->
+                <div class="col-lg-8 col-md-12 col-sm-12">
+                    @livewire('choose-form', ['formId' => $formId])
+
+                </div>
 
             </div>
-
-            <!-- ... Ostali HTML elementi ... -->
         </div>
-    </div>
-</section>
-<!-- Ovdje završava vaš postojeći HTML -->
-
+    </section>
 @endsection

@@ -89,8 +89,9 @@
                                                     </div>
                                                 </div>
                                             </div>
+                                            
                                         @endforeach
-
+                                        {{ $jobs->links('vendor.pagination.bootstrap-4') }}
 
                                     </div>
                                 </div>
@@ -101,7 +102,7 @@
                     </div>
 
                 </div>
-
+                
             </div>
         </div>
     </section>

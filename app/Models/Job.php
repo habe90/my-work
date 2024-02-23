@@ -8,7 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Job extends Model
 {
     use HasFactory;
-
+    protected $fillable = ['title', 'description', 'service_category_id', 'is_active', 'featured_image', 'image_gallery', 'user_id', 'additional_details', 'status'];
+   
     protected $casts = [
         'additional_details' => 'array',
     ];

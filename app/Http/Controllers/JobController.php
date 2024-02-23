@@ -34,7 +34,8 @@ class JobController extends Controller
     public function myJobs()
     {
         // Pretpostavljamo da Job model ima metodu koja vraća poslove trenutno autentifikovanog korisnika
-        $jobs = Job::where('user_id', auth()->id())->get();
+        $jobs = Job::where('user_id', auth()->id())->paginate(5);
+
 
         // Vraćamo view 'frontend.jobs.myjobs' i prosleđujemo mu poslove
         return view('frontend.jobs.myjobs', compact('jobs'));
