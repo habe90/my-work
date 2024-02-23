@@ -30,6 +30,7 @@ use App\Http\Controllers\ProposalController;
 use App\Http\Controllers\MessagesController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\UserRatingController;
 use App\Http\Controllers\InvoiceController;
 use App\Http\Controllers\MyWorkReviewController;
@@ -52,6 +53,9 @@ Route::post('/check-login', [FrontendController::class, 'checkLogin'])->name('lo
 Route::get('/login-options', [FrontendController::class, 'showLoginOptions'])->name('login.options');
 Route::get('/login/verify/{token}', [FrontendController::class, 'verifyLoginLink'])->name('login.verify');
 Route::post('/send-login-link', [FrontendController::class, 'sendLoginLink']);
+Route::post('/check-or-register', [LoginController::class, 'CheckOrRegister'])->name('check-login');
+Route::get('/check-email', [LoginController::class, 'loadCheckEmail'])->name('email-check');
+
 
 //company register routes
 Route::any('/company-register', [RegisterController::class, 'CompanyRegister'])->name('company-login');
@@ -178,7 +182,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth']], 
     Route::post('fields/update_order', [FormController::class, 'updateFormFieldsOrder'])->name('superadmin.update_order');
     Route::post('fields/fieldsdata/update', [FormController::class, 'updateFormFieldsData'])->name('superadmin.updateFormFieldsData');
     Route::post('form/loadmyform', [FormController::class, 'loadMyForm'])->name('form.getMyForm');
-    Route::post('form/insert-data/', [FormController::class, 'insertData'])->name('form.insertData');
+    Route::post('form/insert-data/', [FormController::class, 'insertData'])->name('form.insertData')->withoutMiddleware(['auth']);
     Route::delete('form/fields/destroy/', [FormController::class, 'destroyFormFields'])->name('form.fields.destroy');
     Route::delete('form/destroy/', [FormController::class, 'destroyForm'])->name('form.destroy');
     Route::get('form/copy/{id}', [FormController::class, 'formCopy'])->name('superadmin.formCopy');

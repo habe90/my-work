@@ -395,10 +395,6 @@ class FormController extends Controller
     public function insertData(Request $request)
     {
 
-        if (!Auth::check()) {
-            session(['form_data' => $request->all()]);
-            return redirect()->route('company-login');
-        }
 
         \Log::info($request);
         if( $request->formName != '' ){
@@ -445,7 +441,10 @@ class FormController extends Controller
             if (!Auth::check()) {
                 // Ako korisnik nije ulogovan, sačuvajte podatke u sesiji i preusmjerite na prijavu/registraciju
                 session(['form_data' => $request->all()]);
-                return redirect()->route('login'); // Pretpostavimo da je 'login' ruta za prijavu
+                session()->save();
+                Log::info('Preusmjeravanje na email-check');
+                return redirect()->route('email-check');
+  
             }
            
             // Provjera da li je trenutna forma jedna od formi koje trebaju biti obrađene posebno
@@ -458,8 +457,8 @@ class FormController extends Controller
                     'service_category_id' => $serviceCategoryId,  // Pretpostavljamo da postoji 'service_category_id' u $data
                     'is_active' => 0, // Postavite 'is_active' na 0
                     'status' => 'pending',
-                    'featured_image' => $data['featured_image'] ?? null, // Provjerite i postavite 'featured_image'
-                    'image_gallery' => $data['image_gallery'] ?? null, // Provjerite i postavite 'image_gallery'
+                    'featured_image' => $data['featured_image'] ?? null, 
+                    'image_gallery' => $data['image_gallery'] ?? null, 
                 ];
 
                 // dd($jobData);

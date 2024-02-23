@@ -15,6 +15,7 @@ class ChooseForm extends Component
     public function mount($formId)
     {
         $this->formId = $formId;
+        
     }
 
     public function render()
