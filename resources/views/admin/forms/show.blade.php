@@ -50,6 +50,10 @@
 
                                                 <div class="flex">
                                                     <button type="button" class="btn btn-secondary btn-sm px-5 py-2"
+                                                        style="margin-right: 16px;">Edit</button>
+
+                                                    <button type="button" class="settings-link getSettingsLink btn btn-secondary btn-sm px-5 py-2"
+                                                    data-field-id="{{ myCryptie($field->id) }}"
                                                         style="margin-right: 16px;">View</button>
 
 
