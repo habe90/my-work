@@ -49,8 +49,14 @@
                                                 </div>
 
                                                 <div class="flex">
-                                                    <button type="button" class="btn btn-secondary btn-sm px-5 py-2"
-                                                        style="margin-right: 16px;">Edit</button>
+                                                    <a  class="btn btn-secondary btn-sm px-5 py-2 getMyFormModal"
+                                                        style="margin-right: 16px;"
+                                                        data-title="{{ __('global.edit_field') }}" 
+                                                        data-url="{{ route('admin.form.getMyForm') }}"
+                                                        data-form-name="{{ encrypt('Form fields') }}" 
+                                                        data-id="{{ encrypt($field->id) }}"
+                                                        
+                                                        >Edit</a>
 
                                                     <button type="button" class="settings-link getSettingsLink btn btn-secondary btn-sm px-5 py-2"
                                                     data-field-id="{{ myCryptie($field->id) }}"
