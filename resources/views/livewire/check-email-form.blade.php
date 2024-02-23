@@ -7,7 +7,7 @@
     @if ($userExists)
         <div class="form-group">
             <input type="password" class="form-control" wire:model.lazy="password" placeholder="Password">
-            @error('password') <span class="error">{{ $message }}</span> @enderror
+            @error('password') <span class="error mt-2" style="color:red;">{{ $message }}</span> @enderror
         </div>
     @endif
 
