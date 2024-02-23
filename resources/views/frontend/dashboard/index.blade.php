@@ -74,21 +74,21 @@
 								<div class="col-xl-3 col-lg-6 col-md-6 col-sm-12">
 									<div class="dashboard-stat">	
 										<div class="dashboard-stat-icon widget-2"><i class="ti-pie-chart"></i></div>
-										<div class="dashboard-stat-content"><h4><span class="cto">12</span></h4> <p>{{__('global.total_views')}}</p></div>
+										<div class="dashboard-stat-content"><h4><span class="cto">0</span></h4> <p>{{__('global.total_views')}}</p></div>
 									</div>	
 								</div>
 								
 								<div class="col-xl-3 col-lg-6 col-md-6 col-sm-12">
 									<div class="dashboard-stat">
 										<div class="dashboard-stat-icon widget-3"><i class="ti-user"></i></div>
-										<div class="dashboard-stat-content"><h4><span class="cto">72</span></h4> <p>{{__('global.completed_jobs')}}</p></div>
+										<div class="dashboard-stat-content"><h4><span class="cto">0</span></h4> <p>{{__('global.completed_jobs')}}</p></div>
 									</div>	
 								</div>
 								
 								<div class="col-xl-3 col-lg-6 col-md-6 col-sm-12">
 									<div class="dashboard-stat">
 										<div class="dashboard-stat-icon widget-4"><i class="ti-bookmark"></i></div>
-										<div class="dashboard-stat-content"><h4><span class="cto">8</span></h4> <p>{{__('global.draft')}}</p></div>
+										<div class="dashboard-stat-content"><h4><span class="cto">0</span></h4> <p>{{__('global.draft')}}</p></div>
 									</div>	
 								</div>
 							</div>
@@ -122,11 +122,11 @@
 														</div>
 												
 													@empty
-													<p>There is no active offers!</p>
+													<p>Es sind keine aktiven Angebote vorhanden!</p>
 													@endforelse
 													@if($job->bids->count() > 3)
 													<div class="text-center">
-													<a href="{{ route('bids.show', $job->id) }}" class="btn btn-primary  btn-sm btn-block">See all</a>
+													<a href="{{ route('bids.show', $job->id) }}" class="btn btn-primary  btn-sm btn-block">Alles sehen</a>
 												</div>
 												@endif											
 												</div>
