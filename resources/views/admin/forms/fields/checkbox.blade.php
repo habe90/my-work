@@ -1,6 +1,7 @@
 @foreach ($obtainedData as $key => $optionValue)
         <input 
-            type="checkbox" 
+            type="checkbox"
+            style="height:20px;"
             class="{{ $input_object_classes }}" 
             name="{{ $formFieldData[0]->input_name }}[]" 
             value="{{ $key }}" 
