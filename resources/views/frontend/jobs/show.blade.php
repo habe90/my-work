@@ -295,7 +295,7 @@
 
                         <div class="_jb_summary_body">
                             <div class="_view_profile_btns">
-                                <a href="#" class="btn btn_emplo_eloi">View company profile</a>
+                                <a href="#" class="btn btn_emplo_eloi">Profil anzeigen</a>
                             </div>
                         </div>
                     </div>
