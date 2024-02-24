@@ -479,11 +479,36 @@ class FormController extends Controller
                 if (!empty($additionalDetails)) {
                     $jobData['additional_details'] = json_encode($additionalDetails);
                 }
+
+
             
                 // Kreirajte i sačuvajte novi 'Job'
                 $job = new Job($jobData);
                 $job->save();
-            
+
+                if ($request->hasFile('featured_image')) {
+                    // Kreirajte novi Job ili pronađite postojeći
+                    $job = $recordID ? Job::find($recordID) : new Job;
+                    
+                    // Postavite osnovne atribute Job-a
+                    $job->fill($jobData);
+                
+                    // Sačuvajte Job kako biste dobili ID za povezivanje sa medijem
+                    $job->save();
+                
+                    // Dodajte medij koristeći Spatie MediaLibrary
+                    $job->addMediaFromRequest('featured_image')
+                         ->toMediaCollection('images');
+                
+                    // Preuzmite punu URL adresu fajla i sačuvajte u bazi
+                    $mediaItem = $job->getFirstMedia('images');
+                    if ($mediaItem) {
+                        $fullUrl = $mediaItem->getFullUrl(); // Ovo će dohvatiti punu URL adresu slike
+                        $job->featured_image = $fullUrl; // Sačuvajte punu URL adresu u bazi
+                        $job->save(); // Ponovo sačuvajte Job sa ažuriranom URL adresom slike
+                    }
+                }
+                            
                 return redirect()->route('my-jobs')->with('success', __('global.data_add_sussesfully'));
             }
             

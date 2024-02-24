@@ -58,9 +58,17 @@
                                                         <li><a href="{{ route('jobs.edit', $job) }}" data-toggle="tooltip"
                                                                 data-placement="top" title="Edit job"><i
                                                                     class="fa fa-edit"></i></a></li>
-                                                        <li><a href="{{ route('jobs.delete', $job) }}" data-toggle="tooltip"
-                                                                data-placement="top" title="Delete Job"><i
-                                                                    class="fa fa-trash"></i></a></li>
+                                                        <li>
+                                                            <form action="{{ route('jobs.delete', $job) }}" method="POST">
+                                                                @csrf
+                                                                @method('DELETE')
+                                                                <button type="submit" data-toggle="tooltip"
+                                                                    data-placement="top" title="Obriši posao">
+                                                                    <i class="fa fa-trash"></i>
+                                                                </button>
+                                                            </form>
+                                                        </li>
+
                                                     </ul>
                                                 </div>
                                                 <div class="_manage_task_list_right">
@@ -80,16 +88,16 @@
 
                                                             <li>
                                                                 <div class="_act_capt_1">
-                                                                    <h5 style="color: {{ $statusColor }};">{{ ucfirst($job->status) }}</h5>
+                                                                    <h5 style="color: {{ $statusColor }};">
+                                                                        {{ ucfirst($job->status) }}</h5>
                                                                     <span style="color: {{ $statusColor }};">Status</span>
                                                                 </div>
                                                             </li>
-                                            
+
                                                         </ul>
                                                     </div>
                                                 </div>
                                             </div>
-                                            
                                         @endforeach
                                         {{ $jobs->links('vendor.pagination.bootstrap-4') }}
 
@@ -102,7 +110,7 @@
                     </div>
 
                 </div>
-                
+
             </div>
         </div>
     </section>
