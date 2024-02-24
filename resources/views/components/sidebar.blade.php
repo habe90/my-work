@@ -274,6 +274,25 @@
                      </a>
                  </li>
 
+                 <li class="menu nav-item">
+                    <a href="{{ route('admin.invoices.index') }}" target="_self"
+                        class="nav-link group {{ request()->is('admin/invoices*') ? 'sidebar-nav-active' : 'sidebar-nav' }}">
+                        <div class="flex items-center">
+                            <svg class="shrink-0 group-hover:!text-primary" width="20" height="20"
+                                 viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M19 3H5C3.9 3 3 3.9 3 5V19C3 20.1 3.9 21 5 21H19C20.1 21 21 20.1 21 19V5C21 3.9 20.1 3 19 3ZM19 19H5V5H19V19Z" fill="currentColor"/>
+                                <path d="M17 12H12V17H17V12Z" fill="currentColor"/>
+                                <path d="M7 12H9V17H7V12Z" fill="currentColor"/>
+                                <path d="M7 7H17V10H7V7Z" fill="currentColor"/>
+                            </svg>
+                            <span class="text-black ltr:pl-3 rtl:pr-3 dark:text-[#506690] dark:group-hover:text-white-dark">
+                                Rechnungen
+                            </span>
+                        </div>
+                    </a>
+                </li>
+                
+
              </ul>
          </div>
      </nav>

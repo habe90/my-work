@@ -197,6 +197,9 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth']], 
     Route::delete('/ads/{ad}', [CompanyAdvertisementController::class, 'destroy'])->name('ads.destroy');
     Route::get('/ads/{ad}/edit', [CompanyAdvertisementController::class, 'edit'])->name('ads.edit');
 
+    //admin inovices
+    Route::get('/invoices', [InvoiceController::class, 'index'])->name('invoices.index');
+
     
 });
 

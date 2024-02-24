@@ -13,6 +13,7 @@ return [
     ],
 
     'all' => 'Alle',
+    'add_invoice' => 'Rechnung hinzufügen',
     'no_invoices' => 'Für diesen Monat liegen keine Rechnungen vor.',
     'add_field' => 'Feld hinzufügen',
     'edit_field' => 'Feld bearbeiten',

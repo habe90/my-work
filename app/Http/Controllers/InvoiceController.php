@@ -10,6 +10,12 @@ use PDF;
 
 class InvoiceController extends Controller
 {
+
+    public function index(){
+        return view('admin.invoice.index');
+    }
+
+
     public function generateInvoices()
     {
         // 'company_id' identifikuje kompaniju kojoj se fakturira
