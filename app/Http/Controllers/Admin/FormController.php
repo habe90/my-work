@@ -607,8 +607,8 @@ class FormController extends Controller
      */
     public function formCopy($id)
     {
-        dd($id);
-        $id = decrypt($id);
+        
+        $id = $id;
         if($id > 0){
             DB::beginTransaction();
             try {
