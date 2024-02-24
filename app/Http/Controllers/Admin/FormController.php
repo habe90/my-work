@@ -163,6 +163,7 @@ class FormController extends Controller
             $formSettings['service_category_id'] = $serviceCategoryId;
             $formSettings['action'] = 'admin.form.insertData';
             $formSettings['modalForm'] = $request->modalForm ? $request->modalForm : 'no';
+            
     
             // Kreiranje forme
             $formHtml = $this->createMyForm($formName, $formSettings);
@@ -316,6 +317,9 @@ class FormController extends Controller
                         break;
                         case 'image':
                             $myFormFields .= view('admin.forms.fields.image', compact('formFieldData', 'value', 'input_object_classes'));
+                        break;
+                        case 'image2':
+                            $myFormFields .= view('admin.forms.fields.image2', compact('formFieldData', 'value', 'input_object_classes'));
                         break;
                         case 'checkbox':
                             $myFormFields .= view('admin.forms.fields.checkbox', compact('formFieldData', 'value', 'input_object_classes', 'obtainedData'));
