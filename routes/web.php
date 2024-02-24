@@ -64,6 +64,7 @@ Route::any('/company-save', [RegisterController::class, 'store'])->name('company
 //dashboard and bids jobs
 Route::get('/auftraggeber-info/so-funktionierts', [FrontendController::class, 'howtowork'])->name('how-to-work');
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('user.dashboard');
+Route::get('/bids', [BidController::class, 'index'])->name('bids.index');
 Route::get('/bids/{job}', [BidController::class, 'show'])->name('bids.show');
 Route::get('/jobs/{job}', [JobController::class, 'show'])->name('jobs.show');
 Route::get('/my-jobs', [JobController::class, 'myJobs'])->name('my-jobs');

@@ -59,7 +59,7 @@
                 <a href="javascript:void(0);" class="has-arrow" aria-expanded="false"><i class="ti-desktop"></i>{{__('global.client-nav.jobs')}}</a>
                 <ul>
                     {{-- <li><a href="#">Manage Task</a></li> --}}
-                    <li><a href="#">Bieter verwalten</a></li>
+                    <li><a href="{{ route('bids.index') }}">Bieter verwalten</a></li>
                     <li><a href="{{ route('my-jobs') }}">{{__('global.client-nav.active_jobs')}}</a></li>
                     <li><a href="/">{{__('global.client-nav.post_job')}}</a></li>
                 </ul>
