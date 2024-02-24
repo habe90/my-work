@@ -2,7 +2,7 @@
     <table class="table">
         <thead>
             <tr>
-                <th>ID</th>
+                <th>#Invoice</th>
                 <th>Unternehmen</th>
                 <th>Betrag</th>
                 <th>Rechnungsdatum</th>
@@ -19,7 +19,12 @@
                     <td>{{ $invoice->amount }} €</td>
                     <td>{{ $invoice->invoice_date->format('d.m.Y') }}</td>
                     <td>{{ $invoice->due_date->format('d.m.Y') }}</td>
-                    <td>{{ $invoice->status }}</td>
+                    <td>
+                        <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full 
+                            {{ $invoice->status == 'paid' ? 'badge badge-outline-success' : 'badge badge-outline-danger' }}">
+                            {{ ucfirst($invoice->status) }}
+                        </span>
+                    </td>
                     <td>
                         <!-- Ovdje dodajte akcione dugmiće ili linkove -->
                     </td>
