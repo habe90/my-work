@@ -57,7 +57,9 @@
                                         @foreach ($jobs as $job)
                                             <div class="_manage_task_list">
                                                 <div class="_manage_task_list_flex">
-                                                    <h4 class="_jb_title">{{ $job->title }}</h4>
+                                                    <h4 class="_jb_title">
+                                                        <a href="{{ route('jobs.show', $job) }}">{{ $job->title }}</a>
+                                                    </h4>
                                                     <span
                                                         class="_elopi_designation">{{ $job->created_at->diffForHumans() }}</span>
                                                     <ul class="_action_grouping_list">
