@@ -32,6 +32,7 @@ class FormController extends Controller
         $formsForJs = $forms->map(function ($form) {
             return [
                 'id' => $form->id,
+                'encrypted_id' => encrypt($form->id),
                 'name' => $form->name,
                 'data_table' => $form->data_table,
                 'redirect' => $form->redirect,
