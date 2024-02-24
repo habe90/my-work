@@ -15,7 +15,14 @@
             @foreach($invoices as $invoice)
                 <tr>
                     <td>{{ $invoice->id }}</td>
-                    <td>{{ $invoice->company->name }}</td>
+                    <td>
+                        <div class="flex items-center font-semibold">
+                            <div class="p-0.5 bg-white-dark/30 rounded-full w-max ltr:mr-2 rtl:ml-2">
+                                <img class="h-8 w-8 rounded-full object-cover" src="{{asset('assets/images/profile-5.jpeg')}}">
+                            </div>
+                            {{ $invoice->company->name }}
+                        </div>
+                    </td>
                     <td>{{ $invoice->amount }} €</td>
                     <td>{{ $invoice->invoice_date->format('d.m.Y') }}</td>
                     <td>{{ $invoice->due_date->format('d.m.Y') }}</td>
