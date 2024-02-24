@@ -584,7 +584,9 @@ class FormController extends Controller
      */
     public function destroyForm(Request $request)
     {
-        $id = decrypt($request->id);
+        $id = $request->id;
+        $response = ['success' => false, 'message' => 'Forma nije pronađena ili nije mogla biti obrisana.'];
+    
         if($id > 0){
             DB::beginTransaction();
             try {
@@ -595,12 +597,17 @@ class FormController extends Controller
                 DB::table('form_fields')->where('form_id', $id)->delete();
                 DB::table('forms')->where('id', $id)->delete();
                 DB::commit();
+    
+                $response = ['success' => true, 'message' => 'Forma je uspješno obrisana.'];
             } catch (\Exception $e) {
                 DB::rollBack();
+                $response = ['success' => false, 'message' => 'Došlo je do greške pri brisanju forme.'];
             }
         }
-        return back();
+    
+        return response()->json($response);
     }
+    
 
     /**
      * Copy the specified form field data from storage.

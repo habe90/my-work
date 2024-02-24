@@ -201,7 +201,8 @@
                     </svg>
                 </a>
                 
-                <button type="button" class="hover:text-danger" onclick="deleteForm('${item.encrypted_id}')">
+                <button type="button" class="hover:text-danger" @click="deleteRow(${item.id})">
+
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-5 h-5">
                                                     <path d="M20.5001 6H3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path>
                                                     <path
@@ -237,17 +238,39 @@
                 );
             },
 
-            deleteRow(item) {
-                if (confirm('Are you sure want to delete selected row ?')) {
-                    if (item) {
-                        this.items = this.items.filter((d) => d.id != item);
-                        this.selectedRows = [];
-                    } else {
-                        this.items = this.items.filter((d) => !this.selectedRows.includes(d.id));
-                        this.selectedRows = [];
+            deleteRow(encrypted_id) {
+            if (confirm('Da li ste sigurni da želite da obrišete ovu formu?')) {
+                fetch(`/admin/form/destroy/${encrypted_id}`, { 
+                    method: 'DELETE',
+                    headers: {
+                        'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+                        'Content-Type': 'application/json'
+                    },
+                    // Ne treba vam body za DELETE zahtjev ako šaljete ID u URL-u
+                })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
                     }
-                }
-            },
+                    return response.json();
+                })
+                .then(data => {
+                    // Ovdje ažurirajte UI nakon uspješnog brisanja
+                    console.log('Forma je uspješno obrisana');
+                 
+                    this.items = this.items.filter(item => item.encrypted_id !== encrypted_id);
+                    
+                })
+                .catch(error => {
+                    console.error('Greška prilikom brisanja forme:', error);
+                });
+            }
+        },
+
+        
+
+          
+
         }));
     });
 </script>
