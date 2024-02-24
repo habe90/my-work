@@ -16,7 +16,7 @@
                 <tr>
                     <td>{{ $invoice->id }}</td>
                     <td>{{ $invoice->company->name }}</td>
-                    <td>{{ $invoice->amount }}</td>
+                    <td>{{ $invoice->amount }} €</td>
                     <td>{{ $invoice->invoice_date->format('d.m.Y') }}</td>
                     <td>{{ $invoice->due_date->format('d.m.Y') }}</td>
                     <td>{{ $invoice->status }}</td>
