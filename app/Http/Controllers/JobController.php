@@ -90,8 +90,10 @@ class JobController extends Controller
         // Brisanje posla
         $job->delete();
 
+        session()->flash('success', 'Der Job wurde erfolgreich gelöscht.');
+
         // Preusmjeravanje sa porukom o uspješnom brisanju
-        return redirect()->route('my-jobs')->with('success', 'Posao je uspješno obrisan.');
+        return redirect()->route('my-jobs');
     }
 
 

@@ -11,12 +11,14 @@
 		<meta property="og:image"         content="URL_slike_posla" />
 
 
+
         <title>My Work Platform</title>
         <!-- All Plugins Css -->
         <link href="{{asset('frontend/css/plugins.css')}}" rel="stylesheet">
 			
         <!-- Custom CSS -->
         <link href="{{asset('frontend/css/styles.css')}}" rel="stylesheet">
+		<link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet">
 		<script defer src="{{ asset('assets/js/sweetalert.min.js') }}"></script>
 	    @livewireStyles
 		 @stack('styles')
@@ -66,11 +68,22 @@
 		<script src="{{asset('frontend/js/custom.js')}}"></script>
 		<script src="{{asset('frontend/js/ion.rangeSlider.min.js')}}"></script>
 		<script src="https://js.pusher.com/7.0/pusher.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+
 
 		<script src="{{ mix('js/app.js') }}" defer></script>
 		<!-- ============================================================== -->
 		<!-- This page plugins -->
 		<!-- ============================================================== -->
-		
+		<script>
+			@if(Session::has('success'))
+				toastr.options = {
+					"closeButton": true,
+					"progressBar": true,
+					"timeOut": "5000"
+				}
+				toastr.success("{{ Session::get('success') }}");
+			@endif
+		</script>
 	</body>
 </html>

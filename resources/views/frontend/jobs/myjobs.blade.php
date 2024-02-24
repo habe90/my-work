@@ -16,6 +16,12 @@
                 <div class="col-xl-3 col-lg-4 col-md-12 col-sm-12">
                     @include('frontend.includes.sidebar')
                 </div>
+                {{-- @if (session('success'))
+                    <script>
+                        toastr.success("{{ session('success') }}");
+                    </script>
+                @endif --}}
+
 
                 <!-- Item Wrap Start -->
                 <div class="col-xl-9 col-lg-8 col-md-12 col-sm-12">
@@ -114,4 +120,5 @@
             </div>
         </div>
     </section>
+   
 @endsection
