@@ -487,24 +487,26 @@ class FormController extends Controller
                 $job->save();
 
                 if ($request->hasFile('featured_image')) {
-                    // Kreirajte novi Job ili pronađite postojeći
-                    $job = $recordID ? Job::find($recordID) : new Job;
+                    // Ako `$recordID` postoji, pronađite postojeći Job, inače kreirajte novi
+                    $job = $recordID ? Job::find($recordID) : new Job($jobData);
                     
-                    // Postavite osnovne atribute Job-a
-                    $job->fill($jobData);
+                    // Ako je novi Job, postavite ostale atribute
+                    if(!$recordID) {
+                        $job->fill($jobData);
+                    }
                 
                     // Sačuvajte Job kako biste dobili ID za povezivanje sa medijem
                     $job->save();
-                
+                    
                     // Dodajte medij koristeći Spatie MediaLibrary
                     $job->addMediaFromRequest('featured_image')
                          ->toMediaCollection('images');
-                
+                    
                     // Preuzmite punu URL adresu fajla i sačuvajte u bazi
                     $mediaItem = $job->getFirstMedia('images');
                     if ($mediaItem) {
-                        $fullUrl = $mediaItem->getFullUrl(); // Ovo će dohvatiti punu URL adresu slike
-                        $job->featured_image = $fullUrl; // Sačuvajte punu URL adresu u bazi
+                        $fullUrl = $mediaItem->getFullUrl(); // Dohvatite punu URL adresu slike
+                        $job->featured_image = $fullUrl; // Sačuvajte URL u bazi
                         $job->save(); // Ponovo sačuvajte Job sa ažuriranom URL adresom slike
                     }
                 }
