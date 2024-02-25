@@ -265,21 +265,27 @@
 
                     <div class="_jb_summary light_box">
                         <div class="_jb_summary_largethumb">
-                            <img src="{{ $job->featured_image ? $job->featured_image : 'https://via.placeholder.com/640x440' }}"
-                                class="img-fluid" alt="" />
+                            <!-- Ovdje dodajete link koji omogućava Lightbox da otvori sliku u punoj veličini -->
+                            <a href="{{ $job->featured_image ? $job->featured_image : 'https://via.placeholder.com/640x440' }}" data-lightbox="job-gallery" data-title="Featured Image">
+                                <img src="{{ $job->featured_image ? $job->featured_image : 'https://via.placeholder.com/640x440' }}"
+                                     class="img-fluid" alt="" />
+                            </a>
                         </div>
-
+                    
                         <!-- Ovdje počinje galerija slika -->
                         <div class="_jb_summary_thumb">
                             @if ($job->image_gallery)
                                 @php
                                     $images = json_decode($job->image_gallery, true);
                                 @endphp
-
+                    
                                 @foreach ($images as $image)
-                                    <div class="gallery-image">
-                                        <img src="{{ $image }}" class="img-fluid" alt="" />
-                                    </div>
+                                    <!-- Svaku sliku obuhvatate sa linkom koji Lightbox koristi -->
+                                    <a href="{{ $image }}" data-lightbox="job-gallery" data-title="Gallery Image">
+                                        <div class="gallery-image">
+                                            <img src="{{ $image }}" class="img-fluid" alt="" />
+                                        </div>
+                                    </a>
                                 @endforeach
                             @else
                                 <!-- Ako nema slika u galeriji, prikazuje se placeholder slika -->
@@ -287,18 +293,14 @@
                             @endif
                         </div>
                         <!-- Kraj galerije slika -->
-
-                        {{-- <div class="_jb_summary_caption">
-                            <h4>Accenture Private Limited</h4>
-                            <span>Since 10th July 2017</span>
-                        </div> --}}
-
+                    
                         <div class="_jb_summary_body">
                             <div class="_view_profile_btns">
                                 <a href="#" class="btn btn_emplo_eloi">Profil anzeigen</a>
                             </div>
                         </div>
                     </div>
+                    
 
 
                     <div class="_jb_summary light_box p-4">
