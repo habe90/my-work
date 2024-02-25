@@ -11,7 +11,7 @@ class Job extends Model implements HasMedia
 {
     use HasFactory,InteractsWithMedia;
    
-    protected $fillable = ['title', 'description', 'service_category_id', 'is_active', 'featured_image', 'image_gallery', 'user_id', 'additional_details', 'status'];
+    protected $fillable = ['title', 'description', 'service_category_id', 'is_active', 'featured_image', 'image_gallery', 'user_id', 'additional_details', 'status', 'location', 'latitude', 'longitude'];
    
     protected $casts = [
         'additional_details' => 'array',
