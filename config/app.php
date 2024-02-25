@@ -183,7 +183,8 @@ return [
         Illuminate\View\ViewServiceProvider::class,
         Barryvdh\Debugbar\ServiceProvider::class,
         Barryvdh\DomPDF\ServiceProvider::class,
-        Geocoder\Laravel\GeocoderServiceProvider::class,
+        Geocoder\Laravel\Providers\GeocoderService::class,
+    
 
         /*
          * Package Service Providers...
@@ -215,7 +216,7 @@ return [
         // 'ExampleClass' => App\Example\ExampleClass::class,
         'Debugbar' => Barryvdh\Debugbar\Facade::class,
         'PDF' => Barryvdh\DomPDF\Facade::class,
-        'Geocoder' => Geocoder\Laravel\Facades\Geocoder::class,
+    
 
     ])->toArray(),
 

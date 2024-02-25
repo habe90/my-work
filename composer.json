@@ -18,8 +18,9 @@
         "livewire/livewire": "^2.11",
         "maatwebsite/excel": "^3.1",
         "spatie/laravel-medialibrary": "^10.7",
-        "toin0u/geocoder-laravel": "^4.6",
-        "unisharp/laravel-filemanager": "^2.6"
+        "toin0u/geocoder-laravel": "*",
+        "unisharp/laravel-filemanager": "^2.6",
+        "willdurand/geocoder": "*"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.9",
