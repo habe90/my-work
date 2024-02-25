@@ -289,12 +289,13 @@
                                 @endforeach
                             @else
                                 <!-- Ako nema slika u galeriji, prikazuje se placeholder slika -->
-                                <img src="https://via.placeholder.com/250x250" class="img-fluid" alt="" />
+                                {{-- <img src="https://via.placeholder.com/250x250" class="img-fluid" alt="" /> --}}
+                                
                             @endif
                         </div>
                         <!-- Kraj galerije slika -->
                     
-                        <div class="_jb_summary_body">
+                        <div class="_jb_summary_body mt-10">
                             <div class="_view_profile_btns">
                                 <a href="#" class="btn btn_emplo_eloi">Profil anzeigen</a>
                             </div>
