@@ -7,11 +7,11 @@
              <div class="col-lg-12 col-md-12 col-sm-12">
                  <nav id="navigation" class="navigation navigation-landscape">
                      <div class="nav-header">
-                         <a class="nav-brand" href="#">
+                      
                              <a class="nav-brand static-logo" href="/"><img
                                      src="{{ asset('frontend/img/logo-my-work.png') }}" class="logo" width="180"
                                      alt="" /></a>
-                         </a>
+                       
                          <div class="nav-toggle"></div>
                      </div>
                      <div class="nav-menus-wrapper">
