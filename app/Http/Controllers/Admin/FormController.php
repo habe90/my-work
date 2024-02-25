@@ -11,6 +11,7 @@ use App\Models\Job;
 use App\Models\FormFiledsData;
 use App\Models\FormFields;
 use Illuminate\Support\Facades\Storage;
+use Geocoder\Laravel\Facades\Geocoder;
 use DB;
 use App\Models\ContentPage;
 use Collective\Html\FormFacade as Form;
@@ -480,6 +481,25 @@ class FormController extends Controller
                     $jobData['additional_details'] = json_encode($additionalDetails);
                 }
 
+                if (Auth::check()) {
+                    // Pretpostavljamo da korisnik ima adresu
+                    $userAddress = Auth::user()->address;
+                 
+                    // Koristimo Geocoder da dobijemo latitude i longitude za datu adresu
+                    $geocode = Geocoder::geocode($userAddress)->get()->first();
+                    if ($geocode) {
+                        $latitude = $geocode->getCoordinates()->getLatitude();
+                        $longitude = $geocode->getCoordinates()->getLongitude();
+                
+                        // Dodajemo geografske koordinate i adresu u $jobData
+                        $jobData['location'] = $userAddress;
+                        $jobData['latitude'] = $latitude;
+                        $jobData['longitude'] = $longitude;
+                    } else {
+                        // Ukoliko geokodiranje ne uspije, možete postaviti defaultne vrijednosti ili logovati grešku
+                        Log::warning("Geokodiranje adrese nije uspjelo za korisnika: " . Auth::id());
+                    }
+                }
 
             
                 // Kreirajte i sačuvajte novi 'Job'
