@@ -1,31 +1,30 @@
 @extends('layouts.admin')
 @section('content')
-<div class="row">
-    <div class="flex flex-wrap">
-        <div class="w-full pt-6 lg:w-64 lg:pt-0">
-            @include('admin.message.nav-messages')
-        </div>
 
-        <div class="w-1 flex-grow lg:pl-4">
-            <div class="card bg-blueGray-100">
-                <div class="card-header border-b border-blueGray-200">
-                    <div class="flex flex-col lg:flex-row lg:justify-between">
-                        <h6 class="card-title">
-                            {{ __('global.new_message') }}
-                        </h6>
-                    </div>
 
-                </div>
 
-                <div class="card-body">
-                    <form action="{{ route('admin.messages.store') }}" method="POST" class="pt-3">
+        <div class="relative">
+            <div class="flex items-center py-4 px-6">
+                <button
+                    type="button"
+                    class="block hover:text-primary ltr:mr-3 rtl:ml-3 xl:hidden"
+                    @click="isShowMailMenu = !isShowMailMenu"
+                >
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6">
+                        <path d="M20 7L4 7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path>
+                        <path opacity="0.5" d="M20 12L4 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path>
+                        <path d="M20 17L4 17" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path>
+                    </svg>
+                </button>
+                <h4 class="text-lg font-medium text-gray-600 dark:text-gray-400">Message</h4>
+            </div>
+            <div class="h-px bg-gradient-to-l from-indigo-900/20 via-black to-indigo-900/20 opacity-[0.1] dark:via-white"></div>    
+                    <form action="{{ route('admin.messages.store') }}" method="POST" class="grid gap-6 p-6">
                         @csrf
                         <div class="form-group {{ $errors->has('to') ? 'invalid' : '' }}">
                             <div class="flex flex-col lg:flex-row lg:items-center">
-                                <label class="block uppercase text-blueGray-600 text-xs font-bold lg:w-20 pb-3 lg:pb-0" for="to">
-                                    {{ __('global.to') }}
-                                </label>
-                                <select name="to[]" id="to" class="select2 form-control" required multiple>
+                               
+                                <select name="to[]" id="to" class="form-input"   required >
                                     <option></option>
                                     <option value="null" disabled>{{ __('global.pleaseSelect') }}</option>
                                     @foreach($users as $id => $email)
@@ -37,38 +36,30 @@
                                 {{ $errors->first('to') }}
                             </div>
                         </div>
-                        <div class="form-group {{ $errors->has('subject') ? 'invalid' : '' }}">
+                        <div class="{{ $errors->has('subject') ? 'invalid' : '' }}">
                             <div class="flex flex-col lg:flex-row lg:items-center ">
-                                <label class="block uppercase text-blueGray-600 text-xs font-bold lg:w-20 pb-3 lg:pb-0" for="subject">
-                                    {{ __('global.subject') }}
-                                </label>
-                                <input class="form-control" type="text" name="subject" id="subject" required placeholder="{{ __('global.subject') }}">
+                               
+                                <input class="form-input" type="text" name="subject" id="subject" required placeholder="{{ __('global.subject') }}">
                             </div>
                             <div class="validation-message">
                                 {{ $errors->first('subject') }}
                             </div>
                         </div>
-                        <div class="form-group {{ $errors->has('body') ? 'invalid' : '' }}">
-                            <textarea class="form-control" name="body" id="body" required rows="8" placeholder="{{ __('global.body') }}"></textarea>
+                        <div class="{{ $errors->has('body') ? 'invalid' : '' }}">
+                            <textarea class="form-input" name="body" id="body" required rows="8" placeholder="{{ __('global.body') }}"></textarea>
                             <div class="validation-message">
                                 {{ $errors->first('body') }}
                             </div>
                         </div>
-                        <div class="form-group">
-                            <button class="btn btn-indigo mr-2" type="submit">
-                                {{ trans('global.send') }}
-                            </button>
-                            <a href="{{ route('admin.messages.index') }}" class="btn btn-secondary">
-                                {{ trans('global.discard') }}
-                            </a>
+                        
+                        <div class="mt-8 flex items-center ltr:ml-auto rtl:mr-auto">
+                            <a href="{{ route('admin.messages.index') }}" class="btn btn-outline-danger ltr:mr-3 rtl:ml-3" @click="closeMsgPopUp">    {{ trans('global.discard') }}</a>
+                            <button type="sumbit" class="btn btn-primary" @click="saveMail('send',params.id)">{{ trans('global.send') }}</button>
                         </div>
 
                     </form>
-                </div>
-            </div>
         </div>
-    </div>
-</div>
+
 @endsection
 
 @push('scripts')

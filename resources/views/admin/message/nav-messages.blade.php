@@ -1,3 +1,4 @@
+<div class="panel dark:gray-50 absolute z-10 hidden h-full w-[250px] max-w-full flex-none space-y-3 overflow-hidden p-4 ltr:rounded-r-none rtl:rounded-l-none xl:relative xl:block xl:h-auto ltr:xl:rounded-r-md rtl:xl:rounded-l-md">
 <div class="flex h-full flex-col pb-16">
     <div class="pb-5">
         <a href="{{ route('admin.messages.create') }}" class="btn btn-primary w-full" @click="openMail('add')">
@@ -55,4 +56,5 @@
             </a>
         </div>
     </div>
+</div>
 </div>
