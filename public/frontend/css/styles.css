@@ -10564,7 +10564,7 @@ footer.skin-dark-footer ul.footer-bottom-social li a:hover, footer.skin-dark-foo
 
 @media (max-width: 992px) {
 	.navigation-portrait .nav-brand.static-logo {
-		display: none;
+		
 	}
 	.navigation-portrait .nav-menu.nav-menu-social>li {
 		width: 100%;
