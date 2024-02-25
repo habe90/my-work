@@ -10,6 +10,7 @@ use App\Models\Forms;
 use App\Models\Job;
 use App\Models\FormFiledsData;
 use App\Models\FormFields;
+use Illuminate\Support\Facades\Storage;
 use DB;
 use App\Models\ContentPage;
 use Collective\Html\FormFacade as Form;
@@ -382,8 +383,7 @@ class FormController extends Controller
 
             // complete a complete form and return it
             $uniquekey = rand(5, 1500000000000);
-            $return = '<form class="my-dynamic-form" action="'. route($formSettings['action']) .'" method="'. $formSettings['method'] .'" id="myForm-'. $uniquekey .'">';
-     
+           $return = '<form class="my-dynamic-form" action="'. route($formSettings['action']) .'" method="'. $formSettings['method'] .'" enctype="multipart/form-data" id="myForm-'. $uniquekey .'">';
             $return .= $myFormFields;
             $return .= view('admin.forms.fields.saveBtn', compact('formSettings', 'formName', 'uniquekey'));
             $return .= '</form>';
@@ -487,21 +487,10 @@ class FormController extends Controller
                 $job->save();
 
                 if ($request->hasFile('featured_image')) {
-                    // Ako `$recordID` postoji, pronađite postojeći Job, inače kreirajte novi
-                    $job = $recordID ? Job::find($recordID) : new Job($jobData);
-                    
-                    // Ako je novi Job, postavite ostale atribute
-                    if(!$recordID) {
-                        $job->fill($jobData);
-                    }
-                
-                    // Sačuvajte Job kako biste dobili ID za povezivanje sa medijem
-                    $job->save();
-                    
                     // Dodajte medij koristeći Spatie MediaLibrary
                     $job->addMediaFromRequest('featured_image')
                          ->toMediaCollection('images');
-                    
+                
                     // Preuzmite punu URL adresu fajla i sačuvajte u bazi
                     $mediaItem = $job->getFirstMedia('images');
                     if ($mediaItem) {
