@@ -12,8 +12,8 @@
         <div class="panel h-full flex-1 overflow-auto p-0">
             <div  class="flex h-full flex-col">
                 
-                <div class="card-header border-b border-blueGray-200">
-                    <div class="card-header-container">
+                <div class="flex flex-wrap-reverse items-center justify-between gap-4 p-4">
+                    <div class="flex flex-wrap-reverse items-center justify-between gap-4 p-4">
                         <h6 class="card-title">
                             {{ $title }}
                         </h6>
