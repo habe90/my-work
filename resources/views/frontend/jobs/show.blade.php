@@ -295,11 +295,6 @@
                         </div>
                         <!-- Kraj galerije slika -->
                     
-                        <div class="_jb_summary_body mt-10">
-                            <div class="_view_profile_btns">
-                                <a href="#" class="btn btn_emplo_eloi">Profil anzeigen</a>
-                            </div>
-                        </div>
                     </div>
                     
 
