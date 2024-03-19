@@ -11,7 +11,7 @@
         <p class="lead">
             The page you’re looking for doesn’t exist.
           </p>
-        <a href="{{ route('/')}}" class="btn btn-primary">Go Home</a>
+        <a href="{{ url('/') }}" class="btn btn-primary">Go Home</a>
     </div>
 </div>
 @endsection
