@@ -25,7 +25,7 @@
                                 </ul>
                                 <ul class="jbx_info_list">
                                     <li>
-                                        <div class="jb_types urgent">{{$job->status '' ?}}</div>
+                                        <div class="jb_types urgent">{{ $job->status }}</div>
                                     </li>
                                 </ul>
                             </div>
