@@ -45,7 +45,7 @@
                                         <i class="fa fa-heart {{ $isBookmarked ? 'fas' : 'far' }}"></i>
                                     </button>
                                 </li>
-                                <li><a href="#" class="_applied_jb">{{ __('global.send_proposal') }}</a></li>
+                                {{-- <li><a href="#" class="_applied_jb">{{ __('global.send_proposal') }}</a></li> --}}
                             </ul>
                         </div>
 
