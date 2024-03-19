@@ -64,8 +64,16 @@ Route::any('/company-save', [RegisterController::class, 'store'])->name('company
 //dashboard and bids jobs
 Route::get('/auftraggeber-info/so-funktionierts', [FrontendController::class, 'howtowork'])->name('how-to-work');
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('user.dashboard');
+
+//bids
 Route::get('/bids', [BidController::class, 'index'])->name('bids.index');
 Route::get('/bids/{job}', [BidController::class, 'show'])->name('bids.show');
+Route::get('/bids/{bid}/edit', [BidController::class, 'edit'])->name('bids.edit');
+Route::put('/bids/{bid}', [BidController::class, 'update'])->name('bids.update');
+
+
+
+
 Route::get('/jobs/{job}', [JobController::class, 'show'])->name('jobs.show');
 Route::get('/my-jobs', [JobController::class, 'myJobs'])->name('my-jobs');
 // Route for showing the job edit form

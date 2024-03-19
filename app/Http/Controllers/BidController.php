@@ -26,4 +26,40 @@ class BidController extends Controller
         // Pretpostavimo da imate view fajl koji se zove 'bids.show'
         return view('frontend.bids.show', compact('job'));
     }
+
+    public function edit(Bid $bid)
+    {
+        if (auth()->id() !== $bid->user_id || $bid->edit_count >= 3) {
+            return redirect()->back()->with('error', 'Sie sind nicht berechtigt, dieses Gebot zu bearbeiten, oder Sie haben Ihr Bearbeitungslimit überschritten.');
+        }
+
+        // Führen Sie weitere Validierungen nach Bedarf durch
+
+        return view('frontend.bids.edit', compact('bid'));
+    }
+
+    public function update(Request $request, Bid $bid)
+    {
+        if (auth()->id() !== $bid->user_id) {
+            return redirect()->back()->with('error', 'Sie sind nicht berechtigt, dieses Gebot zu bearbeiten.');
+        }
+    
+        if ($bid->edit_count >= 3) {
+            return redirect()->back()->with('error', 'Sie haben Ihr Bearbeitungslimit für dieses Gebot überschritten.');
+        }
+    
+        // Validieren Sie die Anfrage
+        $validatedData = $request->validate([
+            // Hinzufügen der Validierungsregeln
+        ]);
+    
+        // Aktualisieren Sie das Gebot mit neuen Daten
+        $bid->update($validatedData);
+    
+        // Inkrementieren Sie den Bearbeitungszähler des Gebots
+        $bid->increment('edit_count');
+    
+        return redirect()->route('IhrZielort')->with('success', 'Ihr Gebot wurde erfolgreich aktualisiert.');
+    }
+
 }

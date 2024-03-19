@@ -13,19 +13,23 @@ class SearchCategories extends Component
 
     public function updatedSearchTerm()
     {
-        if (strlen($this->searchTerm) < 1) {
-            $this->searchResults = [];
-            $this->showDropdown = false;
-        } else {
-            // Dohvati kategorije koje odgovaraju kriterijumima pretrage i učitaj povezane forme
-            $this->searchResults = ServiceCategory::with('forms') // 'forms' je metoda definisana u modelu ServiceCategory
-                ->where('name', 'like', '%' . $this->searchTerm . '%')
-                ->orWhere('description', 'like', '%' . $this->searchTerm . '%')
-                ->get();
+        if (strlen($this->searchTerm) >= 3) {
+            $this->searchResults = ServiceCategory::with(['forms' => function ($query) {
+                $query->where('name', 'like', '%' . $this->searchTerm . '%');
+            }])->where(function ($query) {
+                $query->where('name', 'like', '%' . $this->searchTerm . '%')
+                      ->orWhere('description', 'like', '%' . $this->searchTerm . '%');
+            })->orWhereHas('forms', function ($query) {
+                $query->where('name', 'like', '%' . $this->searchTerm . '%');
+            })->get();
     
             $this->showDropdown = true;
+        } else {
+            $this->searchResults = [];
+            $this->showDropdown = false;
         }
     }
+    
     
 
     public function render()
