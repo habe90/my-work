@@ -179,6 +179,11 @@
                                                         <span>{{ $bid->created_at->diffForHumans() }}</span>
                                                         <span
                                                             class="badge badge-warning text-white">{{ $bid->status }}</span>
+                                                          
+                                                                <a href="#" class="btn btn-sm btn-secondary">
+                                                                    <i class="fa fa-pencil" aria-hidden="true"></i>
+                                                                </a>
+                                                          
                                                     </div>
                                                 </div>
                                             </div>
