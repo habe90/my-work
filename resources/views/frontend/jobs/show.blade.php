@@ -122,7 +122,7 @@
 
 
 
-                            <div class="_job_detail_single flexeo">
+                            {{-- <div class="_job_detail_single flexeo">
                                 <div class="_job_detail_single_flex">
                                     <ul class="shares_jobs">
                                         <li>{{ __('global.share_link') }}</li>
@@ -130,10 +130,10 @@
                                                 target="_blank" class="share fb"><i class="fa fa-facebook"></i></a></li>
                                         <li><a href="https://twitter.com/share?url={{ urlencode(Request::fullUrl()) }}&text={{ urlencode('Pogledajte ovaj posao na našoj stranici: ' . $job->title) }}"
                                                 target="_blank" class="share tw"><i class="fa fa-twitter"></i></a></li>
-                                        {{-- <li><a href="#" class="share gp"><i class="fa fa-google"></i></a></li> --}}
+                                      
                                     </ul>
                                 </div>
-                            </div>
+                            </div> --}}
                         </div>
 
                         <div class="_wrap_box_slice">,
@@ -381,7 +381,4 @@
             });
         });
     </script>
-
-
-
 @endsection
