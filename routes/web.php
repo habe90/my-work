@@ -116,7 +116,7 @@ Route::resource('posts', ServicePostController::class);
 
 Route::get('/post-service-request/{categoryId}', [PostServicesRequestController::class, 'index']);
 
-Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth']], function () {
+Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth', 'check.admin.role']], function () {
     Route::get('/', [HomeController::class, 'index'])->name('home');
 
 
