@@ -150,7 +150,7 @@
                                                             alt="{{ $bid->user->name }}" />
                                                     </div>
                                                     <div class="_proposal_bids_caption">
-                                                        <h4><a href="freelancer-detail.html">{{ $bid->user->name }}<img
+                                                        <h4><a href="#">{{ $bid->user->name }}<img
                                                                     src="assets/img/verify.svg" class="ml-1"
                                                                     width="12" alt=""></a></h4>
                                                         <div class="_locat124"><i
