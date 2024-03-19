@@ -179,11 +179,11 @@
                                                         <span>{{ $bid->created_at->diffForHumans() }}</span>
                                                         <span
                                                             class="badge badge-warning text-white">{{ $bid->status }}</span>
-                                                          
+                                                            @if ($bid->edit_count < 3)
                                                                 <a href="#" class="btn btn-sm btn-secondary">
                                                                     <i class="fa fa-pencil" aria-hidden="true"></i>
                                                                 </a>
-                                                          
+                                                                @endif
                                                     </div>
                                                 </div>
                                             </div>
