@@ -12,25 +12,30 @@ use Illuminate\Support\Facades\Validator;
 
 class JobController extends Controller
 {
-    public function show(Job $job)
+    public function show($encryptedJobId)
     {
-        //paginate bid
-        $bids = $job->bids()->paginate(4); 
-
+        // Dekriptovanje kriptovanog ID-a posla
+        $jobId = myCryptie($encryptedJobId, 'decode');
+    
+        // Pronalazak posla po dekriptovanom ID-u ili bacanje greške ako posao nije pronađen
+        $job = Job::findOrFail($jobId);
+    
+        // Paginacija ponuda za posao
+        $bids = $job->bids()->paginate(4);
+    
         foreach ($bids as $bid) {
             $user = $bid->user;
             $averageRating = UserRating::where('rated_user_id', $user->id)->avg('rating');
             $user->averageRating = $averageRating;
         }
-        // check if logged user already bided
-        $userHasMadeBid = $job
-            ->bids()
-            ->where('user_id', auth()->id())
-            ->exists();
-
+    
+        // Provjera da li je trenutno prijavljeni korisnik već dao ponudu za posao
+        $userHasMadeBid = $job->bids()->where('user_id', auth()->id())->exists();
+    
+        // Povratak na odgovarajući view sa potrebnim podacima
         return view('frontend.jobs.show', compact('job', 'bids', 'userHasMadeBid'));
     }
-
+    
     public function myJobs()
     {
         // Pretpostavljamo da Job model ima metodu koja vraća poslove trenutno autentifikovanog korisnika

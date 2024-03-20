@@ -25,31 +25,35 @@
                                 </ul>
                                 <ul class="jbx_info_list">
                                     <li>
-                                        <div class="jb_types urgent">{{ $job->status }}</div>
+                                        <div class="jb_types {{ $job->status == 'active' ? 'fulltime' : ($job->status == 'pending' ? 'urgent' : '') }}">
+                                            {{ $job->status }}
+                                        </div>
                                     </li>
                                 </ul>
+                                
                             </div>
                         </div>
 
                         @php
                             $isBookmarked = $job->isBookmarkedByUser(auth()->id());
+                            $isOwner = $job->user_id == auth()->id(); // Provjera da li je trenutni korisnik vlasnik oglasa
                         @endphp
 
-                        <div class="_jb_details01_last">
-                            <ul class="_flex_btn">
-                                <li>
-                                    <button type="button" id="bookmark-btn"
-                                        class="_saveed_jb {{ $isBookmarked ? 'bookmarked' : '' }}"
-                                        data-job-id="{{ $job->id }}"
-                                        data-bookmarked="{{ $isBookmarked ? 'true' : 'false' }}">
-                                        <i class="fa fa-heart {{ $isBookmarked ? 'fas' : 'far' }}"></i>
-                                    </button>
-                                </li>
-                                {{-- <li><a href="#" class="_applied_jb">{{ __('global.send_proposal') }}</a></li> --}}
-                            </ul>
-                        </div>
-
-
+                        @if (!$isOwner)
+                            <!-- Ako korisnik nije vlasnik oglasa, prikaži opciju za dodavanje u bookmark-e -->
+                            <div class="_jb_details01_last">
+                                <ul class="_flex_btn">
+                                    <li>
+                                        <button type="button" id="bookmark-btn"
+                                            class="_saveed_jb {{ $isBookmarked ? 'bookmarked' : '' }}"
+                                            data-job-id="{{ $job->id }}"
+                                            data-bookmarked="{{ $isBookmarked ? 'true' : 'false' }}">
+                                            <i class="fa fa-heart {{ $isBookmarked ? 'fas' : 'far' }}"></i>
+                                        </button>
+                                    </li>
+                                </ul>
+                            </div>
+                        @endif
                     </div>
 
                 </div>
@@ -76,38 +80,38 @@
                                             // Pretvorite JSON string u niz
                                             $additionalDetails = json_decode($job->additional_details, true);
                                         @endphp
-                                         @if ($additionalDetails)
-                                         @foreach ($additionalDetails as $detailKey => $detailValue)
-                                            <div class="col-lg-4 col-md-6 col-sm-12">
-                                                <div class="_eltio_caption">
-                                                    <div class="_eltio_caption_icon">
-                                                        @php
-                                                            $iconMap = [
-                                                                'kvadratura' => 'ti-ruler',
-                                                                'broj_vata' => 'ti-bolt',
-                                                                'm2' => 'ti-bolt',
-                                                                // Dodajte ostale  ikone ovdje
-                                                            ];
-                                                            $icon = $iconMap[$detailKey] ?? 'ti-info-alt';
-                                                        @endphp
-                                                        <i class="{{ $icon }}"></i>
-                                                    </div>
-                                                    <div class="_eltio_caption_body">
-                                                        @if (is_array($detailValue))
-                                                            <!-- Ako je vrijednost niza takoder niz, koristite dodatnu foreach petlju -->
-                                                            @foreach ($detailValue as $subKey => $subValue)
-                                                                <h4>{{ ucfirst(str_replace('_', ' ', $subKey)) }}</h4>
-                                                                <span>{{ $subValue }}</span>
-                                                            @endforeach
-                                                        @else
-                                                            <!-- Ako je vrijednost niza jednostavan string ili broj, ispisite ga direktno -->
-                                                            <h4>{{ ucfirst(str_replace('_', ' ', $detailKey)) }}</h4>
-                                                            <span>{{ $detailValue }}</span>
-                                                        @endif
+                                        @if ($additionalDetails)
+                                            @foreach ($additionalDetails as $detailKey => $detailValue)
+                                                <div class="col-lg-4 col-md-6 col-sm-12">
+                                                    <div class="_eltio_caption">
+                                                        <div class="_eltio_caption_icon">
+                                                            @php
+                                                                $iconMap = [
+                                                                    'kvadratura' => 'ti-ruler',
+                                                                    'broj_vata' => 'ti-bolt',
+                                                                    'm2' => 'ti-bolt',
+                                                                    // Dodajte ostale  ikone ovdje
+                                                                ];
+                                                                $icon = $iconMap[$detailKey] ?? 'ti-info-alt';
+                                                            @endphp
+                                                            <i class="{{ $icon }}"></i>
+                                                        </div>
+                                                        <div class="_eltio_caption_body">
+                                                            @if (is_array($detailValue))
+                                                                <!-- Ako je vrijednost niza takoder niz, koristite dodatnu foreach petlju -->
+                                                                @foreach ($detailValue as $subKey => $subValue)
+                                                                    <h4>{{ ucfirst(str_replace('_', ' ', $subKey)) }}</h4>
+                                                                    <span>{{ $subValue }}</span>
+                                                                @endforeach
+                                                            @else
+                                                                <!-- Ako je vrijednost niza jednostavan string ili broj, ispisite ga direktno -->
+                                                                <h4>{{ ucfirst(str_replace('_', ' ', $detailKey)) }}</h4>
+                                                                <span>{{ $detailValue }}</span>
+                                                            @endif
+                                                        </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                        @endforeach
+                                            @endforeach
                                         @endif
                                     @endif
                                 </div>
@@ -179,11 +183,11 @@
                                                         <span>{{ $bid->created_at->diffForHumans() }}</span>
                                                         <span
                                                             class="badge badge-warning text-white">{{ $bid->status }}</span>
-                                                            @if ($bid->edit_count < 3)
-                                                                <a href="#" class="btn btn-sm btn-secondary">
-                                                                    <i class="fa fa-pencil" aria-hidden="true"></i>
-                                                                </a>
-                                                                @endif
+                                                        @if ($bid->edit_count < 3)
+                                                            <a href="#" class="btn btn-sm btn-secondary">
+                                                                <i class="fa fa-pencil" aria-hidden="true"></i>
+                                                            </a>
+                                                        @endif
                                                     </div>
                                                 </div>
                                             </div>
@@ -271,22 +275,24 @@
                     <div class="_jb_summary light_box">
                         <div class="_jb_summary_largethumb">
                             <!-- Ovdje dodajete link koji omogućava Lightbox da otvori sliku u punoj veličini -->
-                            <a href="{{ $job->featured_image ? $job->featured_image : 'https://via.placeholder.com/640x440' }}" data-lightbox="job-gallery" data-title="Featured Image">
+                            <a href="{{ $job->featured_image ? $job->featured_image : 'https://via.placeholder.com/640x440' }}"
+                                data-lightbox="job-gallery" data-title="Featured Image">
                                 <img src="{{ $job->featured_image ? $job->featured_image : 'https://via.placeholder.com/640x440' }}"
-                                     class="img-fluid" alt="" />
+                                    class="img-fluid" alt="" />
                             </a>
                         </div>
-                    
+
                         <!-- Ovdje počinje galerija slika -->
                         <div class="_jb_summary_thumb">
                             @if ($job->image_gallery)
                                 @php
                                     $images = json_decode($job->image_gallery, true);
                                 @endphp
-                    
+
                                 @foreach ($images as $image)
                                     <!-- Svaku sliku obuhvatate sa linkom koji Lightbox koristi -->
-                                    <a href="{{ $image }}" data-lightbox="job-gallery" data-title="Gallery Image">
+                                    <a href="{{ $image }}" data-lightbox="job-gallery"
+                                        data-title="Gallery Image">
                                         <div class="gallery-image">
                                             <img src="{{ $image }}" class="img-fluid" alt="" />
                                         </div>
@@ -295,20 +301,20 @@
                             @else
                                 <!-- Ako nema slika u galeriji, prikazuje se placeholder slika -->
                                 {{-- <img src="https://via.placeholder.com/250x250" class="img-fluid" alt="" /> --}}
-                                
                             @endif
                         </div>
                         <!-- Kraj galerije slika -->
-                    
+
                     </div>
-                    
+
 
 
                     <div class="_jb_summary light_box p-4">
                         <h4>{{ __('global.job_info') }}</h4>
                         <ul>
                             <li>{{ __('global.company') }}:
-                                <span>{{ $job->user->company_name ?? __('global.not_available') }}</span></li>
+                                <span>{{ $job->user->company_name ?? __('global.not_available') }}</span>
+                            </li>
                             <li>{{ __('global.post_date') }}:
                                 <span>{{ $job->created_at ? $job->created_at->format('d M Y') : __('global.not_available') }}</span>
                             </li>
@@ -316,14 +322,12 @@
                                 <span>{{ $job->deadline ? \Carbon\Carbon::parse($job->deadline)->format('d M Y') : __('global.not_available') }}</span>
                             </li>
                             <li>{{ __('global.location') }}:
-                                <span>{{ $job->location ?? __('global.not_available') }}</span></li>
+                                <span>{{ $job->location ?? __('global.not_available') }}</span>
+                            </li>
                         </ul>
                     </div>
 
-
-
                 </div>
-
             </div>
         </div>
     </section>
@@ -342,7 +346,7 @@
         });
     </script>
 
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script> 
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
     <script>

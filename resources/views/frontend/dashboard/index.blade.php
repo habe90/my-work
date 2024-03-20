@@ -102,8 +102,9 @@
 												<!-- Naslov posla i opis -->
 												<div class="_manage_task_list_flex">
 													<h4 class="_jb_title">
-														<a href="{{ route('jobs.show', $job) }}">{{ $job->title }}</a>
+														<a href="{{ route('jobs.show', ['job' => myCryptie($job->id, 'encode')]) }}">{{ $job->title }}</a>
 													</h4>
+													
 													<span class="_elopi_designation">{{ $job->description }}</span>
 												</div>
 												<!-- Ponude -->

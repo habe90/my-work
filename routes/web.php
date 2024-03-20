@@ -194,7 +194,6 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth']], 
     Route::post('form/insert-data/', [FormController::class, 'insertData'])->name('form.insertData')->withoutMiddleware(['auth']);
     Route::delete('form/fields/destroy/', [FormController::class, 'destroyFormFields'])->name('form.fields.destroy');
     Route::delete('/form/destroy/{id}', [FormController::class, 'destroyForm'])->name('form.destroy');
-
     Route::get('form/copy/{id}', [FormController::class, 'formCopy'])->name('superadmin.formCopy');
 
     //company ads
