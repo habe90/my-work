@@ -54,7 +54,7 @@
                                         @endif
                                     </div>
                                 </div>
-                                <div class="col-lg-12">
+                                {{-- <div class="col-lg-12">
                                     <div class="form-group">
                                         <label>Steueridentifikationsnummer</label> <!-- Poreski broj -->
                                         <input type="text" name="tax_number" class="form-control" placeholder="Steueridentifikationsnummer">
@@ -62,7 +62,7 @@
                                             <span class="text-danger">{{ $errors->first('tax_number') }}</span>
                                         @endif
                                     </div>
-                                </div>
+                                </div> --}}
                                 <div class="col-lg-6">
                                     <div class="form-group">
                                         <label>Vorname</label>
