@@ -30,16 +30,54 @@
                                 <select id="activity" name="activity" class="form-control">
                                     <!-- Opcije poput onih sa slike -->
                                     <option value="demolition">Abriss- und Entsorgungsunternehmen</option>
-                                    <!-- Ostale opcije -->
+                                    <option value="planning">Bauplaner und -berater</option>
+                                    <option value="construction">Bauunternehmen</option>
+                                    <option value="concrete_drilling_cutting">Betonbohrer und -schneider</option>
+                                    <option value="flooring">Boden- und Estrichleger</option>
+                                    <option value="well_builder">Brunnenbauer</option>
+                                    <option value="roofer">Dachdecker</option>
+                                    <option value="electrician">Elektriker</option>
+                                    <option value="earthwork_excavation">Erd- und Baggerunternehmen</option>
+                                    <option value="window_constructor">Fenster-, Türen- und Markisenbauer</option>
+                                    <option value="tiler">Fliesenleger</option>
+                                    <option value="gardening_landscaping">Garten- und Landschaftsbauer</option>
+                                    <option value="building_cleaner">Gebäudereiniger</option>
+                                    <option value="scaffold_builder">Gerüstbauer</option>
+                                    <option value="glazier">Glaser</option>
+                                    <option value="heating_installer">Heizungsinstallateur</option>
+                                    <option value="wood_protection">Holz- und Bautenschützer</option>
+                                    <option value="interior_decorator">Innenarchitekt</option>
+                                    <option value="chimney_sweeper">Kaminbauer</option>
+                                    <option value="car_workshop">KFZ Werkstatt</option>
+                                    <option value="air_conditioning_technician">Klimatechniker</option>
+                                    <option value="kitchen_maker">Küchenbauer</option>
+                                    <option value="painter_varnisher">Maler und Lackierer</option>
+                                    <option value="mason_concrete_builder">Maurer und Betonbauer</option>
+                                    <option value="metal_construction">Metallbauer</option>
+                                    <option value="assembly_service">Montageservice & Allroundhandwerker</option>
+                                    <option value="paver">Pflaster- und Straßenbauer</option>
+                                    <option value="pool_builder">Poolbauer</option>
+                                    <option value="room_decorator">Raumausstatter</option>
+                                    <option value="plumbing">Sanitärinstallateur</option>
+                                    <option value="saddler_upholsterer">Sattler und Polsterer</option>
+                                    <option value="carpenter_joiner">Tischler und Schreiner</option>
+                                    <option value="transport_company">Transportunternehmen</option>
+                                    <option value="stair_builder">Treppenbauer</option>
+                                    <option value="dry_construction">Trockenbauer</option>
+                                    <option value="relocating_company">Umzugsunternehmen</option>
+                                    <option value="plasterer">Verputzer</option>
+                                    <option value="fence_builder">Zaunbauer</option>
+                                    <option value="carpenter">Zimmerer</option>
                                 </select>
                             </div>
                             <!-- Polja za unos podataka -->
-                            
+
                             <div class="row">
                                 <div class="col-lg-6">
                                     <div class="form-group">
                                         <label>Firmenname</label> <!-- Ime Firme -->
-                                        <input type="text" name="company_name" class="form-control" placeholder="Firmenname">
+                                        <input type="text" name="company_name" class="form-control"
+                                            placeholder="Firmenname">
                                         @if ($errors->has('company_name'))
                                             <span class="text-danger">{{ $errors->first('company_name') }}</span>
                                         @endif
@@ -48,7 +86,8 @@
                                 <div class="col-lg-6">
                                     <div class="form-group">
                                         <label>Umsatzsteuer-Identifikationsnummer</label> <!-- Broj firme (VAT) -->
-                                        <input type="text" name="vat_number" class="form-control" placeholder="Umsatzsteuer-Identifikationsnummer">
+                                        <input type="text" name="vat_number" class="form-control"
+                                            placeholder="Umsatzsteuer-Identifikationsnummer">
                                         @if ($errors->has('vat_number'))
                                             <span class="text-danger">{{ $errors->first('vat_number') }}</span>
                                         @endif
@@ -113,7 +152,8 @@
                                 <div class="col-lg-6">
                                     <div class="form-group">
                                         <label>Kennwort (Mindestens 6 Zeichen)</label>
-                                        <input type="password" name="password" class="form-control" placeholder="Kennwort">
+                                        <input type="password" name="password" class="form-control"
+                                            placeholder="Kennwort">
                                         @if ($errors->has('password'))
                                             <span class="text-danger">{{ $errors->first('password') }}</span>
                                         @endif
