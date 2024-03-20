@@ -89,5 +89,26 @@
 				toastr.success("{{ Session::get('success') }}");
 			@endif
 		</script>
+		<script>
+			$(document).ready(function(){
+				$('#theme-slide-2').owlCarousel({
+					loop: false,
+					rewind: true,
+					margin: 10,
+					nav: true,
+					responsive: {
+						0: {
+							items: 1
+						},
+						600: {
+							items: 1
+						},
+						1000: {
+							items: 1
+						}
+					}
+				});
+			});
+		</script>
 	</body>
 </html>

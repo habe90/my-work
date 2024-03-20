@@ -8,4 +8,5 @@
 @include('frontend.includes.joinhire')
 @include('frontend.includes.reviews')
 
+
 @endsection

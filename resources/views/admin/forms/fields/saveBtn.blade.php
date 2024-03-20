@@ -8,7 +8,7 @@
     <label class="col-md-3 control-label text-lg-end mb-0"></label>
     <div class="col-lg-12 col-md-12 col-sm-12">
         <button id="submitBtn-{{ $uniquekey }}" class="btn btn-primary mt-6 {{ $formSettings['modalForm'] == 'yes' ? 'reloadMypage' : '' }}" type="submit">
-            <i class="fas fa-save"></i> {{ __('global.save') }}
+            <i class="ti-save mr-1"></i> {{ __('global.save') }}
         </button>
     </div>
     
