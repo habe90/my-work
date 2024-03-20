@@ -95,7 +95,7 @@ class RegisterController extends Controller
             'activity' => 'required',
             'company_name' => 'required|max:255',
             'vat_number' => 'required|max:255',
-            'tax_number' => 'required|max:255'
+       
         ];
 
         // Poruke za greške
