@@ -402,7 +402,7 @@ class FormController extends Controller
     {
 
 
-        \Log::info($request);
+        Log::info($request);
         if( $request->formName != '' ){
             $formName = decrypt($request->formName);
             $recordID = decrypt($request->recordID);
