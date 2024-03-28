@@ -12,9 +12,7 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule): void
     {
-        $schedule->call(function () {
-            app('App\Http\Controllers\InvoiceController')->generateInvoices();
-        })->monthlyOn(30, '17:00');
+        $schedule->command('invoices:generate')->lastDayOfMonth('17:00');
     }
 
     /**
