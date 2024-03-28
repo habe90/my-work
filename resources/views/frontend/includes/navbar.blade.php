@@ -7,8 +7,7 @@
                     <div class="nav-header">
                         <a class="nav-brand static-logo" href="/"><img src="frontend/img/logo-my-work.png"
                                 width="180" class="logo" alt="" /></a>
-                        <a class="nav-brand fixed-logo" href="/"><img src="frontend/img/logo-my-work.png"
-                                width="180" class="logo" alt="" /></a>
+                     
                         <div class="nav-toggle"></div>
                     </div>
                     <div class="nav-menus-wrapper">
