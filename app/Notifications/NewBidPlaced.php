@@ -34,12 +34,12 @@ class NewBidPlaced extends Notification
     public function toMail(object $notifiable): MailMessage
     {
         return (new MailMessage)
-                    ->subject('Neues Angebot platziert') // Naslov emaila
-                    ->greeting('Hallo!') // Pozdrav
-                    ->line('Ein neues Angebot wurde auf Ihre Ausschreibung abgegeben.') // Uvod u notifikaciju
-                    ->action('Angebot ansehen', url('/')) // Tekst i URL dugmeta
-                    ->line('Vielen Dank, dass Sie unsere Anwendung nutzen!') // Završna linija
-                    ->salutation('Mit freundlichen Grüßen, Ihr My Work Team'); // Završetak sa potpisom
+        ->subject('Neues Angebot eingegangen')
+        ->greeting('Hallo!')
+        ->line('Es wurde ein neues Angebot für Ihren Auftrag abgegeben.')
+        ->action('Angebot anzeigen', url('/jobs/'.$this->proposal->job_id))
+        ->line('Vielen Dank, dass Sie unsere Plattform nutzen!')
+        ->salutation('Mit freundlichen Grüßen, Ihr Team von My Work');
     }
 
     /**
