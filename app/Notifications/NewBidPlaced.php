@@ -11,16 +11,15 @@ class NewBidPlaced extends Notification
 {
     use Queueable;
 
-    /**
-     * Create a new notification instance.
-     */
-    public function __construct()
+    protected $bid;
+
+    public function __construct(Bid $bid)
     {
-        //
+        $this->bid = $bid;
     }
 
     /**
-     * Get the notification's delivery channels.
+     * Dobijanje kanala slanja notifikacije.
      *
      * @return array<int, string>
      */
@@ -30,25 +29,28 @@ class NewBidPlaced extends Notification
     }
 
     /**
-     * Get the mail representation of the notification.
+     * Reprezentacija notifikacije u mailu.
      */
     public function toMail(object $notifiable): MailMessage
     {
         return (new MailMessage)
-                    ->line('The introduction to the notification.')
-                    ->action('Notification Action', url('/'))
-                    ->line('Thank you for using our application!');
+                    ->subject('Neues Angebot platziert') // Naslov emaila
+                    ->greeting('Hallo!') // Pozdrav
+                    ->line('Ein neues Angebot wurde auf Ihre Ausschreibung abgegeben.') // Uvod u notifikaciju
+                    ->action('Angebot ansehen', url('/')) // Tekst i URL dugmeta
+                    ->line('Vielen Dank, dass Sie unsere Anwendung nutzen!') // Završna linija
+                    ->salutation('Mit freundlichen Grüßen, Ihr My Work Team'); // Završetak sa potpisom
     }
 
     /**
-     * Get the array representation of the notification.
+     * Reprezentacija notifikacije kao niz.
      *
      * @return array<string, mixed>
      */
     public function toArray(object $notifiable): array
     {
         return [
-            //
+            // ...
         ];
     }
 }
