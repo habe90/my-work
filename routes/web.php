@@ -125,7 +125,8 @@ Route::resource('posts', ServicePostController::class);
 Route::get('/post-service-request/{categoryId}', [PostServicesRequestController::class, 'index']);
 
 Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth']], function () {
-    Route::get('/', [HomeController::class, 'index'])->name('home')->middleware(CheckAdminRole::class);
+    Route::get('/', [HomeController::class, 'index'])->name('home')->middleware('check.admin.role');
+
 
 
     // my work list all jobs
