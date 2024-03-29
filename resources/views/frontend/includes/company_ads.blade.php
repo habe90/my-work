@@ -1,14 +1,29 @@
 <style>
 .company-card {
-    margin: 20px auto; /* centriraj karticu sa automatskim marginama */
-    text-align: center;
-    border: 1px solid #eee; /* svijetla boja za granicu */
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1); /* blagi sjenčani efekt */
-    border-radius: 8px; /* zaobljeni uglovi */
-    overflow: hidden; /* spriječava elemente da prelaze granice kartice */
-    background: #fff; /* bijela pozadina */
-    transition: box-shadow 0.3s ease-in-out; /* animacija sjenke */
+    display: flex;
+    align-items: center; /* centriranje sadržaja po vertikali */
+    border: 1px solid #eee;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    border-radius: 8px;
+    overflow: hidden;
+    background: #fff;
+    transition: box-shadow 0.3s ease-in-out;
+    padding: 20px; /* Dodatni prostor unutar kartice */
 }
+
+.company-logo img {
+    width: auto; /* Da bi slika zadržala originalne proporcije */
+    max-width: 120px; /* Maksimalna širina slike */
+    height: auto;
+    margin-right: 20px; /* Dodatni prostor između slike i teksta */
+}
+
+.company-info {
+    flex: 1; /* Zauzima preostali prostor u flex kontejneru */
+}
+
+/* Stilovi za tekst i druge elemente se mogu zadržati isti kao u prethodnim koracima */
+
 
 .company-card:hover {
     box-shadow: 0 5px 15px rgba(0,0,0,0.2); /* jači sjenčani efekt prilikom hovera */
@@ -68,7 +83,7 @@
 
 <section class="light-w">
     <div class="container">
-        <div class="row justify-content-right">
+        <div class="row justify-content-center">
             <div class="col-lg-7 col-md-9">
                 <div class="sec-heading">
                     <h2>{{ __('global.featured_jobs') }} <span class="theme-cl-2">{{ __('global.featured_companies') }}</span></h2>
@@ -80,15 +95,19 @@
             <div class="col-lg-12 col-md-12">
                 <div class="slick-slider-container">
                     @foreach ($activeCompanies as $company)
-                        <div class="company-card">
-                            <a href="{{ Str::startsWith($company->link, ['http://', 'https://']) ? $company->link : 'http://' . $company->link }}">
-                                <img src="{{ $company->logo }}" class="img-fluid" alt="{{ $company->company_name }}">
-                            </a>
-                            <div class="date-location">24/8/2021 | USA, San Francisco</div> <!-- Dodani datum i lokacija -->
-                            <h4>{{ $company->company_name }}</h4>
-                            <div class="job-type">Full Time</div> <!-- Dodani tip posla -->
-                            <p>{{ $company->offer_description }}</p>
-                            <div class="applications-info">17+ People Applied</div> <!-- Dodani broj aplikacija -->
+                        <div class="company-card d-flex">
+                            <div class="company-logo">
+                                <a href="{{ Str::startsWith($company->link, ['http://', 'https://']) ? $company->link : 'http://' . $company->link }}">
+                                    <img src="{{ $company->logo }}" alt="{{ $company->company_name }}">
+                                </a>
+                            </div>
+                            <div class="company-info">
+                                <div class="date-location">24/8/2021 | USA, San Francisco</div>
+                                <h4>{{ $company->company_name }}</h4>
+                                <div class="job-type">Full Time</div>
+                                <p>{{ $company->offer_description }}</p>
+                                <div class="applications-info">17+ People Applied</div>
+                            </div>
                         </div>
                     @endforeach
                 </div>
@@ -96,6 +115,7 @@
         </div>
     </div>
 </section>
+
 
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
