@@ -21,6 +21,8 @@
 		<link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet">
 		<!-- Dodajte CSS za lightbox -->
         <link href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/css/lightbox.min.css" rel="stylesheet" />
+		<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+
 		<script defer src="{{ asset('assets/js/sweetalert.min.js') }}"></script>
 	    @livewireStyles
 		 @stack('styles')
@@ -71,6 +73,7 @@
 		<script src="{{asset('frontend/js/ion.rangeSlider.min.js')}}"></script>
 		<script src="https://js.pusher.com/7.0/pusher.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+		<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
 		<!-- Dodajte JS za lightbox -->
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/js/lightbox.min.js"></script>
 
