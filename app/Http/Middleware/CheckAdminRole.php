@@ -16,7 +16,7 @@ class CheckAdminRole
     public function handle(Request $request, Closure $next)
         {
             // Provjerite da li je korisnik autentificiran i ima ulogu 'admin'
-            if (auth()->check() && auth()->user()->role == 'admin') {
+            if (auth()->check() && auth()->user()->role == 'Admin') {
                 return $next($request);
             }
 
