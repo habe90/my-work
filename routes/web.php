@@ -74,7 +74,7 @@ Route::put('/bids/{bid}', [BidController::class, 'update'])->name('bids.update')
 
 
 
-Route::get('/jobs/{job}', [JobController::class, 'show'])->name('jobs.show');
+Route::get('/jobs/{job}', [JobController::class, 'show'])->name('jobs.show')->middleware('auth');
 Route::get('/my-jobs', [JobController::class, 'myJobs'])->name('my-jobs');
 // Route for showing the job edit form
 Route::get('/jobs/edit/{job}', [JobController::class, 'edit'])->name('jobs.edit')->middleware('auth');
@@ -101,7 +101,17 @@ Route::get('/invoices/{invoiceId}/view', [InvoiceController::class, 'showInvoice
 Route::get('/invoices/{invoiceId}/download', [InvoiceController::class, 'downloadInvoice'])->name('invoices.download');
 
 
-Route::post('/proposals', [ProposalController::class, 'store'])->name('proposals.store');
+//proposals
+Route::post('/proposals', [ProposalController::class, 'store'])
+    ->name('proposals.store')
+    ->middleware('auth');
+Route::get('/proposals/{proposal}/edit', [ProposalController::class, 'edit'])
+    ->name('proposals.edit')
+    ->middleware('auth');
+
+Route::put('/proposals/{proposal}', [ProposalController::class, 'update'])
+    ->name('proposals.update')
+    ->middleware('auth');
 
 //messages
 Route::get('/user/messages', [MessagesController::class, 'index'])->name('messages.index');

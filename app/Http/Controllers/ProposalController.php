@@ -16,13 +16,13 @@ class ProposalController extends Controller
             'job_id' => 'required|exists:jobs,id',
             'user_id' => 'required|exists:users,id',
             'amount' => 'required|numeric',
-            'comment' => 'sometimes|string'
+            'comment' => 'sometimes|string',
         ]);
-    
+
         // Kreiranje nove ponude
         $proposal = new Bid($validatedData);
         $proposal->save();
-    
+
         // Dobavljanje vlasnika posla i slanje notifikacije
         $job = Job::findOrFail($validatedData['job_id']);
         $jobOwner = $job->user; // Pretpostavimo da Job model ima vezu 'user' koja vraća vlasnika posla
@@ -31,5 +31,44 @@ class ProposalController extends Controller
         // Preusmjeravanje sa porukom o uspjehu
         return redirect()->back()->with('success', 'Ihr Angebot wurde erfolgreich gesendet!');
     }
-}
 
+    public function edit(Bid $proposal)
+    {
+        // Provjerite da li je trenutni korisnik vlasnik ponude i da li je moguće još uređivanja
+        if (auth()->id() !== $proposal->user_id || $proposal->edit_count >= 3) {
+            return redirect()->back()->with('error', 'Niste ovlašteni za uređivanje ove ponude ili ste premašili limit uređivanja.');
+        }
+
+        return view('proposals.edit', compact('proposal'));
+    }
+
+    public function update(Request $request, Bid $proposal)
+    {
+        // Provjera da li je trenutni korisnik vlasnik ponude
+        if (auth()->id() !== $proposal->user_id) {
+            return redirect()->route('neki.route')->with('error', 'Niste ovlašteni za uređivanje ove ponude.');
+        }
+
+        // Provjera da li je broj uređivanja manji od 3
+        if ($proposal->edit_count >= 3) {
+            return redirect()->route('neki.route')->with('error', 'Premašili ste limit uređivanja ponude.');
+        }
+
+        // Validacija zahtjeva
+        $validatedData = $request->validate([
+            'amount' => 'required|numeric',
+            'comment' => 'sometimes|string',
+        ]);
+
+        // Ažuriranje ponude
+        $proposal->update($validatedData);
+
+        // Inkrementiranje brojača uređivanja
+        $proposal->increment('edit_count');
+
+        // Preusmjeravanje na pregled ažurirane ponude sa porukom o uspjehu
+        return redirect()
+            ->route('proposals.show', $proposal->id)
+            ->with('success', 'Ponuda je uspješno ažurirana.');
+    }
+}
