@@ -83,20 +83,9 @@
                     </li>
                 </ul>
                 <template x-if="tab === 'home'">
-                    
-                       
-                            <h6 class="mb-5 text-lg font-bold"> {{ __('global.profile_information') }}</h6>
-                       
-                    
-                             
-                                {!! $editProfileForm !!}
-                    
-                                {{-- Ostatak vaše forme --}}
-                            
-                   
-                   
-                    
-                  
+                    {{!! $editProfileForm !!}}
+                    @livewire('update-profile-information-form')
+                    @livewire('update-password-form')
                 </template>
                 <template x-if="tab === 'payment-details'">
                     <div>
