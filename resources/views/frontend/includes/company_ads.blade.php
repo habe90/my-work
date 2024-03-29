@@ -106,7 +106,7 @@
                             </div>
                             <div class="company-info">
                                 <div class="date-location">{{ $company->address }}</div>
-                                <h4>{{ $company->company_name }}</h4>
+                                <h4> <a href="{{ Str::startsWith($company->link, ['http://', 'https://']) ? $company->link : 'http://' . $company->link }}">{{ $company->company_name }} </a></h4>
                                 <div class="job-type">VIP</div>
                                 <p>{!! $company->offer_description !!}</p>
                                 {{-- <div class="applications-info">17+ People Applied</div> --}}
