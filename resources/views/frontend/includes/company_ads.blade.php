@@ -105,10 +105,10 @@
                                 </a>
                             </div>
                             <div class="company-info">
-                                <div class="date-location">24/8/2021 | USA, San Francisco</div>
+                                <div class="date-location">{{ $company->address }}</div>
                                 <h4>{{ $company->company_name }}</h4>
                                 <div class="job-type">Full Time</div>
-                                <p>{{ $company->offer_description }}</p>
+                                <p>{!! $company->offer_description !!}</p>
                                 <div class="applications-info">17+ People Applied</div>
                             </div>
                         </div>
