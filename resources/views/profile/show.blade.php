@@ -86,15 +86,13 @@
                     
                        
                             <h6 class="mb-5 text-lg font-bold"> {{ __('global.profile_information') }}</h6>
-                            <div class="flex flex-col sm:flex-row">
-                                {{-- ...ostatak vašeg koda... --}}
+                       
                     
-                                {{-- Ovdje ubacujete vašu dinamički generisanu formu --}}
+                             
                                 {!! $editProfileForm !!}
                     
                                 {{-- Ostatak vaše forme --}}
                             
-                            </div>
                    
                    
                     
