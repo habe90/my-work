@@ -68,7 +68,7 @@
 
 <section class="light-w">
     <div class="container">
-        <div class="row justify-content-center">
+        <div class="row justify-content-right">
             <div class="col-lg-7 col-md-9">
                 <div class="sec-heading">
                     <h2>{{ __('global.featured_jobs') }} <span class="theme-cl-2">{{ __('global.featured_companies') }}</span></h2>
