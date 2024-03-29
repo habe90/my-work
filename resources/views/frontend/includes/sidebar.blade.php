@@ -1,4 +1,30 @@
+<style>
+    .d-user-avater {
+    position: relative; /* Ovo omogućava apsolutno pozicionirane unutar ovog div-a */
+    /* Ostatak vašeg CSS-a... */
+}
 
+.user-info-badges {
+    position: absolute;
+    top: 50%; /* Da postavi trakice na sredinu po visini */
+    right: -100px; /* Podešava se na osnovu širine trakica */
+    transform: translateY(-50%); /* Centrira trakice vertikalno */
+    display: flex;
+    flex-direction: column; /* Trakice će biti jedna ispod druge */
+}
+
+.user-location-badge,
+.user-type-badge {
+    writing-mode: vertical-rl; /* Postavlja tekst da ide odozdo prema gore */
+    transform: rotate(180deg); /* Rotira tekst za ispravnu orijentaciju */
+    background-color: #333; /* Tamna pozadina za kontrast */
+    color: white; /* Bijeli tekst */
+    padding: 5px 10px; /* Dodaje malo prostora oko teksta */
+    margin-bottom: 5px; /* Razmak između trakica */
+    border-radius: 5px; /* Blago zaobljeni uglovi */
+}
+
+</style>
 <div class="dashboard-navbar overlio-top">
 								
     <div class="d-user-avater">
@@ -7,8 +33,10 @@
                 <!-- Logika za firme -->
                 <img src="{{ Auth::user()->image ? Auth::user()->image : asset('frontend/img/no-image.jpg') }}" class="img-fluid rounded" alt="Firma">
                 <h4>#{{ Auth::user()->name }}</h4> <!-- Prikazuje ID firme -->
-                <span><i class="ti-location-pin"></i>{{ Auth::user()->address }}</span>
-                <span><i class="ti-user"></i>{{ Auth::user()->user_type }}</span>
+                <div class="user-info-badges">
+                    <span class="user-location-badge"><i class="ti-location-pin"></i>{{ Auth::user()->address }}</span>
+                    <span class="user-type-badge"><i class="ti-user"></i>{{ Auth::user()->user_type }}</span>
+                </div>
             @else
                 <!-- Logika za obične korisnike -->
                 <img src="{{ Auth::user()->image ? Auth::user()->image : asset('frontend/img/no-image.jpg') }}" class="img-fluid rounded" alt="{{ Auth::user()->name }}">
