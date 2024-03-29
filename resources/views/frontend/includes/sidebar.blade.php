@@ -1,28 +1,44 @@
 <style>
-    .d-user-avater {
-    position: relative; /* Ovo omogućava apsolutno pozicionirane unutar ovog div-a */
-    /* Ostatak vašeg CSS-a... */
-}
-
+/* Stil za trakice */
 .user-info-badges {
     position: absolute;
-    top: 50%; /* Da postavi trakice na sredinu po visini */
-    right: -100px; /* Podešava se na osnovu širine trakica */
-    transform: translateY(-50%); /* Centrira trakice vertikalno */
+    top: 50%; 
+    right: -40px; /* Prilagođeno kako bi trakice izašle izvan kartice */
+    transform: translate(0, -50%);
     display: flex;
-    flex-direction: column; /* Trakice će biti jedna ispod druge */
+    flex-direction: column;
 }
 
+/* Stil za svaku trakicu */
 .user-location-badge,
 .user-type-badge {
-    writing-mode: vertical-rl; /* Postavlja tekst da ide odozdo prema gore */
-    transform: rotate(180deg); /* Rotira tekst za ispravnu orijentaciju */
-    background-color: #333; /* Tamna pozadina za kontrast */
-    color: white; /* Bijeli tekst */
-    padding: 5px 10px; /* Dodaje malo prostora oko teksta */
-    margin-bottom: 5px; /* Razmak između trakica */
-    border-radius: 5px; /* Blago zaobljeni uglovi */
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+    background-color: #333;
+    color: white;
+    padding: 5px;
+    margin-bottom: 5px;
+    border-radius: 5px;
+    white-space: nowrap; /* Osigurava da se tekst ne prelama */
+    overflow: hidden; /* Skriva sve izvan granica */
+    text-overflow: ellipsis; /* Dodaje "..." ako tekst prelazi širinu */
 }
+
+/* Podešava veličinu slike i poravnanje unutar kartice */
+.d-user-avater img {
+    max-width: 80px; /* Prilagoditi prema stvarnoj širini slike */
+    height: auto;
+    border-radius: 50%; /* Zaokružuje sliku */
+}
+
+/* Ako je potrebno, prilagodite roditeljski kontejner */
+.d-user-avater {
+    position: relative; /* Potrebno za apsolutno pozicioniranje trakica */
+    display: flex; /* Ako želite fleksibilno rasporediti elemente */
+    align-items: center; /* Vertikalno centriranje sadržaja */
+    justify-content: start; /* Poravnanje sadržaja na početak */
+}
+
 
 </style>
 <div class="dashboard-navbar overlio-top">
