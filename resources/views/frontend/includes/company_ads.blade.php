@@ -17,6 +17,22 @@
 .company-card p {
     margin-bottom: 5px;
 }
+.company-card img {
+    max-width: 50%; /* ili bilo koja druga vrijednost koja odgovara vašim potrebama */
+    height: auto;
+    margin-bottom: 15px;
+}
+
+/* Slick Slider navigacione strelice */
+.slick-prev, .slick-next {
+    display: none !important; /* Sakriva navigacione strelice */
+}
+
+/* Dodatno, ako želite sakriti tačke za navigaciju koje dolaze sa Slick Sliderom, koristite: */
+.slick-dots {
+    display: none !important;
+}
+
 
 </style>
 
