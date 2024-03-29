@@ -201,7 +201,7 @@ class FormController extends Controller
             if( isset($formSettings['recordID']) && $formSettings['recordID'] > 0 ){
                 if($form->data_table == 'users'){
                     $dataUser = DB::table($form->data_table)->where('id', $formSettings['recordID'])->first();
-                    $dataUserInfo = DB::table('user_info')->where('user_id', $formSettings['recordID'])->first();
+                    $dataUserInfo = DB::table('users')->where('id', $formSettings['recordID'])->first();
 
                     $data = (object) array_merge((array) $dataUser, (array) $dataUserInfo);
                 } else {
