@@ -1,56 +1,43 @@
 <style>
-/* Stil za trakice */
-.user-info-badges {
-    position: absolute;
-    top: 50%; 
-    right: -40px; /* Prilagođeno kako bi trakice izašle izvan kartice */
-    transform: translate(0, -50%);
-    display: flex;
-    flex-direction: column;
+/* Stil za roditeljski kontejner avatara i informacija */
+.d-user-avater {
+    position: relative; /* Omogućava apsolutno pozicioniranje unutar */
+    /* Ostali stilovi... */
 }
 
-.user-info-badges span {
+/* Stil za trakice s informacijama */
+.user-info-badges {
     position: absolute;
-    right: -100%; /* Ako je potrebno, prilagodite ovu vrijednost */
-    transform-origin: top right; /* Tačka oko koje se vrši rotacija */
-    transform: rotate(270deg) translateX(-100%); /* Rotacija i pomjeranje trakice */
+    top: 0;
+    right: -30px; /* Prilagodite ovu vrijednost da trakice budu uz sami rub kartice */
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* Poravnanje elemenata trakica */
+}
+
+/* Stil za pojedinačnu trakicu */
+.user-location-badge,
+.user-type-badge {
     background-color: #333;
     color: white;
     padding: 5px;
     margin-bottom: 5px;
     border-radius: 5px;
     white-space: nowrap;
+    transform: rotate(270deg); /* Rotacija za prikaz vertikalnog teksta */
+    transform-origin: 0 0; /* Tačka oko koje se vrši rotacija */
+    margin-right: -100%; /* Poravnanje sa desne strane */
 }
 
-/* Stil za svaku trakicu */
-.user-location-badge,
-.user-type-badge {
-    writing-mode: vertical-rl;
-    transform: rotate(180deg);
-    background-color: #333;
-    color: white;
-    padding: 5px;
-    margin-bottom: 5px;
-    border-radius: 5px;
-    white-space: nowrap; /* Osigurava da se tekst ne prelama */
-    overflow: hidden; /* Skriva sve izvan granica */
-    text-overflow: ellipsis; /* Dodaje "..." ako tekst prelazi širinu */
+/* Poseban stil za ikone unutar trakica kako bi se spriječilo dodatno rotiranje */
+.user-info-badges span i {
+    transform: rotate(90deg) translateX(-50%);
+    margin-right: 5px; /* Razmak između ikone i teksta */
+    display: inline-block; /* Potrebno za primjenu transformacije */
+    vertical-align: middle; /* Poravnanje ikone sa sredinom teksta */
 }
 
-/* Podešava veličinu slike i poravnanje unutar kartice */
-.d-user-avater img {
-    max-width: 80px; /* Prilagoditi prema stvarnoj širini slike */
-    height: auto;
-    border-radius: 50%; /* Zaokružuje sliku */
-}
-
-/* Ako je potrebno, prilagodite roditeljski kontejner */
-.d-user-avater {
-    position: relative; /* Potrebno za apsolutno pozicioniranje trakica */
-    display: flex; /* Ako želite fleksibilno rasporediti elemente */
-    align-items: center; /* Vertikalno centriranje sadržaja */
-    justify-content: start; /* Poravnanje sadržaja na početak */
-}
 
 
 </style>
@@ -64,7 +51,7 @@
                 <h4>#{{ Auth::user()->name }}</h4> <!-- Prikazuje ID firme -->
                 <div class="user-info-badges">
                     <span class="user-location-badge"><i class="ti-location-pin"></i>{{ Auth::user()->address }}</span>
-                    <span class="user-type-badge"><i class="ti-user"></i>{{ Auth::user()->user_type }}</span>
+                    <span class="user-type-badge"><i class="ti-briefcase"></i>{{ Auth::user()->user_type }}</span>
                 </div>
             @else
                 <!-- Logika za obične korisnike -->
