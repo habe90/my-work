@@ -127,7 +127,7 @@
 												<li><i class="dash-icon-box ti-files text-warning bg-light-warning"></i>
 													<strong>{{ $invoice->title }}</strong>
 													<ul>
-														<li class="{{ $invoice->status }}">Unpaid</li>
+														<li class="{{ $invoice->status }}">{{ $invoice->status}}</li>
 														<li>Order: #{{ $invoice->id }}</li>
 														<li>Date: {{ \Carbon\Carbon::parse($invoice->invoice_date)->format('d/m/Y') }}</li>
 
