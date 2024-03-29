@@ -63,7 +63,7 @@
                                  </li>
                                  <li class="add-listing dark-bg">
                                      <a href="{{ route('company-login') }}">
-                                         <i class="ti-user mr-1"></i> Als Handwerker anmelden
+                                         <i class="ti-user mr-1"></i> Als Handwerker registrieren
                                      </a>
                                  </li>
                              @endguest
