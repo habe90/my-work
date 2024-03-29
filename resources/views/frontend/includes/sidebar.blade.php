@@ -1,46 +1,4 @@
-<style>
-/* Stil za roditeljski kontejner avatara i informacija */
-.d-user-avater {
-    position: relative; /* Omogućava apsolutno pozicioniranje unutar */
-    /* Ostali stilovi... */
-}
 
-/* Stil za trakice s informacijama */
-.user-info-badges {
-    position: absolute;
-    top: 0;
-    right: -30px; /* Prilagodite ovu vrijednost da trakice budu uz sami rub kartice */
-    transform: translateY(-50%);
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start; /* Poravnanje elemenata trakica */
-}
-
-/* Stil za pojedinačnu trakicu */
-.user-location-badge,
-.user-type-badge {
-    background-color: #333;
-    color: white;
-    padding: 5px;
-    margin-bottom: 5px;
-    border-radius: 5px;
-    white-space: nowrap;
-    transform: rotate(270deg); /* Rotacija za prikaz vertikalnog teksta */
-    transform-origin: 0 0; /* Tačka oko koje se vrši rotacija */
-    margin-right: -100%; /* Poravnanje sa desne strane */
-}
-
-/* Poseban stil za ikone unutar trakica kako bi se spriječilo dodatno rotiranje */
-.user-info-badges span i {
-    transform: rotate(90deg) translateX(-50%);
-    margin-right: 5px; /* Razmak između ikone i teksta */
-    display: inline-block; /* Potrebno za primjenu transformacije */
-    vertical-align: middle; /* Poravnanje ikone sa sredinom teksta */
-}
-
-
-
-</style>
 <div class="dashboard-navbar overlio-top">
 								
     <div class="d-user-avater">
@@ -49,10 +7,8 @@
                 <!-- Logika za firme -->
                 <img src="{{ Auth::user()->image ? Auth::user()->image : asset('frontend/img/no-image.jpg') }}" class="img-fluid rounded" alt="Firma">
                 <h4>#{{ Auth::user()->name }}</h4> <!-- Prikazuje ID firme -->
-                <div class="user-info-badges">
-                    <span class="user-location-badge"><i class="ti-location-pin"></i>{{ Auth::user()->address }}</span>
-                    <span class="user-type-badge"><i class="ti-briefcase"></i>{{ Auth::user()->user_type }}</span>
-                </div>
+                <span><i class="ti-location-pin"></i>{{ Auth::user()->address }}</span>
+                <span><i class="ti-user"></i>{{ Auth::user()->user_type }}</span>
             @else
                 <!-- Logika za obične korisnike -->
                 <img src="{{ Auth::user()->image ? Auth::user()->image : asset('frontend/img/no-image.jpg') }}" class="img-fluid rounded" alt="{{ Auth::user()->name }}">
