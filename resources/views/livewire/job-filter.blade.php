@@ -31,8 +31,10 @@
                     </div>
                     <div class="_jb_list72_last">
                         <div class="_times_jb">{{ $job->user->name }} {{ $job->user->last_name }}</div>
-                        <h4 class="_jb_title"><a
-                                href="{{ route('jobs.show', ['job' => $job->id]) }}">{{ $job->title }}</a></h4>
+                        <h4 class="_jb_title">
+                            <a href="{{ route('jobs.show', ['job' => myCryptie($job->id, 'encode')]) }}">{{ $job->title }}</a>
+                        </h4>
+                        
                         <div class="_times_jb">{{ $job->location }}</div>
                    
                     </div>
