@@ -7,8 +7,8 @@
                 <!-- Logika za firme -->
                 <img src="{{ Auth::user()->image ? Auth::user()->image : asset('frontend/img/no-image.jpg') }}" class="img-fluid rounded" alt="Firma">
                 <h4>#{{ Auth::user()->name }}</h4> <!-- Prikazuje ID firme -->
-                <span>Type: {{ Auth::user()->user_type }}</span>
                 <span><i class="ti-location-pin"></i>{{ Auth::user()->address }}</span>
+                <h6>Type: {{ Auth::user()->user_type }}</h6>
             @else
                 <!-- Logika za obične korisnike -->
                 <img src="{{ Auth::user()->image ? Auth::user()->image : asset('frontend/img/no-image.jpg') }}" class="img-fluid rounded" alt="{{ Auth::user()->name }}">
