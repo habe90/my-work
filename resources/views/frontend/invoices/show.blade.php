@@ -127,7 +127,8 @@
 }
 
 .badge-success {
-    background-color: #28a745; /* Zelena boja za plaćene fakture */
+    background-color: #28a745; 
+    font-size: 20px;
 }
 
 .badge-danger {
