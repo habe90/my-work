@@ -1,8 +1,20 @@
 <style>
-    .company-card {
+.company-card {
     margin: 20px;
     text-align: center;
+    border: 1px solid #ddd; /* Dodaje border oko kartice */
+    box-shadow: 0px 0px 8px rgba(0,0,0,0.1); /* Dodaje blagi shadow za 3D efekt */
+    padding: 20px; /* Dodaje prostor unutar kartice */
+    background: #fff; /* Postavlja bijelu pozadinu za karticu */
 }
+
+.company-card img {
+    max-width: 100%; /* Slika će popuniti maksimalnu širinu kartice */
+    height: auto;
+    margin-bottom: 15px;
+}
+
+/* Ostale stilove možete zadržati kako ste ranije definisali */
 
 .company-card img {
     width: 100%; /* Prilagodite širinu prema potrebi */
@@ -16,11 +28,6 @@
 
 .company-card p {
     margin-bottom: 5px;
-}
-.company-card img {
-    max-width: 50%; /* ili bilo koja druga vrijednost koja odgovara vašim potrebama */
-    height: auto;
-    margin-bottom: 15px;
 }
 
 /* Slick Slider navigacione strelice */
