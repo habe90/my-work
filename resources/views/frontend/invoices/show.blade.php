@@ -86,7 +86,8 @@
                                         <div class="receipt-header receipt-header-mid receipt-footer">
                                             <div class="col-xs-8 col-sm-8 col-md-8 text-left">
                                                 <div class="receipt-right">
-                                                    <p><b>Date :</b> {{ $invoice->created_at->format('d M Y') }}</p>
+                                                    <p><b>Date :</b> {{ $invoice->created_at ? $invoice->created_at->format('d M Y') : 'Datum nije dostupan' }}</p>
+
                                                     <img src="{{asset('frontend/img/logo-my-work.png')}}"  class="img-fluid f-logo" width="180" alt="">
                                                     <h5 style="color: rgb(140, 140, 140);">Danke für Ihren Einkauf!</h5>
                                                 </div>
