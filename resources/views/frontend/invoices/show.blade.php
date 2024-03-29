@@ -75,7 +75,8 @@
                                                 </thead>
                                                 <tbody>
                                                     <tr>
-                                                        <td class="col-md-9">{{ __('global.payment_for') }} Jan 2024</td>
+                                                        <td class="col-md-9">{{ __('global.payment_for') }} {{ \Carbon\Carbon::parse($invoice->invoice_date)->translatedFormat('F Y') }}</td>
+
                                                         <td class="col-md-3"><i class="fa fa-eur"></i> {{ $invoice->amount }}</td>
                                                     </tr>
                                                     <!-- Dodajte ostale redove s dinamičkim podacima -->
