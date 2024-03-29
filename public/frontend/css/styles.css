@@ -4948,6 +4948,17 @@ img._featured_jbs {
     top: 0; /* Gornji rub slike će se poravnati s kontejnerom */
     left: 0; /* Lijevi rub slike će se poravnati s kontejnerom */
 }
+
+.receipt-main.paid {
+    border-top: 12px solid green; /* Zelena boja za plaćene fakture */
+}
+
+.receipt-main.not-paid {
+    border-top: 12px solid #9f181c; /* Crvena boja za neplaćene fakture */
+}
+
+/* Ostatak stilova za .receipt-main ostaje isti */
+
 ._jb_list73 ._jb_list72_yhumb {
     margin: 0;
 }

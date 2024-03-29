@@ -47,7 +47,7 @@
 
                                 <div class="_dashboard_content_body p-0">
                                     @forelse($invoices as $index => $invoice)
-                                    <div class="receipt-main col-xs-10 col-sm-10 col-md-12 col-xs-offset-1 col-sm-offset-1 col-md-offset-3">
+                                    <div class="receipt-main {{ $invoice->is_paid ? 'paid' : 'not-paid' }}"  col-xs-10 col-sm-10 col-md-12 col-xs-offset-1 col-sm-offset-1 col-md-offset-3">
                                         
                                         <!-- Prikaz rednog broja fakture -->
                                         <div class="badge-container">
