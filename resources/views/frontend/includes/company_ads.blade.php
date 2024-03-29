@@ -107,7 +107,7 @@
                             <div class="company-info">
                                 <div class="date-location">{{ $company->address }}</div>
                                 <h4>{{ $company->company_name }}</h4>
-                                <div class="job-type">Full Time</div>
+                                <div class="job-type">VIP</div>
                                 <p>{!! $company->offer_description !!}</p>
                                 <div class="applications-info">17+ People Applied</div>
                             </div>
