@@ -76,6 +76,9 @@
     margin-bottom: 10px; /* veći prostor na dnu elementa */
 }
 
+.slick-prev, .slick-next {
+    display: none !important;
+}
 
 
 
