@@ -25,7 +25,7 @@ class ProposalController extends Controller
 
         // Dobavljanje vlasnika posla i slanje notifikacije
         $job = Job::findOrFail($validatedData['job_id']);
-        $jobOwner = $job->user; // Pretpostavimo da Job model ima vezu 'user' koja vraća vlasnika posla
+        $jobOwner = $job->user; 
         Notification::send($jobOwner, new NewBidPlaced($proposal));
 
         // Preusmjeravanje sa porukom o uspjehu
