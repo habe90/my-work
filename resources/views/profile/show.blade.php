@@ -84,8 +84,7 @@
                 </ul>
                 <template x-if="tab === 'home'">
                     {{!! $editProfileForm !!}}
-                    @livewire('update-profile-information-form')
-                    @livewire('update-password-form')
+               
                 </template>
                 <template x-if="tab === 'payment-details'">
                     <div>
