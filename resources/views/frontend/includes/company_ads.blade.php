@@ -1,3 +1,25 @@
+<style>
+    .company-card {
+    margin: 20px;
+    text-align: center;
+}
+
+.company-card img {
+    width: 100%; /* Prilagodite širinu prema potrebi */
+    height: auto;
+    margin-bottom: 15px;
+}
+
+.company-card h4 {
+    margin-bottom: 10px;
+}
+
+.company-card p {
+    margin-bottom: 5px;
+}
+
+</style>
+
 <section class="light-w">
     <div class="container">
         <div class="row justify-content-center">
@@ -26,27 +48,7 @@
     </div>
 </section>
 
-<style>
-    .company-card {
-    margin: 20px;
-    text-align: center;
-}
 
-.company-card img {
-    width: 100%; /* Prilagodite širinu prema potrebi */
-    height: auto;
-    margin-bottom: 15px;
-}
-
-.company-card h4 {
-    margin-bottom: 10px;
-}
-
-.company-card p {
-    margin-bottom: 5px;
-}
-
-</style>
 
 <script>
     $(document).ready(function(){
