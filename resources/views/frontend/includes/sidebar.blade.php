@@ -8,13 +8,13 @@
                 <img src="{{ Auth::user()->image ? Auth::user()->image : asset('frontend/img/no-image.jpg') }}" class="img-fluid rounded" alt="Firma">
                 <h4>#{{ Auth::user()->name }}</h4> <!-- Prikazuje ID firme -->
                 <span><i class="ti-location-pin"></i>{{ Auth::user()->address }}</span>
-                <span><i class="ti-user"></i>{{ Auth::user()->user_type }}</span>
+                <span><i class="ti-user"></i> {{ Auth::user()->user_type }}</span>
             @else
                 <!-- Logika za obične korisnike -->
                 <img src="{{ Auth::user()->image ? Auth::user()->image : asset('frontend/img/no-image.jpg') }}" class="img-fluid rounded" alt="{{ Auth::user()->name }}">
                 <h4>{{ Auth::user()->name }}</h4>
                 <span><i class="ti-location-pin"></i>{{ Auth::user()->address }}</span>
-                <span><i class="ti-user"></i>{{ Auth::user()->user_type }}</span>
+                <span><i class="ti-user"></i> {{ Auth::user()->user_type }}</span>
             @endif
         @endif
     </div>
