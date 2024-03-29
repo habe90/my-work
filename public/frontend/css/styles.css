@@ -4933,11 +4933,20 @@ img._featured_jbs {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 100px;
-    height: 60px;
-    border-radius: 5px;
-    margin-right: 0px;
-    margin-bottom: 10px;
+    width: 100px; /* Širina kontejnera slike */
+    height: 100px; /* Visina kontejnera slike, možete je prilagoditi */
+    border-radius: 50%; /* Krug umjesto blago zaobljenog kvadrata */
+    overflow: hidden; /* Sakrit će sve što prelazi granice kontejnera */
+    position: relative; /* Pozicioniranje u odnosu na ovaj element */
+}
+
+._jb_list72_yhumb img {
+    width: 100%; /* Širina slike će popuniti kontejner */
+    height: 100%; /* Visina slike će popuniti kontejner */
+    object-fit: cover; /* Slika će pokriti cijelu površinu, ali će održavati proporcije */
+    position: absolute; /* Slika će biti apsolutno pozicionirana u kontejneru */
+    top: 0; /* Gornji rub slike će se poravnati s kontejnerom */
+    left: 0; /* Lijevi rub slike će se poravnati s kontejnerom */
 }
 ._jb_list73 ._jb_list72_yhumb {
     margin: 0;
