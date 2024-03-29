@@ -1,6 +1,7 @@
 @extends('frontend.layouts.front')
 @section('content')
 
+
 @include('frontend.includes.hero')
 
 @include('frontend.includes.howit')
