@@ -9,7 +9,8 @@
         </div>
         <div class="messages-container-inner">
 
-            <div class="dash-msg-inbox">
+            <div class="dash-msg-inbox" style="
+            background: #e3e1de80;>
                 @if ($conversations->isEmpty())
                     <p class="text-center mt-4">Sie führen derzeit keine aktuellen Gespräche.</p>
                 @else
