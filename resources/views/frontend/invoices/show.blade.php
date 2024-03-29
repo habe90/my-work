@@ -82,7 +82,8 @@
                                                 </tbody>
                                             </table>
                                         </div>
-                                
+                                        <br>
+                                        <br>
                                         <div class="receipt-header receipt-header-mid receipt-footer">
                                             <div class="col-xs-8 col-sm-8 col-md-8 text-left">
                                                 <div class="receipt-right">
