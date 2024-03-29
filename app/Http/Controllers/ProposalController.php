@@ -46,12 +46,12 @@ class ProposalController extends Controller
     {
         // Provjera da li je trenutni korisnik vlasnik ponude
         if (auth()->id() !== $proposal->user_id) {
-            return redirect()->route('neki.route')->with('error', 'Niste ovlašteni za uređivanje ove ponude.');
+            return redirect()->back()->with('error', 'Niste ovlašteni za uređivanje ove ponude.');
         }
 
         // Provjera da li je broj uređivanja manji od 3
         if ($proposal->edit_count >= 3) {
-            return redirect()->route('neki.route')->with('error', 'Premašili ste limit uređivanja ponude.');
+            return redirect()->back()->with('error', 'Premašili ste limit uređivanja ponude.');
         }
 
         // Validacija zahtjeva

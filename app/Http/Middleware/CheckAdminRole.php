@@ -14,14 +14,20 @@ class CheckAdminRole
      * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
      */
     public function handle(Request $request, Closure $next)
-        {
-            // Provjerite da li je korisnik autentificiran i ima ulogu 'admin'
-            if (auth()->check() && auth()->user()->role == 'Admin') {
-                return $next($request);
-            }
-
-            // Ako korisnik nema ulogu 'admin', preusmjerite ga na početnu stranicu ili prikažite poruku o grešci
-            return redirect('/')->with('error', 'Nemate dozvolu za pristup ovoj stranici.');
+    {
+        // Überprüfen, ob der Benutzer authentifiziert ist
+        if (!auth()->check()) {
+            return redirect('/')->with('error', 'Sie sind nicht angemeldet.');
         }
+    
+        // Überprüfen, ob der Benutzer die Rolle 'Admin' hat
+        if (auth()->user()->roles->contains('title', 'Admin')) {
+            return $next($request);
+        }
+    
+        // Wenn der Benutzer nicht die Rolle 'Admin' hat, umleiten zur Startseite mit einer Fehlermeldung
+        return redirect('/')->with('error', 'Sie haben keine Berechtigung, diese Seite zu betreten.');
+    }
+    
 
 }
