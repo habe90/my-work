@@ -30,7 +30,7 @@
                     @endif
                     </div>
                     <div class="_jb_list72_last">
-                        <div class="_times_jb">{{ $job->user->company_id }}</div>
+                        <div class="_times_jb">{{ $job->user->id }}</div>
                         <h4 class="_jb_title"><a
                                 href="{{ route('jobs.show', ['job' => $job->id]) }}">{{ $job->title }}</a></h4>
                         <div class="_times_jb">{{ $job->location }}</div>
