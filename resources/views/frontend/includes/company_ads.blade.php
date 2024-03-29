@@ -1,59 +1,23 @@
-<!-- ============================ Featured Themes Start ==================================== -->
 <section class="light-w">
     <div class="container">
-
         <div class="row justify-content-center">
             <div class="col-lg-7 col-md-9">
                 <div class="sec-heading">
-                    <h2>{{ __('global.featured_jobs') }} <span
-                            class="theme-cl-2">{{ __('global.featured_companies') }}</span></h2>
+                    <h2>{{ __('global.featured_jobs') }} <span class="theme-cl-2">{{ __('global.featured_companies') }}</span></h2>
                     <p>{{ __('global.featured_jobs_description') }}</p>
                 </div>
             </div>
         </div>
         <div class="row">
             <div class="col-lg-12 col-md-12">
-                <div class="owl-carousel owl-theme middle-arrow-hover" id="theme-slide-2">
-
-                    <!-- Foreach ads here -->
+                <div class="slick-slider-container">
                     @foreach ($activeCompanies as $company)
-                        <div class="themes-slides">
-                            <div class="_jb_list73">
-                                <div class="_jb_list73_header">
-                                    <!-- Ostatak koda ... -->
-                                    <div class="_jb_list72_flex">
-                                        <div class="_jb_list72_first">
-                                            <div class="_jb_list72_yhumb small-thumb">
-                                                <a
-                                                    href="{{ Str::startsWith($company->link, ['http://', 'https://']) ? $company->link : 'http://' . $company->link }}"><img
-                                                        src="{{ $company->logo }}" class="img-fluid"
-                                                        alt="{{ $company->company_name }}"></a>
-                                            </div>
-                                        </div>
-                                        <div class="_jb_list72_last">
-                                            <h4 class="_jb_title"><a
-                                                    href="{{ Str::startsWith($company->link, ['http://', 'https://']) ? $company->link : 'http://' . $company->link }}">{{ $company->company_name }}</a>
-                                            </h4>
-
-                                        </div>
-                                    </div>
-                                    <!-- Ostatak koda ... -->
-                                </div>
-                                <div class="_jb_list73_middle">
-                                    <!-- Ostatak koda ... -->
-                                    <div class="_jb_list73_middle_flex">
-                                        <h4 class="_jb_title"><a
-                                                href="{{ Str::startsWith($company->link, ['http://', 'https://']) ? $company->link : 'http://' . $company->link }}">Besuchen
-                                                Sie die Firmenseite</a></h4>
-                                        <!-- Ostatak koda ... -->
-                                    </div>
-                                    <!-- Ostatak koda ... -->
-                                </div>
-                                <div class="_jb_list73_footer">
-                                    <!-- Ostatak koda ... -->
-                                    <div class="opis_firme">{{ $company->offer_description }}</div>
-                                </div>
-                            </div>
+                        <div class="company-card">
+                            <a href="{{ Str::startsWith($company->link, ['http://', 'https://']) ? $company->link : 'http://' . $company->link }}">
+                                <img src="{{ $company->logo }}" class="img-fluid" alt="{{ $company->company_name }}">
+                            </a>
+                            <h4>{{ $company->company_name }}</h4>
+                            <p>{{ $company->offer_description }}</p>
                         </div>
                     @endforeach
                 </div>
@@ -61,4 +25,38 @@
         </div>
     </div>
 </section>
-<!-- ============================ Featured Themes End ==================================== -->
+
+<style>
+    .company-card {
+    margin: 20px;
+    text-align: center;
+}
+
+.company-card img {
+    width: 100%; /* Prilagodite širinu prema potrebi */
+    height: auto;
+    margin-bottom: 15px;
+}
+
+.company-card h4 {
+    margin-bottom: 10px;
+}
+
+.company-card p {
+    margin-bottom: 5px;
+}
+
+</style>
+
+<script>
+    $(document).ready(function(){
+    $('.slick-slider-container').slick({
+        infinite: true,
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        autoplay: true,
+        autoplaySpeed: 4000, // Promijenite vrijednost za brzinu promjene između 3000 (3s) i 5000 (5s)
+    });
+});
+
+</script>
