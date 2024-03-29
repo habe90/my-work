@@ -123,7 +123,7 @@ Route::put('/user/update-profile', [ProfileController::class, 'update'])->name('
 
 //company
 
-Route::get('/company-dashboard', [CompanyDashboardController::class, 'index'])->name('company.dashboard');
+Route::get('/company-dashboard', [CompanyDashboardController::class, 'index'])->name('company.dashboard')->middleware('auth');
 
 
 
