@@ -74,6 +74,7 @@
 		<script src="https://js.pusher.com/7.0/pusher.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 		<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+		<script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 		<!-- Dodajte JS za lightbox -->
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/js/lightbox.min.js"></script>
 
