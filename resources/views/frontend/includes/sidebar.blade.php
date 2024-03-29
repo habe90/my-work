@@ -6,7 +6,7 @@
             @if(Auth::user()->user_type == 'company')
                 <!-- Logika za firme -->
                 <img src="{{ Auth::user()->image ? Auth::user()->image : asset('frontend/img/no-image.jpg') }}" class="img-fluid rounded" alt="Firma">
-                <h4>#{{ Auth::user()->company_id }}</h4> <!-- Prikazuje ID firme -->
+                <h4>#{{ Auth::user()->name }}</h4> <!-- Prikazuje ID firme -->
                 <span><i class="ti-location-pin"></i>{{ Auth::user()->address }}</span>
             @else
                 <!-- Logika za obične korisnike -->
