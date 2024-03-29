@@ -4954,7 +4954,7 @@ img._featured_jbs {
 }
 
 .receipt-main.not-paid {
-    border-top: 12px solid #9f181c; /* Crvena boja za neplaćene fakture */
+    border-top: 12px solid #d91016; /* Crvena boja za neplaćene fakture */
 }
 
 /* Ostatak stilova za .receipt-main ostaje isti */
