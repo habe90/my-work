@@ -41,7 +41,7 @@
                             <div class="_dashboard_content">
                                 <div class="_dashboard_content_header">
                                     <div class="_dashboard__header_flex">
-                                        <h4><i class="fa fa-star mr-1"></i>Invoice preview</h4>
+                                        <h4><i class="fa fa-star mr-1"></i>{{ __('global.invoice_preview') }}</h4>
                                     </div>
                                 </div>
 
@@ -53,14 +53,14 @@
                                         <div class="badge-container">
                                             <!-- Ovdje se postavlja oznaka statusa fakture -->
                                             <span class="badge {{ $invoice->status ? 'badge-success' : 'badge-danger' }}">
-                                                {{ $invoice->status ? 'Paid' : 'Not paid' }}
+                                                {{ $invoice->status ? __('global.paid') : __('global.not_paid') }}
                                             </span>
                                         </div>
                                 
                                         <div class="receipt-header receipt-header-mid">
                                             <div class="col-xs-4 col-sm-4 col-md-4">
                                                 <div class="receipt-left">
-                                                    <h3>Inovice #{{ $invoice->id }}</h3>
+                                                    <h3>{{ __('global.invoice_number') }} #{{ $invoice->id }}</h3>
                                                 </div>
                                             </div>
                                         </div>
@@ -69,13 +69,13 @@
                                             <table class="table table-bordered">
                                                 <thead>
                                                     <tr>
-                                                        <th>Description</th>
-                                                        <th>Amount</th>
+                                                        <th>{{ __('global.description') }}</th>
+                                                        <th>{{ __('global.amount') }}</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
                                                     <tr>
-                                                        <td class="col-md-9">Plaćanje za Jan 2024</td>
+                                                        <td class="col-md-9">{{ __('global.payment_for') }} Jan 2024</td>
                                                         <td class="col-md-3"><i class="fa fa-eur"></i> {{ $invoice->amount }}</td>
                                                     </tr>
                                                     <!-- Dodajte ostale redove s dinamičkim podacima -->
@@ -87,10 +87,10 @@
                                         <div class="receipt-header receipt-header-mid receipt-footer">
                                             <div class="col-xs-8 col-sm-8 col-md-8 text-left">
                                                 <div class="receipt-right">
-                                                    <p><b>Date :</b> {{ $invoice->created_at ? $invoice->created_at->format('d M Y') : 'Datum nije dostupan' }}</p>
+                                                    <p><b>{{ __('global.date') }} :</b> {{ $invoice->created_at ? $invoice->created_at->format('d M Y') : __('global.date_not_available') }}</p>
 
                                                     <img src="{{asset('frontend/img/logo-my-work.png')}}"  class="img-fluid f-logo" width="180" alt="">
-                                                    <h5 style="color: rgb(140, 140, 140);">Danke für Ihren Einkauf!</h5>
+                                                    <h5 style="color: rgb(140, 140, 140);">{{ __('global.thank_you_for_your_purchase') }}</h5>
                                                 </div>
                                             </div>
                                         </div>

@@ -2,6 +2,16 @@
 
 return [
 
+    'invoice_preview' => 'Rechnungsvorschau',
+    'paid' => 'Bezahlt',
+    'not_paid' => 'Nicht bezahlt',
+    'invoice_number' => 'Rechnungsnummer',
+    'description' => 'Beschreibung',
+    'amount' => 'Betrag',
+    'payment_for' => 'Zahlung für',
+    'date' => 'Datum',
+    'thank_you_for_your_purchase' => 'Danke für Ihren Einkauf!',
+
     'client-nav' => [
         'dashboard' => 'Dashboard',
         'profile' => 'Profil',
