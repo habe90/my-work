@@ -9,6 +9,19 @@
     flex-direction: column;
 }
 
+.user-info-badges span {
+    position: absolute;
+    right: -100%; /* Ako je potrebno, prilagodite ovu vrijednost */
+    transform-origin: top right; /* Tačka oko koje se vrši rotacija */
+    transform: rotate(270deg) translateX(-100%); /* Rotacija i pomjeranje trakice */
+    background-color: #333;
+    color: white;
+    padding: 5px;
+    margin-bottom: 5px;
+    border-radius: 5px;
+    white-space: nowrap;
+}
+
 /* Stil za svaku trakicu */
 .user-location-badge,
 .user-type-badge {
