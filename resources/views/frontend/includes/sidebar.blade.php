@@ -14,6 +14,7 @@
                 <img src="{{ Auth::user()->image ? Auth::user()->image : asset('frontend/img/no-image.jpg') }}" class="img-fluid rounded" alt="{{ Auth::user()->name }}">
                 <h4>{{ Auth::user()->name }}</h4>
                 <span><i class="ti-location-pin"></i>{{ Auth::user()->address }}</span>
+                <h6>Type: {{ Auth::user()->user_type }}</h6>
             @endif
         @endif
     </div>
