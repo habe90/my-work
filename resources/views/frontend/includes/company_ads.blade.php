@@ -31,7 +31,7 @@
 
 .company-card img {
     max-width: 100%; /* slika se prilagođava širini kartice */
-    height: auto; /* visina se automatski prilagođava */
+    height: 180px; /* visina se automatski prilagođava */
 }
 
 .company-card h4 {
