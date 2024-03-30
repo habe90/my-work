@@ -96,9 +96,9 @@
             {{ trans('global.save') }}
         </button>
         
-        <a href="{{ route('admin.content-pages.index') }}" class="btn btn-secondary !mt-6">
+        {{-- <a href="{{ route('admin.content-pages.index') }}" class="btn btn-secondary !mt-6">
             {{ trans('global.cancel') }}
-        </a>
+        </a> --}}
     </div>
 </form>
 
