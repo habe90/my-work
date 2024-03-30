@@ -43,25 +43,30 @@
     
 
     <!-- Polje za tagove bez Livewire-a i s NiceSelect -->
-    <div class="form-group {{ $errors->has('tag') ? 'invalid' : '' }}">
-        <label class="form-label" for="tag">{{ trans('cruds.contentPage.fields.tag') }}</label>
-        <select class="selectize form-control" id="tag" name="tag" multiple>
-            @foreach ($this->listsForFields['tag'] as $value => $label)
-                <option value="{{ $value }}">{{ $label }}</option>
-            @endforeach
-        </select>
-        <div class="validation-message">
-            {{ $errors->first('tag') }}
-        </div>
-        <div class="help-block">
-            {{ trans('cruds.contentPage.fields.tag_helper') }}
+    <div wire:ignore>
+        <div class="form-group {{ $errors->has('tag') ? 'invalid' : '' }}">
+            <label class="form-label" for="tag">{{ trans('cruds.contentPage.fields.tag') }}</label>
+            <select class="selectize form-control" id="tag" wire:model="tag" multiple>
+                @foreach ($this->listsForFields['tag'] as $value => $label)
+                    <option value="{{ $value }}">{{ $label }}</option>
+                @endforeach
+            </select>
+            <div class="validation-message">
+                {{ $errors->first('tag') }}
+            </div>
+            <div class="help-block">
+                {{ trans('cruds.contentPage.fields.tag_helper') }}
+            </div>
         </div>
     </div>
+    
 
     <!-- Polje za tekst stranice s EasyMDE -->
     <div class="form-group {{ $errors->has('contentPage.page_text') ? 'invalid' : '' }}">
         <label class="form-label" for="page_text">{{ trans('cruds.contentPage.fields.page_text') }}</label>
-        <textarea id="mde-page_text" wire:model.defer="contentPage.page_text"></textarea>
+        <div wire:ignore>
+            <textarea id="mde-page_text"></textarea>
+        </div>
         <div class="validation-message">
             {{ $errors->first('contentPage.page_text') }}
         </div>
@@ -114,30 +119,28 @@
             NiceSelect.bind(select);
         });
 
-        // Provjera da li EasyMDE klasa postoji prije inicijalizacije
-        if (typeof EasyMDE !== 'undefined') {
-            // EasyMDE inicijalizacija za 'page_text'
-            var easyMDEPageText = new EasyMDE({
-                element: document.getElementById('mde-page_text'),
-                autosave: {
-                    enabled: true,
-                    delay: 1000,
-                    uniqueId: 'contentPage.page_text'
-                }
-            });
+       
+            // Provjera da li EasyMDE klasa postoji prije inicijalizacije
+            if (typeof EasyMDE !== 'undefined') {
+                // EasyMDE inicijalizacija za 'page_text'
+                var easyMDEPageText = new EasyMDE({
+                    element: document.getElementById('mde-page_text')
+                });
+                easyMDEPageText.codemirror.on("change", function(){
+                    @this.set('contentPage.page_text', easyMDEPageText.value());
+                });
 
-            // EasyMDE inicijalizacija za 'excerpt'
-            var easyMDEExcerpt = new EasyMDE({
-                element: document.getElementById('mde-excerpt'),
-                autosave: {
-                    enabled: true,
-                    delay: 1000,
-                    uniqueId: 'contentPage.excerpt'
-                }
-            });
-        } else {
-            console.error('EasyMDE nije definisan.');
-        }
+                // EasyMDE inicijalizacija za 'excerpt'
+                var easyMDEExcerpt = new EasyMDE({
+                    element: document.getElementById('mde-excerpt')
+                });
+                easyMDEExcerpt.codemirror.on("change", function(){
+                    @this.set('contentPage.excerpt', easyMDEExcerpt.value());
+                });
+            } else {
+                console.error('EasyMDE nije definisan.');
+            }
+
 
         // Pravilna inicijalizacija FileUploadWithPreview za 'featured_image'
         if (typeof FileUploadWithPreview !== 'undefined' && FileUploadWithPreview.FileUploadWithPreview) {
