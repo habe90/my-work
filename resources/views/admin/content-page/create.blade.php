@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 @section('content')
 <div class="animate__animated p-6" :class="[$store.app.animation]">
-    <div class="card bg-blueGray-100">
+    <div class="panel">
         <div class="card-header">
             <div class="card-header-container">
                 <h6 class="card-title">
