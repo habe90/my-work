@@ -29,7 +29,7 @@ class FrontendController extends Controller
     public function showMenu()
     {
         $menuPages = ContentPage::whereHas('category', function ($query) {
-            $query->where('name', 'Menu'); // 'name' je kolona u tabeli content_categories
+            $query->where('name', 'Menu'); 
         })
             ->where('active', 1)
             ->get();
@@ -40,8 +40,17 @@ class FrontendController extends Controller
     public function showBySlug($slug)
     {
         $contentPage = ContentPage::where('slug', $slug)->firstOrFail();
+
+        // Kreirajte instancu Parsedown
+        $parsedown = new Parsedown();
+
+        // Konvertujte Markdown u HTML
+        $contentPage->page_text = $parsedown->text($contentPage->page_text);
+        $contentPage->excerpt = $parsedown->text($contentPage->excerpt);
+
         return view('frontend.pages.show', compact('contentPage'));
     }
+
 
     public function ClientLogin()
     {

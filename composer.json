@@ -9,6 +9,7 @@
         "barryvdh/laravel-dompdf": "^2.0",
         "davejamesmiller/laravel-breadcrumbs": "^5.3",
         "dompdf/dompdf": "^2.0",
+        "erusev/parsedown": "^1.7",
         "guzzlehttp/guzzle": "^7.8",
         "laravel/framework": "^10.0",
         "laravel/sanctum": "^3.2",
