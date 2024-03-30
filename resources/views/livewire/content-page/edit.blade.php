@@ -95,46 +95,47 @@
 </form>
 
 <script>
-   document.addEventListener("DOMContentLoaded", function(e) {
-        // NiceSelect inicijalizacija
-        var selects = document.querySelectorAll(".selectize");
-        selects.forEach(function(select) {
-            NiceSelect.bind(select);
+ document.addEventListener("DOMContentLoaded", function() {
+    // Inicijalizacija NiceSelect ili slične biblioteke
+    var selects = document.querySelectorAll('.selectize');
+    selects.forEach(function(select) {
+        NiceSelect.bind(select);
+    });
+
+    // Dodavanje event listenera na select polja
+    document.getElementById('category').addEventListener('change', function(e) {
+        @this.set('category', Array.from(e.target.selectedOptions).map(option => option.value));
+    });
+
+    document.getElementById('tag').addEventListener('change', function(e) {
+        @this.set('tag', Array.from(e.target.selectedOptions).map(option => option.value));
+    });
+
+    // Inicijalizacija i sinkronizacija EasyMDE editora
+    if (typeof EasyMDE !== 'undefined') {
+        // Page text editor
+        var easyMDEPageText = new EasyMDE({ element: document.getElementById('mde-page_text') });
+        easyMDEPageText.codemirror.on('change', function() {
+            @this.set('contentPage.page_text', easyMDEPageText.value());
         });
 
-       
-            // Provjera da li EasyMDE klasa postoji prije inicijalizacije
-            if (typeof EasyMDE !== 'undefined') {
-                var easyMDEPageText = new EasyMDE({
-                    element: document.getElementById('mde-page_text')
-                });
-                setInterval(function() {
-                    @this.set('contentPage.page_text', easyMDEPageText.value());
-                }, 10000); // Automatsko snimanje svakih 10 sekundi
+        // Excerpt editor
+        var easyMDEExcerpt = new EasyMDE({ element: document.getElementById('mde-excerpt') });
+        easyMDEExcerpt.codemirror.on('change', function() {
+            @this.set('contentPage.excerpt', easyMDEExcerpt.value());
+        });
+    } else {
+        console.error('EasyMDE nije definisan.');
+    }
 
-                var easyMDEExcerpt = new EasyMDE({
-                    element: document.getElementById('mde-excerpt')
-                });
-                setInterval(function() {
-                    @this.set('contentPage.excerpt', easyMDEExcerpt.value());
-                }, 10000); // Automatsko snimanje svakih 10 sekundi
-            } else {
-                console.error('EasyMDE nije definisan.');
-            }
+    // Inicijalizacija FileUploadWithPreview ako je potrebno
+    if (typeof FileUploadWithPreview !== 'undefined' && FileUploadWithPreview.FileUploadWithPreview) {
+        // ... FileUploadWithPreview kod ...
+    } else {
+        console.error('FileUploadWithPreview nije definisan ili nije pravilno učitan.');
+    }
+});
 
-
-        // Pravilna inicijalizacija FileUploadWithPreview za 'featured_image'
-        if (typeof FileUploadWithPreview !== 'undefined' && FileUploadWithPreview.FileUploadWithPreview) {
-            new FileUploadWithPreview.FileUploadWithPreview('myFirstImage', {
-                images: {
-                    baseImage: 'assets/images/file-preview.svg',
-                    backgroundImage: '',
-                },
-            });
-        } else {
-            console.error('FileUploadWithPreview nije definisan ili nije pravilno učitan.');
-        }
-    });
 
     // Livewire hookovi za sinkronizaciju sa EasyMDE
     Livewire.hook('message.processed', (message, component) => {
