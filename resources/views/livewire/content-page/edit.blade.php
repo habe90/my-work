@@ -21,37 +21,37 @@
         </div>
     </div>
     <div wire:ignore>
-    <div class="form-group {{ $errors->has('category') ? 'invalid' : '' }}">
-        <label class="form-label" for="category">{{ trans('cruds.contentPage.fields.category') }}</label>
-        <select class="selectize form-control" id="category" name="category" wire:model="category" multiple>
-            @foreach ($this->listsForFields['category'] as $value => $label)
-                <option value="{{ $value }}">{{ $label }}</option>
-            @endforeach
-        </select>
-        <div class="validation-message">
-            {{ $errors->first('category') }}
-        </div>
-        <div class="help-block">
-            {{ trans('cruds.contentPage.fields.category_helper') }}
-        </div>
-    </div>
-</div>
-<div wire:ignore>
-    <div class="form-group {{ $errors->has('tag') ? 'invalid' : '' }}">
-        <label class="form-label" for="tag">{{ trans('cruds.contentPage.fields.tag') }}</label>
-        <select class="selectize form-control" id="tag" name="tag" wire:model="tag" multiple>
-            @foreach ($this->listsForFields['tag'] as $value => $label)
-                <option value="{{ $value }}">{{ $label }}</option>
-            @endforeach
-        </select>
-        <div class="validation-message">
-            {{ $errors->first('tag') }}
-        </div>
-        <div class="help-block">
-            {{ trans('cruds.contentPage.fields.tag_helper') }}
+        <div class="form-group {{ $errors->has('category') ? 'invalid' : '' }}">
+            <label class="form-label" for="category">{{ trans('cruds.contentPage.fields.category') }}</label>
+            <select class="selectize form-control" id="category" name="category" wire:model="category" multiple>
+                @foreach ($this->listsForFields['category'] as $value => $label)
+                    <option value="{{ $value }}">{{ $label }}</option>
+                @endforeach
+            </select>
+            <div class="validation-message">
+                {{ $errors->first('category') }}
+            </div>
+            <div class="help-block">
+                {{ trans('cruds.contentPage.fields.category_helper') }}
+            </div>
         </div>
     </div>
-</div>
+    <div wire:ignore>
+        <div class="form-group {{ $errors->has('tag') ? 'invalid' : '' }}">
+            <label class="form-label" for="tag">{{ trans('cruds.contentPage.fields.tag') }}</label>
+            <select class="selectize form-control" id="tag" name="tag" wire:model="tag" multiple>
+                @foreach ($this->listsForFields['tag'] as $value => $label)
+                    <option value="{{ $value }}">{{ $label }}</option>
+                @endforeach
+            </select>
+            <div class="validation-message">
+                {{ $errors->first('tag') }}
+            </div>
+            <div class="help-block">
+                {{ trans('cruds.contentPage.fields.tag_helper') }}
+            </div>
+        </div>
+    </div>
 
     <div wire:ignore class="form-group {{ $errors->has('contentPage.page_text') ? 'invalid' : '' }}">
         <label class="form-label" for="page_text">{{ trans('cruds.contentPage.fields.page_text') }}</label>
@@ -90,51 +90,55 @@
         <button class="btn btn-primary" type="submit">
             {{ trans('global.save') }}
         </button>
-   
+
     </div>
 </form>
 
 <script>
- document.addEventListener("DOMContentLoaded", function() {
-    // Inicijalizacija NiceSelect ili slične biblioteke
-    var selects = document.querySelectorAll('.selectize');
-    selects.forEach(function(select) {
-        NiceSelect.bind(select);
-    });
-
-    // Dodavanje event listenera na select polja
-    document.getElementById('category').addEventListener('change', function(e) {
-        @this.set('category', Array.from(e.target.selectedOptions).map(option => option.value));
-    });
-
-    document.getElementById('tag').addEventListener('change', function(e) {
-        @this.set('tag', Array.from(e.target.selectedOptions).map(option => option.value));
-    });
-
-    // Inicijalizacija i sinkronizacija EasyMDE editora
-    if (typeof EasyMDE !== 'undefined') {
-        // Page text editor
-        var easyMDEPageText = new EasyMDE({ element: document.getElementById('mde-page_text') });
-        easyMDEPageText.codemirror.on('change', function() {
-            @this.set('contentPage.page_text', easyMDEPageText.value());
+    document.addEventListener("DOMContentLoaded", function() {
+        // Inicijalizacija NiceSelect ili slične biblioteke
+        var selects = document.querySelectorAll('.selectize');
+        selects.forEach(function(select) {
+            NiceSelect.bind(select);
         });
 
-        // Excerpt editor
-        var easyMDEExcerpt = new EasyMDE({ element: document.getElementById('mde-excerpt') });
-        easyMDEExcerpt.codemirror.on('change', function() {
-            @this.set('contentPage.excerpt', easyMDEExcerpt.value());
+        // Dodavanje event listenera na select polja
+        document.getElementById('category').addEventListener('change', function(e) {
+            @this.set('category', Array.from(e.target.selectedOptions).map(option => option.value));
         });
-    } else {
-        console.error('EasyMDE nije definisan.');
-    }
 
-    // Inicijalizacija FileUploadWithPreview ako je potrebno
-    if (typeof FileUploadWithPreview !== 'undefined' && FileUploadWithPreview.FileUploadWithPreview) {
-        // ... FileUploadWithPreview kod ...
-    } else {
-        console.error('FileUploadWithPreview nije definisan ili nije pravilno učitan.');
-    }
-});
+        document.getElementById('tag').addEventListener('change', function(e) {
+            @this.set('tag', Array.from(e.target.selectedOptions).map(option => option.value));
+        });
+
+        // Inicijalizacija i sinkronizacija EasyMDE editora
+        if (typeof EasyMDE !== 'undefined') {
+            // Page text editor
+            var easyMDEPageText = new EasyMDE({
+                element: document.getElementById('mde-page_text')
+            });
+            easyMDEPageText.codemirror.on('change', function() {
+                @this.set('contentPage.page_text', easyMDEPageText.value());
+            });
+
+            // Excerpt editor
+            var easyMDEExcerpt = new EasyMDE({
+                element: document.getElementById('mde-excerpt')
+            });
+            easyMDEExcerpt.codemirror.on('change', function() {
+                @this.set('contentPage.excerpt', easyMDEExcerpt.value());
+            });
+        } else {
+            console.error('EasyMDE nije definisan.');
+        }
+
+        // Inicijalizacija FileUploadWithPreview ako je potrebno
+        if (typeof FileUploadWithPreview !== 'undefined' && FileUploadWithPreview.FileUploadWithPreview) {
+            // ... FileUploadWithPreview kod ...
+        } else {
+            console.error('FileUploadWithPreview nije definisan ili nije pravilno učitan.');
+        }
+    });
 
 
     // Livewire hookovi za sinkronizaciju sa EasyMDE
@@ -156,5 +160,11 @@
         } else {
             console.error('EasyMDE nije definisan.');
         }
+    });
+</script>
+<script>
+    document.getElementById('category').addEventListener('change', function (e) {
+        var selected = Array.from(e.target.selectedOptions).map(option => option.value);
+        @this.set('category', selected);
     });
 </script>
