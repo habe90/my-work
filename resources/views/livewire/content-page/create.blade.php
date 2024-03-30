@@ -2,7 +2,7 @@
 
     <div class="form-group {{ $errors->has('contentPage.title') ? 'invalid' : '' }}">
         <label class="form-label required" for="title">{{ trans('cruds.contentPage.fields.title') }}</label>
-        <input class="form-control" type="text" name="title" id="title" required wire:model.defer="contentPage.title">
+        <input class="form-input" type="text" name="title" id="title" required wire:model.defer="contentPage.title">
         <div class="validation-message">
             {{ $errors->first('contentPage.title') }}
         </div>
@@ -10,9 +10,21 @@
             {{ trans('cruds.contentPage.fields.title_helper') }}
         </div>
     </div>
+    <div class="form-group {{ $errors->has('contentPage.slug') ? 'invalid' : '' }}">
+        <label class="form-label required" for="title">{{ trans('cruds.contentPage.fields.slug') }}</label>
+        <input class="form-input" type="text" name="slug" id="slug" required
+            wire:model.defer="contentPage.slug">
+        <div class="validation-message">
+            {{ $errors->first('contentPage.slug') }}
+        </div>
+        <div class="help-block">
+            {{ trans('cruds.contentPage.fields.slug_helper') }}
+        </div>
+    </div>
     <div class="form-group {{ $errors->has('category') ? 'invalid' : '' }}">
         <label class="form-label" for="category">{{ trans('cruds.contentPage.fields.category') }}</label>
-        <x-select-list class="form-control" id="category" name="category" wire:model="category" :options="$this->listsForFields['category']" multiple />
+        <x-select-list class="form-control" id="category" name="category" wire:model="category" :options="$this->listsForFields['category']"
+            multiple />
         <div class="validation-message">
             {{ $errors->first('category') }}
         </div>
@@ -52,7 +64,9 @@
     </div>
     <div class="form-group {{ $errors->has('mediaCollections.content_page_featured_image') ? 'invalid' : '' }}">
         <label class="form-label" for="featured_image">{{ trans('cruds.contentPage.fields.featured_image') }}</label>
-        <x-dropzone id="featured_image" name="featured_image" action="{{ route('admin.content-pages.storeMedia') }}" collection-name="content_page_featured_image" max-file-size="2" max-width="4096" max-height="4096" max-files="1" />
+        <x-dropzone id="featured_image" name="featured_image" action="{{ route('admin.content-pages.storeMedia') }}"
+            collection-name="content_page_featured_image" max-file-size="2" max-width="4096" max-height="4096"
+            max-files="1" />
         <div class="validation-message">
             {{ $errors->first('mediaCollections.content_page_featured_image') }}
         </div>
