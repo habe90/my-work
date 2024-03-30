@@ -78,7 +78,9 @@
     <!-- Polje za izvod s EasyMDE -->
     <div class="form-group {{ $errors->has('contentPage.excerpt') ? 'invalid' : '' }}">
         <label class="form-label" for="excerpt">{{ trans('cruds.contentPage.fields.excerpt') }}</label>
-        <textarea id="mde-excerpt" wire:model.defer="contentPage.excerpt"></textarea>
+        <div wire:ignore>
+            <textarea id="mde-excerpt"></textarea>
+        </div>
         <div class="validation-message">
             {{ $errors->first('contentPage.excerpt') }}
         </div>
@@ -122,21 +124,19 @@
        
             // Provjera da li EasyMDE klasa postoji prije inicijalizacije
             if (typeof EasyMDE !== 'undefined') {
-                // EasyMDE inicijalizacija za 'page_text'
                 var easyMDEPageText = new EasyMDE({
                     element: document.getElementById('mde-page_text')
                 });
-                easyMDEPageText.codemirror.on("change", function(){
+                setInterval(function() {
                     @this.set('contentPage.page_text', easyMDEPageText.value());
-                });
+                }, 10000); // Automatsko snimanje svakih 10 sekundi
 
-                // EasyMDE inicijalizacija za 'excerpt'
                 var easyMDEExcerpt = new EasyMDE({
                     element: document.getElementById('mde-excerpt')
                 });
-                easyMDEExcerpt.codemirror.on("change", function(){
+                setInterval(function() {
                     @this.set('contentPage.excerpt', easyMDEExcerpt.value());
-                });
+                }, 10000); // Automatsko snimanje svakih 10 sekundi
             } else {
                 console.error('EasyMDE nije definisan.');
             }
