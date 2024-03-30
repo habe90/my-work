@@ -23,7 +23,7 @@
     <div wire:ignore>
     <div class="form-group {{ $errors->has('category') ? 'invalid' : '' }}">
         <label class="form-label" for="category">{{ trans('cruds.contentPage.fields.category') }}</label>
-        <select class="form-control" id="category" name="category" wire:model="category" multiple>
+        <select class="selectize form-control" id="category" name="category" wire:model="category" multiple>
             @foreach ($this->listsForFields['category'] as $value => $label)
                 <option value="{{ $value }}">{{ $label }}</option>
             @endforeach
@@ -39,7 +39,7 @@
 <div wire:ignore>
     <div class="form-group {{ $errors->has('tag') ? 'invalid' : '' }}">
         <label class="form-label" for="tag">{{ trans('cruds.contentPage.fields.tag') }}</label>
-        <select class="form-control" id="tag" name="tag" wire:model="tag" multiple>
+        <select class="selectize form-control" id="tag" name="tag" wire:model="tag" multiple>
             @foreach ($this->listsForFields['tag'] as $value => $label)
                 <option value="{{ $value }}">{{ $label }}</option>
             @endforeach
