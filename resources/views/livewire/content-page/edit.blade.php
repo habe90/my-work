@@ -116,12 +116,14 @@
         if (typeof EasyMDE !== 'undefined') {
             // Page text editor
             var easyMDEPageText = new EasyMDE({
+                var easyMDEPageText = new EasyMDE({
                 element: document.getElementById('mde-page_text'),
-                initialValue: @this.page_text 
+                initialValue: @js($this->contentPage['page_text']) // Ovdje postavite početnu vrijednost
             });
             easyMDEPageText.codemirror.on('change', function() {
                 @this.set('contentPage.page_text', easyMDEPageText.value());
             });
+
 
             // Excerpt editor
             var easyMDEExcerpt = new EasyMDE({
