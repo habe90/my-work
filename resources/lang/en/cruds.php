@@ -257,6 +257,7 @@ return [
             'id_helper'             => ' ',
             'title'                 => 'Title',
             'title_helper'          => ' ',
+            'slug'                  => 'Slug',
             'category'              => 'Categories',
             'category_helper'       => ' ',
             'tag'                   => 'Tags',

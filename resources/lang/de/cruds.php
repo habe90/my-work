@@ -211,4 +211,34 @@ return [
         'title_singular' => 'Calendar',
     ],
 
+    'contentPage' => [
+        'title'          => 'Seiten',
+        'title_singular' => 'Seite',
+        'fields'         => [
+            'id'                    => 'ID',
+            'id_helper'             => ' ',
+            'title'                 => 'Titel',
+            'title_helper'          => ' ',
+            'slug'                  => 'Slug',
+            'slug_helper'           => 'Ein eindeutiger Text, der in der URL verwendet wird.',
+            'category'              => 'Kategorien',
+            'category_helper'       => ' ',
+            'tag'                   => 'Tags',
+            'tag_helper'            => ' ',
+            'page_text'             => 'Volltext',
+            'page_text_helper'      => ' ',
+            'excerpt'               => 'Auszug',
+            'excerpt_helper'        => ' ',
+            'featured_image'        => 'Hauptbild',
+            'featured_image_helper' => ' ',
+            'created_at'            => 'Erstellt am',
+            'created_at_helper'     => ' ',
+            'updated_at'            => 'Aktualisiert am',
+            'updated_at_helper'     => ' ',
+            'deleted_at'            => 'Gelöscht am',
+            'deleted_at_helper'     => ' ',
+        ],
+    ],
+    
+
 ];
