@@ -15,6 +15,7 @@ class Edit extends Component
     public array $category = [];
 
     public ContentPage $contentPage;
+    public $slug; 
 
     public array $mediaToRemove = [];
 
@@ -55,6 +56,7 @@ class Edit extends Component
         $this->contentPage = $contentPage;
         $this->category    = $this->contentPage->category()->pluck('id')->toArray();
         $this->tag         = $this->contentPage->tag()->pluck('id')->toArray();
+        $this->slug        = $this->contentPage->slug;
         $this->initListsForFields();
         $this->mediaCollections = [
 
@@ -73,6 +75,7 @@ class Edit extends Component
     {
         $this->validate();
 
+        $this->contentPage->slug = $this->slug;
         $this->contentPage->save();
         $this->contentPage->category()->sync($this->category);
         $this->contentPage->tag()->sync($this->tag);
@@ -87,6 +90,11 @@ class Edit extends Component
             'contentPage.title' => [
                 'string',
                 'required',
+            ],
+            'slug' => [ 
+                'string',
+                'required',
+                'unique:content_pages,slug,' . $this->contentPage->id,
             ],
             'category' => [
                 'array',
