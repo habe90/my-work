@@ -123,18 +123,17 @@
             console.error('EasyMDE nije definisan.');
         }
     
-        // Provjera da li FileUploadWithPreview klasa postoji prije inicijalizacije
-        if (typeof FileUploadWithPreview !== 'undefined') {
-            // FileUploadWithPreview inicijalizacija za 'featured_image'
-            var myFirstImage = new FileUploadWithPreview('myFirstImage', {
-                images: {
-                    baseImage: 'assets/images/file-preview.png',
-                    backgroundImage: '',
-                },
-            });
-        } else {
-            console.error('FileUploadWithPreview nije definisan.');
-        }
+        // Pravilna inicijalizacija FileUploadWithPreview za 'featured_image'
+        if (typeof FileUploadWithPreview !== 'undefined' && FileUploadWithPreview.FileUploadWithPreview) {
+                new FileUploadWithPreview.FileUploadWithPreview('myFirstImage', {
+                    images: {
+                        baseImage: 'assets/images/file-preview.svg',
+                        backgroundImage: '',
+                    },
+                });
+            } else {
+                console.error('FileUploadWithPreview nije definisan ili nije pravilno učitan.');
+            }
     });
     </script>
     
