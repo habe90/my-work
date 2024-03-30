@@ -19,10 +19,13 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/quill.snow.css') }}" />
     <link rel="stylesheet" href="{{ asset('assets/magnific-popup/magnific-popup.css') }}" />
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/nice-select2.css') }}" />
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/file-upload-with-preview.min.css') }}" />
+    <link rel="stylesheet" href="{{ asset('assets/css/easymde.min.css') }}" />
     <script src="{{ asset('assets/js/perfect-scrollbar.min.js') }}"></script>
     <script defer src="{{ asset('assets/js/popper.min.js') }}"></script>
     <script defer src="{{ asset('assets/js/tippy-bundle.umd.min.js') }}"></script>
     <script defer src="{{ asset('assets/js/sweetalert.min.js') }}"></script>
+
     
    
     @livewireStyles
@@ -98,6 +101,7 @@
     <script src="{{ asset('assets/js/nice-select2.js') }}"></script>
     <script src="https://cdn.tiny.cloud/1/kogebhbcuwq3uf9z1g2is76m1097ansbqfvjnravrnnlf0yc/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
     <script src="{{ asset('assets/js/easymde.min.js') }}"></script>
+    <script src="{{ asset('assets/js/file-upload-with-preview.iife.js') }}"></script>
     <script>
         document.addEventListener('alpine:init', () => {
             // main section
