@@ -25,9 +25,10 @@
             <label class="form-label" for="category">{{ trans('cruds.contentPage.fields.category') }}</label>
             <select class="selectize form-control" id="category" name="category" wire:model="category" multiple>
                 @foreach ($this->listsForFields['category'] as $value => $label)
-                    <option value="{{ $value }}">{{ $label }}</option>
+                    <option value="{{ $value }}" @if(in_array($value, $this->category)) selected @endif>{{ $label }}</option>
                 @endforeach
             </select>
+            
             <div class="validation-message">
                 {{ $errors->first('category') }}
             </div>
@@ -115,7 +116,8 @@
         if (typeof EasyMDE !== 'undefined') {
             // Page text editor
             var easyMDEPageText = new EasyMDE({
-                element: document.getElementById('mde-page_text')
+                element: document.getElementById('mde-page_text'),
+                initialValue: @this.page_text 
             });
             easyMDEPageText.codemirror.on('change', function() {
                 @this.set('contentPage.page_text', easyMDEPageText.value());
