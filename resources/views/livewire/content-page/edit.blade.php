@@ -116,14 +116,12 @@
         if (typeof EasyMDE !== 'undefined') {
             // Page text editor
             var easyMDEPageText = new EasyMDE({
-                var easyMDEPageText = new EasyMDE({
                 element: document.getElementById('mde-page_text'),
-                initialValue: @js($this->contentPage['page_text']) // Ovdje postavite početnu vrijednost
+                initialValue: @this.page_text 
             });
             easyMDEPageText.codemirror.on('change', function() {
                 @this.set('contentPage.page_text', easyMDEPageText.value());
             });
-
 
             // Excerpt editor
             var easyMDEExcerpt = new EasyMDE({
@@ -149,7 +147,8 @@
     Livewire.hook('message.processed', (message, component) => {
         if (typeof EasyMDE !== 'undefined') {
             var easyMDEPageText = new EasyMDE({
-                element: document.getElementById('mde-page_text')
+                element: document.getElementById('mde-page_text'),
+                initialValue: @js($this->contentPage->page_text)
             });
             easyMDEPageText.codemirror.on('change', function() {
                 @this.set('contentPage.page_text', easyMDEPageText.value());

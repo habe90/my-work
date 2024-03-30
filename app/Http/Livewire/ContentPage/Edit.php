@@ -60,6 +60,8 @@ class Edit extends Component
 
             'content_page_featured_image' => $contentPage->featured_image,
         ];
+
+        $this->contentPage->page_text = $contentPage->page_text ?? '';
     }
 
     public function render()
