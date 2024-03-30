@@ -1,7 +1,7 @@
 <form wire:submit.prevent="submit" class="space-y-5">
     <div class="form-group {{ $errors->has('contentPage.title') ? 'invalid' : '' }}">
         <label class="form-label required" for="title">{{ trans('cruds.contentPage.fields.title') }}</label>
-        <input class="form-control" type="text" name="title" id="title" required wire:model="contentPage.title">
+        <input class="form-input" type="text" name="title" id="title" required wire:model="contentPage.title">
         <div class="validation-message">
             {{ $errors->first('contentPage.title') }}
         </div>
@@ -12,7 +12,7 @@
 
     <div class="form-group {{ $errors->has('contentPage.slug') ? 'invalid' : '' }}">
         <label class="form-label required" for="slug">{{ trans('cruds.contentPage.fields.slug') }}</label>
-        <input class="form-control" type="text" name="slug" id="slug" required wire:model="contentPage.slug">
+        <input class="form-input" type="text" name="slug" id="slug" required wire:model="contentPage.slug">
         <div class="validation-message">
             {{ $errors->first('contentPage.slug') }}
         </div>
@@ -95,9 +95,45 @@
 </form>
 
 <script>
-    document.addEventListener("DOMContentLoaded", function() {
-        // Inicijalizacija za EasyMDE i FileUploadWithPreview
-        // Kod je isti kao na create page, s time da se uključi wire:model integracija
+   document.addEventListener("DOMContentLoaded", function(e) {
+        // NiceSelect inicijalizacija
+        var selects = document.querySelectorAll(".selectize");
+        selects.forEach(function(select) {
+            NiceSelect.bind(select);
+        });
+
+       
+            // Provjera da li EasyMDE klasa postoji prije inicijalizacije
+            if (typeof EasyMDE !== 'undefined') {
+                var easyMDEPageText = new EasyMDE({
+                    element: document.getElementById('mde-page_text')
+                });
+                setInterval(function() {
+                    @this.set('contentPage.page_text', easyMDEPageText.value());
+                }, 10000); // Automatsko snimanje svakih 10 sekundi
+
+                var easyMDEExcerpt = new EasyMDE({
+                    element: document.getElementById('mde-excerpt')
+                });
+                setInterval(function() {
+                    @this.set('contentPage.excerpt', easyMDEExcerpt.value());
+                }, 10000); // Automatsko snimanje svakih 10 sekundi
+            } else {
+                console.error('EasyMDE nije definisan.');
+            }
+
+
+        // Pravilna inicijalizacija FileUploadWithPreview za 'featured_image'
+        if (typeof FileUploadWithPreview !== 'undefined' && FileUploadWithPreview.FileUploadWithPreview) {
+            new FileUploadWithPreview.FileUploadWithPreview('myFirstImage', {
+                images: {
+                    baseImage: 'assets/images/file-preview.svg',
+                    backgroundImage: '',
+                },
+            });
+        } else {
+            console.error('FileUploadWithPreview nije definisan ili nije pravilno učitan.');
+        }
     });
 
     // Livewire hookovi za sinkronizaciju sa EasyMDE
