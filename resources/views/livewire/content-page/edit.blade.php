@@ -88,9 +88,7 @@
         <button class="btn btn-primary" type="submit">
             {{ trans('global.save') }}
         </button>
-        <a href="{{ route('admin.content-pages.index') }}" class="btn btn-secondary">
-            {{ trans('global.cancel') }}
-        </a>
+   
     </div>
 </form>
 
