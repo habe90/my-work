@@ -92,39 +92,49 @@
 
 <script>
     document.addEventListener("DOMContentLoaded", function(e) {
-        // Ponovna inicijalizacija NiceSelect-a svaki put kada Livewire ažurira DOM
-        var els = document.querySelectorAll(".selectize");
-        els.forEach(function(select) {
+        // NiceSelect inicijalizacija
+        var selects = document.querySelectorAll(".selectize");
+        selects.forEach(function(select) {
             NiceSelect.bind(select);
         });
-
-        // EasyMDE inicijalizacija za 'page_text'
-        var easyMDEPageText = new EasyMDE({
-            element: document.getElementById('mde-page_text'),
-            autosave: {
-                enabled: true,
-                delay: 1000,
-                uniqueId: 'contentPage.page_text'
-            }
-        });
-
-        // EasyMDE inicijalizacija za 'excerpt'
-        var easyMDEExcerpt = new EasyMDE({
-            element: document.getElementById('mde-excerpt'),
-            autosave: {
-                enabled: true,
-                delay: 1000,
-                uniqueId: 'contentPage.excerpt'
-            }
-        });
-
-        // FileUploadWithPreview inicijalizacija za 'featured_image'
-        var myFirstImage = new FileUploadWithPreview('myFirstImage', {
-            images: {
-                baseImage: 'assets/images/file-preview.png',
-                backgroundImage: '',
-            },
-        });
+    
+        // Provjera da li EasyMDE klasa postoji prije inicijalizacije
+        if (typeof EasyMDE !== 'undefined') {
+            // EasyMDE inicijalizacija za 'page_text'
+            var easyMDEPageText = new EasyMDE({
+                element: document.getElementById('mde-page_text'),
+                autosave: {
+                    enabled: true,
+                    delay: 1000,
+                    uniqueId: 'contentPage.page_text'
+                }
+            });
+    
+            // EasyMDE inicijalizacija za 'excerpt'
+            var easyMDEExcerpt = new EasyMDE({
+                element: document.getElementById('mde-excerpt'),
+                autosave: {
+                    enabled: true,
+                    delay: 1000,
+                    uniqueId: 'contentPage.excerpt'
+                }
+            });
+        } else {
+            console.error('EasyMDE nije definisan.');
+        }
+    
+        // Provjera da li FileUploadWithPreview klasa postoji prije inicijalizacije
+        if (typeof FileUploadWithPreview !== 'undefined') {
+            // FileUploadWithPreview inicijalizacija za 'featured_image'
+            var myFirstImage = new FileUploadWithPreview('myFirstImage', {
+                images: {
+                    baseImage: 'assets/images/file-preview.png',
+                    backgroundImage: '',
+                },
+            });
+        } else {
+            console.error('FileUploadWithPreview nije definisan.');
+        }
     });
-</script>
-
+    </script>
+    
