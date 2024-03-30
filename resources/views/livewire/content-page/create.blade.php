@@ -92,10 +92,11 @@
 
     <!-- Dugmad za akcije -->
     <div class="form-group">
-        <button class="btn btn-indigo mr-2" type="submit">
+        <button class="btn btn-primary !mt-6" type="submit">
             {{ trans('global.save') }}
         </button>
-        <a href="{{ route('admin.content-pages.index') }}" class="btn btn-secondary">
+        
+        <a href="{{ route('admin.content-pages.index') }}" class="btn btn-secondary !mt-6">
             {{ trans('global.cancel') }}
         </a>
     </div>
