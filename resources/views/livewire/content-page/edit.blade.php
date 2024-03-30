@@ -20,6 +20,8 @@
             {{ trans('cruds.contentPage.fields.slug_helper') }}
         </div>
     </div>
+    
+
     <div wire:ignore>
         <div class="form-group {{ $errors->has('category') ? 'invalid' : '' }}">
             <label class="form-label" for="category">{{ trans('cruds.contentPage.fields.category') }}</label>
