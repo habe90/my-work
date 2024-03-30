@@ -11,37 +11,37 @@
         </div>
     </div>
 
-    <!-- Polje za kategoriju s NiceSelect -->
-    <div class="form-group {{ $errors->has('category') ? 'invalid' : '' }}">
-        <label class="form-label" for="category">{{ trans('cruds.contentPage.fields.category') }}</label>
-        <select class="selectize form-control" id="category" name="category" wire:model="category" multiple>
-            @foreach($this->listsForFields['category'] as $value => $label)
-                <option value="{{ $value }}">{{ $label }}</option>
-            @endforeach
-        </select>
-        <div class="validation-message">
-            {{ $errors->first('category') }}
-        </div>
-        <div class="help-block">
-            {{ trans('cruds.contentPage.fields.category_helper') }}
-        </div>
+   <!-- Polje za kategoriju bez Livewire-a i s NiceSelect -->
+<div class="form-group {{ $errors->has('category') ? 'invalid' : '' }}">
+    <label class="form-label" for="category">{{ trans('cruds.contentPage.fields.category') }}</label>
+    <select class="selectize form-control" id="category" name="category" multiple>
+        @foreach($this->listsForFields['category'] as $value => $label)
+            <option value="{{ $value }}">{{ $label }}</option>
+        @endforeach
+    </select>
+    <div class="validation-message">
+        {{ $errors->first('category') }}
     </div>
+    <div class="help-block">
+        {{ trans('cruds.contentPage.fields.category_helper') }}
+    </div>
+</div>
 
-    <!-- Polje za tagove s NiceSelect -->
-    <div class="form-group {{ $errors->has('tag') ? 'invalid' : '' }}">
-        <label class="form-label" for="tag">{{ trans('cruds.contentPage.fields.tag') }}</label>
-        <select class="selectize form-control" id="tag" name="tag" wire:model="tag" multiple>
-            @foreach($this->listsForFields['tag'] as $value => $label)
-                <option value="{{ $value }}">{{ $label }}</option>
-            @endforeach
-        </select>
-        <div class="validation-message">
-            {{ $errors->first('tag') }}
-        </div>
-        <div class="help-block">
-            {{ trans('cruds.contentPage.fields.tag_helper') }}
-        </div>
+<!-- Polje za tagove bez Livewire-a i s NiceSelect -->
+<div class="form-group {{ $errors->has('tag') ? 'invalid' : '' }}">
+    <label class="form-label" for="tag">{{ trans('cruds.contentPage.fields.tag') }}</label>
+    <select class="selectize form-control" id="tag" name="tag" multiple>
+        @foreach($this->listsForFields['tag'] as $value => $label)
+            <option value="{{ $value }}">{{ $label }}</option>
+        @endforeach
+    </select>
+    <div class="validation-message">
+        {{ $errors->first('tag') }}
     </div>
+    <div class="help-block">
+        {{ trans('cruds.contentPage.fields.tag_helper') }}
+    </div>
+</div>
 
     <!-- Polje za tekst stranice s EasyMDE -->
     <div class="form-group {{ $errors->has('contentPage.page_text') ? 'invalid' : '' }}">
@@ -91,16 +91,11 @@
 </form>
 
 <script>
-    document.addEventListener('livewire:load', function () {
+    document.addEventListener("DOMContentLoaded", function(e) {
         // Ponovna inicijalizacija NiceSelect-a svaki put kada Livewire ažurira DOM
-        Livewire.hook('message.processed', (message, component) => {
-            var selects = document.querySelectorAll(".selectize");
-            selects.forEach(function(select) {
-                if (!select.hasAttribute('data-nice-select-initialized')) {
-                    NiceSelect.bind(select);
-                    select.setAttribute('data-nice-select-initialized', 'true');
-                }
-            });
+        var els = document.querySelectorAll(".selectize");
+        els.forEach(function(select) {
+            NiceSelect.bind(select);
         });
 
         // EasyMDE inicijalizacija za 'page_text'
