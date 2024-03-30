@@ -93,11 +93,11 @@
                             <td>
                                 <div class="flex justify-end">
                                     @can('content_page_show')
-                                        <a class="btn btn-sm btn-info mr-2"
-                                            href="{{ route('admin.content-pages.show', $contentPage) }}">
-                                            {{ trans('global.view') }}
-                                        </a>
-                                    @endcan
+                                    <a class="btn btn-sm btn-info mr-2" href="{{ url('/page/' . $contentPage->slug) }}">
+                                        {{ trans('global.view') }}
+                                    </a>
+                                @endcan
+                                
                                     @can('content_page_edit')
                                     <a class="btn btn-sm btn-success mr-2" href="{{ route('admin.content-pages.edit', $contentPage) }}">
                                         {{ trans('global.edit') }}
