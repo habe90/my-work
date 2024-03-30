@@ -11,37 +11,48 @@
         </div>
     </div>
 
-   <!-- Polje za kategoriju bez Livewire-a i s NiceSelect -->
-<div class="form-group {{ $errors->has('category') ? 'invalid' : '' }}">
-    <label class="form-label" for="category">{{ trans('cruds.contentPage.fields.category') }}</label>
-    <select class="selectize form-control" id="category" name="category" multiple>
-        @foreach($this->listsForFields['category'] as $value => $label)
-            <option value="{{ $value }}">{{ $label }}</option>
-        @endforeach
-    </select>
-    <div class="validation-message">
-        {{ $errors->first('category') }}
+    <div class="form-group {{ $errors->has('contentPage.slug') ? 'invalid' : '' }}">
+        <label class="form-label required" for="title">{{ trans('cruds.contentPage.fields.slug') }}</label>
+        <input class="form-input" type="text" name="slug" id="slug" required wire:model.defer="contentPage.slug">
+        <div class="validation-message">
+            {{ $errors->first('contentPage.slug') }}
+        </div>
+        <div class="help-block">
+            {{ trans('cruds.contentPage.fields.slug_helper') }}
+        </div>
     </div>
-    <div class="help-block">
-        {{ trans('cruds.contentPage.fields.category_helper') }}
-    </div>
-</div>
 
-<!-- Polje za tagove bez Livewire-a i s NiceSelect -->
-<div class="form-group {{ $errors->has('tag') ? 'invalid' : '' }}">
-    <label class="form-label" for="tag">{{ trans('cruds.contentPage.fields.tag') }}</label>
-    <select class="selectize form-control" id="tag" name="tag" multiple>
-        @foreach($this->listsForFields['tag'] as $value => $label)
-            <option value="{{ $value }}">{{ $label }}</option>
-        @endforeach
-    </select>
-    <div class="validation-message">
-        {{ $errors->first('tag') }}
+    <!-- Polje za kategoriju bez Livewire-a i s NiceSelect -->
+    <div class="form-group {{ $errors->has('category') ? 'invalid' : '' }}">
+        <label class="form-label" for="category">{{ trans('cruds.contentPage.fields.category') }}</label>
+        <select class="selectize form-control" id="category" name="category" multiple>
+            @foreach ($this->listsForFields['category'] as $value => $label)
+                <option value="{{ $value }}">{{ $label }}</option>
+            @endforeach
+        </select>
+        <div class="validation-message">
+            {{ $errors->first('category') }}
+        </div>
+        <div class="help-block">
+            {{ trans('cruds.contentPage.fields.category_helper') }}
+        </div>
     </div>
-    <div class="help-block">
-        {{ trans('cruds.contentPage.fields.tag_helper') }}
+
+    <!-- Polje za tagove bez Livewire-a i s NiceSelect -->
+    <div class="form-group {{ $errors->has('tag') ? 'invalid' : '' }}">
+        <label class="form-label" for="tag">{{ trans('cruds.contentPage.fields.tag') }}</label>
+        <select class="selectize form-control" id="tag" name="tag" multiple>
+            @foreach ($this->listsForFields['tag'] as $value => $label)
+                <option value="{{ $value }}">{{ $label }}</option>
+            @endforeach
+        </select>
+        <div class="validation-message">
+            {{ $errors->first('tag') }}
+        </div>
+        <div class="help-block">
+            {{ trans('cruds.contentPage.fields.tag_helper') }}
+        </div>
     </div>
-</div>
 
     <!-- Polje za tekst stranice s EasyMDE -->
     <div class="form-group {{ $errors->has('contentPage.page_text') ? 'invalid' : '' }}">
@@ -97,7 +108,7 @@
         selects.forEach(function(select) {
             NiceSelect.bind(select);
         });
-    
+
         // Provjera da li EasyMDE klasa postoji prije inicijalizacije
         if (typeof EasyMDE !== 'undefined') {
             // EasyMDE inicijalizacija za 'page_text'
@@ -109,7 +120,7 @@
                     uniqueId: 'contentPage.page_text'
                 }
             });
-    
+
             // EasyMDE inicijalizacija za 'excerpt'
             var easyMDEExcerpt = new EasyMDE({
                 element: document.getElementById('mde-excerpt'),
@@ -122,18 +133,17 @@
         } else {
             console.error('EasyMDE nije definisan.');
         }
-    
+
         // Pravilna inicijalizacija FileUploadWithPreview za 'featured_image'
         if (typeof FileUploadWithPreview !== 'undefined' && FileUploadWithPreview.FileUploadWithPreview) {
-                new FileUploadWithPreview.FileUploadWithPreview('myFirstImage', {
-                    images: {
-                        baseImage: 'assets/images/file-preview.svg',
-                        backgroundImage: '',
-                    },
-                });
-            } else {
-                console.error('FileUploadWithPreview nije definisan ili nije pravilno učitan.');
-            }
+            new FileUploadWithPreview.FileUploadWithPreview('myFirstImage', {
+                images: {
+                    baseImage: 'assets/images/file-preview.svg',
+                    backgroundImage: '',
+                },
+            });
+        } else {
+            console.error('FileUploadWithPreview nije definisan ili nije pravilno učitan.');
+        }
     });
-    </script>
-    
+</script>
