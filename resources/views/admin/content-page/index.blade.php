@@ -5,14 +5,16 @@
             <div class="panel flex items-center overflow-x-auto whitespace-nowrap p-3 text-primary">
 
                 @can('content_page_create')
-                    <a class="btn btn-primary getMyFormModal" href="{{ route('admin.content-pages.create') }}"
+                    {{-- <a class="btn btn-primary getMyFormModal" href="{{ route('admin.content-pages.create') }}"
                     data-title="{{ __('global.add_page') }}"
                     data-url="{{ route('admin.form.getMyForm') }}"
                     data-form-name="{{ encrypt('Add Page') }}"
                     data-id="{{ encrypt('0') }}">
                     
                         {{ trans('global.add') }} {{ trans('cruds.contentPage.title_singular') }}
-                    </a>
+                    </a> --}}
+                    <a href="{{ route('admin.content-pages.create') }}" class="btn btn-primary">{{ trans('global.add') }} {{ trans('cruds.contentPage.title_singular') }}</a>
+
                 @endcan
 
             </div>
