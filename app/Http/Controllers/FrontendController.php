@@ -10,6 +10,7 @@ use App\Models\CompanyAdvertisement;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
 use App\Mail\LoginLinkEmail;
+use Parsedown;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 
