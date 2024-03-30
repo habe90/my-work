@@ -23,21 +23,24 @@
     </div>
 
     <!-- Polje za kategoriju bez Livewire-a i s NiceSelect -->
-    <div class="form-group {{ $errors->has('category') ? 'invalid' : '' }}">
-        <label class="form-label" for="category">{{ trans('cruds.contentPage.fields.category') }}</label>
-        <select class="selectize form-control" id="category" name="category[]" multiple>
-            @foreach ($this->listsForFields['category'] as $value => $label)
-                <option value="{{ $value }}">{{ $label }}</option>
-            @endforeach
-        </select>
-        
-        <div class="validation-message">
-            {{ $errors->first('category') }}
-        </div>
-        <div class="help-block">
-            {{ trans('cruds.contentPage.fields.category_helper') }}
+    <div wire:ignore>
+        <div class="form-group {{ $errors->has('category') ? 'invalid' : '' }}">
+            <label class="form-label" for="category">{{ trans('cruds.contentPage.fields.category') }}</label>
+            <select class="selectize form-control" id="category" wire:model="category" multiple>
+                @foreach ($this->listsForFields['category'] as $value => $label)
+                    <option value="{{ $value }}">{{ $label }}</option>
+                @endforeach
+            </select>
+            
+            <div class="validation-message">
+                {{ $errors->first('category') }}
+            </div>
+            <div class="help-block">
+                {{ trans('cruds.contentPage.fields.category_helper') }}
+            </div>
         </div>
     </div>
+    
 
     <!-- Polje za tagove bez Livewire-a i s NiceSelect -->
     <div class="form-group {{ $errors->has('tag') ? 'invalid' : '' }}">
