@@ -99,13 +99,9 @@
                                         </a>
                                     @endcan
                                     @can('content_page_edit')
-                                        <a class="btn btn-sm btn-success mr-2 getMyFormModal"
-                                            data-title="{{ __('cruds.reviews.edit_review') }}"
-                                            data-url="{{ route('admin.form.getMyForm') }}"
-                                            data-form-name="{{ encrypt('Add Page') }}"
-                                            data-id="{{ encrypt($contentPage->id) }}">
-                                            <i class='bx bx-pencil'></i> {{ trans('global.edit') }}
-                                        </a>
+                                    <a class="btn btn-sm btn-success mr-2" href="{{ route('admin.content-pages.edit', $contentPage) }}">
+                                        {{ trans('global.edit') }}
+                                    </a>
                                     @endcan
                                     @can('content_page_delete')
                                         <button class="btn btn-sm btn-danger mr-2" type="button"
