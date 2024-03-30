@@ -75,6 +75,11 @@ class Create extends Component
                 'string',
                 'required',
             ],
+            'contentPage.slug' => [
+                'string',
+                'nullable',
+            ],
+            
             'category' => [
                 'array',
             ],
