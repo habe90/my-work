@@ -97,6 +97,7 @@
     <script src="{{ asset('assets/js/quill.js') }}"></script>
     <script src="{{ asset('assets/js/nice-select2.js') }}"></script>
     <script src="https://cdn.tiny.cloud/1/kogebhbcuwq3uf9z1g2is76m1097ansbqfvjnravrnnlf0yc/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
+    <script src="{{ asset('assets/js/easymde.min.js') }}"></script>
     <script>
         document.addEventListener('alpine:init', () => {
             // main section

@@ -91,15 +91,20 @@
 </form>
 
 <script>
-    document.addEventListener("DOMContentLoaded", function() {
-        // NiceSelect inicijalizacija
-        var selects = document.querySelectorAll(".selectize");
-        selects.forEach(function(select) {
-            NiceSelect.bind(select);
+    document.addEventListener('livewire:load', function () {
+        // Ponovna inicijalizacija NiceSelect-a svaki put kada Livewire ažurira DOM
+        Livewire.hook('message.processed', (message, component) => {
+            var selects = document.querySelectorAll(".selectize");
+            selects.forEach(function(select) {
+                if (!select.hasAttribute('data-nice-select-initialized')) {
+                    NiceSelect.bind(select);
+                    select.setAttribute('data-nice-select-initialized', 'true');
+                }
+            });
         });
 
-        // EasyMDE inicijalizacija za polje 'page_text'
-        new EasyMDE({
+        // EasyMDE inicijalizacija za 'page_text'
+        var easyMDEPageText = new EasyMDE({
             element: document.getElementById('mde-page_text'),
             autosave: {
                 enabled: true,
@@ -108,8 +113,8 @@
             }
         });
 
-        // EasyMDE inicijalizacija za polje 'excerpt'
-        new EasyMDE({
+        // EasyMDE inicijalizacija za 'excerpt'
+        var easyMDEExcerpt = new EasyMDE({
             element: document.getElementById('mde-excerpt'),
             autosave: {
                 enabled: true,
@@ -119,7 +124,7 @@
         });
 
         // FileUploadWithPreview inicijalizacija za 'featured_image'
-        new FileUploadWithPreview('myFirstImage', {
+        var myFirstImage = new FileUploadWithPreview('myFirstImage', {
             images: {
                 baseImage: 'assets/images/file-preview.png',
                 backgroundImage: '',
@@ -127,3 +132,4 @@
         });
     });
 </script>
+
