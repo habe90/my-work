@@ -20,7 +20,7 @@
             {{ trans('cruds.contentPage.fields.slug_helper') }}
         </div>
     </div>
-
+    <div wire:ignore>
     <div class="form-group {{ $errors->has('category') ? 'invalid' : '' }}">
         <label class="form-label" for="category">{{ trans('cruds.contentPage.fields.category') }}</label>
         <select class="form-control" id="category" name="category" wire:model="category" multiple>
@@ -35,7 +35,8 @@
             {{ trans('cruds.contentPage.fields.category_helper') }}
         </div>
     </div>
-
+</div>
+<div wire:ignore>
     <div class="form-group {{ $errors->has('tag') ? 'invalid' : '' }}">
         <label class="form-label" for="tag">{{ trans('cruds.contentPage.fields.tag') }}</label>
         <select class="form-control" id="tag" name="tag" wire:model="tag" multiple>
@@ -50,6 +51,7 @@
             {{ trans('cruds.contentPage.fields.tag_helper') }}
         </div>
     </div>
+</div>
 
     <div wire:ignore class="form-group {{ $errors->has('contentPage.page_text') ? 'invalid' : '' }}">
         <label class="form-label" for="page_text">{{ trans('cruds.contentPage.fields.page_text') }}</label>
