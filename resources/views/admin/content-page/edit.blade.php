@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 @section('content')
-    <div class="animate__animated p-6" :class="[$store.app.animation]">
+       <div class="animate__animated p-6" :class="[$store.app.animation]">
         <div x-data="exportTable">
             <div class="panel">
            
