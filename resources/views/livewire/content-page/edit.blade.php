@@ -97,13 +97,11 @@
 
 <script>
     document.addEventListener("DOMContentLoaded", function() {
-        // Inicijalizacija NiceSelect ili slične biblioteke
         var selects = document.querySelectorAll('.selectize');
         selects.forEach(function(select) {
-            NiceSelect.bind(select);
+            NiceSelect.bind(select); // Zamijenite sa vašom bibliotekom ako nije NiceSelect
         });
 
-        // Dodavanje event listenera na select polja
         document.getElementById('category').addEventListener('change', function(e) {
             @this.set('category', Array.from(e.target.selectedOptions).map(option => option.value));
         });
@@ -112,39 +110,6 @@
             @this.set('tag', Array.from(e.target.selectedOptions).map(option => option.value));
         });
 
-        // Inicijalizacija i sinkronizacija EasyMDE editora
-        if (typeof EasyMDE !== 'undefined') {
-            // Page text editor
-            var easyMDEPageText = new EasyMDE({
-                element: document.getElementById('mde-page_text'),
-                initialValue: @this.page_text 
-            });
-            easyMDEPageText.codemirror.on('change', function() {
-                @this.set('contentPage.page_text', easyMDEPageText.value());
-            });
-
-            // Excerpt editor
-            var easyMDEExcerpt = new EasyMDE({
-                element: document.getElementById('mde-excerpt')
-            });
-            easyMDEExcerpt.codemirror.on('change', function() {
-                @this.set('contentPage.excerpt', easyMDEExcerpt.value());
-            });
-        } else {
-            console.error('EasyMDE nije definisan.');
-        }
-
-        // Inicijalizacija FileUploadWithPreview ako je potrebno
-        if (typeof FileUploadWithPreview !== 'undefined' && FileUploadWithPreview.FileUploadWithPreview) {
-            // ... FileUploadWithPreview kod ...
-        } else {
-            console.error('FileUploadWithPreview nije definisan ili nije pravilno učitan.');
-        }
-    });
-
-
-    // Livewire hookovi za sinkronizaciju sa EasyMDE
-    Livewire.hook('message.processed', (message, component) => {
         if (typeof EasyMDE !== 'undefined') {
             var easyMDEPageText = new EasyMDE({
                 element: document.getElementById('mde-page_text'),
@@ -155,7 +120,8 @@
             });
 
             var easyMDEExcerpt = new EasyMDE({
-                element: document.getElementById('mde-excerpt')
+                element: document.getElementById('mde-excerpt'),
+                initialValue: @js($this->contentPage->excerpt) // Ako je potrebno
             });
             easyMDEExcerpt.codemirror.on('change', function() {
                 @this.set('contentPage.excerpt', easyMDEExcerpt.value());
@@ -163,11 +129,5 @@
         } else {
             console.error('EasyMDE nije definisan.');
         }
-    });
-</script>
-<script>
-    document.getElementById('category').addEventListener('change', function (e) {
-        var selected = Array.from(e.target.selectedOptions).map(option => option.value);
-        @this.set('category', selected);
     });
 </script>
