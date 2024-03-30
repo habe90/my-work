@@ -1,8 +1,8 @@
-<form wire:submit.prevent="submit" class="pt-3">
+<form wire:submit.prevent="submit" class="space-y-5">
 
     <div class="form-group {{ $errors->has('contentPage.title') ? 'invalid' : '' }}">
         <label class="form-label required" for="title">{{ trans('cruds.contentPage.fields.title') }}</label>
-        <input class="form-control" type="text" name="title" id="title" required wire:model.defer="contentPage.title">
+        <input class="form-input" type="text" name="title" id="title" required wire:model.defer="contentPage.title">
         <div class="validation-message">
             {{ $errors->first('contentPage.title') }}
         </div>
