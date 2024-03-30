@@ -6,6 +6,7 @@ use App\Models\ContentCategory;
 use App\Models\ContentPage;
 use App\Models\ContentTag;
 use Livewire\Component;
+use Illuminate\Support\Facades\Log;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
 class Create extends Component
@@ -59,6 +60,16 @@ class Create extends Component
     public function submit()
     {
         $this->validate();
+
+        Log::info('Forma je submitovana sa sljedećim podacima:', [
+            'title' => $this->contentPage->title,
+            'slug' => $this->contentPage->slug,
+            'category' => $this->category,
+            'tag' => $this->tag,
+            'page_text' => $this->contentPage->page_text,
+            'excerpt' => $this->contentPage->excerpt,
+            'media' => $this->mediaCollections,
+        ]);
 
         $this->contentPage->save();
         $this->contentPage->category()->sync($this->category);
