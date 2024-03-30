@@ -59,6 +59,15 @@ class Create extends Component
 
     public function submit()
     {
+
+        Log::info('Provjeravamo vrijednosti prije validacije:', [
+            'category' => $this->category,
+            'tag' => $this->tag,
+            'page_text' => $this->contentPage->page_text,
+            'excerpt' => $this->contentPage->excerpt,
+        
+        ]);
+
         $this->validate();
 
         Log::info('Forma je submitovana sa sljedećim podacima:', [
