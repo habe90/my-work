@@ -25,11 +25,12 @@
     <!-- Polje za kategoriju bez Livewire-a i s NiceSelect -->
     <div class="form-group {{ $errors->has('category') ? 'invalid' : '' }}">
         <label class="form-label" for="category">{{ trans('cruds.contentPage.fields.category') }}</label>
-        <select class="selectize form-control" id="category" name="category" multiple>
+        <select class="selectize form-control" id="category" name="category[]" multiple>
             @foreach ($this->listsForFields['category'] as $value => $label)
                 <option value="{{ $value }}">{{ $label }}</option>
             @endforeach
         </select>
+        
         <div class="validation-message">
             {{ $errors->first('category') }}
         </div>
