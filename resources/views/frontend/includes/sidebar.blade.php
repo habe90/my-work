@@ -33,6 +33,9 @@
                 <li class="{{ request()->is('bookmarks/view') ? 'active' : '' }}">
                     <a href="{{ route('bookmarks.index') }}"><i class="ti-bookmark"></i>{{ __('global.client-nav.bookmarks') }}</a>
                 </li>
+                <li class="{{ request()->is('bids') ? 'active' : '' }}">
+                    <a href="{{ route('bids.index') }}"><i class="ti-bookmark"></i>{{ __('global.client-nav.bids') }}</a>
+                </li>
             @else
                 <li class="{{ request()->is('dashboard') ? 'active' : '' }}">
                     <a href="{{ route('user.dashboard') }}"><i class="ti-dashboard"></i>{{__('global.client-nav.dashboard')}}</a>
