@@ -68,9 +68,7 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-    
-        // \Log::debug('Registration data:', $data);
-        return User::create([
+        $user = User::create([
             'name' => $data['name'],
             'last_name' => $data['last_name'], 
             'email' => $data['email'],
@@ -81,9 +79,16 @@ class RegisterController extends Controller
             'address' => $data['address'],
             'phone' => $data['phone'], 
         ]);
-
-        Mail::to($user->email)->send(new \App\Mail\WelcomeEmail($user));
+    
+        try {
+            \Mail::to($user->email)->send(new \App\Mail\WelcomeEmail($user));
+        } catch (\Exception $e) {
+            \Log::error("Failed to send welcome email: " . $e->getMessage());
+        }
+    
+        return $user;
     }
+    
 
 
     public function CompanyRegister(){
