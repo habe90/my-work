@@ -46,6 +46,7 @@
                                                     <tr>
                                                         <th>{{ __('cruds.bids.job_title') }}</th>
                                                         <th>{{ __('cruds.bids.offer') }}</th>
+                                                        <th>{{ __('cruds.bids.status') }}</th>
                                                         <th>{{ __('cruds.bids.date') }}</th>
                                                         <!-- Add additional columns here as needed -->
                                                     </tr>
@@ -55,6 +56,7 @@
                                                         <tr>
                                                             <td>{{ $bid->job->title }}</td>
                                                             <td>{{ $bid->amount }}</td>
+                                                            <td>{{ $bid->status }}</td>
                                                             <td>{{ $bid->created_at->format('d.m.Y') }}</td>
                                                         </tr>
                                                     @endforeach
