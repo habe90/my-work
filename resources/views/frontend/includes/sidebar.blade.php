@@ -3,7 +3,7 @@
     @media (max-width: 768px) {
     .dashboard-navbar {
         position: fixed;
-        bottom: 0;
+        bottom: -22px;
         left: 0; /* Dodano da se osigura da bottom bar počinje od lijeve ivice */
         right: 0; /* Dodano da se osigura da bottom bar ide do desne ivice */
         width: 100vw; /* Podesite širinu na 100 viewport width da prekrije cijelu širinu ekrana */
