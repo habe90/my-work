@@ -69,7 +69,7 @@ class RegisterController extends Controller
     protected function create(array $data)
     {
     
-        \Log::debug('Registration data:', $data);
+        // \Log::debug('Registration data:', $data);
         return User::create([
             'name' => $data['name'],
             'last_name' => $data['last_name'], 
@@ -81,6 +81,8 @@ class RegisterController extends Controller
             'address' => $data['address'],
             'phone' => $data['phone'], 
         ]);
+
+        \Mail::to($user->email)->send(new \App\Mail\WelcomeEmail($user));
     }
 
 
