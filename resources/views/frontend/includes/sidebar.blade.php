@@ -52,7 +52,25 @@
     overflow-x: hidden; /* Sprječava horizontalno skrolovanje */
 }
 
+.sidebar {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: -100%; /* Sidebar je inicijalno skriven sa desne strane */
+    width: 250px; /* ili koliko želite */
+    background: #fff;
+    z-index: 100;
+    transition: right 0.3s; /* Animacija za otvaranje i zatvaranje */
 }
+
+.sidebar.open {
+    right: 0; /* Kad je sidebar otvoren, pomjerite ga da prekrije sadržaj */
+}
+
+
+}
+
+
 
 
 </style>
@@ -70,11 +88,22 @@
             <span>{{__('global.client-nav.messages')}}</span>
          
         </a>
+        <a href="#" id="sidebarToggle">
+            <i class="ti-menu"></i>
+            <span>Other</span>
+        </a>
         <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
             <i class="ti-power-off"></i>
             <span>Abmelden</span>
         </a>
     </div>
+
+    <div id="sidebar" class="sidebar d-md-none">
+        <ul id="metismenu">
+            <!-- ... vaše stavke koje želite u sidebaru ... -->
+        </ul>
+    </div>
+    
     
 								
     <div class="d-user-avater">
@@ -164,3 +193,16 @@
     </div>
     
 </div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+    var sidebarToggle = document.getElementById('sidebarToggle');
+    var sidebar = document.getElementById('sidebar');
+
+    sidebarToggle.addEventListener('click', function (e) {
+        e.preventDefault();
+        sidebar.classList.toggle('open');
+    });
+});
+
+</script>
