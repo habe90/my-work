@@ -25,6 +25,7 @@ return [
     'select' => 'Select',
     'yes' => 'Yes',
     'postal_code' => 'Postal code',
+    'city' => 'City',
     'no' => 'No',
     'save_envoded' => 'Save encoded',
     'validation' => 'Validation',
