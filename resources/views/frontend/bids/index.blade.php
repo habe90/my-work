@@ -20,7 +20,7 @@
                                     <ol class="breadcrumb">
                                         <li class="breadcrumb-item"><a href="#">Home</a></li>
                                         <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
-                                        <li class="breadcrumb-item active" aria-current="page">{{ __('crud.bids.title') }}</li>
+                                        <li class="breadcrumb-item active" aria-current="page">{{ __('cruds.bids.title') }}</li>
                                     </ol>
                                 </nav>
                             </div>
@@ -34,7 +34,7 @@
                             <div class="_dashboard_content">
                                 <div class="_dashboard_content_header">
                                     <div class="_dashboard__header_flex">
-                                        <h4><i class="fa fa-user mr-1"></i>{{ __('crud.bids.manage') }}</h4>
+                                        <h4><i class="fa fa-user mr-1"></i>{{ __('cruds.bids.manage') }}</h4>
                                     </div>
                                 </div>
 
@@ -44,9 +44,9 @@
                                             <table class="table">
                                                 <thead>
                                                     <tr>
-                                                        <th>{{ __('crud.bids.job_title') }}</th>
-                                                        <th>{{ __('crud.bids.offer') }}</th>
-                                                        <th>{{ __('crud.bids.date') }}</th>
+                                                        <th>{{ __('cruds.bids.job_title') }}</th>
+                                                        <th>{{ __('cruds.bids.offer') }}</th>
+                                                        <th>{{ __('cruds.bids.date') }}</th>
                                                         <!-- Add additional columns here as needed -->
                                                     </tr>
                                                 </thead>
@@ -66,7 +66,7 @@
                                                 {{ $userBids->links() }}
                                             </div>
                                         @else
-                                            <p>{{ __('crud.bids.no_offers') }}</p>
+                                            <p>{{ __('cruds.bids.no_offers') }}</p>
                                         @endif
 
                                     </div>
