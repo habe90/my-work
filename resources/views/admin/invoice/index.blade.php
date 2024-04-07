@@ -22,8 +22,8 @@
             {{-- Uputstvo za Cron naredbu --}}
             <div class="mt-6">
                 
-                <h3 class="text-lg font-medium leading-6 text-gray-900">{{ __('global.cron.instruction') }}</h3>
-                <p class="mt-1 text-sm text-gray-600">{{ __('global.cron.description') }}</p>
+                <h3 class="text-lg font-medium leading-6 text-gray-900">{{ __('global.instruction') }}</h3>
+                <p class="mt-1 text-sm text-gray-600">{{ __('global.description') }}</p>
                 <pre class="bg-gray-100 rounded-md p-4 mt-2"><code>{{ __('global.command') }}</code></pre>
 
 
