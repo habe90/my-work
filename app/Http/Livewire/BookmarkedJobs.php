@@ -13,14 +13,14 @@ class BookmarkedJobs extends Component
     public function mount()
     {
         $user = Auth::user();
-
+    
         if ($user && $user->type == 'company') {
             $this->bookmarkedJobs = Bookmark::with('job')
                 ->where('user_id', $user->id)
-                ->get()
-                ->pluck('job')->all(); // Konvertovanje kolekcije u niz
+                ->get(); // Uklonjeno pluck('job')->all();
         }
     }
+    
 
     public function render()
     {
