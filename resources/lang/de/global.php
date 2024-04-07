@@ -20,6 +20,7 @@ return [
         'jobs' => 'Jobs',
         'active_jobs' => 'Meine Jobs',
         'post_job' => 'Einen Job veröffentlichen',
+        'bookmarks' => 'Lesezeichen für Jobs setzen',
     ],
 
     'all' => 'Alle',
