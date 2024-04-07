@@ -213,6 +213,7 @@ return [
 
     'bookmark' => [
         'no_bookmarked_jobs' => 'Keine gespeicherten Jobs gefunden.',
+        'brad_title' => 'Gemerkte Jobs',
      ],
 
     'contentPage' => [

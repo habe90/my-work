@@ -233,6 +233,7 @@ return [
     ],
     'bookmark' => [
        'no_bookmarked_jobs' => 'No bookmarked jobs found.',
+       'brad_title' => 'Bookmarked Jobs',
     ],
     'contentTag' => [
         'title'          => 'Tags',

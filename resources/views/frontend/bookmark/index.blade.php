@@ -41,7 +41,7 @@
                             <div class="_dashboard_content">
                                 <div class="_dashboard_content_header">
                                     <div class="_dashboard__header_flex">
-                                        <h4><i class="fa fa-briefcase mr-1"></i>Gemerkte Jobs</h4>
+                                        <h4><i class="fa fa-briefcase mr-1"></i> {{ __('cruds.bookmark.brad_title') }}</h4>
                                     </div>
                                 </div>
 
