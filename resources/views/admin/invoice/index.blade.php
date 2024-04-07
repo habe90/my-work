@@ -24,7 +24,7 @@
                 
                 <h3 class="text-lg font-medium leading-6 text-gray-900">{{ __('global.cron.instruction') }}</h3>
                 <p class="mt-1 text-sm text-gray-600">{{ __('global.cron.description') }}</p>
-                <pre class="bg-gray-100 rounded-md p-4 mt-2"><code>{{ __('global.cron.command') }}</code></pre>
+                <pre class="bg-gray-100 rounded-md p-4 mt-2"><code>{{ __('global.command') }}</code></pre>
 
 
                 <h3 class="text-lg font-medium leading-6 text-gray-900 mt-4">{{ __('global.last_cron_run') }}</h3>
