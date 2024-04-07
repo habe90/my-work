@@ -9,7 +9,7 @@
                         <a href="{{ route('jobs.show', $bookmark->job->id) }}"><img src="{{ $bookmark->job->featured_image ?: 'https://via.placeholder.com/250x250' }}" class="img-fluid" alt="{{ $bookmark->job->title }}"></a>
                     </div>
                     <div class="_list_110_caption">
-                        <h4 class="_jb_title"><a href="{{ route('jobs.show', $bookmark->job->id) }}">{{ $bookmark->job->title }}</a></h4>
+                        <h4 class="_jb_title"><a href="{{ route('jobs.show', ['job' => myCryptie($bookmark->job->id, 'encode')]) }}">{{ $bookmark->job->title }}</a></h4>
                         <ul class="_grouping_list">
                             <!-- Ostali podaci o poslu -->
                             {{-- <li><span><i class="ti-briefcase"></i>{{ $bookmark->job->service_category_id }}</span></li> --}}
