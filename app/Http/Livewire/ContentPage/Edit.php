@@ -54,9 +54,9 @@ class Edit extends Component
     public function mount(ContentPage $contentPage)
     {
         $this->contentPage = $contentPage;
+        $this->slug = $this->contentPage->slug;
         $this->category    = $this->contentPage->category()->pluck('id')->toArray();
         $this->tag         = $this->contentPage->tag()->pluck('id')->toArray();
-        $this->slug        = $this->contentPage->slug;
         $this->initListsForFields();
         $this->mediaCollections = [
 
@@ -75,6 +75,7 @@ class Edit extends Component
     {
         $this->validate();
 
+        // Ažuriranje slug-a i ostalih podataka
         $this->contentPage->slug = $this->slug;
         $this->contentPage->save();
         $this->contentPage->category()->sync($this->category);
@@ -84,6 +85,7 @@ class Edit extends Component
         return redirect()->route('admin.content-pages.index');
     }
 
+
     protected function rules(): array
     {
         return [
@@ -91,11 +93,13 @@ class Edit extends Component
                 'string',
                 'required',
             ],
-            'slug' => [ 
-                'string',
+            'contentPage.slug' => [
                 'required',
-                'unique:content_pages,slug,' . $this->contentPage->id,
+                'string',
+                \Illuminate\Validation\Rule::unique('content_pages', 'slug')->ignore($this->contentPage->id),
             ],
+            
+
             'category' => [
                 'array',
             ],

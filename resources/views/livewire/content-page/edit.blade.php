@@ -10,7 +10,7 @@
         </div>
     </div>
 
-    <div class="form-group {{ $errors->has('contentPage.slug') ? 'invalid' : '' }}">
+    <div wire:ignore class="form-group {{ $errors->has('contentPage.slug') ? 'invalid' : '' }}">
         <label class="form-label required" for="slug">{{ trans('cruds.contentPage.fields.slug') }}</label>
         <input class="form-input" type="text" name="slug" id="slug" required wire:model="contentPage.slug">
         <div class="validation-message">
