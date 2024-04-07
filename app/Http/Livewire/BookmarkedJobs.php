@@ -14,7 +14,7 @@ class BookmarkedJobs extends Component
     {
         $user = Auth::user();
     
-        if ($user && $user->type == 'company') {
+        if ($user && $user->user_type == 'company') {
             $this->bookmarkedJobs = Bookmark::with('job')
                 ->where('user_id', $user->id)
                 ->get(); // Uklonjeno pluck('job')->all();
