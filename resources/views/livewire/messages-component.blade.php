@@ -3,9 +3,11 @@
         <div class="messages-headline">
             <h4>Mitteilungsverlauf</h4>
             @if (!$conversations->isEmpty() && $selectedConversationId)
-            <a href="#" class="message-action" wire:click.prevent="deleteConversation({{ $selectedConversationId }})"><i class="ti-trash"></i> Konversation löschen</a>
-         @endif
-        
+                <a href="#" class="message-action"
+                    wire:click.prevent="deleteConversation({{ $selectedConversationId }})"><i class="ti-trash"></i>
+                    Konversation löschen</a>
+            @endif
+
         </div>
         <div class="messages-container-inner">
 
@@ -20,7 +22,8 @@
                                 <a href="#" wire:click="selectConversation({{ $conversation->id }})">
                                     <div class="dash-msg-avatar"><img src="https://via.placeholder.com/500x500"
                                             alt="">
-                                            <span class="_user_status {{ $this->isUserOnline(optional(optional($conversation->bids->first())->user)->id) ? 'online' : 'offline' }}"></span>
+                                        <span
+                                            class="_user_status {{ $this->isUserOnline(optional(optional($conversation->bids->first())->user)->id) ? 'online' : 'offline' }}"></span>
 
 
 
@@ -29,14 +32,16 @@
                                     <div class="message-by">
                                         <div class="message-by-headline">
                                             @if ($conversation->bids->isNotEmpty() && optional($conversation->bids->first())->user)
-                                            <h5>{{ $conversation->bids->first()->user->name }}</h5>
-                                            <span>{{ $conversation->bids->first()->created_at->diffForHumans() }}</span>
-                                        @else
-                                            <h5>Der Benutzer ist nicht verfügbar</h5>
-                                        @endif
-                                        
+                                                <h5>{{ $conversation->bids->first()->user->name }}</h5>
+                                                <span>{{ $conversation->bids->first()->created_at->diffForHumans() }}</span>
+                                            @else
+                                                <h5>Der Benutzer ist nicht verfügbar</h5>
+                                            @endif
+
                                         </div>
-                                        <p>In der Anzeige:: {{ optional(optional($conversation->bids->first())->job)->title ?? 'Titel nicht verfügbar' }}</p>
+                                        <p>In der Anzeige::
+                                            {{ optional(optional($conversation->bids->first())->job)->title ?? 'Titel nicht verfügbar' }}
+                                        </p>
 
                                     </div>
                                 </a>
@@ -69,7 +74,8 @@
                             <div class="message-plunch">
                                 <div class="dash-msg-avatar">
                                     @if ($message['user']['image'])
-                                        <img src="{{ $message['user']['image'] }}" alt="{{ $message['user']['name'] }}">
+                                        <img src="{{ $message['user']['image'] }}"
+                                            alt="{{ $message['user']['name'] }}">
                                     @else
                                         <img src="https://via.placeholder.com/500x500" alt="">
                                     @endif
@@ -93,7 +99,8 @@
                                 <textarea wire:model="newMessage" cols="40" rows="3" class="form-control with-light"
                                     placeholder="Vaša poruka ovdje.."></textarea>
                             </div>
-                            <button type="submit" class="btn dark-2" @unless($newMessage) disabled @endunless>Nachricht senden</button>
+                            <button type="submit" class="btn dark-2"
+                                @unless ($newMessage) disabled @endunless>Nachricht senden</button>
 
                         </form>
                     </div>
