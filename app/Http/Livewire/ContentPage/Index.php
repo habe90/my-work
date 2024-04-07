@@ -87,6 +87,20 @@ class Index extends Component
         $this->resetSelected();
     }
 
+    public function toggleActive($id)
+{
+    abort_if(Gate::denies('content_page_edit'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+
+    $contentPage = ContentPage::find($id);
+    if ($contentPage) {
+        $contentPage->active = !$contentPage->active;
+        $contentPage->save();
+
+        $this->emit('alert', ['type' => 'success', 'message' => 'Stanje aktivnosti promijenjeno.']);
+    }
+}
+
+
     public function delete(ContentPage $contentPage)
     {
         abort_if(Gate::denies('content_page_delete'), Response::HTTP_FORBIDDEN, '403 Forbidden');

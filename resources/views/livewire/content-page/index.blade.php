@@ -70,6 +70,11 @@
                                 {{ $contentPage->title }}
                             </td>
                             <td>
+                                <button class="btn btn-{{ $contentPage->active ? 'success' : 'secondary' }}" wire:click="toggleActive({{ $contentPage->id }})">
+                                    {{ $contentPage->active ? 'Yes' : 'No' }}
+                                </button>
+                            </td>
+                            <td>
                                 @foreach ($contentPage->category as $key => $entry)
                                     <span class="badge badge-relationship">{{ $entry->name }}</span>
                                 @endforeach
