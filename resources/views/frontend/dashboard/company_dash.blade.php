@@ -75,7 +75,7 @@
 								<div class="col-xl-3 col-lg-6 col-md-6 col-sm-12">
 									<div class="dashboard-stat">	
 										<div class="dashboard-stat-icon widget-2"><i class="ti-pie-chart"></i></div>
-										<div class="dashboard-stat-content"><h4><span class="cto">{{ number_format($settings2['total_number']) }}</span></h4> <p>{{ $settings2['chart_title'] }}</p></div>
+										<div class="dashboard-stat-content"><h4><span class="cto"><a href="{{ route('review.show') }}">{{ number_format($settings2['total_number']) }}</a></span></h4> <p>{{ $settings2['chart_title'] }}</p></div>
 									</div>	
 								</div>
 								
