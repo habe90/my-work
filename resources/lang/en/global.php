@@ -24,6 +24,7 @@ return [
     'required' => 'Required',
     'select' => 'Select',
     'yes' => 'Yes',
+    'postal_code' => 'Postal code',
     'no' => 'No',
     'save_envoded' => 'Save encoded',
     'validation' => 'Validation',
