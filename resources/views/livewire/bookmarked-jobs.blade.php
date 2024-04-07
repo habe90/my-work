@@ -12,8 +12,7 @@
                         <h4 class="_jb_title"><a href="{{ route('jobs.show', $bookmark->job->id) }}">{{ $bookmark->job->title }}</a></h4>
                         <ul class="_grouping_list">
                             <!-- Ostali podaci o poslu -->
-                            <li><span><i class="ti-briefcase"></i>{{ $bookmark->job->service_category_id }}</span></li>
-                            <li><span><i class="ti-credit-card"></i>{{ $bookmark->job->salary_range }}</span></li>
+                            {{-- <li><span><i class="ti-briefcase"></i>{{ $bookmark->job->service_category_id }}</span></li> --}}
                             <li><span><i class="ti-location-pin"></i>{{ $bookmark->job->location }}</span></li>
                             <li><span><i class="ti-timer"></i>{{ $bookmark->job->created_at->diffForHumans() }}</span></li>
                         </ul>
