@@ -5,6 +5,6 @@
 </head>
 <body>
     <h1>Willkommen, {{ $user->name }}!</h1>
-    <p>Vielen Dank für Ihre Anmeldung bei <b>MY Work<b>. Wir freuen uns, Sie an Bord zu haben.</p>
+    <p>Vielen Dank für Ihre Anmeldung bei <b>MY Work</b>. Wir freuen uns, Sie an Bord zu haben.</p>
 </body>
 </html>

@@ -446,7 +446,8 @@ class FormController extends Controller
         
             if (!Auth::check()) {
                 // Ako korisnik nije ulogovan, sačuvajte podatke u sesiji i preusmjerite na prijavu/registraciju
-                session(['form_data' => $request->all()]);
+                session(['form_data' => $request->except(['featured_image', 'image_gallery'])]);
+
                 session()->save();
                 Log::info('Preusmjeravanje na email-check');
                 return redirect()->route('email-check');
