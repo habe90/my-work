@@ -93,7 +93,8 @@
                                 <textarea wire:model="newMessage" cols="40" rows="3" class="form-control with-light"
                                     placeholder="Vaša poruka ovdje.."></textarea>
                             </div>
-                            <button type="submit" class="btn dark-2">Nachricht senden</button>
+                            <button type="submit" class="btn dark-2" @unless($newMessage) disabled @endunless>Nachricht senden</button>
+
                         </form>
                     </div>
                 </div>
