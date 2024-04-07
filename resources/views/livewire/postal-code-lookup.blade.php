@@ -3,7 +3,7 @@
         {{ __('global.postal_code') }}
     </label>
     <input id="postal_code" wire:model.lazy="postalCode" type="text" class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full input-with-city"
-    placeholder="{{ __('global.postal_code') }}" required autocomplete="postal-code" />
+    placeholder="{{ __('global.postal_code') }}" required autocomplete="postal-code" name="address" />
 
     @error('postal_code')
         <div class="text-red-500">

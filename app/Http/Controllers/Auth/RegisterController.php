@@ -68,6 +68,7 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        dd($data);
         return User::create([
             'name' => $data['name'],
             'last_name' => $data['last_name'], // Spremite last_name
@@ -75,7 +76,7 @@ class RegisterController extends Controller
             'password' => Hash::make($data['password']),
             'status' => 'pending', // Postavite status na 'pending'
             'user_type' => 'client', // Postavite user_type na 'client'
-           
+            'address' => $data['address'],
             'phone' => $data['phone'], // Spremite broj telefona
         ]);
     }
