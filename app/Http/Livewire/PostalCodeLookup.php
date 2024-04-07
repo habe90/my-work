@@ -12,19 +12,26 @@ class PostalCodeLookup extends Component
 
     public function updatedPostalCode($value)
     {
-        if (strlen($value) === 5) {
+        if (!empty($value) && strlen($value) === 5) {
             $response = Http::get("https://api.postcodes.io/postcodes/{$value}/autocomplete");
-    
+
             if ($response->successful()) {
                 $data = $response->json();
-                // You'll need to parse this $data to find the city or area name
-                // Assume we have the city name in $data['result'][0]
-                $this->postalCode = $value . ' | ' . $data['result'][0];
+
+                // Dodajte provjeru da li 'result' postoji i nije prazan
+                if (!empty($data['result'])) {
+                    $this->city = $value . ' | ' . $data['result'][0];
+                } else {
+                    $this->city = $value . ' | Unknown';
+                }
             } else {
-                $this->postalCode = $value . ' | Unknown';
+                $this->city = $value . ' | Unknown';
             }
+        } elseif (empty($value)) {
+            $this->city = '';
         }
     }
+
     
 
     public function render()
