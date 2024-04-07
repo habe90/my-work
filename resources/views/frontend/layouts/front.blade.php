@@ -47,7 +47,7 @@
 
         @yield('content')
 
-        @unless (Request::is('dashboard') && Agent::isMobile())
+        @unless (Request::is('company-dashboard') && Agent::isMobile())
             @include('frontend.includes.footer')
         @endunless
 
