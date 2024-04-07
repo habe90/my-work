@@ -3,6 +3,7 @@
 namespace App\Http\Livewire;
 
 use Livewire\Component;
+use Illuminate\Support\Facades\Http;
 
 class PostalCodeLookup extends Component
 {
@@ -11,10 +12,22 @@ class PostalCodeLookup extends Component
 
     public function updatedPostalCode($value)
     {
-        if ($value === '10115') {
-            $this->postalCode = $value . ' | Berlin';
+        if (strlen($value) === 5) {
+            // Replace 'de' with the appropriate country code if necessary
+            $response = Http::get("https://openplzapi.org/de/Localities?postalCodePattern={$value}");
+
+            if ($response->successful()) {
+                $data = $response->json();
+                if (!empty($data['localities'])) {
+                    $this->postalCode = $value . ' | ' . $data['localities'][0]['locality'];
+                } else {
+                    $this->postalCode = $value . ' | Unknown';
+                }
+            } else {
+                $this->postalCode = $value . ' | Unknown';
+            }
         } else {
-            $this->postalCode = $value . ' | Unknown';
+            $this->city = '';
         }
     }
     
