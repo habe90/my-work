@@ -7,6 +7,13 @@ use App\Models\Bookmark;
 
 class BookmarkController extends Controller
 {
+
+    public function index(){
+
+    return view('frontend.bookmark.index');
+
+    }
+
     public function store(Request $request)
     {
         $bookmark = new Bookmark();

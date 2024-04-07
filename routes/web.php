@@ -91,6 +91,7 @@ Route::get('/user-reviews', [UserRatingController::class, 'showRatings'])->name(
 
 
 //bookmark
+Route::get('/bookmarks/view', [BookmarkController::class, 'index'])->name('bookmarks.index');
 Route::post('/bookmarks', [BookmarkController::class, 'store'])->name('bookmarks.store');
 Route::delete('/bookmarks/{id}', [BookmarkController::class ,'destroy'])->name('bookmarks.destroy');
 

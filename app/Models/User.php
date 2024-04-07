@@ -146,6 +146,17 @@ class User extends Authenticatable implements HasLocalePreference, HasMedia
         return $this->hasMany(UserRating::class, 'rated_user_id');
     }
 
+    public function companyBookmarks()
+    {
+        if ($this->type != 'company') {
+            return collect(); // Prazna kolekcija ukoliko korisnik nije kompanija.
+        }
+
+        return $this->hasMany(Bookmark::class)->whereHas('job', function (Builder $query) {
+            // Dodajte dodatne uslove za job, ako je potrebno.
+        })->with('job'); // Eager loading za poslove.
+    }
+
     
 
 
