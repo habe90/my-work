@@ -73,12 +73,12 @@
                                 {{ $contentPage->title }}
                             </td>
                             <td>
-                                <label class="inline-flex items-center cursor-pointer">
-                                    <input type="checkbox" class="sr-only peer" {{ $contentPage->active ? 'checked' : '' }} wire:click="toggleActive({{ $contentPage->id }})">
-                                    <div class="w-11 h-6 bg-gray-200 rounded-full peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 dark:bg-gray-700 peer-checked:bg-blue-600 peer-checked:after:translate-x-full after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600"></div>
-                                    <span class="ml-3 text-sm font-medium text-gray-900 dark:text-gray-300">{{ $contentPage->active ? 'Uključeno' : 'Isključeno' }}</span>
+                                <label class="relative h-6 w-12">
+                                    <input type="checkbox" class="custom_switch peer absolute top-0 z-10 h-full w-full cursor-pointer opacity-0 ltr:left-0 rtl:right-0" {{ $contentPage->active ? 'checked' : '' }} wire:click="toggleActive({{ $contentPage->id }})">
+                                    <span class="outline_checkbox bg-icon block h-full rounded-full border-2 border-[#ebedf2] before:absolute before:bottom-1 before:h-4 before:w-4 before:rounded-full before:bg-[#ebedf2] before:bg-[url('/path/to/close.svg')] before:bg-center before:bg-no-repeat before:transition-all before:duration-300 peer-checked:border-primary peer-checked:before:bg-primary peer-checked:before:bg-[url('/path/to/checked.svg')] ltr:before:left-1 ltr:peer-checked:before:left-7 rtl:before:right-1 rtl:peer-checked:before:right-7 dark:border-white-dark dark:before:bg-white-dark"></span>
                                 </label>
                             </td>
+                            
                             
                             <td>
                                 @foreach ($contentPage->category as $key => $entry)
