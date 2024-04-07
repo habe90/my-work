@@ -121,4 +121,37 @@ class MessagesComponent extends Component
             'selectedConversation' => $this->selectedConversation, // Proslijedite varijablu u view
         ]);
     }
+
+    public function deleteConversation($conversationId)
+{
+    $conversation = ImConversation::find($conversationId);
+
+    // Provjerite da li je razgovor pronađen i da li trenutni korisnik ima dozvolu za brisanje
+    if ($conversation && $this->userCanDeleteConversation($conversation)) {
+        $conversation->delete();
+
+        // Osvježite listu razgovora nakon brisanja
+        $this->loadConversations();
+
+        // Opcionalno: Resetujte selektovani razgovor ako je on bio obrisan
+        if ($this->selectedConversationId == $conversationId) {
+            $this->selectedConversationId = null;
+            $this->selectedConversation = null;
+        }
+
+        // Opcionalno: Prikažite poruku o uspješnom brisanju
+        session()->flash('message', 'Razgovor je uspješno obrisan.');
+    } else {
+        // Opcionalno: Prikažite poruku o grešci
+        session()->flash('error', 'Razgovor nije pronađen ili nemate dozvolu za brisanje.');
+    }
+}
+
+protected function userCanDeleteConversation($conversation)
+{
+    // Logika za provjeru da li trenutni korisnik ima dozvolu za brisanje razgovora
+    // Na primjer, provjerite da li je trenutni korisnik vlasnik razgovora
+    return auth()->id() == $conversation->user_id;
+}
+
 }
