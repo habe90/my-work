@@ -22,9 +22,10 @@
             {{-- Uputstvo za Cron naredbu --}}
             <div class="mt-6">
                 
-                <h3 class="text-lg font-medium leading-6 text-gray-900">Anleitung für den Cron-Befehl</h3>
-                <p class="mt-1 text-sm text-gray-600">Verwenden Sie diesen Cron-Befehl, um den Task für die Generierung von Rechnungen automatisch am letzten Tag jedes Monats um 17:00 Uhr auszuführen.</p>
-                <pre class="bg-gray-100 rounded-md p-4 mt-2"><code>0 17 * * * cd /pfad-zu-ihrem-projekt && php artisan schedule:run >> /dev/null 2>&1</code></pre>
+                <h3 class="text-lg font-medium leading-6 text-gray-900">{{ __('global.cron.instruction') }}</h3>
+                <p class="mt-1 text-sm text-gray-600">{{ __('global.cron.description') }}</p>
+                <pre class="bg-gray-100 rounded-md p-4 mt-2"><code>{{ __('global.cron.command') }}</code></pre>
+
 
                 <h3 class="text-lg font-medium leading-6 text-gray-900 mt-4">{{ __('global.last_cron_run') }}</h3>
                 <p class="mt-1 text-sm text-gray-600">
