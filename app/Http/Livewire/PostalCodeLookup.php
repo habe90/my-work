@@ -9,13 +9,14 @@ use Illuminate\Support\Facades\Log;
 class PostalCodeLookup extends Component
 {
     public $postalCode;
-    public $formattedAddress; 
+    public $address;
+    public $displayAddress;
 
     public function updatedPostalCode($value)
     {
         if (!empty($value)) {
-            $addressData = $this->getAddressFromPostalCode($value);
-            $this->formattedAddress = $addressData['formatted_address'] ?? 'Unknown Address';
+            $this->address = $this->getAddressFromPostalCode($value);
+            $this->displayAddress = $value . ' | ' . $this->address; // Prikaz poštanskog broja i adrese
         }
     }
 
