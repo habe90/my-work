@@ -11,6 +11,7 @@ return [
     'payment_for' => 'Zahlung für',
     'date' => 'Datum',
     'thank_you_for_your_purchase' => 'Danke für Ihren Einkauf!',
+    
 
     'client-nav' => [
         'dashboard' => 'Dashboard',
@@ -21,6 +22,7 @@ return [
         'active_jobs' => 'Meine Jobs',
         'post_job' => 'Einen Job veröffentlichen',
         'bookmarks' => 'Lesezeichen für Jobs setzen',
+        'bids' => 'Bieter verwalten',
     ],
 
     'all' => 'Alle',

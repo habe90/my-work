@@ -7,6 +7,7 @@ return [
     'messages' => 'Messages',
     'reviews' => 'Reviews',
     'bookmarks' => 'Bookmark Jobs',
+    'bids' => 'My bids',
     ],
     'all' => 'All',
     'no_invoices' => 'There are no invoices available for this month.',
