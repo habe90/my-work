@@ -4,8 +4,17 @@
     .dashboard-navbar {
         position: fixed;
         bottom: 0;
-        width: 100%;
+        left: 0; /* Dodano da se osigura da bottom bar počinje od lijeve ivice */
+        right: 0; /* Dodano da se osigura da bottom bar ide do desne ivice */
+        width: 100vw; /* Podesite širinu na 100 viewport width da prekrije cijelu širinu ekrana */
         z-index: 10;
+    }
+
+    /* Ovisno o strukturi vašeg HTML-a, možda ćete trebati resetovati marginu i padding na body ili roditeljskim elementima */
+    body, html {
+        margin: 0;
+        padding: 0;
+        overflow-x: hidden; /* Sprečava horizontalni scroll */
     }
 
     .d-user-avater, .d-navigation {
@@ -30,7 +39,15 @@
         display: block;
         margin: 0 auto;
     }
+
+    /* Ako postoje dodatni elementi koji ograničavaju širinu, resetujte njihove stilove također */
+    .nekaklasa {
+        padding: 0;
+        margin: 0;
+    }
+    /* ... ostali stilovi ... */
 }
+
 
 </style>
 
