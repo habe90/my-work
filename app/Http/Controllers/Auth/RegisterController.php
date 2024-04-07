@@ -148,6 +148,7 @@ class RegisterController extends Controller
         $user->password = bcrypt($request->password); 
         $user->user_type = 'company'; 
         $user->status = 'pending'; 
+        $user->locale = 'de'; 
         $user->activity = $request->activity;
         $user->company_name = $request->company_name;
         $user->vat_number = $request->vat_number;
