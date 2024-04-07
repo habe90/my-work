@@ -82,7 +82,7 @@ class RegisterController extends Controller
             'phone' => $data['phone'], 
         ]);
 
-        \Mail::to($user->email)->send(new \App\Mail\WelcomeEmail($user));
+        Mail::to($user->email)->send(new \App\Mail\WelcomeEmail($user));
     }
 
 
