@@ -219,6 +219,7 @@ return [
             'id_helper'             => ' ',
             'title'                 => 'Titel',
             'title_helper'          => ' ',
+            'active'                 => 'Ist eine aktive Seite?',
             'slug'                  => 'Slug',
             'slug_helper'           => 'Ein eindeutiger Text, der in der URL verwendet wird.',
             'category'              => 'Kategorien',

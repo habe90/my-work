@@ -41,6 +41,9 @@
                             @include('components.table.sort', ['field' => 'title'])
                         </th>
                         <th>
+                            {{ trans('cruds.contentPage.fields.active') }}
+                        </th>
+                        <th>
                             {{ trans('cruds.contentPage.fields.category') }}
                         </th>
                         <th>
