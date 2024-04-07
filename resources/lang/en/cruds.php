@@ -231,6 +231,9 @@ return [
             'deleted_at_helper' => ' ',
         ],
     ],
+    'bookmark' => [
+       'no_bookmarked_jobs' => 'No bookmarked jobs found.',
+    ],
     'contentTag' => [
         'title'          => 'Tags',
         'title_singular' => 'Tag',
@@ -277,5 +280,6 @@ return [
             'deleted_at_helper'     => ' ',
         ],
     ],
+
 
 ];

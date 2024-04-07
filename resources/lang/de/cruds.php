@@ -211,6 +211,10 @@ return [
         'title_singular' => 'Calendar',
     ],
 
+    'bookmark' => [
+        'no_bookmarked_jobs' => 'Keine gespeicherten Jobs gefunden.',
+     ],
+
     'contentPage' => [
         'title'          => 'Seiten',
         'title_singular' => 'Seite',

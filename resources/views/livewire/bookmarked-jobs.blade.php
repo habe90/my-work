@@ -22,8 +22,8 @@
             </div>
         </div>
         @empty
-        <p>{{ __('Keine gespeicherten Jobs gefunden.', [], 'de') }}</p>
-        <p>{{ __('No bookmarked jobs found.', [], 'en') }}</p>
+        <p>{{ __('cruds.bookmark.no_bookmarked_jobs') }}</p>
+
     @endforelse
 
 </div>
