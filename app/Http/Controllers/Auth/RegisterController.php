@@ -52,10 +52,10 @@ class RegisterController extends Controller
     {
         return Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],
-            'last_name' => ['required', 'string', 'max:255'], // Dodajte last_name pravila
+            'last_name' => ['required', 'string', 'max:255'], 
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
-            'postal_code' => ['required', 'string', 'max:255'], // Dodajte postal_code pravila
+            'address' => ['required', 'string', 'max:255'], 
             'phone' => ['required', 'string', 'max:255'], // Dodajte phone pravila
         ]);
     }
