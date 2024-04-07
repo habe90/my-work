@@ -49,8 +49,20 @@
                                     @enderror
                                 </div>
 
-                                @livewire('postal-code-lookup')
-
+                                <div class="relative w-full mb-3">
+                                    <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                                        for="address">
+                                        {{ __('global.postal_code') }}
+                                    </label>
+                                    <input id="address" name="address" type="text"
+                                        class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full"
+                                        placeholder="{{ __('global.postal_code') }}" required autocomplete="address" />
+                                    @error('address')
+                                        <div class="text-red-500">
+                                            <small>{{ $message }}</small>
+                                        </div>
+                                    @enderror
+                                </div>
 
                                 <div class="relative w-full mb-3">
                                     <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2" for="phone">
