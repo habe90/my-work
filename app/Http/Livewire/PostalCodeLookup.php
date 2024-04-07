@@ -11,14 +11,13 @@ class PostalCodeLookup extends Component
 
     public function updatedPostalCode($value)
     {
-        // Ovde biste izvršili poziv ka API-ju ili nekoj interni servisu za pretragu
-        // Ovaj primer samo postavlja ime grada na osnovu unetog poštanskog koda
         if ($value === '10115') {
-            $this->city = 'Berlin';
+            $this->postalCode = $value . ' | Berlin';
         } else {
-            $this->city = 'Unknown';
+            $this->postalCode = $value . ' | Unknown';
         }
     }
+    
 
     public function render()
     {
