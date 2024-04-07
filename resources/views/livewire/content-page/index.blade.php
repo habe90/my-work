@@ -57,7 +57,7 @@
                             {{ trans('cruds.contentPage.fields.featured_image') }}
                         </th>
                         <th>
-                            Actions
+                           <p class="text-center">Actions</p>
                         </th>
                     </tr>
                 </thead>
