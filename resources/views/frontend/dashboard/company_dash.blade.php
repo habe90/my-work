@@ -67,7 +67,8 @@
 								<div class="{{ $settings1['column_class'] }}">
 									<div class="dashboard-stat">
 										<div class="dashboard-stat-icon widget-1"><i class="ti-location-pin"></i></div>
-										<div class="dashboard-stat-content"><h4><span class="cto"> {{ number_format($settings1['total_number']) }}</span></h4> <p> {{ $settings1['chart_title'] }}</p></div>
+										<div class="dashboard-stat-content"><h4><span class="cto"> <a href="{{ route('bids.index') }}">{{ number_format($settings1['total_number']) }}</a></span></h4> <p> {{ $settings1['chart_title'] }}</p></div>
+										
 									</div>	
 								</div>
 								
