@@ -3,7 +3,7 @@
         <div class="messages-headline">
             <h4>Mitteilungsverlauf</h4>
             @if (!$conversations->isEmpty() && $selectedConversationId)
-            <a href="#" class="message-action" wire:click.prevent="deleteConversation({{ $selectedConversationId }})"><i class="ti-trash"></i> Konversation löschen</a>
+            <a  class="message-action" wire:click.prevent="deleteConversation({{ $selectedConversationId }})"><i class="ti-trash"></i> Konversation löschen</a>
          @endif
         
         </div>
