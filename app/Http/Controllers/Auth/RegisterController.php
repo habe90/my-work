@@ -75,7 +75,8 @@ class RegisterController extends Controller
             'last_name' => $data['last_name'], // Spremite last_name
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
-            'status' => 'pending', // Postavite status na 'pending'
+            'status' => 'pending', 
+            'locale' => 'de', 
             'user_type' => 'client', // Postavite user_type na 'client'
             'address' => $data['address'],
             'phone' => $data['phone'], // Spremite broj telefona
