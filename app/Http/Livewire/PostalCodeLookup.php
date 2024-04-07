@@ -9,12 +9,13 @@ use Illuminate\Support\Facades\Log;
 class PostalCodeLookup extends Component
 {
     public $postalCode;
-    public $address;
+    public $formattedAddress; 
 
     public function updatedPostalCode($value)
     {
         if (!empty($value)) {
-            $this->address = $this->getAddressFromPostalCode($value);
+            $addressData = $this->getAddressFromPostalCode($value);
+            $this->formattedAddress = $addressData['formatted_address'] ?? 'Unknown Address';
         }
     }
 
