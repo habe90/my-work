@@ -11,7 +11,7 @@
         "dompdf/dompdf": "^2.0",
         "erusev/parsedown": "^1.7",
         "guzzlehttp/guzzle": "^7.8",
-        "jenssegers/agent": "*",
+        "jenssegers/agent": "^2.6",
         "laravel/framework": "^10.0",
         "laravel/sanctum": "^3.2",
         "laravel/tinker": "^2.8",

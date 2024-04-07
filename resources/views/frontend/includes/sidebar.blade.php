@@ -45,7 +45,13 @@
         padding: 0;
         margin: 0;
     }
-    /* ... ostali stilovi ... */
+    body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%; /* Osigurava da html i body uzimaju punu visinu */
+    overflow-x: hidden; /* Sprječava horizontalno skrolovanje */
+}
+
 }
 
 
