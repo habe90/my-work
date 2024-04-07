@@ -54,7 +54,8 @@
                                                 <tbody>
                                                     @foreach ($userBids as $bid)
                                                         <tr>
-                                                            <td>{{ $bid->job->title }}</td>
+                                                            
+                                                            <td><h4 class="_jb_title"><a href="{{ route('jobs.show', ['job' => myCryptie($bid->job->id, 'encode')]) }}">{{ $bid->job->title }}</a></h4></td>
                                                             <td>{{ $bid->amount }}</td>
                                                             <td>{{ $bid->status }}</td>
                                                             <td>{{ $bid->created_at->format('d.m.Y') }}</td>
