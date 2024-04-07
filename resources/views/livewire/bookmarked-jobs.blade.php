@@ -21,7 +21,8 @@
             </div>
             <div class="_list_jobs_f1ex">
                 <!-- Link za uklanjanje posla iz bookmarkova -->
-                <a href="#" class="_jb_apply">Entfernen</a>
+                <a href="#" wire:click.prevent="removeBookmark({{ $bookmark->id }})" class="_jb_apply">Entfernen</a>
+
             </div>
         </div>
     @empty
