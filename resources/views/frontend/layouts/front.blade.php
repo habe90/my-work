@@ -4,7 +4,7 @@
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 		<meta name="csrf-token" content="{{ csrf_token() }}">
-		<meta property="og:url"           content="http://127.0.0.1:8000" />
+		<meta property="og:url"           content="https://my-work.at/" />
 		<meta property="og:type"          content="website" />
 		<meta property="og:title"         content="Naslov_posla" />
 		<meta property="og:description"   content="Kratki_opis_posla" />

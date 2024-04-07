@@ -1,5 +1,60 @@
 
+<style>
+    @media (max-width: 768px) {
+    .dashboard-navbar {
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+        z-index: 10;
+    }
+
+    .d-user-avater, .d-navigation {
+        display: none; /* Sakrij originalni sidebar */
+    }
+
+    .bottom-nav {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        background: #ffffff; /* Ili bilo koja boja koju želite */
+        box-shadow: 0 -2px 5px rgba(0,0,0,0.1);
+        padding: 5px;
+    }
+
+    .bottom-nav a {
+        text-align: center;
+        flex-grow: 1;
+    }
+
+    .bottom-nav i {
+        display: block;
+        margin: 0 auto;
+    }
+}
+
+</style>
+
 <div class="dashboard-navbar overlio-top">
+
+    <div class="bottom-nav d-md-none"> <!-- d-md-none klasa sakriva bottom bar na uređajima većim od 768px -->
+        <a href="{{ route('company.dashboard') }}">
+            <i class="ti-dashboard"></i>
+            <span>{{__('global.client-nav.dashboard')}}</span>
+        </a>
+        <!-- Ponovite za sve ostale stavke koje želite u bottom bar -->
+        <a href="{{ route('messages.index') }}">
+            <i class="ti-email"></i>
+            <span>{{__('global.client-nav.messages')}}</span>
+            @if($unreadCount > 0)
+                <span class="badge badge-danger">{{ $unreadCount }}</span> 
+            @endif
+        </a>
+        <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+            <i class="ti-power-off"></i>
+            <span>Abmelden</span>
+        </a>
+    </div>
+    
 								
     <div class="d-user-avater">
         @if(Auth::check()) <!-- Provjera da li je korisnik prijavljen -->
