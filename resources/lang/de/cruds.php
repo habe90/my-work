@@ -245,6 +245,15 @@ return [
             'deleted_at_helper'     => ' ',
         ],
     ],
+
+    'bids' => [
+        'title' => 'Angebote verwalten',
+        'manage' => 'Angebote verwalten',
+        'job_title' => 'Jobtitel',
+        'offer' => 'Angebot',
+        'date' => 'Datum',
+        'no_offers' => 'Sie haben derzeit keine Angebote.'
+    ],
     
 
 ];

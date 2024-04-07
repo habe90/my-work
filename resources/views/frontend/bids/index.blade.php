@@ -1,13 +1,6 @@
 @extends('frontend.layouts.front')
 
 @section('content')
-    <div class="page-title bg-cover" style="background:url(https://via.placeholder.com/1920x980)no-repeat;" data-overlay="5">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12 col-md-12"></div>
-            </div>
-        </div>
-    </div>
 
     <section class="gray-bg pt-4">
         <div class="container-fluid">
@@ -27,7 +20,7 @@
                                     <ol class="breadcrumb">
                                         <li class="breadcrumb-item"><a href="#">Home</a></li>
                                         <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
-                                        <li class="breadcrumb-item active" aria-current="page">Angebote</li>
+                                        <li class="breadcrumb-item active" aria-current="page">{{ __('crud.bids.title') }}</li>
                                     </ol>
                                 </nav>
                             </div>
@@ -41,42 +34,40 @@
                             <div class="_dashboard_content">
                                 <div class="_dashboard_content_header">
                                     <div class="_dashboard__header_flex">
-                                        <h4><i class="fa fa-user mr-1"></i>Angebote verwalten</h4>
+                                        <h4><i class="fa fa-user mr-1"></i>{{ __('crud.bids.manage') }}</h4>
                                     </div>
                                 </div>
 
                                 <div class="_dashboard_content_body">
                                     <div class="row">
-                                        @if($userBids->count() > 0)
-                                        <table class="table">
-                                            <thead>
-                                                <tr>
-                                                    <th>Jobtitel</th>
-                                                    <th>Angebot</th>
-                                                    <th>Datum</th>
-                                                    <!-- Fügen Sie hier zusätzliche Spalten nach Bedarf ein -->
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                @foreach ($userBids as $bid)
+                                        @if ($userBids->count() > 0)
+                                            <table class="table">
+                                                <thead>
                                                     <tr>
-                                                        <td>{{ $bid->job->title }}</td>
-                                                        <td>{{ $bid->amount }}</td>
-                                                        <td>{{ $bid->created_at->format('d.m.Y') }}</td>
-                                                
+                                                        <th>{{ __('crud.bids.job_title') }}</th>
+                                                        <th>{{ __('crud.bids.offer') }}</th>
+                                                        <th>{{ __('crud.bids.date') }}</th>
+                                                        <!-- Add additional columns here as needed -->
                                                     </tr>
-                                                @endforeach
-                                            </tbody>
-                                        </table>
-                        
-                                        <!-- Pagination -->
-                                        <div class="pagination-wrap">
-                                            {{ $userBids->links() }}
-                                        </div>
-                                    @else
-                                        <p>Sie haben derzeit keine Angebote.</p>
-                                    @endif
+                                                </thead>
+                                                <tbody>
+                                                    @foreach ($userBids as $bid)
+                                                        <tr>
+                                                            <td>{{ $bid->job->title }}</td>
+                                                            <td>{{ $bid->amount }}</td>
+                                                            <td>{{ $bid->created_at->format('d.m.Y') }}</td>
+                                                        </tr>
+                                                    @endforeach
+                                                </tbody>
+                                            </table>
 
+                                            <!-- Pagination -->
+                                            <div class="pagination-wrap">
+                                                {{ $userBids->links() }}
+                                            </div>
+                                        @else
+                                            <p>{{ __('crud.bids.no_offers') }}</p>
+                                        @endif
 
                                     </div>
                                 </div>

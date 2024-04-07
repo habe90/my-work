@@ -282,5 +282,14 @@ return [
         ],
     ],
 
+    'bids' => [
+        'title' => 'Manage Offers',
+        'manage' => 'Manage Offers',
+        'job_title' => 'Job Title',
+        'offer' => 'Offer',
+        'date' => 'Date',
+        'no_offers' => 'You currently have no offers.'
+    ],
+
 
 ];
