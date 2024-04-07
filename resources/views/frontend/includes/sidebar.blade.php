@@ -45,9 +45,7 @@
         <a href="{{ route('messages.index') }}">
             <i class="ti-email"></i>
             <span>{{__('global.client-nav.messages')}}</span>
-            @if($unreadCount > 0)
-                <span class="badge badge-danger">{{ $unreadCount }}</span> 
-            @endif
+         
         </a>
         <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
             <i class="ti-power-off"></i>
