@@ -288,6 +288,7 @@ return [
         'job_title' => 'Job Title',
         'offer' => 'Offer',
         'date' => 'Date',
+        'status' => 'Status',
         'no_offers' => 'You currently have no offers.'
     ],
 

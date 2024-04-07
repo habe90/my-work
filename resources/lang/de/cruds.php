@@ -252,6 +252,7 @@ return [
         'job_title' => 'Jobtitel',
         'offer' => 'Angebot',
         'date' => 'Datum',
+        'status' => 'Status',
         'no_offers' => 'Sie haben derzeit keine Angebote.'
     ],
     
