@@ -27,7 +27,7 @@
                                     <ol class="breadcrumb">
                                         <li class="breadcrumb-item"><a href="#">Home</a></li>
                                         <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
-                                        <li class="breadcrumb-item active" aria-current="page">Bookmarked Jobs</li>
+                                        <li class="breadcrumb-item active" aria-current="page">{{ __('cruds.bookmark.brad_title') }}</li>
                                     </ol>
                                 </nav>
                             </div>
