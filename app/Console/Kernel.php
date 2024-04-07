@@ -12,7 +12,12 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule): void
     {
-        $schedule->command('invoices:generate')->lastDayOfMonth('17:00');
+        $schedule->command('invoices:generate')
+                 ->lastDayOfMonth('17:00')
+                 ->after(function () {
+                     // Sačuvaj trenutno vrijeme nakon što se komanda izvrši
+                     Cache::put('last_cron_run', now()->toDateTimeString());
+                 });
     }
 
     /**
