@@ -1,13 +1,7 @@
 @extends('frontend.layouts.front')
 @section('content')
     <!-- ============================ Page Title Start================================== -->
-    <div class="page-title bg-cover" style="background:url(https://via.placeholder.com/1920x980)no-repeat;" data-overlay="5">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12 col-md-12"></div>
-            </div>
-        </div>
-    </div>
+   
     <!-- ============================ Page Title End ================================== -->
     <section class="gray-bg pt-4">
         <div class="container-fluid">
