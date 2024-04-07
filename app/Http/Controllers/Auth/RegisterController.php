@@ -72,14 +72,14 @@ class RegisterController extends Controller
         \Log::debug('Registration data:', $data);
         return User::create([
             'name' => $data['name'],
-            'last_name' => $data['last_name'], // Spremite last_name
+            'last_name' => $data['last_name'], 
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
             'status' => 'pending', 
             'locale' => 'de', 
-            'user_type' => 'client', // Postavite user_type na 'client'
+            'user_type' => 'client', 
             'address' => $data['address'],
-            'phone' => $data['phone'], // Spremite broj telefona
+            'phone' => $data['phone'], 
         ]);
     }
 
