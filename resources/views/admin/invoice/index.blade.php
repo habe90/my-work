@@ -6,11 +6,11 @@
 
                 @can('content_page_create')
                     <a class="btn btn-primary getMyFormModal" href="{{ route('admin.content-pages.create') }}"
-                    data-title="{{ __('global.add_inovice') }}"
+                    data-title="{{ __('global.add_invoice') }}"
                     data-url="{{ route('admin.form.getMyForm') }}"
                     data-form-name="{{ encrypt('Add Inovice') }}"
                     data-id="{{ encrypt('0') }}">
-                        {{ trans('global.add_inovice') }} 
+                        {{ trans('global.add_invoice') }} 
                     </a>
                 @endcan
 

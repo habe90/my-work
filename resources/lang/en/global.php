@@ -17,6 +17,7 @@ return [
     'last_cron_run' => 'Last Cron Job Run',
     'last_cron_run_at' => 'The last run was at',
     'not_run_yet' => 'The Cron Job has not been run yet',
+    'add_invoice' => 'Add Invoice',
     'add_user' => 'Add user',
     'searchPlaceholder' => 'Search..',
     'invoices' => 'Invoices',
