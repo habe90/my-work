@@ -1,5 +1,5 @@
 <div>
-    @foreach($bookmarkedJobs as $job)
+    @forelse($bookmarkedJobs as $job)
         <div class="_list_jobs_wraps mng_list shadow_0 border">
             <div class="_list_jobs_f1ex first">
                 <div class="_list_110">
@@ -21,5 +21,9 @@
                 <a href="#" class="_jb_apply">Entfernen</a>
             </div>
         </div>
-    @endforeach
+        @empty
+        <p>{{ __('Keine gespeicherten Jobs gefunden.', [], 'de') }}</p>
+        <p>{{ __('No bookmarked jobs found.', [], 'en') }}</p>
+    @endforelse
+
 </div>

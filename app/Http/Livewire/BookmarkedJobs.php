@@ -13,7 +13,6 @@ class BookmarkedJobs extends Component
 
     public function mount()
     {
-        // Pretpostavljamo da je trenutno prijavljeni korisnik kompanija
         $user = Auth::user();
 
         if ($user && $user->type == 'company') {
@@ -26,6 +25,8 @@ class BookmarkedJobs extends Component
 
     public function render()
     {
-        return view('livewire.bookmarked-jobs');
+        return view('livewire.bookmarked-jobs', [
+            'hasBookmarks' => $this->bookmarkedJobs->isNotEmpty()
+        ]);
     }
 }
