@@ -84,12 +84,12 @@
                             
                             <td>
                                 @foreach ($contentPage->category as $key => $entry)
-                                    <span class="badge badge-relationship">{{ $entry->name }}</span>
+                                    <span class="badge whitespace-nowrap bg-primary">{{ $entry->name }}</span>
                                 @endforeach
                             </td>
                             <td>
                                 @foreach ($contentPage->tag as $key => $entry)
-                                    <span class="badge badge-relationship">{{ $entry->name }}</span>
+                                    <span class="badge whitespace-nowrap bg-primary">{{ $entry->name }}</span>
                                 @endforeach
                             </td>
                             <td>
