@@ -1,5 +1,5 @@
 <div>
-    @forelse($bookmarkedJobs as $job)
+    @foreach($bookmarkedJobs as $bookmark)
         <div class="_list_jobs_wraps mng_list shadow_0 border">
             <div class="_list_jobs_f1ex first">
                 <div class="_list_110">
@@ -21,9 +21,9 @@
                 <a href="#" class="_jb_apply">Entfernen</a>
             </div>
         </div>
-        @empty
-        <p>{{ __('cruds.bookmark.no_bookmarked_jobs') }}</p>
+        {{-- @empty
+        <p>{{ __('cruds.bookmark.no_bookmarked_jobs') }}</p> --}}
 
-    @endforelse
+        @endforeach
 
 </div>
