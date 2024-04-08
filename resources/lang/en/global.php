@@ -21,6 +21,7 @@ return [
     'add_user' => 'Add user',
     'searchPlaceholder' => 'Search..',
     'instruction' => 'Cron Command Instruction',
+    'relevant_jobs' => 'Relevant jobs near you',
     'description' => 'Use this cron command to automatically run the invoice generation task on the last day of every month at 17:00.',
     'command' => '0 17 * * * cd /path-to-your-project && php artisan schedule:run >> /dev/null 2>&1',
     'invoices' => 'Invoices',

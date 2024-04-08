@@ -33,6 +33,7 @@ return [
     'add_page' => 'Seite hinzufügen',
     'add_user' => 'Benutzer hinzufügen',
     'last_cron_run' => 'Letzte Ausführung des Cron-Jobs',
+    'relevant_jobs' => 'Relevante Jobs in Ihrer Nähe',
     'last_cron_run_at' => 'Die letzte Ausführung war um',
     'not_run_yet' => 'Der Cron-Job wurde noch nicht ausgeführt',
     'invoices' => 'Rechnungen',

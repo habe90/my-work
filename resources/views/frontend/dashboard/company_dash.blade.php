@@ -150,7 +150,7 @@
 								@endif
 								
 							</div>	
-							<h4 class="text-center mb-4">Relevant jobs near you</h4>
+							<h4 class="text-center mb-4">{{ __('global.relevant_jobs')}}</h4>
 							@livewire('job-filter')
 						</div>
 						
