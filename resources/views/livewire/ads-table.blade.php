@@ -66,7 +66,7 @@
                                             data-title="{{ __('cruds.reviews.edit_review') }}"
                                             data-url="{{ route('admin.form.getMyForm') }}"
                                             data-form-name="{{ encrypt('ads') }}"
-                                            data-id="{{ encrypt($review->id) }}">
+                                            data-id="{{ encrypt($ad->id) }}">
                                             <i class='bx bx-pencil'></i> {{ trans('global.edit') }}
                                         </a>
                                     @endcan
