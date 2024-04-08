@@ -218,11 +218,11 @@
         @csrf
     </form> --}}
 </div>
-<script>
+{{-- <script>
     function toggleSidebar() {
         var sidebar = document.getElementById('sidebar');
         sidebar.classList.toggle('open');
     }
-</script>
+</script> --}}
 
 
