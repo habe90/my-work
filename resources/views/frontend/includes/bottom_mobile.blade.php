@@ -181,7 +181,7 @@
     </a>
 </div>
 
-{{-- <div id="sidebar" class="sidebar d-md-none">
+<div id="sidebar" class="sidebar d-md-none">
     <span class="close-sidebar" onclick="toggleSidebar()">&times; Close</span>
     <div class="user-avatar">
         @if (Auth::check())
@@ -191,7 +191,7 @@
             <span><i class="ti-location-pin"></i>{{ Auth::user()->address }}</span>
         @endif
     </div>
-    <ul id="metismenu">
+    <ul id="metismenu d-md-none">
         @if (Auth::user()->user_type == 'company')
             <li><a href="{{ route('review.show') }}"><i class="ti-star"></i> {{ __('global.client-nav.reviews') }}</a>
             </li>
@@ -220,6 +220,6 @@
         var sidebar = document.getElementById('sidebar');
         sidebar.classList.toggle('open');
     }
-</script> --}}
+</script>
 
 
