@@ -59,6 +59,25 @@
                                     {{ $ad->is_active ? 'Aktiv' : 'Nicht aktiv' }}
                                 </span>
                             </td>
+                            <td>
+                                <div class="flex justify-end">
+                                    @can('permission_edit')
+                                        <a class="btn btn-sm btn-success mr-2 getMyFormModal"
+                                            data-title="{{ __('cruds.reviews.edit_review') }}"
+                                            data-url="{{ route('admin.form.getMyForm') }}"
+                                            data-form-name="{{ encrypt('ads') }}"
+                                            data-id="{{ encrypt($review->id) }}">
+                                            <i class='bx bx-pencil'></i> {{ trans('global.edit') }}
+                                        </a>
+                                    @endcan
+
+                                    <button class="btn btn-sm btn-rose mr-2" type="button"
+                                        wire:click="$emit('delete', {{ $ad->id }})" wire:loading.attr="disabled">
+                                        {{ trans('global.delete') }}
+                                    </button>
+
+                                </div>
+                            </td>
                         </tr>
                     @empty
                         <tr>
