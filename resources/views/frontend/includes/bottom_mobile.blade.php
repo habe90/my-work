@@ -188,7 +188,7 @@
             <img src="{{ Auth::user()->image ? Auth::user()->image : asset('frontend/img/no-image.jpg') }}"
                 alt="{{ Auth::user()->name }}" class="user-image">
             <h4 class="user-name">{{ Auth::user()->name }}</h4>
-            <!-- Ostali detalji korisnika -->
+            <span><i class="ti-location-pin"></i>{{ Auth::user()->address }}</span>
         @endif
     </div>
     <ul id="metismenu">
