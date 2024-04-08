@@ -50,6 +50,7 @@
         @unless (
             (Request::is('company-dashboard') ||
                 Request::is('bids') ||
+                Request::is('dashboard') ||
                 Request::is('bookmarks/view') ||
                 Request::is('user/my-profile') ||
                 Request::is('user/messages') ||
