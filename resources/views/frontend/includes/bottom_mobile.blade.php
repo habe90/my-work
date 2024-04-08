@@ -123,6 +123,40 @@
             cursor: pointer;
         }
 
+        .user-avatar {
+            text-align: center;
+            /* Centriranje sadržaja */
+            margin-bottom: 20px;
+            /* Razmak ispod avatara */
+        }
+
+        .user-avatar img.user-image {
+            width: 80px;
+            /* Veličina slike */
+            height: 80px;
+            /* Veličina slike */
+            border-radius: 50%;
+            /* Okrugli oblik */
+            object-fit: cover;
+            /* Osigurava da se slika pravilno prilagodi */
+            border: 3px solid #fff;
+            /* Opcijski, dodaje border oko slike */
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            /* Opcijski, dodaje senku za 3D efekt */
+            display: inline-block;
+            /* Omogućava primjenu margin i padding */
+            margin-top: -40px;
+            /* Pomjera sliku prema gore da bi izgledala kao da je na vrhu */
+        }
+
+        .user-avatar h4.user-name {
+            margin-top: 10px;
+            /* Razmak iznad imena */
+            color: #333;
+            /* Boja teksta */
+        }
+
+
     }
 </style>
 
@@ -151,19 +185,20 @@
     <span class="close-sidebar" onclick="toggleSidebar()">&times; Close</span>
     <div class="user-avatar">
         @if (Auth::check())
-            <img src="{{ Auth::user()->image ? Auth::user()->image : asset('frontend/img/no-image.jpg') }}" alt="{{ Auth::user()->name }}" class="user-image">
+            <img src="{{ Auth::user()->image ? Auth::user()->image : asset('frontend/img/no-image.jpg') }}"
+                alt="{{ Auth::user()->name }}" class="user-image">
             <h4 class="user-name">{{ Auth::user()->name }}</h4>
             <!-- Ostali detalji korisnika -->
         @endif
     </div>
     <ul id="metismenu">
         @if (Auth::user()->user_type == 'company')
-           
             <li><a href="{{ route('review.show') }}"><i class="ti-star"></i> {{ __('global.client-nav.reviews') }}</a>
             </li>
             <li><a href="{{ route('bookmarks.index') }}"><i
                         class="ti-bookmark"></i>{{ __('global.client-nav.bookmarks') }}</a></li>
-            <li><a href="{{ route('bids.index') }}"><i class="ti-briefcase"></i> {{ __('global.client-nav.bids') }}</a>
+            <li><a href="{{ route('bids.index') }}"><i class="ti-briefcase"></i>
+                    {{ __('global.client-nav.bids') }}</a>
             </li>
         @endif
         <li><a href="{{ route('users.profile') }}"><i class="ti-user"></i> {{ __('global.client-nav.profile') }}</a>
