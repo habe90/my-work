@@ -149,6 +149,13 @@
 
 <div id="sidebar" class="sidebar d-md-none">
     <span class="close-sidebar" onclick="toggleSidebar()">&times; Close</span>
+    <div class="user-avatar">
+        @if (Auth::check())
+            <img src="{{ Auth::user()->image ? Auth::user()->image : asset('frontend/img/no-image.jpg') }}" alt="{{ Auth::user()->name }}" class="user-image">
+            <h4 class="user-name">{{ Auth::user()->name }}</h4>
+            <!-- Ostali detalji korisnika -->
+        @endif
+    </div>
     <ul id="metismenu">
         @if (Auth::user()->user_type == 'company')
            
