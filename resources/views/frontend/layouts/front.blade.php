@@ -51,6 +51,7 @@
             (Request::is('company-dashboard') ||
                 Request::is('bids') ||
                 Request::is('bookmarks/view') ||
+                Request::is('user/my-profile') ||
                 Request::is('user-reviews')) &&
                 Agent::isMobile())
             @include('frontend.includes.footer')
