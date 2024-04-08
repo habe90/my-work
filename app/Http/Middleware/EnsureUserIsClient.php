@@ -10,7 +10,7 @@ class EnsureUserIsClient
 {
     public function handle(Request $request, Closure $next)
     {
-        if (Auth::check() && Auth::user()->user_type == 'user') {
+        if (Auth::check() && Auth::user()->user_type == 'client') {
             return $next($request);
         }
 
