@@ -181,7 +181,7 @@
     </a>
 </div>
 
-<div id="sidebar" class="sidebar d-md-none">
+{{-- <div id="sidebar" class="sidebar d-md-none">
     <span class="close-sidebar" onclick="toggleSidebar()">&times; Close</span>
     <div class="user-avatar">
         @if (Auth::check())
@@ -211,18 +211,15 @@
             <li><a href="{{ route('my-jobs') }}">{{ __('global.client-nav.active_jobs') }}</a></li>
             <li><a href="/">{{ __('global.client-nav.post_job') }}</a></li>
         @endcan
-        {{-- <li><a href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><i
-                    class="ti-power-off"></i> Abmelden</a></li> --}}
+      
     </ul>
-    {{-- <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-        @csrf
-    </form> --}}
+   
 </div>
 <script>
     function toggleSidebar() {
         var sidebar = document.getElementById('sidebar');
         sidebar.classList.toggle('open');
     }
-</script>
+</script> --}}
 
 
