@@ -63,7 +63,11 @@ Route::any('/company-save', [RegisterController::class, 'store'])->name('company
 
 //dashboard and bids jobs
 Route::get('/auftraggeber-info/so-funktionierts', [FrontendController::class, 'howtowork'])->name('how-to-work');
-Route::get('/dashboard', [DashboardController::class, 'index'])->name('user.dashboard');
+
+Route::get('/dashboard', [DashboardController::class, 'index'])
+    ->name('user.dashboard')
+    ->middleware(['auth', 'isClient']);
+
 
 //bids
 Route::get('/bids', [BidController::class, 'index'])->name('bids.index');
@@ -124,7 +128,10 @@ Route::put('/user/update-profile', [ProfileController::class, 'update'])->name('
 
 //company
 
-Route::get('/company-dashboard', [CompanyDashboardController::class, 'index'])->name('company.dashboard')->middleware('auth');
+Route::get('/company-dashboard', [CompanyDashboardController::class, 'index'])
+    ->name('company.dashboard')
+    ->middleware(['auth', 'isCompany']);
+
 
 
 
