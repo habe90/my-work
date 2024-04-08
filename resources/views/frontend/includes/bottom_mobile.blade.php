@@ -6,20 +6,23 @@
             left: 0;
             right: 0;
             width: 100vw;
+            /* Podesite širinu na 100 viewport width da prekrije cijelu širinu ekrana */
             z-index: 10;
         }
+
 
         body,
         html {
             margin: 0;
             padding: 0;
-            height: 100%;
             overflow-x: hidden;
+            /* Sprečava horizontalni scroll */
         }
 
         .d-user-avater,
         .d-navigation {
             display: none;
+            /* Sakrij originalni sidebar */
         }
 
         .bottom-nav {
@@ -27,6 +30,7 @@
             justify-content: space-around;
             align-items: center;
             background: #ffffff;
+            /* Ili bilo koja boja koju želite */
             box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
             padding: 5px;
         }
@@ -41,17 +45,39 @@
             margin: 0 auto;
         }
 
+
+        .nekaklasa {
+            padding: 0;
+            margin: 0;
+        }
+
+        body,
+        html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            /* Osigurava da html i body uzimaju punu visinu */
+            overflow-x: hidden;
+            /* Sprječava horizontalno skrolovanje */
+        }
+
         .sidebar {
             position: fixed;
             top: 0;
             bottom: 0;
             right: -250px;
+            /* Sidebar je inicijalno skriven sa desne strane */
             width: 250px;
+            /* ili koliko želite */
             background: #f9f9f9;
+            /* Siva boja pozadine kao na OLX */
             z-index: 100;
             transition: right 0.3s;
+            /* Animacija za otvaranje i zatvaranje */
             overflow-y: auto;
+            /* Omogućava skrolanje ako je sadržaj veći od visine ekrana */
             box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
+            /* Dodaje senku sa lijeve strane */
         }
 
         .sidebar.open {
@@ -60,23 +86,32 @@
 
         .sidebar ul {
             list-style-type: none;
+            /* Uklanja bullet points */
             padding: 0;
+            /* Uklanja padding */
             margin: 0;
+            /* Uklanja margin */
         }
 
         .sidebar ul li {
             padding: 10px 15px;
+            /* Dodaje padding oko linkova */
             border-bottom: 1px solid #ddd;
+            /* Dodaje liniju između stavki */
         }
 
         .sidebar ul li a {
             text-decoration: none;
+            /* Uklanja podcrtavanje linkova */
             color: #333;
+            /* Tamna boja teksta */
             display: block;
+            /* Čini cijelu površinu klikabilnom */
         }
 
         .sidebar ul li a:hover {
             background-color: #f0f0f0;
+            /* Mijenja boju pozadine pri hoveru */
         }
 
         .sidebar .close-sidebar {
@@ -90,24 +125,38 @@
 
         .user-avatar {
             text-align: center;
+            /* Centriranje sadržaja */
             margin-bottom: 20px;
+            /* Razmak ispod avatara */
         }
 
         .user-avatar img.user-image {
             width: 80px;
+            /* Veličina slike */
             height: 80px;
+            /* Veličina slike */
             border-radius: 50%;
+            /* Okrugli oblik */
             object-fit: cover;
+            /* Osigurava da se slika pravilno prilagodi */
             border: 3px solid #fff;
+            /* Opcijski, dodaje border oko slike */
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            /* Opcijski, dodaje senku za 3D efekt */
             display: inline-block;
+            /* Omogućava primjenu margin i padding */
             margin-top: -40px;
+            /* Pomjera sliku prema gore da bi izgledala kao da je na vrhu */
         }
 
         .user-avatar h4.user-name {
             margin-top: 10px;
+            /* Razmak iznad imena */
             color: #333;
+            /* Boja teksta */
         }
+
+
     }
 </style>
 
@@ -176,24 +225,4 @@
     }
 </script>
 
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        var sidebar = document.getElementById('sidebar');
-        var sidebarToggle = document.getElementById('sidebarToggle');
 
-        sidebarToggle.addEventListener('click', function(e) {
-            e.preventDefault();
-            sidebar.classList.toggle('open');
-        });
-
-        // Selektujemo element za zatvaranje sidebar-a koristeći klasu
-        var closeSidebar = document.querySelector('.close-sidebar');
-
-        // Dodajemo event listener za 'click' na element za zatvaranje sidebar-a
-        if (closeSidebar) { // Provjeravamo da li element postoji
-            closeSidebar.addEventListener('click', function() {
-                sidebar.classList.toggle('open');
-            });
-        }
-    });
-</script>
