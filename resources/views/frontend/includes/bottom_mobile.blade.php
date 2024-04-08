@@ -148,24 +148,24 @@
 </div>
 
 <div id="sidebar" class="sidebar d-md-none">
-    <span class="close-sidebar" onclick="toggleSidebar()">&times; Zatvori</span>
+    <span class="close-sidebar" onclick="toggleSidebar()">&times; Close</span>
     <ul id="metismenu">
         @if (Auth::user()->user_type == 'company')
             <li><a href="{{ route('company.dashboard') }}"><i
-                        class="ti-dashboard"></i>{{ __('global.client-nav.dashboard') }}</a></li>
-            <li><a href="{{ route('review.show') }}"><i class="ti-star"></i>{{ __('global.client-nav.reviews') }}</a>
+                        class="ti-dashboard"></i> {{ __('global.client-nav.dashboard') }}</a></li>
+            <li><a href="{{ route('review.show') }}"><i class="ti-star"></i> {{ __('global.client-nav.reviews') }}</a>
             </li>
             <li><a href="{{ route('bookmarks.index') }}"><i
                         class="ti-bookmark"></i>{{ __('global.client-nav.bookmarks') }}</a></li>
-            <li><a href="{{ route('bids.index') }}"><i class="ti-briefcase"></i>{{ __('global.client-nav.bids') }}</a>
+            <li><a href="{{ route('bids.index') }}"><i class="ti-briefcase"></i> {{ __('global.client-nav.bids') }}</a>
             </li>
         @endif
-        <li><a href="{{ route('users.profile') }}"><i class="ti-user"></i>{{ __('global.client-nav.profile') }}</a>
+        <li><a href="{{ route('users.profile') }}"><i class="ti-user"></i> {{ __('global.client-nav.profile') }}</a>
         </li>
-        <li><a href="{{ route('messages.index') }}"><i class="ti-email"></i>{{ __('global.client-nav.messages') }}</a>
+        <li><a href="{{ route('messages.index') }}"><i class="ti-email"></i> {{ __('global.client-nav.messages') }}</a>
         </li>
         @can('reviews_access')
-            <li><a href="#"><i class="fa fa-star"></i>{{ __('global.reviews') }}</a></li>
+            <li><a href="#"><i class="fa fa-star"></i> {{ __('global.reviews') }}</a></li>
         @endcan
         @can('job_access')
             <li><a href="{{ route('bids.index') }}"><i class="ti-desktop"></i>Bieter verwalten</a></li>
@@ -184,5 +184,4 @@
         var sidebar = document.getElementById('sidebar');
         sidebar.classList.toggle('open');
     }
-    // Možete koristiti ovu funkciju za otvaranje i zatvaranje sidebar-a.
 </script>
