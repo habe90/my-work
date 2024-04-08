@@ -1,5 +1,5 @@
 <div class="dashboard-navbar overlio-top">
-    {{-- @include('frontend.includes.bottom_mobile') --}}
+    @include('frontend.includes.bottom_mobile')
     <div class="d-user-avater">
         @if (Auth::check())
             <!-- Provjera da li je korisnik prijavljen -->
@@ -96,14 +96,4 @@
 
 </div>
 
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        var sidebarToggle = document.getElementById('sidebarToggle');
-        var sidebar = document.getElementById('sidebar');
 
-        sidebarToggle.addEventListener('click', function(e) {
-            e.preventDefault();
-            sidebar.classList.toggle('open');
-        });
-    });
-</script>
