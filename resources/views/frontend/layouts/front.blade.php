@@ -52,6 +52,7 @@
                 Request::is('bids') ||
                 Request::is('dashboard') ||
                 Request::is('bookmarks/view') ||
+                Request::is('my-jobs') ||
                 Request::is('user/my-profile') ||
                 Request::is('user/messages') ||
                 Request::is('user-reviews')) &&
