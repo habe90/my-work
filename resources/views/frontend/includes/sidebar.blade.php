@@ -100,9 +100,29 @@
 
     <div id="sidebar" class="sidebar d-md-none">
         <ul id="metismenu">
-            <!-- ... vaše stavke koje želite u sidebaru ... -->
+            @if(Auth::user()->user_type == 'company')
+                <li><a href="{{ route('company.dashboard') }}"><i class="ti-dashboard"></i>{{ __('global.client-nav.dashboard') }}</a></li>
+                <li><a href="{{ route('review.show') }}"><i class="ti-star"></i>{{ __('global.client-nav.reviews') }}</a></li>
+                <li><a href="{{ route('bookmarks.index') }}"><i class="ti-bookmark"></i>{{ __('global.client-nav.bookmarks') }}</a></li>
+                <li><a href="{{ route('bids.index') }}"><i class="ti-briefcase"></i>{{ __('global.client-nav.bids') }}</a></li>
+            @endif
+            <li><a href="{{ route('users.profile') }}"><i class="ti-user"></i>{{ __('global.client-nav.profile') }}</a></li>
+            <li><a href="{{ route('messages.index') }}"><i class="ti-email"></i>{{ __('global.client-nav.messages') }}</a></li>
+            @can('reviews_access')
+                <li><a href="#"><i class="fa fa-star"></i>{{ __('global.reviews') }}</a></li>
+            @endcan
+            @can('job_access')
+                <li><a href="{{ route('bids.index') }}"><i class="ti-desktop"></i>Bieter verwalten</a></li>
+                <li><a href="{{ route('my-jobs') }}">{{ __('global.client-nav.active_jobs') }}</a></li>
+                <li><a href="/">{{ __('global.client-nav.post_job') }}</a></li>
+            @endcan
+            <li><a href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><i class="ti-power-off"></i> Abmelden</a></li>
         </ul>
+        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+            @csrf
+        </form>
     </div>
+    
     
     
 								
