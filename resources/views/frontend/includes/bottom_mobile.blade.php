@@ -218,47 +218,37 @@
             <li><a href="#"><i class="fa fa-star"></i> {{ __('global.reviews') }}</a></li>
         @endcan
         @can('job_access')
-        <li
-        class="{{ request()->is('manage-task', 'manage-bidders', 'active-jobs', 'post-job') ? 'active' : '' }}">
-        <a href="javascript:void(0);" class="has-arrow" aria-expanded="false"><i
-                class="ti-desktop"></i> {{ __('global.client-nav.jobs') }}</a>
-        <ul>
-            {{-- <li><a href="#">Manage Task</a></li> --}}
-            <li><a href="{{ route('bids.index') }}">Bieter verwalten</a></li>
-            <li><a href="{{ route('my-jobs') }}">{{ __('global.client-nav.active_jobs') }}</a></li>
-            <li><a href="/">{{ __('global.client-nav.post_job') }}</a></li>
-        </ul>
-    </li>
+        <li class="{{ request()->is('manage-task', 'manage-bidders', 'active-jobs', 'post-job') ? 'active' : '' }}">
+            <a href="javascript:void(0);" class="has-arrow" aria-expanded="false"><i class="ti-desktop"></i>{{ __('global.client-nav.jobs') }}</a>
+            <ul>
+                <li><a href="{{ route('bids.index') }}">Bieter verwalten</a></li>
+                <li><a href="{{ route('my-jobs') }}">{{ __('global.client-nav.active_jobs') }}</a></li>
+                <li><a href="/">{{ __('global.client-nav.post_job') }}</a></li>
+            </ul>
+        </li>
         @endcan
       
     </ul>
    
 </div>
-<script>
+<<script>
     function toggleSidebar() {
         var sidebar = document.getElementById('sidebar');
         sidebar.classList.toggle('open');
     }
-</script>
-<script>
+    
+    // Dodato za dropdown funkcionalnost
     document.addEventListener('DOMContentLoaded', function() {
-        // Selektujemo sve elemente koji imaju klasu 'has-arrow'
-        var dropdownToggles = document.querySelectorAll('.has-arrow');
-
-        // Dodajemo event listener na svaki element
-        dropdownToggles.forEach(function(toggle) {
-            toggle.addEventListener('click', function(e) {
-                // Sprečavamo defaultno ponašanje linka
+        var dropdownArrows = document.querySelectorAll('.has-arrow');
+        dropdownArrows.forEach(function(arrow) {
+            arrow.addEventListener('click', function(e) {
                 e.preventDefault();
-
-                // Pronalazimo roditeljski 'li' element od kliknutog 'a' elementa
-                var parentLi = e.target.closest('li');
-                // Prebacujemo klasu 'open' na roditeljski 'li' element
+                var parentLi = this.parentElement;
                 parentLi.classList.toggle('open');
             });
         });
     });
-</script>
+    </script>
 
 
 
