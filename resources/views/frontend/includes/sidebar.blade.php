@@ -1,5 +1,5 @@
 <div class="dashboard-navbar overlio-top">
-    @include('frontend.includes.bottom_mobile')
+    {{-- @include('frontend.includes.bottom_mobile') --}}
     <div class="d-user-avater">
         @if (Auth::check())
             <!-- Provjera da li je korisnik prijavljen -->
