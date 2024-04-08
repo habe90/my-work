@@ -156,6 +156,17 @@
             /* Boja teksta */
         }
 
+        /* Sakrij sve dropdown menije */
+.sidebar ul li ul {
+    display: none;
+}
+
+/* Prikazuje dropdown meni kada je roditeljskom 'li' elementu dodana klasa 'open' */
+.sidebar ul li.open ul {
+    display: block;
+}
+
+
 
     }
 </style>
@@ -229,5 +240,25 @@
         sidebar.classList.toggle('open');
     }
 </script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Selektujemo sve elemente koji imaju klasu 'has-arrow'
+        var dropdownToggles = document.querySelectorAll('.has-arrow');
+
+        // Dodajemo event listener na svaki element
+        dropdownToggles.forEach(function(toggle) {
+            toggle.addEventListener('click', function(e) {
+                // Sprečavamo defaultno ponašanje linka
+                e.preventDefault();
+
+                // Pronalazimo roditeljski 'li' element od kliknutog 'a' elementa
+                var parentLi = e.target.closest('li');
+                // Prebacujemo klasu 'open' na roditeljski 'li' element
+                parentLi.classList.toggle('open');
+            });
+        });
+    });
+</script>
+
 
 
