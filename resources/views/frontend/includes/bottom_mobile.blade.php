@@ -151,8 +151,7 @@
     <span class="close-sidebar" onclick="toggleSidebar()">&times; Close</span>
     <ul id="metismenu">
         @if (Auth::user()->user_type == 'company')
-            <li><a href="{{ route('company.dashboard') }}"><i
-                        class="ti-dashboard"></i> {{ __('global.client-nav.dashboard') }}</a></li>
+           
             <li><a href="{{ route('review.show') }}"><i class="ti-star"></i> {{ __('global.client-nav.reviews') }}</a>
             </li>
             <li><a href="{{ route('bookmarks.index') }}"><i
@@ -162,8 +161,6 @@
         @endif
         <li><a href="{{ route('users.profile') }}"><i class="ti-user"></i> {{ __('global.client-nav.profile') }}</a>
         </li>
-        <li><a href="{{ route('messages.index') }}"><i class="ti-email"></i> {{ __('global.client-nav.messages') }}</a>
-        </li>
         @can('reviews_access')
             <li><a href="#"><i class="fa fa-star"></i> {{ __('global.reviews') }}</a></li>
         @endcan
@@ -172,12 +169,12 @@
             <li><a href="{{ route('my-jobs') }}">{{ __('global.client-nav.active_jobs') }}</a></li>
             <li><a href="/">{{ __('global.client-nav.post_job') }}</a></li>
         @endcan
-        <li><a href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><i
-                    class="ti-power-off"></i> Abmelden</a></li>
+        {{-- <li><a href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><i
+                    class="ti-power-off"></i> Abmelden</a></li> --}}
     </ul>
-    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+    {{-- <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
         @csrf
-    </form>
+    </form> --}}
 </div>
 <script>
     function toggleSidebar() {
