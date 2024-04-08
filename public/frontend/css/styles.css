@@ -5539,7 +5539,7 @@ ul.applieded_list li .nore_applied span {
 /*------------------- Page Title Design  ------------------*/
 .page-title {
     width: 100%;
-    height: 200px;
+    height: 130px;
     text-align: left;
     display: flex;
     flex-direction: column;
