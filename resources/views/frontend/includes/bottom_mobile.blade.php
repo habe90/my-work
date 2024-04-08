@@ -8,18 +8,20 @@
             width: 100vw;
             z-index: 10;
         }
-    
-        body, html {
+
+        body,
+        html {
             margin: 0;
             padding: 0;
             height: 100%;
             overflow-x: hidden;
         }
-    
-        .d-user-avater, .d-navigation {
+
+        .d-user-avater,
+        .d-navigation {
             display: none;
         }
-    
+
         .bottom-nav {
             display: flex;
             justify-content: space-around;
@@ -28,17 +30,17 @@
             box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
             padding: 5px;
         }
-    
+
         .bottom-nav a {
             text-align: center;
             flex-grow: 1;
         }
-    
+
         .bottom-nav i {
             display: block;
             margin: 0 auto;
         }
-    
+
         .sidebar {
             position: fixed;
             top: 0;
@@ -51,32 +53,32 @@
             overflow-y: auto;
             box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
         }
-    
+
         .sidebar.open {
             right: 0;
         }
-    
+
         .sidebar ul {
             list-style-type: none;
             padding: 0;
             margin: 0;
         }
-    
+
         .sidebar ul li {
             padding: 10px 15px;
             border-bottom: 1px solid #ddd;
         }
-    
+
         .sidebar ul li a {
             text-decoration: none;
             color: #333;
             display: block;
         }
-    
+
         .sidebar ul li a:hover {
             background-color: #f0f0f0;
         }
-    
+
         .sidebar .close-sidebar {
             display: block;
             text-align: right;
@@ -85,12 +87,12 @@
             color: #666;
             cursor: pointer;
         }
-    
+
         .user-avatar {
             text-align: center;
             margin-bottom: 20px;
         }
-    
+
         .user-avatar img.user-image {
             width: 80px;
             height: 80px;
@@ -101,13 +103,13 @@
             display: inline-block;
             margin-top: -40px;
         }
-    
+
         .user-avatar h4.user-name {
             margin-top: 10px;
             color: #333;
         }
     }
-    </style>
+</style>
 
 <div class="bottom-nav d-md-none"> <!-- d-md-none klasa sakriva bottom bar na uređajima većim od 768px -->
     <a href="{{ route('company.dashboard') }}">
@@ -175,20 +177,23 @@
 </script>
 
 <script>
-document.addEventListener('DOMContentLoaded', function() {
-    var sidebar = document.getElementById('sidebar');
-    var sidebarToggle = document.getElementById('sidebarToggle');
+    document.addEventListener('DOMContentLoaded', function() {
+        var sidebar = document.getElementById('sidebar');
+        var sidebarToggle = document.getElementById('sidebarToggle');
 
-    sidebarToggle.addEventListener('click', function(e) {
-        e.preventDefault();
-        sidebar.classList.toggle('open');
+        sidebarToggle.addEventListener('click', function(e) {
+            e.preventDefault();
+            sidebar.classList.toggle('open');
+        });
+
+        // Selektujemo element za zatvaranje sidebar-a koristeći klasu
+        var closeSidebar = document.querySelector('.close-sidebar');
+
+        // Dodajemo event listener za 'click' na element za zatvaranje sidebar-a
+        if (closeSidebar) { // Provjeravamo da li element postoji
+            closeSidebar.addEventListener('click', function() {
+                sidebar.classList.toggle('open');
+            });
+        }
     });
-
-    var closeSidebar = document.querySelector('.close-sidebar');
-    closeSidebar.addEventListener('click', toggleSidebar);
-    
-    function toggleSidebar() {
-        sidebar.classList.toggle('open');
-    }
-});
 </script>
