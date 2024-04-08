@@ -9,7 +9,7 @@
                         class="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-blueGray-200 border-0">
                         <div class="rounded-t mb-0 px-6 py-6">
                             <div class="text-center mb-3">
-                                <a class="nav-brand static-logo" href="/"><img src="frontend/img/logo-my-work.png"
+                                <a class="nav-brand static-logo text-center" href="/"><img src="frontend/img/logo-my-work.png"
                                     width="180" class="logo" alt="" /></a>
                                 <h6 class="text-blueGray-500 text-sm font-bold">
                                     {{ __('global.register') }}
