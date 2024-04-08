@@ -47,9 +47,15 @@
 
         @yield('content')
 
-        @unless (Request::is('company-dashboard') && Agent::isMobile())
+        @unless (
+            (Request::is('company-dashboard') ||
+                Request::is('bids') ||
+                Request::is('bookmarks/view') ||
+                Request::is('user-reviews')) &&
+                Agent::isMobile())
             @include('frontend.includes.footer')
         @endunless
+
 
     </div>
     <!-- ============================================================== -->
