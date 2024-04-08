@@ -78,5 +78,10 @@ public function scopeAdvancedFilter($query, $filterOptions)
 }
 
 
+public function labels()
+    {
+        return $this->morphMany(Label::class, 'labelable');
+    }
+
    
 }
