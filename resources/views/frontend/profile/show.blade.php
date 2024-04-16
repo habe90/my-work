@@ -43,7 +43,7 @@
                                 <div class="_dashboard_content">
                                     <div class="_dashboard_content_header">
                                         <div class="_dashboard__header_flex">
-                                            <h4><i class="fa fa-user mr-1"></i>My Account</h4>
+                                            <h4><i class="fa fa-user mr-1"></i>{{ __('panel.my_account') }}</h4>
                                         </div>
                                     </div>
 
@@ -172,7 +172,7 @@
 
                                             <div class="col-xl-6 col-lg-6">
                                                 <div class="form-group">
-                                                    <label>Phone</label>
+                                                    <label>{{ __('panel.phone') }}</label>
                                                     <input type="text" name="phone" class="form-control with-light"
                                                         value="{{ old('phone', $user->phone) }}">
                                                     @error('phone')
