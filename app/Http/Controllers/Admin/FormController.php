@@ -350,7 +350,7 @@ class FormController extends Controller
                     }
 
                     if ( $fieldData[0]['info_text'] != '' ){
-                        $myFormFields .= '<p class="form-info-text">'. setTranslationLabel($fieldData[0]['info_text']) .'</p>';
+                        $myFormFields .= '<small class="form-info-text">'. setTranslationLabel($fieldData[0]['info_text']) .'</small>';
                     }
 
                     if( $field->group_name == ''){
@@ -442,7 +442,7 @@ class FormController extends Controller
                 return $return;
             }
 
-            $formsForJobs = ['Rohbau Mauerarbeiten', 'Forma2', 'Forma3'];
+            $formsForJobs = ['Rohbau Mauerarbeiten', 'Bauunternehmen', 'Betonbohrer und -schneider','Gerüstbauer', 'Holz- und Bautenschützer','Innenarchitekten','Maurer und Betonbauer','Metallbauer','Raumausstatter','Treppenbauer'];
         
             if (!Auth::check()) {
                 // Ako korisnik nije ulogovan, sačuvajte podatke u sesiji i preusmjerite na prijavu/registraciju
@@ -522,6 +522,34 @@ class FormController extends Controller
                             
                 return redirect()->route('my-jobs')->with('success', __('global.data_add_sussesfully'));
             }
+                    
+              if ($formName == 'Form') {
+                    // Provjeravamo da li u zahtjevu postoji 'category_id'
+                    if ($request->has('category_id')) {
+                        $categoryId = $request->input('category_id'); // Dobijamo 'category_id' iz zahtjeva
+                        $data['category_id'] = $categoryId; // Dodajemo 'category_id' u podatke koji će se sačuvati
+                    }
+                
+                    try {
+                        // Ovdje implementiramo logiku za spremanje forme koristeći Eloquent
+                        $formModel = new Forms;
+                        $formModel->fill($data);
+                
+                        $formModel->save(); // Sačuvamo formu u bazu
+                        
+                        // Vraćamo JSON odgovor umjesto redirect-a
+                        return response()->json(['status' => 'success', 'message' => __('global.data_add_sussesfully')]);
+                    } catch (\Exception $e) {
+                        // Ukoliko dođe do greške, logujemo grešku
+                        \Log::error("Došlo je do greške pri spremanju forme: " . $e->getMessage());
+                        // Vraćamo JSON odgovor sa porukom o grešci
+                        return response()->json(['status' => 'error', 'message' => $e->getMessage()]);
+                    }
+                }
+
+            
+
+            
             
 
             //if is form name Add page

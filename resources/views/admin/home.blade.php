@@ -223,19 +223,20 @@
                                 </thead>
                                 <tbody>
                                     @foreach ($invoices as $invoice)
-                                        <tr>
-                                            <td class="font-semibold">{{ $invoice->id }}</td>
-                                            <td>{{ number_format($invoice->amount, 2) }} €</td>
-                                            <td>{{ $invoice->invoice_date->format('d.m.Y') }}</td>
-                                            <td>{{ $invoice->due_date->format('d.m.Y') }}</td>                                            
-                                            <td class="text-center">
-                                                <span class="badge rounded-full {{ $invoice->status_class }}">
-                                                    {{ $invoice->status }}
-                                                </span>
-                                            </td>
-                                            <td>{{ $invoice->created_at->format('d.m.Y') }}</td>
-                                            <td class="text-center">{{ $invoice->company->company_name }}</td>
-                                        </tr>
+                                    <tr>
+                                        <td class="font-semibold">{{ $invoice->id }}</td>
+                                        <td>{{ number_format($invoice->amount, 2) }} €</td>
+                                        <td>{{ optional($invoice->invoice_date)->format('d.m.Y') ?? 'Datum nicht festgelegt' }}</td>
+                                        <td>{{ optional($invoice->due_date)->format('d.m.Y') ?? 'Datum nicht festgelegt' }}</td>
+                                        <td class="text-center">
+                                            <span class="badge rounded-full {{ $invoice->status_class }}">
+                                                {{ $invoice->status }}
+                                            </span>
+                                        </td>
+                                        <td>{{ optional($invoice->created_at)->format('d.m.Y') ?? 'Datum nicht festgelegt' }}</td>
+                                        <td class="text-center">{{ $invoice->company->company_name }}</td>
+                                    </tr>
+                                    
                                     @endforeach
                                 </tbody>
                             </table>
@@ -263,7 +264,8 @@
                                 @foreach ($jobs as $job)
                                     <tr>
                                         <td class="font-semibold">{{ $job->id }}</td>
-                                        <td class="whitespace-nowrap">{{ $job->created_at->format('M d, Y') }}</td>
+                                        <td class="whitespace-nowrap">{{ optional($job->created_at)->format('M d, Y') ?? 'Datum nicht festgelegt' }}</td>
+
                                         <td class="whitespace-nowrap">{{ $job->title }}</td>
                                         <td>{{ $job->user->name }}</td>
                                         <td class="text-center">
