@@ -44,11 +44,11 @@
                                     <div class="form-group">
                                         <label for="featuredImage">Istaknuta slika</label>
                                         <input type="file" class="form-control" id="featuredImage" name="featured_image">
-                                        @if($job->featured_image)
-                                            <div class="mt-2">
-                                                <img src="{{ asset('storage/' . $job->featured_image) }}" width="100px" height="100px" alt="Featured Image">
-                                            </div>
-                                        @endif
+                                        @if($job->getFirstMedia('featured_images'))
+                                        <div class="mt-2">
+                                            <img src="{{ $job->getFirstMedia('featured_images')->getUrl() }}" width="100px" height="100px" alt="Istaknuta slika">
+                                        </div>
+                                    @endif
                                     </div>
 
                                     <!-- Image Gallery -->
@@ -92,7 +92,7 @@
                                         <button type="submit" class="btn btn-primary">Job aktualisieren</button>
                                         <a href="{{ route('my-jobs') }}" class="btn btn-secondary">Sag es ab</a>
                                     </div>
-                                    
+
                                 </form>
                             </div>
 
