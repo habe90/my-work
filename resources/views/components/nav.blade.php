@@ -170,7 +170,7 @@
 
 
 
-                   <div class="dropdown" x-data="dropdown" @click.outside="open = false">
+                   {{-- <div class="dropdown" x-data="dropdown" @click.outside="open = false">
                        <a href="javascript:;"
                            class="relative block rounded-full bg-white-light/40 p-2 hover:bg-white-light/90 hover:text-primary dark:bg-dark/40 dark:hover:bg-dark/60"
                            @click="toggle">
@@ -264,13 +264,13 @@
                                </li>
                            </template>
                        </ul>
-                   </div>
+                   </div> --}}
                    <div class="dropdown flex-shrink-0" x-data="dropdown" @click.outside="open = false">
                     <a href="javascript:;" class="group relative" @click="toggle()">
                         <span>
                             <img class="h-9 w-9 rounded-full object-cover saturate-50 group-hover:saturate-100"
-     src="{{ Auth::user()->image ? Auth::user()->image : asset('assets/images/user-profile.jpeg') }}"
-     alt="User Image" />
+                                    src="{{ Auth::user()->image ? Auth::user()->image : asset('assets/images/user-profile.jpeg') }}"
+                                    alt="User Image" />
 
                         </span>
                     </a>
