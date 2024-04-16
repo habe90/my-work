@@ -1,16 +1,5 @@
 @extends('frontend.layouts.front')
 @section('content')
-<style>
-    .gallery-image img {
-        width: auto; /* ili postavite fiksnu širinu, npr. 200px */
-        height: auto; /* ili postavite fiksnu visinu, npr. 150px */
-        max-width: 100%; /* osigurava da slika ne prelazi kontejner */
-        border-radius: 5px; /* ako želite zaobljene uglove */
-        margin: 5px; /* dodaje malo prostora između sličica */
-        box-shadow: 0 2px 5px rgba(0,0,0,0.2); /* dodaje senku za bolji izgled */
-    }
-    </style>
-    
     <!-- ============================ Page Title Start================================== -->
     <div class="page-title search-form dark">
         <div class="container">
@@ -294,16 +283,16 @@
                         </div>
 
                         <!-- Ovdje počinje galerija slika -->
-                        <div class="_jb_summary_thumb">
-                            @foreach($job->getMedia('image_gallery') as $image)
-                                <a href="{{ $image->getUrl() }}" data-lightbox="job-gallery" data-title="Gallery Image">
-                                    <div class="gallery-image">
-                                        <img src="{{ $image->getUrl() }}" class="img-fluid" alt="Slika galerije" />
-                                    </div>
-                                </a>
-                            @endforeach
-                        </div>
-                        
+                                        
+                    <div class="_jb_summary_thumb">
+                        @foreach ($job->getMedia('image_gallery') as $image)
+                            <a href="{{ $image->getUrl() }}" data-lightbox="job-gallery" data-title="Gallery Image">
+                                <div class="gallery-image">
+                                    <img src="{{ $image->getUrl() }}" class="img-fluid" alt="" />
+                                </div>
+                            </a>
+                        @endforeach
+                    </div>
                         <!-- Kraj galerije slika -->
 
                     </div>
