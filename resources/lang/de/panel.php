@@ -13,6 +13,10 @@ return [
     'job_status' => 'Status des Jobs',
     'update_job' => 'Job aktualisieren',
     'cancel' => 'Abbrechen',
+    'pending' => 'In Bearbeitung',
+    'completed' => 'Abgeschlossen',
+    'in_process' => 'In Verarbeitung',
+    'canceled' => 'Storniert',
 
 
 ];

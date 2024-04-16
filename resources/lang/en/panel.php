@@ -13,5 +13,9 @@ return [
     'job_status' => 'Job Status',
     'update_job' => 'Update Job',
     'cancel' => 'Cancel',
+    'pending' => 'Pending',
+    'completed' => 'Completed',
+    'in_process' => 'In process',
+    'canceled' => 'Canceled',
 
 ];
