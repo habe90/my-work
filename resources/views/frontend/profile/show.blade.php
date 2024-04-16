@@ -69,7 +69,7 @@
                                                 <div class="row">
                                                     <div class="col-xl-6 col-lg-6">
                                                         <div class="form-group">
-                                                            <label>First Name</label>
+                                                            <label>{{ __('panel.first_name') }}</label>
                                                             <input type="text" name="name"
                                                                 class="form-control with-light"
                                                                 value="{{ old('name', $user->name) }}">
@@ -80,7 +80,7 @@
                                                     </div>
                                                     <div class="col-xl-6 col-lg-6">
                                                         <div class="form-group">
-                                                            <label>Last Name</label>
+                                                            <label>{{ __('panel.last_name') }}</label>
                                                             <input type="text" name="last_name"
                                                                 class="form-control with-light"
                                                                 value="{{ old('last_name', $user->last_name) }}">
@@ -91,14 +91,14 @@
                                                     </div>
                                                     <div class="col-xl-6 col-lg-6">
                                                         <div class="form-group">
-                                                            <label>Account Type</label>
+                                                            <label>{{ __('panel.account_type') }}</label>
                                                             <input type="text" class="form-control with-light"
                                                                 value="{{ $user->user_type }}" disabled>
                                                         </div>
                                                     </div>
                                                     <div class="col-xl-6 col-lg-6">
                                                         <div class="form-group">
-                                                            <label>Email</label>
+                                                            <label>{{ __('panel.email') }}</label>
                                                             <input type="email" class="form-control with-light"
                                                                 value="{{ old('email', $user->email) }}" disabled>
                                                         </div>
@@ -125,7 +125,7 @@
                                             @if (Auth::check() && Auth::user()->user_type == 'company')
                                                 <div class="col-xl-6 col-lg-6">
                                                     <div class="form-group">
-                                                        <label>Company name</label>
+                                                        <label>{{ __('panel.company_name') }}</label>
                                                         <input type="text" name="company_name"
                                                             class="form-control with-light"
                                                             value="{{ old('company_name', $user->company_name) }}" disabled>
@@ -136,7 +136,7 @@
                                                 </div>
                                                 <div class="col-xl-6 col-lg-6">
                                                     <div class="form-group">
-                                                        <label>VAT Number</label>
+                                                        <label>{{ __('panel.vat_number') }}</label>
                                                         <input type="text" name="vat_number"
                                                             class="form-control with-light"
                                                             value="{{ old('vat_number', $user->vat_number) }}">
@@ -147,7 +147,7 @@
                                                 </div>
                                                 <div class="col-xl-6 col-lg-6">
                                                     <div class="form-group">
-                                                        <label>TAX Number</label>
+                                                        <label>{{ __('panel.tax_number') }}</label>
                                                         <input type="text" name="tax_number"
                                                             class="form-control with-light"
                                                             value="{{ old('tax_number', $user->tax_number) }}">
@@ -158,7 +158,7 @@
                                                 </div>
                                                 <div class="col-xl-6 col-lg-6">
                                                     <div class="form-group">
-                                                        <label>Radius in KM</label>
+                                                        <label>{{ __('panel.radius_in_km') }}</label>
                                                         <div class="rg-slider">
                                                             <input type="text" class="js-range-slider" name="radius"
                                                                 value="{{ old('radius', $user->radius) }}" />
@@ -182,7 +182,7 @@
                                             </div>
                                             <div class="col-xl-6 col-lg-6">
                                                 <div class="form-group with-light">
-                                                    <label>Address</label>
+                                                    <label>{{ __('panel.address') }}</label>
                                                     <input type="text" name="address" class="form-control with-light"
                                                         value="{{ old('address', $user->address) }}">
                                                     @error('address')
@@ -192,7 +192,7 @@
                                             </div>
                                             <div class="col-xl-12 col-lg-12">
                                                 <div class="form-group">
-                                                    <label>About Yourself</label>
+                                                    <label>{{ __('panel.about_yourself') }}</label>
                                                     <textarea name="about" class="form-control with-light">{{ old('about', $user->about) }}</textarea>
                                                     @error('about')
                                                         <span class="text-danger">{{ $message }}</span>
@@ -209,7 +209,7 @@
                                 <div class="_dashboard_content">
                                     <div class="_dashboard_content_header">
                                         <div class="_dashboard__header_flex">
-                                            <h4><i class="ti-lock mr-1"></i>Set Password</h4>
+                                            <h4><i class="ti-lock mr-1"></i>{{ __('panel.set_password') }}</h4>
                                         </div>
                                     </div>
 
@@ -217,7 +217,7 @@
                                         <div class="row">
                                             <div class="col-xl-4 col-lg-4">
                                                 <div class="form-group">
-                                                    <label>Old Password</label>
+                                                    <label>{{ __('panel.old_password') }}</label>
                                                     <input type="password" name="old_password"
                                                         class="form-control with-light @error('old_password') is-invalid @enderror">
                                                     @error('old_password')
@@ -227,14 +227,14 @@
                                             </div>
                                             <div class="col-xl-4 col-lg-4">
                                                 <div class="form-group">
-                                                    <label>New Password</label>
+                                                    <label>{{ __('panel.new_password') }}</label>
                                                     <input type="password" name="new_password"
                                                         class="form-control with-light">
                                                 </div>
                                             </div>
                                             <div class="col-xl-4 col-lg-4">
                                                 <div class="form-group">
-                                                    <label>Confirm Password</label>
+                                                    <label>{{ __('panel.confirm_password') }}</label>
                                                     <input type="password" name="new_password_confirmation"
                                                         class="form-control with-light">
                                                 </div>
@@ -245,7 +245,7 @@
                                 </div>
                                 <!-- Single Wrap End -->
 
-                                <button type="submit" class="btn btn-save">Save Changes</button>
+                                <button type="submit" class="btn btn-save">{{ __('panel.save_changes') }}</button>
                             </form>
                         </div>
                     </div>
