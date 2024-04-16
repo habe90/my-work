@@ -294,12 +294,12 @@
                         </div>
 
                         <!-- Ovdje počinje galerija slika -->
-                        <div class="_jb_summary_thumb">
+                        <div class="gallery-image">
                             @foreach($job->getMedia('image_gallery') as $image)
                                 <a href="{{ $image->getUrl() }}" data-lightbox="job-gallery" data-title="Gallery Image">
-                                    <div class="gallery-image">
+                                   
                                         <img src="{{ $image->getUrl() }}" class="img-fluid" alt="Slika galerije" />
-                                    </div>
+                                 
                                 </a>
                             @endforeach
                         </div>
