@@ -33,5 +33,7 @@ return [
     'new_password' => 'New Password',
     'confirm_password' => 'Confirm Password',
     'save_changes' => 'Save Changes',
+    'first_name' => 'First Name',
+    'last_name' => 'Last Name',
 
 ];
