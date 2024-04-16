@@ -279,11 +279,12 @@
                            class="top-11 w-[230px] !py-0 font-semibold text-dark ltr:right-0 rtl:left-0 dark:text-white-dark dark:text-white-light/90">
                            <li>
                                <div class="flex items-center px-4 py-4">
-                                   <div class="flex-none">
-                                       <img class="h-10 w-10 rounded-md object-cover"
-                                           src="{{ Auth::user()->image ? asset('storage/' . Auth::user()->image) : asset('assets/images/user-profile.jpeg') }}"
-                                           alt="User Image" />
-                                   </div>
+                                <div class="flex-none">
+                                    <img class="h-10 w-10 rounded-md object-cover"
+                                         src="{{ Auth::user()->image ? Auth::user()->image : asset('assets/images/user-profile.jpeg') }}"
+                                         alt="User Image" />
+                                </div>
+                                
                                    <div class="truncate ltr:pl-4 rtl:pr-4">
                                        <h4 class="text-base">
                                            {{ Auth::user()->name }}<span
