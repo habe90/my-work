@@ -267,8 +267,12 @@
                    </div>
                    <div class="dropdown flex-shrink-0" x-data="dropdown" @click.outside="open = false">
                     <a href="javascript:;" class="group relative" @click="toggle()">
-                        <span><img class="h-9 w-9 rounded-full object-cover saturate-50 group-hover:saturate-100"
-                                   src="{{ Auth::user()->image ? asset('storage/' . Auth::user()->image) : asset('assets/images/user-profile.jpeg') }}" alt="User Image" /></span>
+                        <span>
+                            <img class="h-9 w-9 rounded-full object-cover saturate-50 group-hover:saturate-100"
+     src="{{ Auth::user()->image ? Auth::user()->image : asset('assets/images/user-profile.jpeg') }}"
+     alt="User Image" />
+
+                        </span>
                     </a>
                     
                        <ul x-cloak x-show="open" x-transition x-transition.duration.300ms
