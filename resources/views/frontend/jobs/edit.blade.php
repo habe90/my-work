@@ -36,7 +36,7 @@
         
                                     <!-- Naslov posla -->
                                     <div class="form-group">
-                                        <label for="jobTitle">Name des Jobs</label>
+                                        <label for="jobTitle">{{ __('panel.job_title') }}</label>
                                         <input type="text" class="form-control" id="jobTitle" name="title" value="{{ $job->title }}" required>
                                     </div>
 
