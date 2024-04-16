@@ -276,7 +276,8 @@
                                <div class="flex items-center px-4 py-4">
                                    <div class="flex-none">
                                        <img class="h-10 w-10 rounded-md object-cover"
-                                           src="{{ asset('assets/images/user-profile.jpeg') }}" alt="image" />
+                                           src="{{ Auth::user()->image ? asset('storage/' . Auth::user()->image) : asset('assets/images/user-profile.jpeg') }}"
+                                           alt="User Image" />
                                    </div>
                                    <div class="truncate ltr:pl-4 rtl:pr-4">
                                        <h4 class="text-base">
@@ -287,6 +288,7 @@
                                            href="javascript:;"> {{ Auth::user()->email }}</a>
                                    </div>
                                </div>
+
                            </li>
                            <li>
                                <a href="{{ route('profile.show') }}" class="dark:hover:text-white" @click="toggle">
