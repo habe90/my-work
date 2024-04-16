@@ -39,6 +39,32 @@
                                         <label for="jobTitle">Name des Jobs</label>
                                         <input type="text" class="form-control" id="jobTitle" name="title" value="{{ $job->title }}" required>
                                     </div>
+
+                                    <!-- Featured Image -->
+                                    <div class="form-group">
+                                        <label for="featuredImage">Istaknuta slika</label>
+                                        <input type="file" class="form-control" id="featuredImage" name="featured_image">
+                                        @if($job->featured_image)
+                                            <div class="mt-2">
+                                                <img src="{{ asset('storage/' . $job->featured_image) }}" width="100px" height="100px" alt="Featured Image">
+                                            </div>
+                                        @endif
+                                    </div>
+
+                                    <!-- Image Gallery -->
+                                    <div class="form-group">
+                                        <label for="imageGallery">Galerija slika</label>
+                                        <input type="file" class="form-control" id="imageGallery" name="image_gallery[]" multiple>
+                                        <div class="mt-2">
+                                            @if($job->imageGallery)
+                                                @foreach($job->imageGallery as $image)
+                                                    <img src="{{ asset('storage/' . $image->path) }}" width="100px" height="100px" alt="Gallery Image">
+                                                @endforeach
+                                            @endif
+                                        </div>
+                                    </div>
+
+
         
                                     <!-- Opis posla -->
                                     <div class="form-group">
