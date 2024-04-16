@@ -7303,6 +7303,16 @@ ul.bottoms_applies li ._applied_jb{
     text-align: center;
 	margin-bottom:1.5rem;
 }
+
+.gallery-image img {
+    width: auto; /* ili postavite fiksnu širinu, npr. 200px */
+    height: auto; /* ili postavite fiksnu visinu, npr. 150px */
+    max-width: 100%; /* osigurava da slika ne prelazi kontejner */
+    border-radius: 5px; /* ako želite zaobljene uglove */
+    margin: 5px; /* dodaje malo prostora između sličica */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2); /* dodaje senku za bolji izgled */
+}
+
 ._jb_summary_caption h4 {
     margin: 0;
     line-height: 1;
