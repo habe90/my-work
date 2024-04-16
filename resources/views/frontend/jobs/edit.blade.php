@@ -51,18 +51,18 @@
                                     @endif
                                     </div>
 
+                              
                                     <!-- Image Gallery -->
                                     <div class="form-group">
                                         <label for="imageGallery">Galerija slika</label>
                                         <input type="file" class="form-control" id="imageGallery" name="image_gallery[]" multiple>
                                         <div class="mt-2">
-                                            @if($job->imageGallery)
-                                                @foreach($job->imageGallery as $image)
-                                                    <img src="{{ asset('storage/' . $image->path) }}" width="100px" height="100px" alt="Gallery Image">
-                                                @endforeach
-                                            @endif
+                                            @foreach($job->getMedia('image_gallery') as $image)
+                                                <img src="{{ $image->getUrl() }}" width="100px" height="100px" alt="Slika galerije">
+                                            @endforeach
                                         </div>
                                     </div>
+
 
 
         
