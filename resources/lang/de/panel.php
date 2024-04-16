@@ -18,5 +18,24 @@ return [
     'in_process' => 'In Verarbeitung',
     'canceled' => 'Storniert',
 
+    //profile
+
+    'my_account' => 'Mein Konto',
+    'account_type' => 'Kontotyp',
+    'company_name' => 'Firmenname',
+    'vat_number' => 'USt-IDNr',
+    'tax_number' => 'Steuer-Nr',
+    'radius_in_km' => 'Radius in KM',
+    'phone' => 'Telefon',
+    'address' => 'Adresse',
+    'about_yourself' => 'Über dich',
+    'set_password' => 'Passwort einstellen',
+    'old_password' => 'Altes Passwort',
+    'new_password' => 'Neues Passwort',
+    'confirm_password' => 'Passwort bestätigen',
+    'save_changes' => 'Änderungen speichern',
+
+
+
 
 ];
