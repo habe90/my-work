@@ -34,6 +34,8 @@ return [
     'new_password' => 'Neues Passwort',
     'confirm_password' => 'Passwort bestätigen',
     'save_changes' => 'Änderungen speichern',
+    'first_name' => 'Vorname',
+    'last_name' => 'Nachname',
 
 
 
