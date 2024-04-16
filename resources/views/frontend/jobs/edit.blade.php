@@ -30,7 +30,7 @@
                         <div class="col-lg-12 col-md-12 col-sm-12">
 
                             <div class="_dashboard_content_body p-0">
-                                <form action="{{ route('jobs.update', $job) }}" method="POST">
+                                <form action="{{ route('jobs.update', $job) }}" method="POST" enctype="multipart/form-data">
                                     @csrf
                                     @method('PUT')
         
@@ -92,8 +92,7 @@
                                         <button type="submit" class="btn btn-primary">Job aktualisieren</button>
                                         <a href="{{ route('my-jobs') }}" class="btn btn-secondary">Sag es ab</a>
                                     </div>
-
-                                 
+                                    
                                 </form>
                             </div>
 

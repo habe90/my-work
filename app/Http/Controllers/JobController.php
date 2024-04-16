@@ -60,29 +60,54 @@ class JobController extends Controller
 
     public function update(Request $request, Job $job)
     {
-        // Provjeravamo da li je autentificirani korisnik vlasnik posla
+        // Provjera da li je autentificirani korisnik vlasnik posla
         if (auth()->id() !== $job->user_id) {
             return redirect()->back()->with('error', 'Sie sind nicht berechtigt, diesen Job zu bearbeiten.');
         }
-
-        // Validacija podataka
+    
+        // Validacija zahtjeva
         $validator = Validator::make($request->all(), [
             'title' => 'required|string|max:255',
             'description' => 'required|string',
             'status' => 'required|in:pending,completed,in process,canceled',
-            // Dodajte pravila za ostala polja koja ažurirate
+            // Pravila za sliku i galeriju slika
+            'featured_image' => 'sometimes|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'image_gallery' => 'sometimes|array',
+            'image_gallery.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
-
+    
         if ($validator->fails()) {
             return redirect()->back()->withErrors($validator)->withInput();
         }
-
+    
         // Ažuriranje posla
         $job->update($validator->validated());
-
-        // Preusmjeravanje sa porukom o uspješnosti
+    
+        // Ažuriranje izdvojene slike ako je poslana
+        if ($request->hasFile('featured_image')) {
+            $job->clearMediaCollection('featured_images');
+            $job->addMediaFromRequest('featured_image')->toMediaCollection('featured_images');
+    
+            // Postavite featured_image URL u bazi ako je potrebno
+            $mediaItem = $job->getFirstMedia('featured_images');
+            if ($mediaItem) {
+                $job->featured_image = $mediaItem->getFullUrl();
+                $job->save();
+            }
+        }
+    
+        // Ažuriranje galerije slika ako su poslane
+        if ($request->hasFile('image_gallery')) {
+            $job->clearMediaCollection('image_gallery'); // Uklonite stare slike ako je potrebno
+            foreach ($request->image_gallery as $image) {
+                $job->addMedia($image)->toMediaCollection('image_gallery');
+            }
+        }
+    
+        // Redirekcija sa porukom o uspjehu
         return redirect()->route('my-jobs')->with('success', 'Der Job wurde erfolgreich aktualisiert.');
     }
+    
 
 
     public function destroy(Job $job)
