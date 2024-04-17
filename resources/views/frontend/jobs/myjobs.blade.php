@@ -51,6 +51,11 @@
                                         @foreach ($jobs as $job)
                                             <div class="_manage_task_list">
                                                 <div class="_manage_task_list_flex">
+                                                    @if($job->getFirstMedia('featured_images'))
+                                                    <div class="_featured_image">
+                                                        <img src="{{ $job->getFirstMedia('featured_images')->getUrl() }}" alt="Featured Image" width="100px" height="100px">
+                                                    </div>
+                                                @endif
                                                     <h4 class="_jb_title">
                                                         <a href="{{ route('jobs.show', ['job' => myCryptie($job->id, 'encode')]) }}">{{ $job->title }}</a>
                                                     </h4>
