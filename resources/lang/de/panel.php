@@ -44,7 +44,19 @@ return [
     'my_profile' => 'Mein Profil',
     'email' => 'Email',
 
-
+    'client-nav' => [
+        'dashboard' => 'Übersicht',
+        'profile' => 'Profil',
+        'messages' => 'Nachrichten',
+        'reviews' => 'Bewertungen',
+        'manage_bids' => 'Angebote verwalten',
+        'jobs' => 'Jobs',
+        'active_jobs' => 'Meine Jobs',
+        'post_job' => 'Job ausschreiben',
+        'bookmarks' => 'Job Lesezeichen',
+        'bids' => 'Angebote verwalten',
+    ],
+    
 
 
 
