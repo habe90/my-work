@@ -67,7 +67,7 @@
                                                                         href="{{ route('jobs.show', ['job' => myCryptie($bid->job->id, 'encode')]) }}">{{ $bid->job->title }}</a>
                                                                 @endif
                                                             </td>
-                                                            <td>{{ $bid->amount }}</td>
+                                                            <td><b>{{ $bid->amount }}</b></td>
                                                             <td>{{ $bid->status }}</td>
                                                             <td>{{ $bid->created_at->format('d.m.Y') }}</td>
                                                         </tr>
