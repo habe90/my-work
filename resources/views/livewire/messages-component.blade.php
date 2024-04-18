@@ -91,19 +91,19 @@
                     <!-- Forma za slanje poruke -->
                     <div class="message-reply">
                         <form wire:submit.prevent="sendMessage">
-                            <div class="input-group">
-                                <button type="button" wire:click="toggleEmojiPicker" class="btn emoji-button">😊</button>
-                                
-                                <input type="file" wire:model="fileUpload" id="fileUpload" class="file-input">
-                                <label for="fileUpload" class="btn file-upload-label">{{ __('front.upload_file') }}</label>
-                                
-                                <textarea wire:model="newMessage" class="form-control with-light" placeholder="{{ __('front.your_message_here') }}"></textarea>
-                                
-                                <button type="submit" class="btn send-button" @unless ($newMessage) disabled @endunless>{{ __('front.send_message') }}</button>
+                            <div class="emoji-picker-container">
+                                <button type="button" wire:click="toggleEmojiPicker">😊</button>
+                                <div class="emoji-picker {{ $showEmojiPicker ? 'active' : '' }}">
+                                    <emoji-picker></emoji-picker>
+                                </div>
+                                <textarea wire:model="newMessage" cols="40" rows="3" class="form-control with-light"
+                                    placeholder="{{ __('front.your_message_here') }}"></textarea>
                             </div>
+                            <button type="submit" class="btn dark-2"
+                                @unless ($newMessage) disabled @endunless>{{ __('front.send_message') }}</button>
+
                         </form>
                     </div>
-                    
                 </div>
             @endif
 
@@ -111,32 +111,3 @@
         </div>
     </div>
 </div>
-<style>
-    .message-reply .input-group {
-    display: flex;
-    align-items: center;
-}
-
-.message-reply .emoji-button {
-    margin-right: 5px;
-}
-
-.message-reply .file-input {
-    display: none; /* Skriva input ali dozvoljava labeli da bude vidljiva */
-}
-
-.message-reply .file-upload-label {
-    margin-right: 5px;
-    cursor: pointer; /* Pokazuje pokazivač kad miš pređe preko labele */
-}
-
-.message-reply .form-control {
-    margin-right: 5px;
-    flex-grow: 1; /* Textarea će popuniti preostali prostor */
-}
-
-.message-reply .send-button {
-    white-space: nowrap; /* Sprečava prelamanje teksta na dugmetu */
-}
-
-</style>
