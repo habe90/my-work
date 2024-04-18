@@ -46,6 +46,7 @@ return [
     'draft' => 'Draft',
     'project_offers' => 'Project Offers',
     'reviews' => 'Reviews',
+    'my_profile' => 'My Profile',
 
 
 
