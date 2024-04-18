@@ -57,9 +57,7 @@
                                                     @else
                                                         <label class="custom-file-label" for="customFile">
                                                             <i class="fa fa-user"></i>
-                                                            <span class="d-none d-sm-inline-block">
-                                                                <!-- Kliknite ovdje da biste odabrali sliku -->
-                                                                <span class="d-none d-md-inline-block">Kliknite ovdje da biste odabrali sliku</span>
+                                                            <span class="d-none d-sm-inline-block"> 
                                                                 <!-- Klicken Sie hier, um ein Bild auszuwählen -->
                                                                 <span class="d-inline-block d-md-none">Klicken Sie hier, um ein Bild auszuwählen</span>
                                                             </span>
