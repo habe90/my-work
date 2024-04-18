@@ -10,14 +10,26 @@ class BidController extends Controller
 {
     public function index()
     {
- 
-        // i da 'auth()->id()' vraća ID trenutno autentificiranog korisnika
-        $userBids = Bid::where('user_id', auth()->id())
-            ->with('job') 
-            ->paginate(6); 
-
+        $user = auth()->user();
+        $userBids = collect();
+    
+        if ($user->user_type == 'company') {
+            // Logika za korisnike čiji je user_type 'company'
+            $userBids = Bid::where('user_id', $user->id)
+                ->with('job')
+                ->paginate(6);
+        } elseif ($user->user_type == 'client') {
+            // Logika za korisnike čiji je user_type 'client'
+            $userJobs = Job::where('user_id', $user->id)->pluck('id')->toArray();
+    
+            $userBids = Bid::whereIn('job_id', $userJobs)
+                ->with('job')
+                ->paginate(6);
+        }
+    
         return view('frontend.bids.index', compact('userBids'));
     }
+    
 
     public function show($jobId)
     {
