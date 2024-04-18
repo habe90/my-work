@@ -115,7 +115,7 @@
                                 <div class="_dashboard_content">
                                     <div class="_dashboard_content_header">
                                         <div class="_dashboard__header_flex">
-                                            <h4><i class="ti-settings mr-1"></i>My Profile</h4>
+                                            <h4><i class="ti-settings mr-1"></i>{{__('panel.my_profile')}}</h4>
                                         </div>
                                     </div>
 

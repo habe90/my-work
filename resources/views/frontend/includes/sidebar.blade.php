@@ -71,20 +71,21 @@
             @can('job_access')
                 <li
                     class="{{ request()->is('manage-task', 'manage-bidders', 'active-jobs', 'post-job') ? 'active' : '' }}">
-                    <a href="javascript:void(0);" class="has-arrow" aria-expanded="false"><i
-                            class="ti-desktop"></i> {{ __('global.client-nav.jobs') }}</a>
+                    <a href="javascript:void(0);" class="has-arrow" aria-expanded="false"><i class="ti-desktop"></i>
+                        {{ __('panel.client-nav.jobs') }}</a>
                     <ul>
                         {{-- <li><a href="#">Manage Task</a></li> --}}
-                        <li><a href="{{ route('bids.index') }}">Bieter verwalten</a></li>
-                        <li><a href="{{ route('my-jobs') }}">{{ __('global.client-nav.active_jobs') }}</a></li>
-                        <li><a href="/">{{ __('global.client-nav.post_job') }}</a></li>
+                        <li><a href="{{ route('bids.index') }}">{{ __('panel.client-nav.manage_bids') }}</a></li>
+
+                        <li><a href="{{ route('my-jobs') }}">{{ __('panel.client-nav.active_jobs') }}</a></li>
+                        <li><a href="/">{{ __('panel.client-nav.post_job') }}</a></li>
                     </ul>
                 </li>
             @endcan
             <li class="add-listing dark-bg">
                 <a href="{{ route('logout') }}"
                     onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                    <i class="ti-power-off"></i> Abmelden
+                    <i class="ti-power-off"></i> {{ __('panel.logout') }}
                 </a>
                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                     @csrf

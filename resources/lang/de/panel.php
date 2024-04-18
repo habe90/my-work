@@ -17,6 +17,8 @@ return [
     'completed' => 'Abgeschlossen',
     'in_process' => 'In Verarbeitung',
     'canceled' => 'Storniert',
+    'reviews' => 'Rezensionen',
+
 
     //profile
 
@@ -36,6 +38,8 @@ return [
     'save_changes' => 'Änderungen speichern',
     'first_name' => 'Vorname',
     'last_name' => 'Nachname',
+    'logout' => 'Abmelden',
+
 
 
 

@@ -35,5 +35,34 @@ return [
     'save_changes' => 'Save Changes',
     'first_name' => 'First Name',
     'last_name' => 'Last Name',
+    'logout' => 'Log Out',
+    'how_it_works' => "How it works",
+    'admin_dashboard' => "Admin Dashboard",
+    'my_account' => "My Account",
+    'sign_in' => "Sign In",
+    'register_as_company' => "Register as a Company",
+    'total_views' => 'Total Views',
+    'completed_jobs' => 'Completed Jobs',
+    'draft' => 'Draft',
+    'project_offers' => 'Project Offers',
+    'reviews' => 'Reviews',
+
+
+
+    
+    'client-nav' => [
+        'dashboard' => 'Dashboard',
+        'profile' => 'Profile',
+        'messages' => 'Messages',
+        'reviews' => 'Reviews',
+         'manage_bids' => 'Manage Bids',
+        'jobs' => 'Jobs',
+        'active_jobs' => 'My Jobs',
+        'post_job' => 'Post a Job',
+        'bookmarks' => 'Bookmark Jobs',
+        'bids' => 'Manage Bids',
+    ],
+    
+
 
 ];

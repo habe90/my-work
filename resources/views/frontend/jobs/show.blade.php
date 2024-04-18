@@ -130,13 +130,10 @@
                                                         </div>
                                                         <div class="_eltio_caption_body">
                                                             <h4>{{ __('global.service_type') }}</h4>
-                                                        
                                                             <ul>
-                                                              
                                                                 @foreach ($additionalDetails['service_type'] as $service)
                                                                     <li>{{ $service }}</li>
                                                                 @endforeach
-                                                             
                                                             </ul>
                                                         </div>
                                                     </div>
@@ -171,7 +168,7 @@
                         <div class="_wrap_box_slice">,
                             @if ($job->bids->isNotEmpty())
                                 <div class="_job_detail_single">
-                                    <h4>Project Offers ({{ $job->bids->count() }})</h4>
+                                    <h4>{{ __('panel.project_offers') }} ({{ $job->bids->count() }})</h4>
                                     <div class="_proposal_bids_list">
                                         @foreach ($bids as $bid)
                                             <div class="_proposal_bids_single">
@@ -201,7 +198,7 @@
                                                             @endfor
                                                             <a href="#"
                                                                 class="over_reviews_count">({{ $bid->user->reviews_count }}
-                                                                Rezensionen)</a>
+                                                                {{ __(panel.reviews) }} )</a>
                                                         </div>
                                                     </div>
                                                 </div>

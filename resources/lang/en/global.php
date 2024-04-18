@@ -11,10 +11,8 @@ return [
     'service_type' => 'Service Type',
     'home' => 'Home',
     'how_it_works' => "How it works",
-    'admin_dashboard' => "Admin Dashboard",
-    'my_account' => "My Account",
-    'sign_in' => "Sign In",
-    'register_as_company' => "Register as a Company",
+    'project_offers' => 'Project Offers',
+
     
     ],
     'all' => 'All',
