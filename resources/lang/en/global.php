@@ -8,6 +8,7 @@ return [
     'reviews' => 'Reviews',
     'bookmarks' => 'Bookmark Jobs',
     'bids' => 'My bids',
+    'service_type' => 'Service Type',
     ],
     'all' => 'All',
     'no_invoices' => 'There are no invoices available for this month.',

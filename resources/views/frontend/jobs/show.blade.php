@@ -1,5 +1,11 @@
 @extends('frontend.layouts.front')
 @section('content')
+<style>
+    ._job_detail_single ul li:before{
+    content: none;
+}
+
+</style>
     <!-- ============================ Page Title Start================================== -->
     <div class="page-title search-form dark">
         <div class="container">
@@ -74,7 +80,6 @@
                             <div class="_job_detail_single">
                                 <h4 class="mb-0">{{ __('global.project_info') }}</h4>
                                 <div class="row">
-
                                     @if ($job->additional_details)
                                         @php
                                             // Pretvorite JSON string u niz
@@ -82,38 +87,61 @@
                                         @endphp
                                         @if ($additionalDetails)
                                             @foreach ($additionalDetails as $detailKey => $detailValue)
+                                                @if ($detailKey != 'service_type') 
+                                                    <div class="col-lg-4 col-md-6 col-sm-12">
+                                                        <div class="_eltio_caption">
+                                                            <div class="_eltio_caption_icon">
+                                                                @php
+                                                                    $iconMap = [
+                                                                        'kvadratura' => 'ti-ruler',
+                                                                        'broj_vata' => 'ti-bolt',
+                                                                        'm2' => 'ti-bolt',
+                                                                        'deadline' => 'ti-alarm-clock',
+                                                                        'location' => 'ti-pin',
+                                                                        'material' => 'ti-package',
+                                                                        // Dodajte ostale ikone ovdje
+                                                                    ];
+                                                                    $icon = $iconMap[$detailKey] ?? 'ti-info-alt';
+                                                                @endphp
+                                                                <i class="{{ $icon }}"></i>
+                                                            </div>
+                                                            <div class="_eltio_caption_body">
+                                                                @if (is_array($detailValue))
+                                                                    @foreach ($detailValue as $subKey => $subValue)
+                                                                        <h4>{{ ucfirst(str_replace('_', ' ', $subKey)) }}</h4>
+                                                                        <span>{{ str_replace('_', ' ', $subValue) }}</span> 
+                                                                    @endforeach
+                                                                @else
+                                                                    <h4>{{ ucfirst(str_replace('_', ' ', $detailKey)) }}</h4>
+                                                                    <span>{{ str_replace('_', ' ', $detailValue) }}</span>
+                                                                @endif
+                                                            </div>
+                                                            
+                                                        </div>
+                                                    </div>
+                                                @endif
+                                            @endforeach
+                                            @if (isset($additionalDetails['service_type']))
                                                 <div class="col-lg-4 col-md-6 col-sm-12">
                                                     <div class="_eltio_caption">
                                                         <div class="_eltio_caption_icon">
-                                                            @php
-                                                                $iconMap = [
-                                                                    'kvadratura' => 'ti-ruler',
-                                                                    'broj_vata' => 'ti-bolt',
-                                                                    'm2' => 'ti-bolt',
-                                                                    'dedline' => 'ti-time',
-                                                                    'location' => 'ti-location',
-                                                                    // Dodajte ostale  ikone ovdje
-                                                                ];
-                                                                $icon = $iconMap[$detailKey] ?? 'ti-info-alt';
-                                                            @endphp
-                                                            <i class="{{ $icon }}"></i>
+                                                            <i class="ti-list" style="top: -30px;
+                                                                position: relative;"></i>
                                                         </div>
                                                         <div class="_eltio_caption_body">
-                                                            @if (is_array($detailValue))
-                                                                <!-- Ako je vrijednost niza takoder niz, koristite dodatnu foreach petlju -->
-                                                                @foreach ($detailValue as $subKey => $subValue)
-                                                                    <h4>{{ ucfirst(str_replace('_', ' ', $subKey)) }}</h4>
-                                                                    <span>{{ $subValue }}</span>
+                                                            <h4>{{ __('global.service_type') }}</h4>
+                                                        
+                                                            <ul>
+                                                              
+                                                                @foreach ($additionalDetails['service_type'] as $service)
+                                                                    <li>{{ $service }}</li>
                                                                 @endforeach
-                                                            @else
-                                                                <!-- Ako je vrijednost niza jednostavan string ili broj, ispisite ga direktno -->
-                                                                <h4>{{ ucfirst(str_replace('_', ' ', $detailKey)) }}</h4>
-                                                                <span>{{ $detailValue }}</span>
-                                                            @endif
+                                                             
+                                                            </ul>
                                                         </div>
                                                     </div>
                                                 </div>
-                                            @endforeach
+                                            @endif
                                         @endif
                                     @endif
                                 </div>
@@ -125,8 +153,6 @@
                                 <h4>{{ __('global.job_desc') }}</h4>
                                 <p>{!! $job->description !!}</p>
                             </div>
-
-
 
                             {{-- <div class="_job_detail_single flexeo">
                                 <div class="_job_detail_single_flex">

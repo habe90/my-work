@@ -25,6 +25,13 @@
                                 @endif
                             @endforeach
 
+                            @if(file_exists(app_path('Http/Livewire/LanguageSwitcher.php')))
+                            <!-- Ovdje dodajte LanguageSwitcher komponentu -->
+                            <li class="nav-item">
+                                <livewire:language-switcher />
+                            </li>
+                        @endif
+
                         </ul>
 
                         <ul class="nav-menu nav-menu-social align-to-right">

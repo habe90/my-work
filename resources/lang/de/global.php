@@ -11,7 +11,7 @@ return [
     'payment_for' => 'Zahlung für',
     'date' => 'Datum',
     'thank_you_for_your_purchase' => 'Danke für Ihren Einkauf!',
-    
+    'service_type' => 'Dienstleistungstyp',
 
     'client-nav' => [
         'dashboard' => 'Dashboard',
