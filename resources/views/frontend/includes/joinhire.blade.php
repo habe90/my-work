@@ -5,17 +5,17 @@
         
             <div class="col-md-6 col-sm-6 bl-dark">
                 <div class="call-to-act-caption">
-                    <h2>Sind Sie auf der Suche nach einem Experten?</h2>
-                    <h3>Erstellen Sie ein Projekt und erreichen Sie professionelle Dienstleister in Ihrer Nähe. Je detaillierter Ihre Projektbeschreibung, desto besser die Angebote, die Sie erhalten.</h3>
-                    <a href="#" class="btn bat-call-to-act">Projekt einstellen</a>
+                    <h2>{{ __('front.looking_for_expert') }}</h2>
+                    <h3>{{ __('front.looking_for_expert_description') }}</h3>
+                    <a href="#" class="btn bat-call-to-act">{{ __('front.create_request') }}</a>
                 </div>
             </div>
             
             <div class="col-md-6 col-sm-6 dark-2">
                 <div class="call-to-act-caption">
-                    <h2>Sind Sie ein Dienstleister?</h2>
-                    <h3>Registrieren Sie sich bei uns und bieten Sie Ihre Dienstleistungen Tausenden potentiellen Kunden an. Machen Sie den ersten Schritt zur Erweiterung Ihres Kundenstamms.</h3>
-                    <a href="{{route('company-login')}}" class="btn bat-call-to-act">Registrieren</a>
+                    <h2>{{ __('front.are_you_service_provider') }}</h2>
+                    <h3>{{ __('front.register_now_description') }}</h3>
+                    <a href="{{ route('company-login') }}" class="btn bat-call-to-act">{{ __('front.register_now') }}</a>
                 </div>
             </div>
             
