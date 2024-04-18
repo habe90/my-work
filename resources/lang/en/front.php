@@ -20,4 +20,13 @@ return [
     'register_now_description' => 'Register with us and offer your services to thousands of potential customers. Take the first step towards expanding your customer base.',
     'what_people_say' => 'What people are saying',
     'customer_experiences' => 'Discover the experiences of our customers and how our services have contributed to successfully implementing their projects.',
+    'message_history' => 'Message History',
+    'delete_conversation' => 'Delete Conversation',
+    'no_current_conversations' => 'You are not currently having any conversations.',
+    'user_not_available' => 'The user is not available',
+    'in_ad' => 'In the ad:',
+    'title_not_available' => 'Title not available',
+    'send_message' => 'Send Message',
+    'your_message_here' => 'Your message here...',
 ];
+

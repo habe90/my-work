@@ -1,11 +1,11 @@
 <div class="col-lg-12 col-md-12 col-sm-12">
     <div class="messages-container margin-top-0">
         <div class="messages-headline">
-            <h4>Mitteilungsverlauf</h4>
+            <h4>{{ __('front.message_history') }}</h4>
             @if (!$conversations->isEmpty() && $selectedConversationId)
                 <a href="#" class="message-action"
                     wire:click.prevent="deleteConversation({{ $selectedConversationId }})"><i class="ti-trash"></i>
-                    Konversation löschen</a>
+                    {{ __('front.delete_conversation') }}</a>
             @endif
 
         </div>
@@ -14,7 +14,7 @@
             <div class="dash-msg-inbox" style="
             background: #e3e1de80;">
                 @if ($conversations->isEmpty())
-                    <p class="text-center mt-4">Sie führen derzeit keine aktuellen Gespräche.</p>
+                    <p class="text-center mt-4">{{ __('front.no_current_conversations') }}</p>
                 @else
                     @foreach ($conversations as $conversation)
                         <ul>
@@ -35,12 +35,12 @@
                                                 <h5>{{ $conversation->bids->first()->user->name }}</h5>
                                                 <span>{{ $conversation->bids->first()->created_at->diffForHumans() }}</span>
                                             @else
-                                                <h5>Der Benutzer ist nicht verfügbar</h5>
+                                                <h5>{{ __('front.user_not_available') }}</h5>
                                             @endif
 
                                         </div>
-                                        <p>In der Anzeige::
-                                            {{ optional(optional($conversation->bids->first())->job)->title ?? 'Titel nicht verfügbar' }}
+                                        <p>{{ __('front.in_ad') }}
+                                            {{ optional(optional($conversation->bids->first())->job)->title ?? __('front.title_not_available') }}
                                         </p>
 
                                     </div>
@@ -97,10 +97,10 @@
                                     <emoji-picker></emoji-picker>
                                 </div>
                                 <textarea wire:model="newMessage" cols="40" rows="3" class="form-control with-light"
-                                    placeholder="Vaša poruka ovdje.."></textarea>
+                                    placeholder="{{ __('front.your_message_here') }}"></textarea>
                             </div>
                             <button type="submit" class="btn dark-2"
-                                @unless ($newMessage) disabled @endunless>Nachricht senden</button>
+                                @unless ($newMessage) disabled @endunless>{{ __('front.send_message') }}</button>
 
                         </form>
                     </div>

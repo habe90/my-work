@@ -20,4 +20,12 @@ return [
     'register_now_description' => 'Registrieren Sie sich bei uns und bieten Sie Ihre Dienstleistungen Tausenden potentiellen Kunden an. Machen Sie den ersten Schritt zur Erweiterung Ihres Kundenstamms.',
     'what_people_say' => 'Was die Leute sagen',
     'customer_experiences' => 'Entdecken Sie die Erfahrungen unserer Kunden und wie unsere Dienstleistungen dazu beigetragen haben, ihre Projekte erfolgreich umzusetzen.',
+    'message_history' => 'Mitteilungsverlauf',
+    'delete_conversation' => 'Konversation löschen',
+    'no_current_conversations' => 'Sie führen derzeit keine aktuellen Gespräche.',
+    'user_not_available' => 'Der Benutzer ist nicht verfügbar',
+    'in_ad' => 'In der Anzeige:',
+    'title_not_available' => 'Titel nicht verfügbar',
+    'send_message' => 'Nachricht senden',
+    'your_message_here' => 'Vaša poruka ovdje..',
 ];
