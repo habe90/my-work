@@ -69,29 +69,33 @@
             @endcan
 
             @can('job_access')
-            @php
-            $newBidsCount = \App\Models\Bid::where('status', 'pending')
-                                           ->where('user_id', auth()->id())
-                                           ->count();
-        @endphp
-        
-        <li class="{{ request()->is('manage-task', 'manage-bidders', 'active-jobs', 'post-job') ? 'active' : '' }}">
-            <a href="javascript:void(0);" class="has-arrow" aria-expanded="false"><i class="ti-desktop"></i>
-                {{ __('panel.client-nav.jobs') }}</a>
-            <ul>
-                {{-- <li><a href="#">Manage Task</a></li> --}}
-                <li>
-                    <a href="{{ route('bids.index') }}">{{ __('panel.client-nav.manage_bids') }}
-                        @if ($newBidsCount > 0)
-                            <span class="badge badge-danger">{{ $newBidsCount }}</span>
-                        @endif
-                    </a>
+                <li
+                    class="{{ request()->is('manage-task', 'manage-bidders', 'active-jobs', 'post-job') ? 'active' : '' }}">
+                    <a href="javascript:void(0);" class="has-arrow" aria-expanded="false"><i class="ti-desktop"></i>
+                        {{ __('panel.client-nav.jobs') }}</a>
+                    <ul>
+                        @php
+                            $newBidsCount = \App\Models\Bid::whereHas('jobs', function ($query) {
+                                $query->where('user_id', auth()->id());
+                            })
+                                ->where('status', 'pending')
+                                ->count();
+                        @endphp
+
+                        <li>
+                            <a href="{{ route('bids.index') }}">
+                                {{ __('panel.client-nav.manage_bids') }}
+                                @if ($newBidsCount > 0)
+                                    <span class="badge badge-danger">{{ $newBidsCount }}</span>
+                                @endif
+                            </a>
+                        </li>
+
+
+                        <li><a href="{{ route('my-jobs') }}">{{ __('panel.client-nav.active_jobs') }}</a></li>
+                        <li><a href="/">{{ __('panel.client-nav.post_job') }}</a></li>
+                    </ul>
                 </li>
-        
-                <li><a href="{{ route('my-jobs') }}">{{ __('panel.client-nav.active_jobs') }}</a></li>
-                <li><a href="/">{{ __('panel.client-nav.post_job') }}</a></li>
-            </ul>
-        </li>
             @endcan
             <li class="add-listing dark-bg">
                 <a href="{{ route('logout') }}"
