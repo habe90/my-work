@@ -43,6 +43,7 @@ return [
     'logout' => 'Abmelden',
     'my_profile' => 'Mein Profil',
     'email' => 'Email',
+    'project_offers' => 'Projektangebote',
 
     'client-nav' => [
         'dashboard' => 'Übersicht',
