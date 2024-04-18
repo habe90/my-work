@@ -25,12 +25,6 @@
                                 @endif
                             @endforeach
 
-                            @if(file_exists(app_path('Http/Livewire/LanguageSwitcher.php')))
-                            <!-- Ovdje dodajte LanguageSwitcher komponentu -->
-                            <li>
-                                <livewire:language-switcher />
-                            </li>
-                        @endif
 
                         </ul>
 
@@ -38,6 +32,12 @@
 
                             @auth <!-- Ako je korisnik logovan -->
                                 <li>
+                                    @if(file_exists(app_path('Http/Livewire/LanguageSwitcher.php')))
+                                    <!-- Ovdje dodajte LanguageSwitcher komponentu -->
+                                   
+                                        <livewire:language-switcher />
+                               
+                                @endif
                                     @if (auth()->user()->roles()->where('title', 'Admin')->exists())
                                         <a href="/admin">
                                             <i class="ti-dashboard fa-lg mr-1"></i>Admin Dashboard
