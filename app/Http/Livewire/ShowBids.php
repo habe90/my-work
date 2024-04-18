@@ -26,32 +26,26 @@ class ShowBids extends Component
 
     public function acceptBid($bidId)
     {
-        $bid = Bid::find($bidId);
-        
-        if ($bid) {
-            $bid->status = 'accepted';
+            $bid = Bid::find($bidId);
             
-            $conversationId = $this->findOrCreateConversation($bid->user_id, $bidId);
-            
-            $bid->conversation_id = $conversationId;
-            $bid->save();
+            if ($bid) {
+                $bid->status = 'accepted';
+                $conversationId = $this->findOrCreateConversation($bid->user_id, $bidId);
+                $bid->conversation_id = $conversationId;
+                $bid->save();
 
-            $userLocale = $bid->user->locale ?? app()->getLocale();
-            $message = __('front.bid_accepted', ['bidId' => $bidId], $userLocale);
+                $userLocale = $bid->user->locale ?? app()->getLocale();
+                $message = __('front.bid_accepted', ['bidId' => $bidId], $userLocale);
 
-            // Slanje automatske poruke korisniku
-            $this->sendAutomaticMessage($conversationId, $message);
-            
-            // Evidentirajte uspješan projekt
-            $successfulJob = new SuccessfulJob();
-            $successfulJob->offer_id = $bidId;
-            $successfulJob->completion_date = now(); // Pretpostavimo da se projekt odmah smatra završenim, inače trebate dodati logiku za praćenje stvarnog završetka
-            $successfulJob->amount_due = $this->calculateAmountDue($bid); // Pretpostavimo da imate metodu za izračunavanje duga
-            $successfulJob->save();
-    
-            $this->emit('refreshComponent');
+                // Slanje automatske poruke korisniku
+                $this->sendAutomaticMessage($conversationId, $message);
+
+               
+
+                $this->emit('refreshComponent');
+            }
         }
-    }
+
 
     protected function calculateAmountDue(Bid $bid)
     {
