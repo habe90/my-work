@@ -6,12 +6,17 @@ use Livewire\Component;
 use App\Models\ImConversation;
 use App\Models\ImMessage;
 use App\Models\User;
+use Livewire\WithFileUploads;
 
 class MessagesComponent extends Component
 {
+
+    use WithFileUploads;
+
     public $conversations;
     public $selectedConversation;
     public $selectedConversationId;
+    public $fileUpload;
     public $newMessage = '';
     protected $listeners = [
         'messageReceived',
@@ -67,24 +72,41 @@ class MessagesComponent extends Component
 
 
     public function sendMessage()
-{
-    // Provjerite da li je odabrana konverzacija
-    if ($this->selectedConversation) {
-        // Kreirajte novu poruku i spremite je u bazu podataka
-        $message = new ImMessage([
-            'body' => $this->newMessage,
-            'user_id' => auth()->user()->id,
+    {
+        $this->validate([
+            'newMessage' => 'nullable|string',
+            'fileUpload' => 'nullable|file|max:2048', // Ovdje možete postaviti ograničenja za datoteke
         ]);
-        $this->selectedConversation->messages()->save($message);
 
-        // Očistite unos za novu poruku
-        $this->newMessage = '';
+        // Provjerite da li je odabrana konverzacija
+        if ($this->selectedConversation) {
+            $messageText = $this->newMessage;
 
-        // Osvježite odabrani razgovor kako biste vidjeli novu poruku
-        $this->selectedConversation = ImConversation::with(['bids.job', 'bids.user', 'messages.user'])
-            ->find($this->selectedConversation->id);
+            // Ako postoji uploadovana datoteka, obradite je
+            if ($this->fileUpload) {
+                $filename = $this->fileUpload->store('public/uploads', 'local'); // Ovo će spremati datoteku u 'storage/app/public/uploads'
+                $messageText = $filename; // Možete ovdje dodati logiku za generisanje URL-a ili neki drugi identifikator datoteke
+            }
+
+            // Kreirajte novu poruku
+            $message = new ImMessage([
+                'body' => $messageText,
+                'user_id' => auth()->user()->id,
+            ]);
+            $this->selectedConversation->messages()->save($message);
+
+            // Resetujte polje i uploadovanu datoteku nakon slanja
+            $this->newMessage = '';
+            $this->fileUpload = null;
+
+            // Osvježite odabrani razgovor kako biste vidjeli novu poruku
+            $this->selectedConversation = ImConversation::with(['bids.job', 'bids.user', 'messages.user'])
+                ->find($this->selectedConversation->id);
+
+            // Emitujte događaj za osvježavanje
+            $this->emitTo('message-component', 'refreshComponent');
+        }
     }
-}
 
 
     public function isUserOnline($userId)
