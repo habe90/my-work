@@ -13,9 +13,16 @@ class LanguageSwitcher extends Component
 
     public function mount()
     {
-        $this->languages       = config('project.supported_languages');
-        $this->currentLanguage = app()->getLocale();
+        // Provjera da li postoji jezik u sesiji ili kolačiću
+        $locale = session('locale', request()->cookie('locale', config('app.locale')));
+    
+        $this->languages = config('project.supported_languages');
+        $this->currentLanguage = $locale;
+    
+        // Postavljanje jezika aplikacije na osnovu odabrane vrijednosti
+        app()->setLocale($this->currentLanguage);
     }
+    
 
     public function changeLocale(string $localeCode)
     {
