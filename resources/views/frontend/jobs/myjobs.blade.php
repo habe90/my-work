@@ -10,12 +10,6 @@
                 <div class="col-xl-3 col-lg-4 col-md-12 col-sm-12">
                     @include('frontend.includes.sidebar')
                 </div>
-                {{-- @if (session('success'))
-                    <script>
-                        toastr.success("{{ session('success') }}");
-                    </script>
-                @endif --}}
-
 
                 <!-- Item Wrap Start -->
                 <div class="col-xl-9 col-lg-8 col-md-12 col-sm-12">
@@ -25,9 +19,9 @@
                             <div class="bredcrumb_wrap">
                                 <nav aria-label="breadcrumb">
                                     <ol class="breadcrumb">
-                                        <li class="breadcrumb-item"><a href="#">Home</a></li>
-                                        <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
-                                        <li class="breadcrumb-item active" aria-current="page">All Jobs</li>
+                                        <li class="breadcrumb-item"><a href="#">{{ __('front.breadcrumb_home') }}</a></li>
+                                        <li class="breadcrumb-item"><a href="#">{{ __('front.breadcrumb_dashboard') }}</a></li>
+                                        <li class="breadcrumb-item active" aria-current="page">{{ __('front.breadcrumb_all_jobs') }}</li>
                                     </ol>
                                 </nav>
                             </div>
@@ -41,7 +35,7 @@
                             <div class="_dashboard_content">
                                 <div class="_dashboard_content_header">
                                     <div class="_dashboard__header_flex">
-                                        <h4><i class="ti-layers mr-1"></i>Mein Jobs</h4>
+                                        <h4><i class="ti-layers mr-1"></i>{{ __('front.my_jobs_title') }}</h4>
                                     </div>
                                 </div>
 
@@ -63,14 +57,15 @@
                                                         class="_elopi_designation">{{ $job->created_at->diffForHumans() }}</span>
                                                     <ul class="_action_grouping_list">
                                                         <li><a href="{{ route('jobs.edit', $job) }}" data-toggle="tooltip"
-                                                                data-placement="top" title="Edit job"><i
+                                                                data-placement="top" title="{{ __('front.job_edit_tooltip') }}"><i
                                                                     class="fa fa-edit"></i></a></li>
                                                         <li>
                                                             <form action="{{ route('jobs.delete', $job) }}" method="POST">
                                                                 @csrf
                                                                 @method('DELETE')
                                                                 <button type="submit" data-toggle="tooltip"
-                                                                    data-placement="top" title="Obriši posao">
+                                                                    data-placement="top" title="{{ __('front.job_delete_tooltip') }}"
+                                                                    onclick="return confirm('{{ __('front.job_delete_confirmation') }}')">
                                                                     <i class="fa fa-trash"></i>
                                                                 </button>
                                                             </form>
@@ -97,7 +92,7 @@
                                                                 <div class="_act_capt_1">
                                                                     <h5 style="color: {{ $statusColor }};">
                                                                         {{ ucfirst($job->status) }}</h5>
-                                                                    <span style="color: {{ $statusColor }};">Status</span>
+                                                                    <span style="color: {{ $statusColor }};">{{ __('front.status_label') }}</span>
                                                                 </div>
                                                             </li>
 

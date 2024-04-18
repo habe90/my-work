@@ -28,5 +28,16 @@ return [
     'title_not_available' => 'Title not available',
     'send_message' => 'Send Message',
     'your_message_here' => 'Your message here...',
+    'breadcrumb_home' => 'Home',
+    'breadcrumb_dashboard' => 'Dashboard',
+    'breadcrumb_all_jobs' => 'All Jobs',
+    'my_jobs_title' => 'My Jobs',
+    'job_edit_tooltip' => 'Edit job',
+    'job_delete_tooltip' => 'Delete job',
+    'job_delete_confirmation' => 'Are you sure you want to delete this job?',
+    'job_status_pending' => 'Pending',
+    'job_status_inactive' => 'Inactive',
+    'job_status_completed' => 'Completed',
+    'status_label' => 'Status',
 ];
 
