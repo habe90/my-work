@@ -60,7 +60,7 @@
                                                                 @if (auth()->user()->user_type == 'client')
                                                                     {{-- Ako je korisnik vlasnik posla, link vodi na stranicu za pregled ponuda --}}
                                                                     <a
-                                                                        href="{{ route('bids.show', ['job' => $bid->job->id]) }}">{{ $bid->job->title }}</a>
+                                                                        href="{{ route('bids.show', ['job' => $bid->job->id]) }}"><h3>{{ $bid->job->title }}</h3></a>
                                                                 @else
                                                                     {{-- Ako je korisnik firma, koristimo trenutnu logiku --}}
                                                                     <a
