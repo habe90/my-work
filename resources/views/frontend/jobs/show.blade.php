@@ -196,9 +196,9 @@
                                                                     <i class="fa fa-star"></i>
                                                                 @endif
                                                             @endfor
-                                                            <a href="#"
-                                                                class="over_reviews_count">({{ $bid->user->reviews_count }}
-                                                                {{ __(panel.reviews) }} )</a>
+                                                            <a href="#" class="over_reviews_count">
+                                                                ({{ $bid->user->reviews_count }} {{ __('panel.reviews') }} )
+                                                            </a>
                                                         </div>
                                                     </div>
                                                 </div>
