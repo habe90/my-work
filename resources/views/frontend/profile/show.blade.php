@@ -57,17 +57,14 @@
                                                     @else
                                                         <label class="custom-file-label" for="customFile">
                                                             <i class="fa fa-user"></i>
-                                                            <span class="d-none d-sm-inline-block"> 
+                                                            <span class="d-none d-sm-inline-block">
+                                                              
                                                                 <!-- Klicken Sie hier, um ein Bild auszuwählen -->
-                                                                <span class="d-inline-block d-md-none">Klicken Sie hier, um ein Bild auszuwählen</span>
+                                                                <span class="d-none d-md-inline-block">Klicken Sie hier, um ein Bild auszuwählen</span>
                                                             </span>
                                                         </label>
                                                     @endif
                                                 </div>
-                                                <span class="d-none d-sm-inline-block"> 
-                                                    <!-- Klicken Sie hier, um ein Bild auszuwählen -->
-                                                    <span class="d-inline-block d-md-none">Klicken Sie hier, um ein Bild auszuwählen</span>
-                                                </span>
                                                 <!-- Prikaz slike korisnika -->
 
                                             </div>
