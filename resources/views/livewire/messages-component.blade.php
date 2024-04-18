@@ -31,12 +31,21 @@
 
                                     <div class="message-by">
                                         <div class="message-by-headline">
-                                            @if ($conversation->bids->isNotEmpty() && optional($conversation->bids->first())->user)
-                                                <h5>{{ $conversation->bids->first()->user->name }}</h5>
-                                                <span>{{ $conversation->bids->first()->created_at->diffForHumans() }}</span>
-                                            @else
-                                                <h5>{{ __('front.user_not_available') }}</h5>
-                                            @endif
+                                            @php
+            $job = optional($conversation->bids->first())->job;
+            $isClient = auth()->id() === $job->user_id;
+            $bidUser = optional($conversation->bids->first())->user;
+        @endphp
+
+        <h5>
+            @if ($isClient)
+                <!-- Ako je trenutni korisnik klijent, prikažite ime firme koja je poslala ponudu -->
+                {{ $bidUser->company_name ?? $bidUser->name }}
+            @else
+                <!-- Ako trenutni korisnik nije klijent, prikažite ime klijenta koji je kreirao posao -->
+                {{ $job->user->name }}
+            @endif
+        </h5>
 
                                         </div>
                                         <p>{{ __('front.in_ad') }}
