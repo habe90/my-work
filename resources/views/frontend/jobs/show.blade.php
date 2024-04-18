@@ -90,6 +90,8 @@
                                                                     'kvadratura' => 'ti-ruler',
                                                                     'broj_vata' => 'ti-bolt',
                                                                     'm2' => 'ti-bolt',
+                                                                    'dedline' => 'ti-time',
+                                                                    'location' => 'ti-location',
                                                                     // Dodajte ostale  ikone ovdje
                                                                 ];
                                                                 $icon = $iconMap[$detailKey] ?? 'ti-info-alt';
