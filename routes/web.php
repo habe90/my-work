@@ -119,11 +119,11 @@ Route::put('/proposals/{proposal}', [ProposalController::class, 'update'])
     ->middleware('auth');
 
 //messages
-Route::get('/user/messages', [MessagesController::class, 'index'])->name('messages.index');
+Route::get('/user/messages', [MessagesController::class, 'index'])->name('messages.index')->middleware('auth');
 
 //profile
-Route::get('/user/my-profile', [ProfileController::class, 'index'])->name('users.profile');
-Route::put('/user/update-profile', [ProfileController::class, 'update'])->name('user.update.profile');
+Route::get('/user/my-profile', [ProfileController::class, 'index'])->name('users.profile')->middleware('auth');
+Route::put('/user/update-profile', [ProfileController::class, 'update'])->name('user.update.profile')->middleware('auth');
 
 
 //company
