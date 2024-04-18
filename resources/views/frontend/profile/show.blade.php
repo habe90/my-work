@@ -1,14 +1,67 @@
 @extends('frontend.layouts.front')
 @section('content')
-    <!-- ============================ Page Title Start================================== -->
-    {{-- <div class="page-title bg-cover" style="background:url(https://via.placeholder.com/1920x980)no-repeat;" data-overlay="5">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12 col-md-12"></div>
-            </div>
-        </div>
-    </div> --}}
-    <!-- ============================ Page Title End ================================== -->
+    <!-- ============================ Extra style================================== -->
+    <style>
+        .avatar_uploads {
+            text-align: center;
+            /* Centriranje sadržaja unutar div-a */
+            position: relative;
+            /* Pozicioniranje label-a u odnosu na ovaj div */
+        }
+
+        .user-image {
+            display: block;
+            /* Slika se prikazuje kao blok element */
+            margin: 0 auto 10px;
+            /* Centriranje slike i dodavanje margine na dnu */
+            width: 150px;
+            /* Širina slike */
+        }
+
+        .btn-upload {
+            display: inline-block;
+            /* Gumb se prikazuje kao inline-block element */
+            margin: 0 auto;
+            /* Centriranje gumba */
+            padding: 5px 10px;
+            /* Unutrašnji razmak gumba */
+            font-size: .875rem;
+            /* Veličina fonta gumba */
+            cursor: pointer;
+            /* Kursor pokazuje da je gumb klikabilan */
+            background-color: #007bff;
+            /* Boja pozadine gumba */
+            color: white;
+            /* Boja teksta gumba */
+            border: none;
+            /* Gumb nema obrub */
+            border-radius: .25rem;
+            /* Zaobljeni uglovi gumba */
+        }
+
+        .custom-file-input {
+            position: absolute;
+            /* Input je apsolutno pozicioniran */
+            width: 100%;
+            /* Širina input-a je 100% */
+            height: 100%;
+            /* Visina input-a je 100% */
+            top: 0;
+            /* Input je na vrhu */
+            left: 0;
+            /* Input je na lijevoj strani */
+            opacity: 0;
+            /* Input je nevidljiv */
+            cursor: pointer;
+            /* Kursor pokazuje da je input klikabilan */
+        }
+
+        .custom-file-label {
+            display: none;
+            /* Sakrivamo labelu */
+        }
+    </style>
+    <!-- ============================ Edn style ================================== -->
     <section class="gray-bg pt-4">
         <div class="container-fluid">
             <div class="row m-0">
@@ -50,29 +103,21 @@
                                     <div class="_dashboard_content_body">
                                         <div class="row">
                                             <div class="col-auto">
-                                                <div class="custom-file avatar_uploads">
-                                                    <input type="file" name="image" class="custom-file-input" id="customFile">
+                                                <div class="avatar_uploads">
                                                     @if ($user->image)
-                                                        <img src="{{ $user->image }}" alt="Slika korisnika" width="150">
-                                                        <label class="custom-file-label" for="customFile">
-                                                            <i class="fa fa-user"></i>
-                                                            <span class="d-none d-sm-inline-block">
-                                                                Promijenite sliku
-                                                            </span>
-                                                        </label>
+                                                        <img src="{{ $user->image }}" alt="Slika korisnika"
+                                                            class="user-image">
+                                                        <label for="customFile"
+                                                            class="btn-upload">{{ __('Promijenite sliku') }}</label>
                                                     @else
-                                                        <label class="custom-file-label" for="customFile">
-                                                            <i class="fa fa-user"></i>
-                                                            <span class="d-none d-sm-inline-block">
-                                                                Kliknite ovdje da odaberete sliku
-                                                            </span>
-                                                        </label>
+                                                        <label for="customFile"
+                                                            class="btn-upload">{{ __('Kliknite ovdje da odaberete sliku') }}</label>
                                                     @endif
+                                                    <input type="file" name="image" class="custom-file-input"
+                                                        id="customFile" hidden>
                                                 </div>
-                                                
-                                                <!-- Prikaz slike korisnika -->
-
                                             </div>
+
 
 
                                             <div class="col">
@@ -125,7 +170,7 @@
                                 <div class="_dashboard_content">
                                     <div class="_dashboard_content_header">
                                         <div class="_dashboard__header_flex">
-                                            <h4><i class="ti-settings mr-1"></i>{{__('panel.my_profile')}}</h4>
+                                            <h4><i class="ti-settings mr-1"></i>{{ __('panel.my_profile') }}</h4>
                                         </div>
                                     </div>
 
@@ -138,7 +183,8 @@
                                                         <label>{{ __('panel.company_name') }}</label>
                                                         <input type="text" name="company_name"
                                                             class="form-control with-light"
-                                                            value="{{ old('company_name', $user->company_name) }}" disabled>
+                                                            value="{{ old('company_name', $user->company_name) }}"
+                                                            disabled>
                                                         @error('company_name')
                                                             <span class="text-danger">{{ $message }}</span>
                                                         @enderror
@@ -267,35 +313,34 @@
     </section>
 @endsection
 @push('scripts')
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
-<script>
-    $(document).ready(function() {
-        // Dohvatite staru vrijednost ili trenutnu vrijednost radiusa
-        var radiusValue = "{{ old('radius', $user->radius) }}";
-        
-        // Inicijalizujte ionRangeSlider sa PHP vrijednostima
-        $(".js-range-slider").ionRangeSlider({
-            type: "double",
-            min: 0,
-            max: 500,
-            from: 0, 
-            to: radiusValue,
-            grid: true
+    <script>
+        $(document).ready(function() {
+            // Dohvatite staru vrijednost ili trenutnu vrijednost radiusa
+            var radiusValue = "{{ old('radius', $user->radius) }}";
+
+            // Inicijalizujte ionRangeSlider sa PHP vrijednostima
+            $(".js-range-slider").ionRangeSlider({
+                type: "double",
+                min: 0,
+                max: 500,
+                from: 0,
+                to: radiusValue,
+                grid: true
+            });
+
+            // Handler za promjenu vrijednosti slidera
+            $('.js-range-slider').on('change', function() {
+                var $this = $(this),
+                    value = $this.prop("value").split(";");
+
+                var fromValue = parseInt(value[0]),
+                    toValue = parseInt(value[1]);
+
+                $this.data("from", fromValue);
+                $this.data("to", toValue);
+            });
         });
-
-        // Handler za promjenu vrijednosti slidera
-        $('.js-range-slider').on('change', function() {
-            var $this = $(this),
-                value = $this.prop("value").split(";");
-
-            var fromValue = parseInt(value[0]),  
-                toValue = parseInt(value[1]);    
-
-            $this.data("from", fromValue);
-            $this.data("to", toValue);
-        });
-    });
-</script>
+    </script>
 @endpush
-
