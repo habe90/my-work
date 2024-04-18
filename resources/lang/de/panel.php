@@ -39,6 +39,7 @@ return [
     'first_name' => 'Vorname',
     'last_name' => 'Nachname',
     'logout' => 'Abmelden',
+    'my_profile' => 'Mein Profil',
 
 
 
