@@ -64,6 +64,10 @@
                                                         </label>
                                                     @endif
                                                 </div>
+                                                <span class="d-none d-sm-inline-block"> 
+                                                    <!-- Klicken Sie hier, um ein Bild auszuwählen -->
+                                                    <span class="d-inline-block d-md-none">Klicken Sie hier, um ein Bild auszuwählen</span>
+                                                </span>
                                                 <!-- Prikaz slike korisnika -->
 
                                             </div>
