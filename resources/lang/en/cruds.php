@@ -289,7 +289,10 @@ return [
         'offer' => 'Offer',
         'date' => 'Date',
         'status' => 'Status',
-        'no_offers' => 'You currently have no offers.'
+        'no_offers' => 'You currently have no offers.',
+        'status_accepted' => 'Accepted',
+        'status_pending' => 'Pending',
+        'status_declined' => 'Declined'
     ],
 
 

@@ -253,7 +253,10 @@ return [
         'offer' => 'Angebot',
         'date' => 'Datum',
         'status' => 'Status',
-        'no_offers' => 'Sie haben derzeit keine Angebote.'
+        'no_offers' => 'Sie haben derzeit keine Angebote.',
+        'status_accepted' => 'Akzeptiert',
+        'status_pending' => 'Ausstehend',
+        'status_declined' => 'Abgelehnt'
     ],
     
 
