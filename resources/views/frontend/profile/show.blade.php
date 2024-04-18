@@ -108,10 +108,10 @@
                                                         <img src="{{ $user->image }}" alt="Slika korisnika"
                                                             class="user-image">
                                                         <label for="customFile"
-                                                            class="btn-upload">{{ __('Promijenite sliku') }}</label>
+                                                            class="btn-upload">{{ __('panel.image_alt') }}</label>
                                                     @else
                                                         <label for="customFile"
-                                                            class="btn-upload">{{ __('Kliknite ovdje da odaberete sliku') }}</label>
+                                                            class="btn-upload">{{ __('panel.click_to_select') }}</label>
                                                     @endif
                                                     <input type="file" name="image" class="custom-file-input"
                                                         id="customFile" hidden>

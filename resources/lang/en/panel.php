@@ -47,7 +47,7 @@ return [
     'project_offers' => 'Project Offers',
     'reviews' => 'Reviews',
     'my_profile' => 'My Profile',
-    'image_alt' => 'User image',
+    'image_alt' => 'Change image',
     'click_to_select' => 'Click here to select a picture',
 
 
