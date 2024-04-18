@@ -14,41 +14,44 @@
             <div class="dash-msg-inbox" style="
             background: #e3e1de80;">
                 @if ($conversations->isEmpty())
-                    <p class="text-center mt-4">{{ __('front.no_current_conversations') }}</p>
-                @else
-                    @foreach ($conversations as $conversation)
-                        <ul>
-                            <li @if ($selectedConversationId == $conversation->id) class="active-message" @endif>
-                                <a href="#" wire:click="selectConversation({{ $conversation->id }})">
-                                    <div class="dash-msg-avatar"><img src="https://via.placeholder.com/500x500"
-                                            alt="">
-                                        <span
-                                            class="_user_status {{ $this->isUserOnline(optional(optional($conversation->bids->first())->user)->id) ? 'online' : 'offline' }}"></span>
-
-
-
-                                    </div>
-
-                                    <div class="message-by">
-                                        <div class="message-by-headline">
-                                            @if ($conversation->bids->isNotEmpty() && optional($conversation->bids->first())->user)
-                                                <h5>{{ $conversation->bids->first()->user->name }}</h5>
-                                                <span>{{ $conversation->bids->first()->created_at->diffForHumans() }}</span>
+                <p class="text-center mt-4">{{ __('front.no_current_conversations') }}</p>
+            @else
+                @foreach ($conversations as $conversation)
+                    <ul>
+                        @php
+                            $firstBid = $conversation->bids->first(); // Prva ponuda u konverzaciji
+                            $job = optional($firstBid)->job; // Posao za koji je ponuda napravljena
+                            $bidUser = optional($firstBid)->user; // Korisnik koji je napravio ponudu
+                            $jobOwner = optional($job)->user; // Vlasnik posla
+                            $isClient = $jobOwner && auth()->id() === $jobOwner->id; // Da li je trenutni korisnik vlasnik posla
+                        @endphp
+                        <li @if ($selectedConversationId == $conversation->id) class="active-message" @endif>
+                            <a href="#" wire:click.prevent="selectConversation({{ $conversation->id }})">
+                                <div class="dash-msg-avatar">
+                                    <img src="{{ optional($bidUser)->image ?? 'https://via.placeholder.com/500x500' }}" alt="">
+                                    <span class="_user_status {{ $this->isUserOnline($bidUser->id ?? null) ? 'online' : 'offline' }}"></span>
+                                </div>
+                                <div class="message-by">
+                                    <div class="message-by-headline">
+                                        <h5>
+                                            @if ($isClient)
+                                                {{ $bidUser->name ?? __('front.user_not_available') }} <!-- Ime firme -->
                                             @else
-                                                <h5>{{ __('front.user_not_available') }}</h5>
+                                                {{ $jobOwner->name ?? __('front.user_not_available') }} <!-- Ime klijenta -->
                                             @endif
-
-                                        </div>
-                                        <p>{{ __('front.in_ad') }}
-                                            {{ optional(optional($conversation->bids->first())->job)->title ?? __('front.title_not_available') }}
-                                        </p>
-
+                                        </h5>
+                                        <span>{{ optional($firstBid)->created_at ? $firstBid->created_at->diffForHumans() : '' }}</span>
                                     </div>
-                                </a>
-                            </li>
-                        </ul>
-                    @endforeach
-                @endif
+                                    <p>{{ __('front.in_ad') }}
+                                        {{ $job->title ?? __('front.title_not_available') }}
+                                    </p>
+                                </div>
+                            </a>
+                        </li>
+                    </ul>
+                @endforeach
+            @endif
+            
             </div>
 
             <!-- Message Content -->
