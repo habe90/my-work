@@ -13,45 +13,42 @@
 
             <div class="dash-msg-inbox" style="
             background: #e3e1de80;">
-            @if ($conversations->isEmpty())
-            <p class="text-center mt-4">{{ __('front.no_current_conversations') }}</p>
-        @else
-            @foreach ($conversations as $conversation)
-                <ul>
-                    @php
-                        $firstBid = $conversation->bids->first();
-                        $bidUser = optional($firstBid)->user;
-                        $jobOwner = optional($firstBid)->job->user;
-                        $isClient = $jobOwner && auth()->id() === $jobOwner->id;
-                        $defaultImage = 'https://via.placeholder.com/500x500';
-                    @endphp
-                    <li @if ($selectedConversationId == $conversation->id) class="active-message" @endif>
-                        <a href="#" wire:click.prevent="selectConversation({{ $conversation->id }})">
-                            <div class="dash-msg-avatar">
-                                <img src="{{ $bidUser && $bidUser->image ? $bidUser->image : $defaultImage }}" alt="{{ $bidUser ? $bidUser->name : 'Default Image' }}">
-                                <span class="_user_status {{ $this->isUserOnline($bidUser->id ?? null) ? 'online' : 'offline' }}"></span>
-                            </div>
-                            <div class="message-by">
-                                <div class="message-by-headline">
-                                    <h5>
-                                        @if ($isClient)
-                                            {{ $bidUser->name ?? __('front.user_not_available') }}
-                                        @else
-                                            {{ $jobOwner->name ?? __('front.user_not_available') }}
-                                        @endif
-                                    </h5>
-                                    <span>{{ optional($firstBid)->created_at ? $firstBid->created_at->diffForHumans() : '' }}</span>
-                                </div>
-                                <p>{{ __('front.in_ad') }}
-                                    {{ optional($firstBid)->job->title ?? __('front.title_not_available') }}
-                                </p>
-                            </div>
-                        </a>
-                    </li>
-                </ul>
-            @endforeach
-        @endif
-        
+           @if ($conversations->isEmpty())
+           <p class="text-center mt-4">{{ __('front.no_current_conversations') }}</p>
+       @else
+           @foreach ($conversations as $conversation)
+               <ul>
+                   @php
+                       $firstBid = $conversation->bids->first(); // Uzima prvu ponudu iz konverzacije
+                       $bidUser = optional($firstBid)->user; // Uzima korisnika koji je napravio ponudu
+                       $job = optional($firstBid)->job; // Uzima posao za koji je ponuda napravljena
+                       $jobOwner = optional($job)->user; // Uzima vlasnika posla
+                       $isClient = $jobOwner && auth()->id() === $jobOwner->id; // Provjera da li je trenutni korisnik vlasnik posla
+                       $defaultImage = 'https://via.placeholder.com/500x500'; // Podrazumijevana slika
+                   @endphp
+                   <li @if ($selectedConversationId == $conversation->id) class="active-message" @endif>
+                       <a href="#" wire:click.prevent="selectConversation({{ $conversation->id }})">
+                           <div class="dash-msg-avatar">
+                               <img src="{{ $bidUser ? $bidUser->image : $defaultImage }}" alt="{{ $bidUser ? $bidUser->name : 'Default Image' }}">
+                               <span class="_user_status {{ $this->isUserOnline($bidUser ? $bidUser->id : null) ? 'online' : 'offline' }}"></span>
+                           </div>
+                           <div class="message-by">
+                               <div class="message-by-headline">
+                                   <h5>
+                                       {{ $isClient ? ($bidUser ? $bidUser->name : __('front.user_not_available')) : ($jobOwner ? $jobOwner->name : __('front.user_not_available')) }}
+                                   </h5>
+                                   <span>{{ $firstBid ? $firstBid->created_at->diffForHumans() : '' }}</span>
+                               </div>
+                               <p>{{ __('front.in_ad') }}
+                                   {{ $job ? $job->title : __('front.title_not_available') }}
+                               </p>
+                           </div>
+                       </a>
+                   </li>
+               </ul>
+           @endforeach
+       @endif
+       
             
             </div>
 
