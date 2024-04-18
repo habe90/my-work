@@ -40,6 +40,7 @@ return [
     'last_name' => 'Nachname',
     'logout' => 'Abmelden',
     'my_profile' => 'Mein Profil',
+    'email' => 'Email',
 
 
 
