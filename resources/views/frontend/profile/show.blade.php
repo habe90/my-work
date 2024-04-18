@@ -51,13 +51,19 @@
                                         <div class="row">
                                             <div class="col-auto">
                                                 <div class="custom-file avater_uploads">
-                                                    <input type="file" name="image" class="custom-file-input"
-                                                        id="customFile">
+                                                    <input type="file" name="image" class="custom-file-input" id="customFile">
                                                     @if ($user->image)
                                                         <img src="{{ $user->image }}" alt="Slika korisnika" width="150">
                                                     @else
-                                                        <label class="custom-file-label" for="customFile"><i
-                                                                class="fa fa-user"></i></label>
+                                                        <label class="custom-file-label" for="customFile">
+                                                            <i class="fa fa-user"></i>
+                                                            <span class="d-none d-sm-inline-block">
+                                                                <!-- Kliknite ovdje da biste odabrali sliku -->
+                                                                <span class="d-none d-md-inline-block">Kliknite ovdje da biste odabrali sliku</span>
+                                                                <!-- Klicken Sie hier, um ein Bild auszuwählen -->
+                                                                <span class="d-inline-block d-md-none">Klicken Sie hier, um ein Bild auszuwählen</span>
+                                                            </span>
+                                                        </label>
                                                     @endif
                                                 </div>
                                                 <!-- Prikaz slike korisnika -->
