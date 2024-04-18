@@ -62,12 +62,30 @@ class MessagesComponent extends Component
         $this->loadConversations(); 
     }
 
+    public function markAsRead($conversationId)
+{
+    $recipient = DB::table('im_recipients')
+        ->where('conversation_id', $conversationId)
+        ->where('user_id', auth()->id())
+        ->first();
+
+    if ($recipient && is_null($recipient->seen_at)) {
+        DB::table('im_recipients')
+            ->where('conversation_id', $conversationId)
+            ->where('user_id', auth()->id())
+            ->update(['seen_at' => now()]);
+    }
+}
+
+
     
     public function selectConversation($conversationId)
     {
         $this->selectedConversationId = $conversationId;
         $this->selectedConversation = ImConversation::with(['bids.job', 'bids.user', 'messages.user'])
             ->find($conversationId);
+            
+        $this->markAsRead($conversationId);
     }
 
 
