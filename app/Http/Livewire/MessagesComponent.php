@@ -7,6 +7,7 @@ use App\Models\ImConversation;
 use App\Models\ImMessage;
 use App\Models\User;
 use Livewire\WithFileUploads;
+use Illuminate\Support\Facades\DB;
 
 class MessagesComponent extends Component
 {
@@ -84,7 +85,7 @@ class MessagesComponent extends Component
         $this->selectedConversationId = $conversationId;
         $this->selectedConversation = ImConversation::with(['bids.job', 'bids.user', 'messages.user'])
             ->find($conversationId);
-            
+
         $this->markAsRead($conversationId);
     }
 
