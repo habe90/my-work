@@ -35,6 +35,12 @@
                         <!-- Navigacija za korisnike i registraciju -->
                         <ul class="nav-menu nav-menu-social align-to-right">
                             @auth
+                            @if (file_exists(app_path('Http/Livewire/LanguageSwitcher.php')))
+                            <!-- LanguageSwitcher komponenta -->
+                                    <li>
+                                        <livewire:language-switcher />
+                                    </li>
+                                @endif
                                 <li>
                                     @if (auth()->user()->roles()->where('title', 'Admin')->exists())
                                         <a href="/admin">{{ __('global.admin_dashboard') }}</a>
