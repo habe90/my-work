@@ -12,6 +12,12 @@ return [
     'date' => 'Datum',
     'thank_you_for_your_purchase' => 'Danke für Ihren Einkauf!',
     'service_type' => 'Dienstleistungstyp',
+    'home' => 'Startseite',
+    'how_it_works' => "So funktioniert's",
+    'admin_dashboard' => "Admin-Dashboard",
+    'my_account' => "Mein Konto",
+    'sign_in' => "Anmelden",
+    'register_as_company' => "Als Handwerker registrieren",
 
     'client-nav' => [
         'dashboard' => 'Dashboard',
