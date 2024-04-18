@@ -11,7 +11,7 @@ class JobFilter extends Component
     public $activity;
     public $location;
     protected $jobs;
-    public $perPage = 4;
+    public $perPage = 6;
     public $currentPage = 1;
 
     public function loadMore()
