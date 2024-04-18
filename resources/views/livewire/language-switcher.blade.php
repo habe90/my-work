@@ -1,7 +1,7 @@
 <div class="nav-item dropdown">
     <a class="nav-link dropdown-toggle" href="#" id="languageDropdown" role="button" data-toggle="dropdown" aria-expanded="false">
         <img src="/frontend/img/{{ $currentLanguage }}.png" alt="{{ $currentLanguage }}" style="width: 20px;"> 
-        {{ $currentLanguage }}
+        {{-- {{ $currentLanguage }} --}}
     </a>
     <div class="dropdown-menu" aria-labelledby="languageDropdown">
         @foreach($languages as $language)
