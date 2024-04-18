@@ -15,6 +15,7 @@ return [
     'my_account' => "My Account",
     'sign_in' => "Sign In",
     'register_as_company' => "Register as a Company",
+    
     ],
     'all' => 'All',
     'no_invoices' => 'There are no invoices available for this month.',
