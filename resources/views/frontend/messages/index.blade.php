@@ -2,7 +2,7 @@
 @section('content')
     <style>
         .chat-content {
-            max-height: 500px;
+            max-height: 800px;
             /* Ovo postavlja maksimalnu visinu za chat */
             overflow-y: auto;
             /* Ovo omogućava vertikalni skrol unutar diva */
