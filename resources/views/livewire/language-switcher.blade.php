@@ -12,3 +12,12 @@
         @endforeach
     </div>
 </div>
+
+<script>
+    document.addEventListener('livewire:load', function () {
+        window.livewire.on('localeChanged', function () {
+            window.location.reload();
+        });
+    });
+</script>
+

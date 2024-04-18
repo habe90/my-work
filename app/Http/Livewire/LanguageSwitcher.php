@@ -23,14 +23,15 @@ class LanguageSwitcher extends Component
             auth()->user()->update(['locale' => $localeCode]);
         } else {
             session(['locale' => $localeCode]);
-            // Možete postaviti i kolačić ako želite da jezik ostane zapamćen i nakon zatvaranja browsera
             cookie()->queue('locale', $localeCode, 43200); // Traje 30 dana
         }
-
+    
         app()->setLocale($localeCode);
-
-        return redirect(request()->header('Referer'));
+        session()->flash('locale', $localeCode); // Dodajemo flash sesiju za promjenu jezika
+    
+        $this->emit('localeChanged'); // Emitujemo događaj za osvježavanje stranice
     }
+    
 
     public function render()
     {
