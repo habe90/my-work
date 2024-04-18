@@ -65,8 +65,7 @@ class ShowBids extends Component
             ]);
             $conversation->messages()->save($message);
 
-            // Osvježavanje konverzacije da uključi novu poruku
-            // ...
+        
         }
     }
 
@@ -74,31 +73,46 @@ class ShowBids extends Component
     {
         $currentUser = auth()->user();
     
-        // Pronalazak postojeće konverzacije
-        $conversation = ImConversation::whereHas('bids', function ($query) use ($currentUser, $userId) {
-            $query->where('user_id', $currentUser->id)->orWhere('user_id', $userId);
-        })->first();
-    
-        $justCreated = false;
-    
-        // Ako konverzacija ne postoji, kreirajte je
-        if (!$conversation) {
-            $conversation = new ImConversation();
-            $conversation->owner_id = $currentUser->id;
-            $conversation->subject = "Offer #$bidId accepted!";
-            $conversation->save();
-            $justCreated = true;
-        }
-    
-        // Dodavanje korisnika u im_recipients ako je konverzacija upravo kreirana
-        if ($justCreated) {
-            DB::table('im_recipients')->insert([
-                ['conversation_id' => $conversation->id, 'user_id' => $currentUser->id, 'seen_at' => null],
-                ['conversation_id' => $conversation->id, 'user_id' => $userId, 'seen_at' => null],
-            ]);
-        }
-    
+        // Kreirajte novu konverzaciju za svaku ponudu
+        $conversation = new ImConversation();
+        $conversation->owner_id = $currentUser->id;
+        $conversation->subject = "Offer #$bidId accepted!";
+        $conversation->save();
+        
+        // Dodajte korisnike u im_recipients
+        DB::table('im_recipients')->insert([
+            ['conversation_id' => $conversation->id, 'user_id' => $currentUser->id, 'seen_at' => null],
+            ['conversation_id' => $conversation->id, 'user_id' => $userId, 'seen_at' => null],
+        ]);
+        
         return $conversation->id;
+        // $currentUser = auth()->user();
+    
+        // // Pronalazak postojeće konverzacije
+        // $conversation = ImConversation::whereHas('bids', function ($query) use ($currentUser, $userId) {
+        //     $query->where('user_id', $currentUser->id)->orWhere('user_id', $userId);
+        // })->first();
+    
+        // $justCreated = false;
+    
+        // // Ako konverzacija ne postoji, kreirajte je
+        // if (!$conversation) {
+        //     $conversation = new ImConversation();
+        //     $conversation->owner_id = $currentUser->id;
+        //     $conversation->subject = "Offer #$bidId accepted!";
+        //     $conversation->save();
+        //     $justCreated = true;
+        // }
+    
+        // // Dodavanje korisnika u im_recipients ako je konverzacija upravo kreirana
+        // if ($justCreated) {
+        //     DB::table('im_recipients')->insert([
+        //         ['conversation_id' => $conversation->id, 'user_id' => $currentUser->id, 'seen_at' => null],
+        //         ['conversation_id' => $conversation->id, 'user_id' => $userId, 'seen_at' => null],
+        //     ]);
+        // }
+    
+        // return $conversation->id;
     }
 
 
