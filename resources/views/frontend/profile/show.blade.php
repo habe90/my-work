@@ -50,21 +50,26 @@
                                     <div class="_dashboard_content_body">
                                         <div class="row">
                                             <div class="col-auto">
-                                                <div class="custom-file avater_uploads">
+                                                <div class="custom-file avatar_uploads">
                                                     <input type="file" name="image" class="custom-file-input" id="customFile">
                                                     @if ($user->image)
                                                         <img src="{{ $user->image }}" alt="Slika korisnika" width="150">
+                                                        <label class="custom-file-label" for="customFile">
+                                                            <i class="fa fa-user"></i>
+                                                            <span class="d-none d-sm-inline-block">
+                                                                Promijenite sliku
+                                                            </span>
+                                                        </label>
                                                     @else
                                                         <label class="custom-file-label" for="customFile">
                                                             <i class="fa fa-user"></i>
                                                             <span class="d-none d-sm-inline-block">
-                                                              
-                                                                <!-- Klicken Sie hier, um ein Bild auszuwählen -->
-                                                                <span class="d-none d-md-inline-block">Klicken Sie hier, um ein Bild auszuwählen</span>
+                                                                Kliknite ovdje da odaberete sliku
                                                             </span>
                                                         </label>
                                                     @endif
                                                 </div>
+                                                
                                                 <!-- Prikaz slike korisnika -->
 
                                             </div>
