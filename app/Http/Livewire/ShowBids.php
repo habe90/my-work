@@ -35,9 +35,12 @@ class ShowBids extends Component
             
             $bid->conversation_id = $conversationId;
             $bid->save();
-            
+
+            $userLocale = $bid->user->locale ?? app()->getLocale();
+            $message = __('front.bid_accepted', ['bidId' => $bidId], $userLocale);
+
             // Slanje automatske poruke korisniku
-            $this->sendAutomaticMessage($conversationId, "Vaša ponuda #$bidId je prihvaćena. Sada možete komunicirati sa kupcem.");
+            $this->sendAutomaticMessage($conversationId, $message);
             
             // Evidentirajte uspješan projekt
             $successfulJob = new SuccessfulJob();

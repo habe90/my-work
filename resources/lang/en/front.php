@@ -39,5 +39,7 @@ return [
     'job_status_inactive' => 'Inactive',
     'job_status_completed' => 'Completed',
     'status_label' => 'Status',
+     'bid_accepted' => "Ihr Angebot #:bidId wurde akzeptiert. Sie können jetzt mit dem Käufer kommunizieren.",
+    
 ];
 
