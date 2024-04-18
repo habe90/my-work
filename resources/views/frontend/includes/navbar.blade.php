@@ -27,7 +27,7 @@
 
                             @if(file_exists(app_path('Http/Livewire/LanguageSwitcher.php')))
                             <!-- Ovdje dodajte LanguageSwitcher komponentu -->
-                            <li class="nav-item">
+                            <li>
                                 <livewire:language-switcher />
                             </li>
                         @endif
