@@ -77,7 +77,8 @@
 
                                             <!-- Pagination -->
                                             <div class="pagination-wrap">
-                                                {{ $userBids->links() }}
+                                           
+                                                {{ $userBids->links('vendor.pagination.bootstrap-4') }}
                                             </div>
                                         @else
                                             <p>{{ __('cruds.bids.no_offers') }}</p>
