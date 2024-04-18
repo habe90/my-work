@@ -60,7 +60,7 @@
                                                                 @if (auth()->user()->user_type == 'client')
                                                                     {{-- Ako je korisnik vlasnik posla, link vodi na stranicu za pregled ponuda --}}
                                                                     <a
-                                                                        href="{{ route('bids.show', ['job' => $bid->job->id]) }}"><h3>{{ $bid->job->title }}</h3></a>
+                                                                        href="{{ route('bids.show', ['job' => $bid->job->id]) }}"><h6>{{ $bid->job->title }}</h6></a>
                                                                 @else
                                                                     {{-- Ako je korisnik firma, koristimo trenutnu logiku --}}
                                                                     <a
@@ -68,7 +68,11 @@
                                                                 @endif
                                                             </td>
                                                             <td><b>{{ $bid->amount }}</b></td>
-                                                            <td>{{ $bid->status }}</td>
+                                                            <td>
+                                                                <span class="badge {{ $bid->status == 'accepted' ? 'badge-success' : ($bid->status == 'pending' ? 'badge-warning' : 'badge-secondary') }}">
+                                                                    {{ __('cruds.bids.status_' . $bid->status) }}
+                                                                </span>
+                                                            </td>
                                                             <td>{{ $bid->created_at->format('d.m.Y') }}</td>
                                                         </tr>
                                                     @endforeach
