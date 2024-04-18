@@ -1,6 +1,6 @@
 <!-- resources/views/livewire/show-bids.blade.php -->
 
-<div class="row">
+
     @forelse ($job->bids as $bid)
         <div class="col-xl-4 col-lg-6 col-md-6"  wire:key="bid-{{ $bid->id }}" wire:loading.remove>
             <div class="_dash_grid_box">
@@ -48,4 +48,4 @@
     <div class="col-xl-4 col-lg-6 col-md-6" wire:loading wire:target="deleteBid">
         <p>Deleting...</p>
     </div>
-</div>
+
