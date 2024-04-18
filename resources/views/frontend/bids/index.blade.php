@@ -20,7 +20,8 @@
                                     <ol class="breadcrumb">
                                         <li class="breadcrumb-item"><a href="#">Home</a></li>
                                         <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
-                                        <li class="breadcrumb-item active" aria-current="page">{{ __('cruds.bids.title') }}</li>
+                                        <li class="breadcrumb-item active" aria-current="page">{{ __('cruds.bids.title') }}
+                                        </li>
                                     </ol>
                                 </nav>
                             </div>
@@ -54,8 +55,18 @@
                                                 <tbody>
                                                     @foreach ($userBids as $bid)
                                                         <tr>
-                                                            
-                                                            <td><h6 class="_jb_title"><a href="{{ route('jobs.show', ['job' => myCryptie($bid->job->id, 'encode')]) }}">{{ $bid->job->title }}</a></h6></td>
+
+                                                            <td>
+                                                                @if (auth()->user()->user_type == 'client')
+                                                                    {{-- Ako je korisnik vlasnik posla, link vodi na stranicu za pregled ponuda --}}
+                                                                    <a
+                                                                        href="{{ route('bids.show', ['job' => $bid->job->id]) }}">{{ $bid->job->title }}</a>
+                                                                @else
+                                                                    {{-- Ako je korisnik firma, koristimo trenutnu logiku --}}
+                                                                    <a
+                                                                        href="{{ route('jobs.show', ['job' => myCryptie($bid->job->id, 'encode')]) }}">{{ $bid->job->title }}</a>
+                                                                @endif
+                                                            </td>
                                                             <td>{{ $bid->amount }}</td>
                                                             <td>{{ $bid->status }}</td>
                                                             <td>{{ $bid->created_at->format('d.m.Y') }}</td>
