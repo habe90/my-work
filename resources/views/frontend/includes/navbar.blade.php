@@ -31,7 +31,14 @@
                         <ul class="nav-menu nav-menu-social align-to-right">
 
                             @auth <!-- Ako je korisnik logovan -->
+                                @if (file_exists(app_path('Http/Livewire/LanguageSwitcher.php')))
+                                    <!-- Ovdje dodajte LanguageSwitcher komponentu -->
+                                    <li>
+                                        <livewire:language-switcher />
+                                    </li>
+                                @endif
                                 <li>
+
 
                                     @if (auth()->user()->roles()->where('title', 'Admin')->exists())
                                         <a href="/admin">
@@ -51,12 +58,7 @@
 
 
                             @guest
-                                @if (file_exists(app_path('Http/Livewire/LanguageSwitcher.php')))
-                                    <!-- Ovdje dodajte LanguageSwitcher komponentu -->
-                                    <li>
-                                        <livewire:language-switcher />
-                                    </li>
-                                @endif
+
                                 <li>
                                     <a href="{{ route('client-login') }}">
                                         <i class="fa fa-sign-in mr-1"></i>Anmelden
