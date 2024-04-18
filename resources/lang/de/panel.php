@@ -18,6 +18,8 @@ return [
     'in_process' => 'In Verarbeitung',
     'canceled' => 'Storniert',
     'reviews' => 'Rezensionen',
+    'image_alt' => 'Benutzerbild',
+    'click_to_select' => 'Klicken Sie hier, um ein Bild auszuwählen',
 
 
     //profile
