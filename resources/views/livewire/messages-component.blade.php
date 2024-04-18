@@ -99,6 +99,9 @@
                                 <textarea wire:model="newMessage" cols="40" rows="3" class="form-control with-light"
                                     placeholder="{{ __('front.your_message_here') }}"></textarea>
                             </div>
+                            <input type="file" wire:model="fileUpload" id="fileUpload" style="display: none;">
+                            <label for="fileUpload" class="btn dark-2">{{ __('front.upload_file') }}</label>
+                            <button type="submit" class="btn dark-2">{{ __('front.send_message') }}</button>
                             <button type="submit" class="btn dark-2"
                                 @unless ($newMessage) disabled @endunless>{{ __('front.send_message') }}</button>
 
