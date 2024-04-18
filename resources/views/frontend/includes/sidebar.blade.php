@@ -75,7 +75,7 @@
                         {{ __('panel.client-nav.jobs') }}</a>
                     <ul>
                         @php
-                            $newBidsCount = \App\Models\Bid::whereHas('jobs', function ($query) {
+                            $newBidsCount = \App\Models\Bid::whereHas('job', function ($query) {
                                 $query->where('user_id', auth()->id());
                             })
                                 ->where('status', 'pending')
