@@ -52,7 +52,7 @@
                                         <!-- Prikaz rednog broja fakture -->
                                         <div class="badge-container">
 
-                                            <span class="badge {{ $invoice->status ? 'badge-success' : 'badge-danger' }}">
+                                            <span class="badge {{ $invoice->getStatusClassAttribute() }}">
                                                 {{ $invoice->status ? __('global.paid') : __('global.not_paid') }}
                                             </span>
                                             
