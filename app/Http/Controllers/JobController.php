@@ -7,6 +7,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Response;
 use App\Models\Job;
 use App\Models\UserRating;
+use App\Models\SuccessfulJob;
 use App\Http\Controllers\Admin\FormController;
 use Illuminate\Support\Facades\Validator;
 
