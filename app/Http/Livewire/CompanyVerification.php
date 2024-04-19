@@ -15,19 +15,19 @@ class CompanyVerification extends Component
 
     public function uploadDocuments()
     {
-        foreach ($this->documents as $key => $document) {
-            $this->validate([
-                'documents.*' => 'file|mimes:pdf|max:10240', // Ograničenje na 10MB i PDF format
-            ]);
+        $this->validate([
+            'documents.*' => 'file|mimes:pdf|max:10240', // Ograničenje na 10MB i PDF format
+        ]);
 
+        foreach ($this->documents as $document) {
             $filename = $document->getClientOriginalName();
             $path = Storage::putFileAs('public/verification_documents', $document, $filename);
 
             $this->uploadProgress[$filename] = __('messages.document_uploaded', [], app()->getLocale());
-            $this->emit('fileUploaded', $key);
         }
 
         session()->flash('message', __('messages.documents_sent_for_verification', [], app()->getLocale()));
+        $this->emit('refreshComponent');
     }
 
     public function render()

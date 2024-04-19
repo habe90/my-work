@@ -1,5 +1,5 @@
 <div>
-    <h3>{{ __('messages.upload_required_documents', [], app()->getLocale()) }}</h3>
+    <input type="file" wire:model="documents" multiple>
 
     @foreach($documents as $index => $document)
         <div wire:key="document-{{ $index }}">
@@ -9,11 +9,6 @@
             @endif
         </div>
     @endforeach
-
-    <input type="file" wire:model="documents" multiple>
-    <div>
-        @error('documents.*') <span class="error">{{ $message }}</span> @enderror
-    </div>
 
     <button wire:click="uploadDocuments">{{ __('messages.send_documents', [], app()->getLocale()) }}</button>
 
