@@ -17,6 +17,12 @@ class SuccessfulJob extends Model
         return $this->belongsTo(Offer::class);
     }
 
+    public function bid()
+{
+    return $this->belongsTo(Bid::class, 'bid_id'); // Pretpostavimo da je 'bid_id' strani ključ
+}
+
+
     // Opcionalno, ako želite direktnu vezu sa fakturama
     public function invoice()
     {

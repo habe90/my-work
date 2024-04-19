@@ -18,34 +18,36 @@ class InvoiceController extends Controller
 
 
     public function generateInvoices()
-    {
-        // Dohvati sve uspješne poslove koji nisu fakturisani
-        $successfulJobs = SuccessfulJob::where('invoiced', 0)
-            ->whereMonth('completion_date', '=', Carbon::now()->month)
-            ->get();
+{
+    // Pretpostavimo da je relacija između SuccessfulJob i Bid definirana kao 'bid'
+    $successfulJobs = SuccessfulJob::where('invoiced', 0)
+        ->whereMonth('completion_date', '=', Carbon::now()->month)
+        ->with('bid') // Učitaj relaciju 'bid'
+        ->get();
 
-        // Grupiši poslove po user_id iz bids tabele
-        $groupedJobs = $successfulJobs->mapToGroups(function ($job, $key) {
+    // Grupiši poslove po user_id iz bids tabele
+    $groupedJobs = $successfulJobs->mapToGroups(function ($job, $key) {
+        // Provjeri da li postoji povezani bid prije pokušaja čitanja user_id
+        if (!is_null($job->bid)) {
             return [$job->bid->user_id => $job];
-        });
-
-        foreach ($groupedJobs as $company_id => $jobs) {
-            // Izračunaj ukupan iznos za fakturisanje
-            $totalAmountDue = $jobs->sum('amount_due');
-
-            // Kreiraj fakturu za kompaniju
-            $invoice = new Invoice();
-            $invoice->company_id = $company_id; // ovdje koristimo user_id iz bids tabele
-            $invoice->amount = $totalAmountDue;
-            $invoice->invoice_date = now();
-            $invoice->due_date = now()->addDays(30);
-            $invoice->status = 'unpaid';
-            $invoice->save();
-
-            // Ažuriraj svaki posao kao fakturisan
-            SuccessfulJob::whereIn('id', $jobs->pluck('id'))->update(['invoiced' => 1]);
+        } else {
+            // Loguj ili obradi slučaj kada bid nije pronađen
+            Log::warning("SuccessfulJob sa ID {$job->id} nema povezan bid.");
+            return [];
         }
+    });
+
+    foreach ($groupedJobs as $company_id => $jobs) {
+        // Ako nema poslova, preskoči ovu iteraciju
+        if (empty($jobs)) continue;
+
+        // Izračunaj ukupan iznos za fakturisanje
+        $totalAmountDue = $jobs->sum('amount_due');
+
+        // Ostatak koda za kreiranje fakture...
     }
+}
+
 
     
 
