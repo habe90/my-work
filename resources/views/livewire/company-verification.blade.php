@@ -4,7 +4,7 @@
     <div class="d-flex justify-content-center">
         <div wire:loading wire:target="documents">Učitavanje...</div>
         <input type="file" wire:model="documents" id="pdf-upload" multiple hidden accept="application/pdf">
-        <label for="pdf-upload" class="btn btn-primary d-block mt-3">
+        <label for="pdf-upload" class="btn btn-primary d-block mt-3 text-black">
             Odaberite PDF datoteke ili prevucite datoteke ovdje
         </label>
     </div>
