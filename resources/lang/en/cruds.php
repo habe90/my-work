@@ -289,6 +289,7 @@ return [
         'offer' => 'Offer',
         'date' => 'Date',
         'status' => 'Status',
+        'job_status' => 'Job Status',
         'no_offers' => 'You currently have no offers.',
         'status_accepted' => 'Accepted',
         'status_pending' => 'Pending',

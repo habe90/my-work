@@ -253,6 +253,7 @@ return [
         'offer' => 'Angebot',
         'date' => 'Datum',
         'status' => 'Status',
+        'job_status' => 'Job Status',
         'no_offers' => 'Sie haben derzeit keine Angebote.',
         'status_accepted' => 'Akzeptiert',
         'status_pending' => 'Ausstehend',
