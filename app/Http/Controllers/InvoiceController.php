@@ -21,7 +21,7 @@ class InvoiceController extends Controller
 {
     // Pretpostavimo da je relacija između SuccessfulJob i Bid definirana kao 'bid'
     $successfulJobs = SuccessfulJob::where('invoiced', 0)
-        ->whereMonth('completion_date', '=', Carbon::now()->month)
+        // ->whereMonth('completion_date', '=', Carbon::now()->month)
         ->with('bid') // Učitaj relaciju 'bid'
         ->get();
 
