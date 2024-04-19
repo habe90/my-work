@@ -1,28 +1,27 @@
 <div>
     <h1 class="h4 text-center mb-3">{{ __('messages.upload_pdf_verification') }}</h1>
 
-    <div wire:loading wire:target="documents">{{ __('messages.loading') }}</div>
-    <input type="file" wire:model="documents" id="pdf-upload" multiple hidden accept="application/pdf">
-    <label for="pdf-upload" class="upload-dropzone btn btn-upload mb-3 d-block h5 text-black">
-        {{ __('messages.select_pdf_files_or_drag') }}
-    </label>
+    {{-- Provjeravamo da li sesija ima poruku i na osnovu toga prikazujemo ili sakrivamo formu --}}
+    @if (!session()->has('message'))
+        <div wire:loading wire:target="documents">{{ __('messages.loading') }}</div>
+        <input type="file" wire:model="documents" id="pdf-upload" multiple hidden accept="application/pdf">
+        <label for="pdf-upload" class="upload-dropzone btn btn-upload mb-3 d-block h5 text-black">
+            {{ __('messages.select_pdf_files_or_drag') }}
+        </label>
 
-    <div class="upload_gallery d-flex flex-column align-items-center gap-3 mt-3">
-        @foreach ($this->documents as $document)
-            <div class="uploaded-file d-flex align-items-center justify-content-between p-2 border w-50">
-                <span>{{ $document->getClientOriginalName() }}</span>
-                {{-- Prikazivanje ikone ovisno o statusu uploada --}}
-                <span class="text-success">&#10003;</span>
-            </div>
-        @endforeach
-    </div>
+        <div class="upload_gallery d-flex flex-column align-items-center gap-3 mt-3">
+            @foreach ($this->documents as $document)
+                <div class="uploaded-file d-flex align-items-center justify-content-between p-2 border w-50">
+                    <span>{{ $document->getClientOriginalName() }}</span>
+                    <span class="text-success">&#10003;</span>
+                </div>
+            @endforeach
+        </div>
 
-    @if ($this->documents)
-        <button wire:click="uploadDocuments" class="btn btn-success mt-3">{{ __('messages.submit_documents') }}</button>
-    @endif
-
-
-    @if (session()->has('message'))
+        @if ($this->documents)
+            <button wire:click="uploadDocuments" class="btn btn-success mt-3">{{ __('messages.submit_documents') }}</button>
+        @endif
+    @else
         <div class="alert alert-success mt-3">{{ session('message') }}</div>
         <a href="{{ url('/') }}" class="btn btn-primary mt-2">Vrati se na početnu</a>
     @endif
