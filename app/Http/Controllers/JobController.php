@@ -125,32 +125,31 @@ class JobController extends Controller
     }
 
     public function markAsCompleted($jobId)
-{
-    $job = Job::with('bids')->findOrFail($jobId);
+    {
+        $job = Job::with('bids')->findOrFail($jobId);
 
-    // Provjeravamo da li firma ima aktivan i prihvaćen bid na ovaj posao
-    $activeBid = $job->bids()->where('user_id', auth()->id())->where('status', 'accepted')->first();
+        // Provjeravamo da li firma ima aktivan i prihvaćen bid na ovaj posao
+        $activeBid = $job->bids()->where('user_id', auth()->id())->where('status', 'accepted')->first();
 
-    if (!$activeBid) {
-        return redirect()->back()->with('error', 'Nemate aktivnu ili prihvaćenu ponudu za ovaj posao.');
+        if (!$activeBid) {
+            return redirect()->back()->with('error', 'Nemate aktivnu ili prihvaćenu ponudu za ovaj posao.');
+        }
+
+        // Ažurirajte status posla na 'completed'
+        $job->status = 'completed';
+        $job->save();
+
+        // Kreirajte zapis u SuccessfulJob
+        $successfulJob = new SuccessfulJob([
+            'offer_id' => $job->id,
+            'company_id' => auth()->id(),
+            'amount_due' => $activeBid->amount, // Koristimo iznos iz bid-a
+            'completion_date' => now(),
+            'invoiced' => 0,
+        ]);
+        $successfulJob->save();
+
+        // Redirect na pregled poslova sa porukom o uspehu
+        return redirect()->route('my-jobs')->with('success', 'Posao je označen kao završen.');
     }
-
-    // Ažurirajte status posla na 'completed'
-    $job->status = 'completed';
-    $job->save();
-
-    // Kreirajte zapis u SuccessfulJob
-    $successfulJob = new SuccessfulJob([
-        'job_id' => $job->id,
-        'company_id' => auth()->id(),
-        'amount_due' => $activeBid->amount, // Koristimo iznos iz bid-a
-        'completion_date' => now(),
-        'invoiced' => 0,
-    ]);
-    $successfulJob->save();
-
-    // Redirect na pregled poslova sa porukom o uspehu
-    return redirect()->route('my-jobs')->with('success', 'Posao je označen kao završen.');
-}
-
 }
