@@ -61,9 +61,7 @@
                                                                 @if (auth()->user()->user_type == 'client')
                                                                     {{-- Ako je korisnik vlasnik posla, link vodi na stranicu za pregled ponuda --}}
                                                                     <a
-                                                                        href="{{ route('bids.show', ['job' => $bid->job->id]) }}">
-                                                                        <h6>{{ $bid->job->title }}</h6>
-                                                                    </a>
+                                                                        href="{{ route('bids.show', ['job' => $bid->job->id]) }}"><h6>{{ $bid->job->title }}</h6></a>
                                                                 @else
                                                                     {{-- Ako je korisnik firma, koristimo trenutnu logiku --}}
                                                                     <a
@@ -74,21 +72,14 @@
                                                             <td>
                                                                 @if (auth()->user()->user_type == 'company' && $bid->status == 'accepted')
                                                                     {{-- Dugme za označavanje posla kao završenog, vidljivo samo za kompanije čiji je bid prihvaćen --}}
-                                                                    <form
-                                                                        action="{{ route('jobs.complete', ['jobId' => myCryptie($bid->job->id, 'encode')]) }}"
-                                                                        method="POST">
+                                                                    <form action="{{ route('jobs.complete', ['jobId' => $bid->job->id]) }}" method="POST">
                                                                         @csrf
-                                                                        <button type="submit"
-                                                                            class="btn btn-primary btn-sm"> <i
-                                                                                class="ti-check"></i>
-                                                                            {{ __('Mark as Completed') }}</button>
+                                                                        <button type="submit" class="btn btn-primary btn-sm"> <i class="ti-check"></i> {{ __('Mark as Completed') }}</button>
                                                                     </form>
                                                                 @endif
-
                                                             </td>
                                                             <td>
-                                                                <span
-                                                                    class="badge {{ $bid->status == 'accepted' ? 'badge-success' : ($bid->status == 'pending' ? 'badge-warning' : 'badge-secondary') }}">
+                                                                <span class="badge {{ $bid->status == 'accepted' ? 'badge-success' : ($bid->status == 'pending' ? 'badge-warning' : 'badge-secondary') }}">
                                                                     {{ __('cruds.bids.status_' . $bid->status) }}
                                                                 </span>
                                                             </td>
@@ -100,7 +91,7 @@
 
                                             <!-- Pagination -->
                                             <div class="pagination-wrap">
-
+                                           
                                                 {{ $userBids->links('vendor.pagination.bootstrap-4') }}
                                             </div>
                                         @else
