@@ -42,7 +42,7 @@ private function sendEmailWithAttachments($attachments, $user_name)
     $thankYou = __('messages.email_thank_you', [], app()->getLocale());
     $signature = __('messages.email_signature', [], app()->getLocale());
 
-    Mail::send([], [], function ($message) use ($attachments, $subject, $body, $thankYou, $signature) {
+    Mail::raw([], [], function ($message) use ($attachments, $subject, $body, $thankYou, $signature) {
         $message->to('habetech@gmail.com')
                 ->subject($subject)
                 ->setBody("{$body}\n\n{$thankYou}\n\n{$signature}", 'text/plain');
