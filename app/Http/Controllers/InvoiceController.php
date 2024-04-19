@@ -67,7 +67,9 @@ class InvoiceController extends Controller
 
     public function showInvoices($id)
     {
-        $invoices = Invoice::with('company')->findOrFail($id);
+        $invoices = Invoice::with('company')
+            ->where('company_id', Auth::id())
+            ->get();
 
         return view('frontend.invoices.show', compact('invoices'));
     }
