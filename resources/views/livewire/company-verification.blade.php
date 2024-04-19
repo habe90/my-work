@@ -21,9 +21,12 @@
         <button wire:click="uploadDocuments" class="btn btn-success mt-3">{{ __('messages.submit_documents') }}</button>
     @endif
 
+
     @if (session()->has('message'))
         <div class="alert alert-success mt-3">{{ session('message') }}</div>
+        <a href="{{ url('/') }}" class="btn btn-primary mt-2">Vrati se na početnu</a>
     @endif
+
 
     {{-- JavaScript za drag and drop --}}
     <script>
@@ -66,7 +69,7 @@
     <style>
         .upload-dropzone {
             display: block;
-            color:black;
+            color: black;
             width: 100%;
             /* Prilagodite prema potrebi */
             padding: 10px;
