@@ -10,8 +10,7 @@
     <meta property="og:title" content="Naslov_posla" />
     <meta property="og:description" content="Kratki_opis_posla" />
     <meta property="og:image" content="URL_slike_posla" />
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.7.0/min/dropzone.min.css" rel="stylesheet">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.7.0/min/dropzone.min.js"></script>
+    
 
 
 
