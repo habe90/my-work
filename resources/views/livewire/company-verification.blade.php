@@ -1,27 +1,24 @@
 <div>
     <h1 class="h4 text-center mb-3">Upload više PDF datoteka</h1>
-    
-    <div class="d-flex justify-content-center">
-        <div wire:loading wire:target="documents">Učitavanje...</div>
-        <input type="file" wire:model="documents" id="pdf-upload" multiple hidden accept="application/pdf">
-        <label for="pdf-upload" class="btn btn-primary d-block mt-3 text-black">
-            Odaberite PDF datoteke ili prevucite datoteke ovdje
-        </label>
-    </div>
 
-    <div class="d-flex flex-column align-items-center mt-3">
+    <div wire:loading wire:target="documents">Učitavanje...</div>
+    <input type="file" wire:model="documents" id="pdf-upload" multiple hidden accept="application/pdf">
+    <label for="pdf-upload" class="upload-dropzone btn btn-upload mb-3 d-block h5 text-black">
+        Odaberite PDF datoteke ili prevucite datoteke ovdje
+    </label>
+
+    <div class="upload_gallery d-flex flex-column align-items-center gap-3 mt-3">
         @foreach ($this->documents as $document)
-            <div class="uploaded-file d-flex align-items-center justify-content-between p-2 border mb-2">
+            <div class="uploaded-file d-flex align-items-center justify-content-between p-2 border w-50">
                 <span>{{ $document->getClientOriginalName() }}</span>
+                {{-- Prikazivanje ikone ovisno o statusu uploada --}}
                 <span class="text-success">&#10003;</span>
             </div>
         @endforeach
     </div>
 
     @if ($this->documents)
-        <div class="d-flex justify-content-center">
-            <button wire:click="uploadDocuments" class="btn btn-success mt-3">Pošalji dokumente</button>
-        </div>
+        <button wire:click="uploadDocuments" class="btn btn-success mt-3">Pošalji dokumente</button>
     @endif
 
     @if (session()->has('message'))
