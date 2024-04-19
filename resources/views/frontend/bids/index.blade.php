@@ -73,7 +73,7 @@
                                                                     {{-- Dugme za označavanje posla kao završenog, vidljivo samo za kompanije čiji je bid prihvaćen --}}
                                                                     <form action="{{ route('jobs.complete', ['jobId' => $bid->job->id]) }}" method="POST">
                                                                         @csrf
-                                                                        <button type="submit" class="btn btn-success btn-sm">{{ __('Mark as Completed') }}</button>
+                                                                        <button type="submit" class="btn btn-primary btn-sm"> <i class="ti-check"></i>{{ __('Mark as Completed') }}</button>
                                                                     </form>
                                                                 @endif
                                                             </td>
