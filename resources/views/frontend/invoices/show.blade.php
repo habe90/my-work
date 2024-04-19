@@ -46,9 +46,10 @@
                                 </div>
 
                                 <div class="_dashboard_content_body p-0">
-                                    @forelse($invoices as $index => $invoice)
-                                    <div class="receipt-main {{ $invoice->status ? 'paid' : 'not-paid' }}  col-xs-10 col-sm-10 col-md-12 col-xs-offset-1 col-sm-offset-1 col-md-offset-3">
-                                        
+
+                                    <div
+                                        class="receipt-main {{ $invoice->status ? 'paid' : 'not-paid' }}  col-xs-10 col-sm-10 col-md-12 col-xs-offset-1 col-sm-offset-1 col-md-offset-3">
+
                                         <!-- Prikaz rednog broja fakture -->
                                         <div class="badge-container">
                                             <!-- Ovdje se postavlja oznaka statusa fakture -->
@@ -56,7 +57,7 @@
                                                 {{ $invoice->status ? __('global.paid') : __('global.not_paid') }}
                                             </span>
                                         </div>
-                                
+
                                         <div class="receipt-header receipt-header-mid">
                                             <div class="col-xs-4 col-sm-4 col-md-4">
                                                 <div class="receipt-left">
@@ -64,7 +65,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        
+
                                         <div>
                                             <table class="table table-bordered">
                                                 <thead>
@@ -75,9 +76,12 @@
                                                 </thead>
                                                 <tbody>
                                                     <tr>
-                                                        <td class="col-md-9">{{ __('global.payment_for') }} {{ \Carbon\Carbon::parse($invoice->invoice_date)->translatedFormat('F Y') }}</td>
+                                                        <td class="col-md-9">{{ __('global.payment_for') }}
+                                                            {{ \Carbon\Carbon::parse($invoice->invoice_date)->translatedFormat('F Y') }}
+                                                        </td>
 
-                                                        <td class="col-md-3"><i class="fa fa-eur"></i> {{ $invoice->amount }}</td>
+                                                        <td class="col-md-3"><i class="fa fa-eur"></i>
+                                                            {{ $invoice->amount }}</td>
                                                     </tr>
                                                     <!-- Dodajte ostale redove s dinamičkim podacima -->
                                                 </tbody>
@@ -88,18 +92,20 @@
                                         <div class="receipt-header receipt-header-mid receipt-footer">
                                             <div class="col-xs-8 col-sm-8 col-md-8 text-left">
                                                 <div class="receipt-right">
-                                                    <p><b>{{ __('global.date') }} :</b> {{ $invoice->created_at ? $invoice->created_at->format('d M Y') : __('global.date_not_available') }}</p>
+                                                    <p><b>{{ __('global.date') }} :</b>
+                                                        {{ $invoice->created_at ? $invoice->created_at->format('d M Y') : __('global.date_not_available') }}
+                                                    </p>
 
-                                                    <img src="{{asset('frontend/img/logo-my-work.png')}}"  class="img-fluid f-logo" width="180" alt="">
-                                                    <h5 style="color: rgb(140, 140, 140);">{{ __('global.thank_you_for_your_purchase') }}</h5>
+                                                    <img src="{{ asset('frontend/img/logo-my-work.png') }}"
+                                                        class="img-fluid f-logo" width="180" alt="">
+                                                    <h5 style="color: rgb(140, 140, 140);">
+                                                        {{ __('global.thank_you_for_your_purchase') }}</h5>
                                                 </div>
                                             </div>
                                         </div>
-                                        
-                                    </div> 
-                                    @empty
-                                    <p>Nema dostupnih faktura.</p>
-                                    @endforelse
+
+                                    </div>
+
                                 </div>
 
                             </div>
@@ -116,26 +122,29 @@
 @endsection
 @push('styles')
     <style>
+        .invoice-preview {
+            position: relative;
+            /* ostali stilovi */
+        }
 
-.invoice-preview {
-    position: relative;
-    /* ostali stilovi */
-}
+        .badge-container {
+            position: absolute;
+            right: 42px;
+            /* ili koliko god je potrebno da se pomjeri desno */
+            top: 15px;
+            /* ili koliko god je potrebno da se pomjeri gore */
+        }
 
-.badge-container {
-    position: absolute;
-    right: 42px; /* ili koliko god je potrebno da se pomjeri desno */
-    top: 15px; /* ili koliko god je potrebno da se pomjeri gore */
-}
+        .badge-success {
+            background-color: #28a745;
+            font-size: 20px;
+        }
 
-.badge-success {
-    background-color: #28a745; 
-    font-size: 20px;
-}
+        .badge-danger {
+            background-color: #dc3545;
+            /* Crvena boja za neplaćene fakture */
+        }
 
-.badge-danger {
-    background-color: #dc3545; /* Crvena boja za neplaćene fakture */
-}
         body {
             background: #eee;
             margin-top: 20px;

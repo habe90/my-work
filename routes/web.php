@@ -103,7 +103,8 @@ Route::delete('/bookmarks/{id}', [BookmarkController::class ,'destroy'])->name('
 
 //invoices
 Route::get('/invoices', [InvoiceController::class, 'showInvoices'])->name('invoices.show');
-Route::get('/invoices/{invoiceId}/view', [InvoiceController::class, 'showInvoices'])->name('invoices.view');
+Route::get('/invoices/{invoiceId}/view', [InvoiceController::class, 'showInvoice'])->name('invoices.view');
+
 Route::get('/invoices/{invoiceId}/download', [InvoiceController::class, 'downloadInvoice'])->name('invoices.download');
 
 
