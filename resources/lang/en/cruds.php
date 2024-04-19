@@ -290,6 +290,7 @@ return [
         'date' => 'Date',
         'status' => 'Status',
         'job_status' => 'Job Status',
+        'job_done' => 'Job Done',
         'no_offers' => 'You currently have no offers.',
         'status_accepted' => 'Accepted',
         'status_pending' => 'Pending',
