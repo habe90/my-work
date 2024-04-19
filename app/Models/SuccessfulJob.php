@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class SuccessfulJob extends Model
 {
     use HasFactory;
+    protected $fillable = ['job_id', 'company_id', 'amount_due', 'completion_date', 'invoiced'];
 
     public function offer()
     {
