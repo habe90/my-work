@@ -78,15 +78,16 @@ Route::put('/bids/{bid}', [BidController::class, 'update'])->name('bids.update')
 
 
 
-Route::get('/jobs/{job}', [JobController::class, 'show'])->name('jobs.show')->middleware('auth');
-Route::get('/my-jobs', [JobController::class, 'myJobs'])->name('my-jobs');
-// Route for showing the job edit form
-Route::get('/jobs/edit/{job}', [JobController::class, 'edit'])->name('jobs.edit')->middleware('auth');
-// Route for deleting a job
-Route::delete('/jobs/delete/{job}', [JobController::class, 'destroy'])->name('jobs.delete')->middleware('auth');
+Route::middleware('auth')->group(function () {
+    Route::get('/jobs/{job}', [JobController::class, 'show'])->name('jobs.show');
+    Route::get('/my-jobs', [JobController::class, 'myJobs'])->name('my-jobs');
+    Route::get('/jobs/edit/{job}', [JobController::class, 'edit'])->name('jobs.edit');
+    Route::delete('/jobs/delete/{job}', [JobController::class, 'destroy'])->name('jobs.delete');
+    Route::put('/jobs/update/{job}', [JobController::class, 'update'])->name('jobs.update');
+    Route::post('/jobs/{jobId}/complete', [JobController::class, 'markAsCompleted'])->name('jobs.complete');
+});
 
-// update job
-Route::put('/jobs/update/{job}', [JobController::class, 'update'])->name('jobs.update')->middleware('auth');
+
 
 
 //user reviews
