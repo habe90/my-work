@@ -8,6 +8,9 @@ use App\Models\Invoice;
 use Auth;
 use Carbon\Carbon; 
 use PDF;
+use Illuminate\Support\Facades\Log;
+use Exception;
+
 
 class InvoiceController extends Controller
 {
@@ -18,36 +21,47 @@ class InvoiceController extends Controller
 
 
     public function generateInvoices()
-{
-    // Pretpostavimo da je relacija između SuccessfulJob i Bid definirana kao 'bid'
-    $successfulJobs = SuccessfulJob::where('invoiced', 0)
-        // ->whereMonth('completion_date', '=', Carbon::now()->month)
-        ->with('bid') // Učitaj relaciju 'bid'
-        ->get();
-
-    // Grupiši poslove po user_id iz bids tabele
-    $groupedJobs = $successfulJobs->mapToGroups(function ($job, $key) {
-        // Provjeri da li postoji povezani bid prije pokušaja čitanja user_id
-        if (!is_null($job->bid)) {
-            return [$job->bid->user_id => $job];
-        } else {
-            // Loguj ili obradi slučaj kada bid nije pronađen
-            Log::warning("SuccessfulJob sa ID {$job->id} nema povezan bid.");
-            return [];
+    {
+        try {
+            // Dohvatanje svih uspješnih poslova koji nisu fakturisani i grupisanje po kompaniji
+            $successfulJobs = SuccessfulJob::where('invoiced', 0)
+                ->whereMonth('completion_date', '=', Carbon::now()->month)
+                ->with('bid') // Ovdje pretpostavljamo da postoji relacija 'bid' u modelu SuccessfulJob
+                ->get()
+                ->groupBy(function ($job) {
+                    return $job->bid->user_id ?? null;
+                });
+    
+            foreach ($successfulJobs as $company_id => $jobs) {
+                // Preskoči iteraciju ako grupa nema poslove ili ako company_id nije definisan
+                if (empty($jobs) || is_null($company_id)) continue;
+    
+                $totalAmountDue = $jobs->sum('amount_due'); // Izračunaj ukupan iznos
+    
+                // Kreiraj fakturu za kompaniju
+                $invoice = new Invoice();
+                $invoice->company_id = $company_id;
+                $invoice->amount = $totalAmountDue;
+                $invoice->invoice_date = now();
+                $invoice->due_date = now()->addDays(30); // Postavi rok plaćanja
+                $invoice->status = 'unpaid';
+                $invoice->save();
+    
+                // Ažuriraj sve uspješne poslove kao fakturisane
+                foreach ($jobs as $job) {
+                    $job->invoiced = 1;
+                    $job->invoice_id = $invoice->id; // Ako želite povezati fakturisani posao sa fakturom
+                    $job->save();
+                }
+            }
+        } catch (Exception $e) {
+            // Logovanje izuzetka
+            Log::error("Greška pri generisanju fakture: " . $e->getMessage());
+            Log::error($e->getTraceAsString()); // Dodatni detalji izuzetka
+            // Možete dodati i vraćanje odgovora ili bacanje izuzetka, zavisno od vašeg pristupa upravljanju greškama
         }
-    });
-
-    foreach ($groupedJobs as $company_id => $jobs) {
-        // Ako nema poslova, preskoči ovu iteraciju
-        if (empty($jobs)) continue;
-
-        // Izračunaj ukupan iznos za fakturisanje
-        $totalAmountDue = $jobs->sum('amount_due');
-
-        // Ostatak koda za kreiranje fakture...
     }
-}
-
+    
 
     
 
