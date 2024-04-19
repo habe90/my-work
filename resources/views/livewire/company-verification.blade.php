@@ -1,5 +1,5 @@
 <div>
-    <h1 class="h4 text-center mb-3">Upload više PDF datoteka</h1>
+    <h1 class="h4 text-center mb-3">{{ __('messages.upload_pdf_verification') }}</h1>
 
     <div wire:loading wire:target="documents">Učitavanje...</div>
     <input type="file" wire:model="documents" id="pdf-upload" multiple hidden accept="application/pdf">
