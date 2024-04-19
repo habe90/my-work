@@ -128,7 +128,7 @@ class JobController extends Controller
         $job = Job::findOrFail($jobId);
 
         // Provjerite da li je trenutni korisnik vlasnik posla i da li je posao u statusu 'in process'
-        if (auth()->id() !== $job->user_id || $job->status !== 'in process') {
+        if (auth()->id() !== $job->user_id || $job->status !== 'active') {
             return redirect()->back()->with('error', 'Nemate ovlaštenja za ovu akciju ili posao nije u odgovarajućem statusu.');
         }
 
