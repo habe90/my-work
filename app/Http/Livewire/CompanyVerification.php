@@ -24,6 +24,10 @@ class CompanyVerification extends Component
             $path = Storage::putFileAs('public/verification_documents', $document, $filename);
 
             $this->uploadProgress[$filename] = __('messages.document_uploaded', [], app()->getLocale());
+            $this->documentCount++; 
+        }
+        if ($this->documentCount >= 3) {
+            $this->emit('allDocumentsUploaded');
         }
 
         session()->flash('message', __('messages.documents_sent_for_verification', [], app()->getLocale()));
