@@ -56,26 +56,28 @@
                                                 <tbody>
                                                     @foreach ($userBids as $bid)
                                                         <tr>
-
                                                             <td>
                                                                 @if (auth()->user()->user_type == 'client')
                                                                     {{-- Ako je korisnik vlasnik posla, link vodi na stranicu za pregled ponuda --}}
-                                                                    <a
-                                                                        href="{{ route('bids.show', ['job' => $bid->job->id]) }}"><h6>{{ $bid->job->title }}</h6></a>
+                                                                    <a href="{{ route('bids.show', ['job' => $bid->job->id]) }}"><h6>{{ $bid->job->title }}</h6></a>
                                                                 @else
                                                                     {{-- Ako je korisnik firma, koristimo trenutnu logiku --}}
-                                                                    <a
-                                                                        href="{{ route('jobs.show', ['job' => myCryptie($bid->job->id, 'encode')]) }}">{{ $bid->job->title }}</a>
+                                                                    <a href="{{ route('jobs.show', ['job' => myCryptie($bid->job->id, 'encode')]) }}">{{ $bid->job->title }}</a>
                                                                 @endif
                                                             </td>
                                                             <td><b>{{ $bid->amount }}</b></td>
                                                             <td>
                                                                 @if (auth()->user()->user_type == 'company' && $bid->status == 'accepted')
-                                                                    {{-- Dugme za označavanje posla kao završenog, vidljivo samo za kompanije čiji je bid prihvaćen --}}
-                                                                    <form action="{{ route('jobs.complete', ['jobId' => $bid->job->id]) }}" method="POST">
-                                                                        @csrf
-                                                                        <button type="submit" class="btn btn-primary btn-sm"> <i class="ti-check"></i> {{ __('Mark as Completed') }}</button>
-                                                                    </form>
+                                                                    @if ($bid->job->status == 'completed')
+                                                                        {{-- Tekst za završene poslove --}}
+                                                                        <span class="text-success"><strong>Posao završen</strong></span>
+                                                                    @else
+                                                                        {{-- Dugme za označavanje posla kao završenog, vidljivo samo za kompanije čiji je bid prihvaćen --}}
+                                                                        <form action="{{ route('jobs.complete', ['jobId' => $bid->job->id]) }}" method="POST">
+                                                                            @csrf
+                                                                            <button type="submit" class="btn btn-primary btn-sm"> <i class="ti-check"></i> {{ __('Mark as Completed') }}</button>
+                                                                        </form>
+                                                                    @endif
                                                                 @endif
                                                             </td>
                                                             <td>
@@ -87,8 +89,7 @@
                                                         </tr>
                                                     @endforeach
                                                 </tbody>
-                                            </table>
-
+                                                
                                             <!-- Pagination -->
                                             <div class="pagination-wrap">
                                            
