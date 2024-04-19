@@ -149,7 +149,7 @@ class JobController extends Controller
         $successfulJob->save();
     
         // Redirect to the job overview with a success message
-        return redirect()->route('bids')->with('success', 'The job has been marked as completed.');
+        return redirect()->back()->with('success', 'The job has been marked as completed.');
     }
     
 }
