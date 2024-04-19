@@ -182,4 +182,5 @@ class RegisterController extends Controller
 
     return redirect()->to('/dashboard')->with('success', 'Ihr Konto wurde registriert. Bitte bestätigen Sie Ihre E-Mail.');
 }
+
 }

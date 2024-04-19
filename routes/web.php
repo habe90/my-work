@@ -88,11 +88,12 @@ Route::middleware('auth')->group(function () {
 });
 
 
-
+ 
 
 //user reviews
 
 Route::get('/user-reviews', [UserRatingController::class, 'showRatings'])->name('review.show');
+Route::get('/company-verification', [CompanyVerificationController::class, 'index'])->name('company.verification');
 
 
 //bookmark
@@ -104,7 +105,6 @@ Route::delete('/bookmarks/{id}', [BookmarkController::class ,'destroy'])->name('
 //invoices
 Route::get('/invoices', [InvoiceController::class, 'showInvoices'])->name('invoices.show');
 Route::get('/invoices/{invoiceId}/view', [InvoiceController::class, 'showInvoice'])->name('invoices.view');
-
 Route::get('/invoices/{invoiceId}/download', [InvoiceController::class, 'downloadInvoice'])->name('invoices.download');
 
 

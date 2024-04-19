@@ -70,7 +70,7 @@
                                                                 @if (auth()->user()->user_type == 'company' && $bid->status == 'accepted')
                                                                     @if ($bid->job->status == 'completed')
                                                                         {{-- Tekst za završene poslove --}}
-                                                                        <span class="text-success"><strong>{{__('cruds.bids.job_done')}}</strong></span>
+                                                                        <span class="text-success"><strong>{{__('crud.bids.jobs')}}</strong></span>
                                                                     @else
                                                                         {{-- Dugme za označavanje posla kao završenog, vidljivo samo za kompanije čiji je bid prihvaćen --}}
                                                                         <form action="{{ route('jobs.complete', ['jobId' => $bid->job->id]) }}" method="POST">
