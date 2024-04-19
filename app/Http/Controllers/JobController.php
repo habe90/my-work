@@ -129,7 +129,7 @@ class JobController extends Controller
         $job = Job::with('bids')->findOrFail($jobId);
     
         // Check if the company has an active and accepted bid on this job
-        $activeBid = $job->bids()->where('company_id', auth()->id())->where('status', 'accepted')->first();
+        $activeBid = $job->bids()->where('user_id', auth()->id())->where('status', 'accepted')->first();
     
         if (!$activeBid) {
             return redirect()->back()->with('error', 'You do not have an active or accepted bid for this job.');
