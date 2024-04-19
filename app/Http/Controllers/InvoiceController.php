@@ -65,14 +65,11 @@ class InvoiceController extends Controller
 
     
 
-    public function showInvoices($id)
+    public function showInvoices()
     {
-        $invoices = Invoice::findOrFail($id);
-
-        // Provjeri da li trenutno autentificirani korisnik ima pravo pregledati ovu fakturu
-        if (auth()->user()->user_type !== 'company' || auth()->id() !== $invoices->company_id) {
-            abort(403);
-        }
+        $invoices = Invoice::with('company')
+            ->where('company_id', Auth::id())
+            ->get();
 
         return view('frontend.invoices.show', compact('invoices'));
     }
