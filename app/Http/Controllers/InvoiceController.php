@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\SuccessfulJob;
 use App\Models\Invoice;
 use Auth;
+use Carbon\Carbon;
 use PDF;
 
 class InvoiceController extends Controller
