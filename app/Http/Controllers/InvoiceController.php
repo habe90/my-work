@@ -26,7 +26,7 @@ class InvoiceController extends Controller
             // Dohvatanje svih uspješnih poslova koji nisu fakturisani i grupisanje po kompaniji
             $successfulJobs = SuccessfulJob::where('invoiced', 0)
                 ->whereMonth('completion_date', '=', Carbon::now()->month)
-                ->with('bid') // Ovdje pretpostavljamo da postoji relacija 'bid' u modelu SuccessfulJob
+                ->with('bid') 
                 ->get()
                 ->groupBy(function ($job) {
                     return $job->bid->user_id ?? null;
@@ -50,7 +50,7 @@ class InvoiceController extends Controller
                 // Ažuriraj sve uspješne poslove kao fakturisane
                 foreach ($jobs as $job) {
                     $job->invoiced = 1;
-                    $job->invoice_id = $invoice->id; // Ako želite povezati fakturisani posao sa fakturom
+                    $job->invoice_id = $invoice->id; 
                     $job->save();
                 }
             }
@@ -58,7 +58,7 @@ class InvoiceController extends Controller
             // Logovanje izuzetka
             Log::error("Greška pri generisanju fakture: " . $e->getMessage());
             Log::error($e->getTraceAsString()); // Dodatni detalji izuzetka
-            // Možete dodati i vraćanje odgovora ili bacanje izuzetka, zavisno od vašeg pristupa upravljanju greškama
+         
         }
     }
     
@@ -67,10 +67,8 @@ class InvoiceController extends Controller
 
     public function showInvoices()
     {
-        $invoices = Invoice::with('company')
-            ->where('company_id', Auth::id())
-            ->get();
-
+        $invoice = Invoice::with('company')->findOrFail($id);
+        
         return view('frontend.invoices.show', compact('invoices'));
     }
 
