@@ -70,7 +70,7 @@ class InvoiceController extends Controller
         $invoices = Invoice::findOrFail($id);
 
         // Provjeri da li trenutno autentificirani korisnik ima pravo pregledati ovu fakturu
-        if (auth()->user()->user_type !== 'company' || auth()->id() !== $invoice->company_id) {
+        if (auth()->user()->user_type !== 'company' || auth()->id() !== $invoices->company_id) {
             abort(403);
         }
 
