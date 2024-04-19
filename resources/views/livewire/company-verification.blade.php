@@ -1,10 +1,10 @@
 <div>
     <h1 class="h4 text-center mb-3">{{ __('messages.upload_pdf_verification') }}</h1>
 
-    <div wire:loading wire:target="documents">Učitavanje...</div>
+    <div wire:loading wire:target="documents">{{ __('messages.loading') }}</div>
     <input type="file" wire:model="documents" id="pdf-upload" multiple hidden accept="application/pdf">
     <label for="pdf-upload" class="upload-dropzone btn btn-upload mb-3 d-block h5 text-black">
-        Odaberite PDF datoteke ili prevucite datoteke ovdje
+        {{ __('messages.select_pdf_files_or_drag') }}
     </label>
 
     <div class="upload_gallery d-flex flex-column align-items-center gap-3 mt-3">
