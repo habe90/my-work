@@ -90,6 +90,8 @@
                                                     @endforeach
                                                 </tbody>
                                                 
+                                            </table>
+
                                             <!-- Pagination -->
                                             <div class="pagination-wrap">
                                            
