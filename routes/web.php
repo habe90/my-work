@@ -36,6 +36,7 @@ use App\Http\Controllers\InvoiceController;
 use App\Http\Controllers\MyWorkReviewController;
 use App\Http\Controllers\BookmarkController;
 use App\Http\Controllers\CompanyAdvertisementController;
+use App\Http\Controllers\CompanyVerificationController;
 
 
 // Route::redirect('/', '/login');
