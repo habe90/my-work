@@ -1,28 +1,26 @@
 <div>
     <h1 class="h4 text-center mb-3">Upload više PDF datoteka</h1>
     
-    <form wire:submit.prevent="uploadDocuments">
-        <input type="file" wire:model="documents" id="pdf-upload" multiple accept=".pdf">
-        <label for="pdf-upload" class="btn btn-primary d-block mt-3">Odaberite PDF datoteke</label>
-        
-        <div class="d-flex flex-wrap justify-content-center gap-3 mt-3">
-            @foreach ($this->documents as $document)
-                <div class="p-2 border" wire:key="document-{{ $loop->index }}">
-                    {{-- Prikazujemo ime fajla, jer ne možemo prikazati PDF --}}
-                    {{ $document->getClientOriginalName() }}
-                </div>
-            @endforeach
-        </div>
-        
-        @error('documents.*')
-            <div class="alert alert-danger mt-3">{{ $message }}</div>
-        @enderror
+    <div wire:loading wire:target="documents">Učitavanje...</div>
+    <input type="file" wire:model="documents" id="pdf-upload" multiple hidden accept="application/pdf">
+    <label for="pdf-upload" class="upload-dropzone btn btn-upload mb-3 d-block">
+        Odaberite PDF datoteke ili prevucite datoteke ovdje
+    </label>
 
-        @if ($this->documents)
-            <button type="submit" class="btn btn-success mt-3">Pošalji dokumente</button>
-        @endif
-    </form>
-    
+    <div class="upload_gallery d-flex flex-column align-items-center gap-3 mt-3">
+        @foreach ($this->documents as $document)
+            <div class="uploaded-file d-flex align-items-center justify-content-between p-2 border w-50">
+                <span>{{ $document->getClientOriginalName() }}</span>
+                {{-- Prikazivanje ikone ovisno o statusu uploada --}}
+                <span class="text-success">&#10003;</span>
+            </div>
+        @endforeach
+    </div>
+
+    @if ($this->documents)
+        <button wire:click="uploadDocuments" class="btn btn-success mt-3">Pošalji dokumente</button>
+    @endif
+
     @if(session()->has('message'))
         <div class="alert alert-success mt-3">{{ session('message') }}</div>
     @endif
@@ -65,4 +63,41 @@
             }
         });
     </script>
+    <style>
+        .upload-dropzone {
+    display: block; /* Ili flex ako želite centrirati sadržaj */
+    width: 100%; /* Prilagodite prema potrebi */
+    padding: 10px;
+    border: 2px dashed #ccc; /* Stil za dashed border */
+    text-align: center;
+    cursor: pointer;
+    background-color: #f8f9fa; /* Svijetla pozadinska boja */
+    transition: background-color 0.3s;
+}
+
+.upload-dropzone:hover,
+.upload-dropzone:focus {
+    background-color: #e9ecef; /* Tamnija pozadinska boja pri hoveru */
+}
+
+.uploaded-file {
+    background-color: #fff; /* Bijela pozadinska boja za fajlove */
+    border-radius: 4px; /* Zaobljeni uglovi */
+    margin-bottom: 8px; /* Razmak između fajlova */
+    padding: 8px 12px; /* Unutrašnji razmak */
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* Sjena za fajlove */
+    transition: transform 0.2s; /* Animacija za hover efekt */
+}
+
+.uploaded-file:hover {
+    transform: translateY(-2px); /* Pomaknite fajl za 2px pri hoveru */
+}
+
+/* Dodajte ovo ako želite vizualno odvojiti uploadanu galeriju od ostatka sadržaja */
+.upload_gallery {
+    border-top: 2px solid #dee2e6; /* Linija iznad galerije */
+    padding-top: 16px; /* Razmak iznad prve uploadane datoteke */
+}
+
+    </style>
 </div>
