@@ -1,53 +1,38 @@
 <div>
-    @for ($i = 0; $i < $documentCount; $i++)
-        <div class="uploaded-document">
-            <span>{{ $documents[$i]->getClientOriginalName() }}</span>
+    {{-- Ovdje ide drag-and-drop funkcionalnost sa JavaScriptom --}}
+    <div id="dropzone" wire:ignore>
+        {{-- Dropzone prostor --}}
+        <input type="file" id="document-upload" multiple hidden wire:model="documents">
+        <label for="document-upload" class="btn btn-primary">Odaberite fajlove ili prevucite dokumente ovdje</label>
+    </div>
+
+    {{-- Prikaz uploadanih dokumenata --}}
+    @foreach($documents as $document)
+        <div class="file-uploaded">
+            <span>{{ $document->getClientOriginalName() }}</span>
             <span class="text-success">&#10003;</span>
         </div>
-    @endfor
+    @endforeach
 
-    @if ($documentCount < 3)
-        <div wire:loading wire:target="documents">Uploading...</div>
-        <input type="file" wire:model="documents" multiple>
+    @if($documentCount < 3)
+        <button wire:click="uploadDocuments" class="btn btn-primary">Pošalji dokumente</button>
     @endif
 
-    @if ($documentCount > 0 && $documentCount < 3)
-        <button wire:click="uploadDocuments" class="btn btn-primary mt-2">{{ __('messages.send_documents', [], app()->getLocale()) }}</button>
-    @endif
+    <script>
+        document.addEventListener('livewire:load', function () {
+            let inputElement = document.getElementById('document-upload');
+            let dropzone = document.getElementById('dropzone');
 
-    @if(session()->has('message'))
-        <div>{{ session('message') }}</div>
-    @endif
+            dropzone.addEventListener('dragover', (event) => {
+                event.preventDefault();
+            });
+
+            dropzone.addEventListener('drop', (event) => {
+                event.preventDefault();
+                inputElement.files = event.dataTransfer.files;
+                // Emitujemo događaj 'fileUpload' sa Livewire komponentom
+                @this.emit('fileUpload', event.dataTransfer.files);
+            });
+        });
+    </script>
 </div>
-
-<script>
-    Livewire.on('allDocumentsUploaded', () => {
-        // Sakrij input i prikaži poruku o uspješnom uploadu
-    });
-</script>
-@push('styles')
-<style>
-    .uploaded-document {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.uploaded-document span {
-    margin-right: 10px;
-}
-
-[wire\:loading] {
-    display: block;
-    text-align: center;
-}
-
-.btn-primary.mt-2 {
-    display: block;
-    width: 100%;
-    margin-top: 10px;
-}
-
-</style>
-
- @endpush
