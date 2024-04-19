@@ -1,9 +1,9 @@
 <div>
-    <h1 class="h4 text-center mb-3 text-black">Upload više PDF datoteka</h1>
+    <h1 class="h4 text-center mb-3">Upload više PDF datoteka</h1>
 
     <div wire:loading wire:target="documents">Učitavanje...</div>
     <input type="file" wire:model="documents" id="pdf-upload" multiple hidden accept="application/pdf">
-    <label for="pdf-upload" class="upload-dropzone btn btn-upload mb-3 d-block">
+    <label for="pdf-upload" class="upload-dropzone btn btn-upload mb-3 d-block h5">
         Odaberite PDF datoteke ili prevucite datoteke ovdje
     </label>
 
