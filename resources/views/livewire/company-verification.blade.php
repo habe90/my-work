@@ -1,6 +1,6 @@
 <div>
-    <h1 class="h4 text-center mb-3">Upload više PDF datoteka</h1>
-    
+    <h1 class="h4 text-center mb-3 text-black">Upload više PDF datoteka</h1>
+
     <div wire:loading wire:target="documents">Učitavanje...</div>
     <input type="file" wire:model="documents" id="pdf-upload" multiple hidden accept="application/pdf">
     <label for="pdf-upload" class="upload-dropzone btn btn-upload mb-3 d-block">
@@ -21,13 +21,13 @@
         <button wire:click="uploadDocuments" class="btn btn-success mt-3">Pošalji dokumente</button>
     @endif
 
-    @if(session()->has('message'))
+    @if (session()->has('message'))
         <div class="alert alert-success mt-3">{{ session('message') }}</div>
     @endif
 
     {{-- JavaScript za drag and drop --}}
     <script>
-        document.addEventListener('livewire:load', function () {
+        document.addEventListener('livewire:load', function() {
             const inputElement = document.getElementById('pdf-upload');
             inputElement.addEventListener('change', event => {
                 @this.upload('documents', inputElement.files);
@@ -43,7 +43,7 @@
                 e.preventDefault();
                 e.stopPropagation();
             }
-            
+
             ['dragenter', 'dragover'].forEach(eventName => {
                 dropZone.addEventListener(eventName, () => dropZone.classList.add('highlight'), false);
             });
@@ -65,39 +65,52 @@
     </script>
     <style>
         .upload-dropzone {
-    display: block; /* Ili flex ako želite centrirati sadržaj */
-    width: 100%; /* Prilagodite prema potrebi */
-    padding: 10px;
-    border: 2px dashed #ccc; /* Stil za dashed border */
-    text-align: center;
-    cursor: pointer;
-    background-color: #f8f9fa; /* Svijetla pozadinska boja */
-    transition: background-color 0.3s;
-}
+            display: block;
+            /* Ili flex ako želite centrirati sadržaj */
+            width: 100%;
+            /* Prilagodite prema potrebi */
+            padding: 10px;
+            border: 2px dashed #ccc;
+            /* Stil za dashed border */
+            text-align: center;
+            cursor: pointer;
+            background-color: #f8f9fa;
+            /* Svijetla pozadinska boja */
+            transition: background-color 0.3s;
+        }
 
-.upload-dropzone:hover,
-.upload-dropzone:focus {
-    background-color: #e9ecef; /* Tamnija pozadinska boja pri hoveru */
-}
+        .upload-dropzone:hover,
+        .upload-dropzone:focus {
+            background-color: #e9ecef;
+            /* Tamnija pozadinska boja pri hoveru */
+        }
 
-.uploaded-file {
-    background-color: #fff; /* Bijela pozadinska boja za fajlove */
-    border-radius: 4px; /* Zaobljeni uglovi */
-    margin-bottom: 8px; /* Razmak između fajlova */
-    padding: 8px 12px; /* Unutrašnji razmak */
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* Sjena za fajlove */
-    transition: transform 0.2s; /* Animacija za hover efekt */
-}
+        .uploaded-file {
+            background-color: #fff;
+            /* Bijela pozadinska boja za fajlove */
+            border-radius: 4px;
+            /* Zaobljeni uglovi */
+            margin-bottom: 8px;
+            /* Razmak između fajlova */
+            padding: 8px 12px;
+            /* Unutrašnji razmak */
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            /* Sjena za fajlove */
+            transition: transform 0.2s;
+            /* Animacija za hover efekt */
+        }
 
-.uploaded-file:hover {
-    transform: translateY(-2px); /* Pomaknite fajl za 2px pri hoveru */
-}
+        .uploaded-file:hover {
+            transform: translateY(-2px);
+            /* Pomaknite fajl za 2px pri hoveru */
+        }
 
-/* Dodajte ovo ako želite vizualno odvojiti uploadanu galeriju od ostatka sadržaja */
-.upload_gallery {
-    border-top: 2px solid #dee2e6; /* Linija iznad galerije */
-    padding-top: 16px; /* Razmak iznad prve uploadane datoteke */
-}
-
+        /* Dodajte ovo ako želite vizualno odvojiti uploadanu galeriju od ostatka sadržaja */
+        .upload_gallery {
+            border-top: 2px solid #dee2e6;
+            /* Linija iznad galerije */
+            padding-top: 16px;
+            /* Razmak iznad prve uploadane datoteke */
+        }
     </style>
 </div>
