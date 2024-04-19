@@ -25,7 +25,7 @@
         // Sakrij input i prikaži poruku o uspješnom uploadu
     });
 </script>
-
+@push('styles')
 <style>
     .uploaded-document {
     display: flex;
@@ -49,3 +49,5 @@
 }
 
 </style>
+
+ @endpush
