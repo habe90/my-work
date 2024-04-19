@@ -18,7 +18,7 @@
     </div>
 
     @if ($this->documents)
-        <button wire:click="uploadDocuments" class="btn btn-success mt-3">Pošalji dokumente</button>
+        <button wire:click="uploadDocuments" class="btn btn-success mt-3">{{ __('messages.submit_documents') }}</button>
     @endif
 
     @if (session()->has('message'))
