@@ -10,4 +10,7 @@ return [
     'loading' => 'Loading...',
     'select_pdf_files_or_drag' => 'Select PDF files or drag them here',
     'submit_documents' => 'Submit Documents',
+    'email_body' => 'Dear Sir or Madam, user :user_name has uploaded documents for company verification.',
+    'email_thank_you' => 'Thank you for using our system.',
+    'email_signature' => 'Your My-Work Team',
 ];

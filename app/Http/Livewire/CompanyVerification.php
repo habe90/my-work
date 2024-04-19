@@ -30,14 +30,22 @@ class CompanyVerification extends Component
     }
 
     if (count($attachments) > 0) {
-        $this->sendEmailWithAttachments($attachments);
+        $user_name = auth()->user()->name;
+        $this->sendEmailWithAttachments($attachments, $user_name);
     }
 }
 
-private function sendEmailWithAttachments($attachments)
+private function sendEmailWithAttachments($attachments, $user_name)
 {
-    Mail::raw('Dokumenti su priloženi.', function ($message) use ($attachments) {
-        $message->to('habetech@gmail.com')->subject('Verifikacija Dokumenata Firme');
+    $subject = __('messages.email_subject', [], app()->getLocale());
+    $body = __('messages.email_body', ['user_name' => $user_name], app()->getLocale());
+    $thankYou = __('messages.email_thank_you', [], app()->getLocale());
+    $signature = __('messages.email_signature', [], app()->getLocale());
+
+    Mail::send([], [], function ($message) use ($attachments, $subject, $body, $thankYou, $signature) {
+        $message->to('habetech@gmail.com')
+                ->subject($subject)
+                ->setBody("{$body}\n\n{$thankYou}\n\n{$signature}", 'text/plain');
 
         foreach ($attachments as $attachmentPath) {
             $message->attach($attachmentPath);
@@ -47,6 +55,7 @@ private function sendEmailWithAttachments($attachments)
     session()->flash('message', __('messages.documents_sent_for_verification', [], app()->getLocale()));
     $this->emit('refreshComponent');
 }
+
 
 
 
