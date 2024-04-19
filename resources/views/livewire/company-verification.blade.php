@@ -1,71 +1,44 @@
 <div>
-    {{-- Ovdje ide drag-and-drop funkcionalnost sa JavaScriptom --}}
-    <div id="dropzone" wire:ignore>
-        {{-- Dropzone prostor --}}
-        <input type="file" id="document-upload" multiple hidden wire:model="documents">
-        <label for="document-upload" class="btn btn-primary">Odaberite fajlove ili prevucite dokumente ovdje</label>
+    <div id="dropzone" class="upload_dropZone" wire:ignore>
+        @foreach($documents as $index => $document)
+            <div class="d-flex align-items-center justify-content-center mb-2">
+                <span>{{ $document->getClientOriginalName() }}</span>
+                <span class="text-success ml-2">&#10003;</span>
+            </div>
+        @endforeach
+
+        @if ($documentCount < 3)
+            <input type="file" wire:model="documents" id="document-upload" multiple hidden>
+            <label for="document-upload" class="btn btn-upload mb-3">Odaberite fajlove ili prevucite dokumente ovdje</label>
+            <div wire:loading wire:target="documents">Upload u toku...</div>
+        @endif
+
+        @if ($documentCount > 0 && $documentCount < 3)
+            <button wire:click="uploadDocument" class="btn btn-primary mt-2">Pošalji dokumente</button>
+        @endif
+
+        @if(session()->has('message'))
+            <div class="alert alert-success">{{ session('message') }}</div>
+        @endif
     </div>
-
-    {{-- Prikaz uploadanih dokumenata --}}
-    @foreach($documents as $document)
-        <div class="file-uploaded">
-            <span>{{ $document->getClientOriginalName() }}</span>
-            <span class="text-success">&#10003;</span>
-        </div>
-    @endforeach
-
-    @if($documentCount < 3)
-        <button wire:click="uploadDocuments" class="btn btn-primary">Pošalji dokumente</button>
-    @endif
 
     <script>
         document.addEventListener('livewire:load', function () {
-            let inputElement = document.getElementById('document-upload');
             let dropzone = document.getElementById('dropzone');
 
-            dropzone.addEventListener('dragover', (event) => {
+            dropzone.addEventListener('dragover', event => {
                 event.preventDefault();
             });
 
-            dropzone.addEventListener('drop', (event) => {
+            dropzone.addEventListener('drop', event => {
                 event.preventDefault();
-                inputElement.files = event.dataTransfer.files;
-                // Emitujemo događaj 'fileUpload' sa Livewire komponentom
-                @this.emit('fileUpload', event.dataTransfer.files);
+                let files = event.dataTransfer.files;
+                let fileInput = document.getElementById('document-upload');
+                fileInput.files = files;
+
+                // Trigger Livewire file upload
+                Livewire.emit('fileUpload', fileInput.getAttribute('wire:model'), files);
             });
         });
     </script>
 </div>
-<style>
-    .upload_dropZone {
-  color: #0f3c4b;
-  background-color: var(--colorPrimaryPale, #c8dadf);
-  outline: 2px dashed var(--colorPrimaryHalf, #c1ddef);
-  outline-offset: -12px;
-  transition:
-    outline-offset 0.2s ease-out,
-    outline-color 0.3s ease-in-out,
-    background-color 0.2s ease-out;
-}
-.upload_dropZone.highlight {
-  outline-offset: -4px;
-  outline-color: var(--colorPrimaryNormal, #0576bd);
-  background-color: var(--colorPrimaryEighth, #c8dadf);
-}
-.upload_svg {
-  fill: var(--colorPrimaryNormal, #0576bd);
-}
-.btn-upload {
-  color: #fff;
-  background-color: var(--colorPrimaryNormal);
-}
-.btn-upload:hover,
-.btn-upload:focus {
-  color: #fff;
-  background-color: var(--colorPrimaryGlare);
-}
-.upload_img {
-  width: calc(33.333% - (2rem / 3));
-  object-fit: contain;
-}
-</style>
