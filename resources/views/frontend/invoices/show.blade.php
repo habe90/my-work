@@ -70,7 +70,7 @@
                                             <table class="table table-bordered">
                                                 <thead>
                                                     <tr>
-                                                        <th>{{ __('global.description') }}</th>
+                                                        <th><b>{{ __('global.description') }}</b></th>
                                                         <th>{{ __('global.amount') }}</th>
                                                     </tr>
                                                 </thead>
