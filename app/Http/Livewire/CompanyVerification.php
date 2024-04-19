@@ -12,6 +12,7 @@ class CompanyVerification extends Component
 
     public $documents = [];
     public $uploadProgress = [];
+    public $documentCount = 0;
 
     public function uploadDocuments()
     {
