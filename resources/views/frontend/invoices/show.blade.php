@@ -47,12 +47,13 @@
 
                                 <div class="_dashboard_content_body p-0">
 
-                                    <div class="receipt-main {{ $invoice->getStatusClassAttribute() }} col-xs-10 col-sm-10 col-md-12 col-xs-offset-1 col-sm-offset-1 col-md-offset-3">
+                                    <div
+                                        class="receipt-main {{ $invoice->status ? 'paid' : 'unpaid' }}  col-xs-10 col-sm-10 col-md-12 col-xs-offset-1 col-sm-offset-1 col-md-offset-3">
 
                                         <!-- Prikaz rednog broja fakture -->
                                         <div class="badge-container">
-
-                                            <span class="badge {{ $invoice->getStatusClassAttribute() }}">
+                                            
+                                            <span class="badge {{ $invoice->status ? 'badge-success' : 'badge-danger' }}">
                                                 {{ $invoice->status ? __('global.paid') : __('global.not_paid') }}
                                             </span>
                                             
