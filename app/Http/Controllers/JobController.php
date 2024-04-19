@@ -125,31 +125,27 @@ class JobController extends Controller
     }
 
     public function markAsCompleted($jobId)
-    {
-        $job = Job::with('bids')->findOrFail($jobId);
-    
-        // Check if the company has an active and accepted bid on this job
-        $activeBid = $job->bids()->where('user_id', auth()->id())->where('status', 'accepted')->first();
-    
-        if (!$activeBid) {
-            return redirect()->back()->with('error', 'You do not have an active or accepted bid for this job.');
-        }
-    
-        // Update job status to 'completed'
-        $job->status = 'completed';
-        $job->save();
-    
-        // Create a record in SuccessfulJob
-        $successfulJob = new SuccessfulJob([
-            'offer_id' => $activeBid->id, // Use the ID of the accepted offer
-            'amount_due' => $activeBid->amount, // Use the amount from the bid
-            'completion_date' => now(),
-            'invoiced' => 0,
-        ]);
-        $successfulJob->save();
-    
-        // Redirect to the job overview with a success message
-        return redirect()->route('my-jobs')->with('success', 'The job has been marked as completed.');
+{
+    $job = Job::with('bids')->findOrFail($jobId);
+    $activeBid = $job->bids()->where('user_id', auth()->id())->where('status', 'accepted')->first();
+
+    if (!$activeBid) {
+        return redirect()->back()->with('error', 'Nemate aktivnu ili prihvaćenu ponudu za ovaj posao.');
     }
+
+    $job->status = 'completed';
+    $job->save();
+
+    $successfulJob = new SuccessfulJob([
+        'bid_id' => $activeBid->id, // Sada koristimo bid_id
+        'amount_due' => $activeBid->amount,
+        'completion_date' => now(),
+        'invoiced' => 0,
+    ]);
+    $successfulJob->save();
+
+    return redirect()->route('my-jobs')->with('success', 'Posao je označen kao završen.');
+}
+
     
 }
