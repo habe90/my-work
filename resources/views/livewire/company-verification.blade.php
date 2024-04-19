@@ -66,7 +66,7 @@
     <style>
         .upload-dropzone {
             display: block;
-            /* Ili flex ako želite centrirati sadržaj */
+            color:black;
             width: 100%;
             /* Prilagodite prema potrebi */
             padding: 10px;
