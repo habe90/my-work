@@ -124,29 +124,32 @@ class JobController extends Controller
     }
 
     public function markAsCompleted($jobId)
-    {
-        $job = Job::findOrFail($jobId);
+{
+    $job = Job::with('bids')->findOrFail($jobId);
 
-        // Provjerite da li je trenutni korisnik vlasnik posla i da li je posao u statusu 'in process'
-        if (auth()->id() !== $job->user_id || $job->status !== 'active') {
-            return redirect()->back()->with('error', 'Nemate ovlaštenja za ovu akciju ili posao nije u odgovarajućem statusu.');
-        }
+    // Provjeravamo da li firma ima aktivan i prihvaćen bid na ovaj posao
+    $activeBid = $job->bids()->where('user_id', auth()->id())->where('status', 'accepted')->first();
 
-        // Ažurirajte status posla
-        $job->status = 'completed';
-        $job->save();
-
-        // Kreirajte zapis u SuccessfulJob
-        $successfulJob = new SuccessfulJob([
-            'job_id' => $job->id,
-            'company_id' => auth()->id(),
-            'amount_due' => $job->proposed_amount, // Ovaj atribut treba dodati u model Job ako već ne postoji
-            'completion_date' => now(),
-            'invoiced' => 0,
-        ]);
-        $successfulJob->save();
-
-        // Redirect na pregled poslova sa porukom o uspehu
-        return redirect()->route('my-jobs')->with('success', 'Posao je označen kao završen.');
+    if (!$activeBid) {
+        return redirect()->back()->with('error', 'Nemate aktivnu ili prihvaćenu ponudu za ovaj posao.');
     }
+
+    // Ažurirajte status posla na 'completed'
+    $job->status = 'completed';
+    $job->save();
+
+    // Kreirajte zapis u SuccessfulJob
+    $successfulJob = new SuccessfulJob([
+        'job_id' => $job->id,
+        'company_id' => auth()->id(),
+        'amount_due' => $activeBid->amount, // Koristimo iznos iz bid-a
+        'completion_date' => now(),
+        'invoiced' => 0,
+    ]);
+    $successfulJob->save();
+
+    // Redirect na pregled poslova sa porukom o uspehu
+    return redirect()->route('my-jobs')->with('success', 'Posao je označen kao završen.');
+}
+
 }
