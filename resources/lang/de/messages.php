@@ -12,4 +12,6 @@ return [
     'email_body' => 'Sehr geehrte Damen und Herren, der Benutzer :user_name hat Dokumente zur Verifizierung des Unternehmens hochgeladen.',
     'email_thank_you' => 'Vielen Dank für die Verwendung unseres Systems.',
     'email_signature' => 'Ihr My-Work-Team',
+    'email_subject'=> 'Benutzerverifizierungsdokumente',
+
 ];

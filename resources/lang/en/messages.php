@@ -13,4 +13,6 @@ return [
     'email_body' => 'Dear Sir or Madam, user :user_name has uploaded documents for company verification.',
     'email_thank_you' => 'Thank you for using our system.',
     'email_signature' => 'Your My-Work Team',
+    'email_subject'=> 'User Verification Documents',
+
 ];
