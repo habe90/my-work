@@ -1,27 +1,28 @@
 <div>
-    <h1 class="h4 text-center mb-3">Primjer uploada više PDF datoteka s pregledom</h1>
+    <h1 class="h4 text-center mb-3">Upload više PDF datoteka</h1>
     
-    {{-- Prikaz svih izabranih PDF-ova --}}
-    <div class="upload_gallery d-flex flex-wrap justify-content-center gap-3 mb-0">
-        @foreach ($this->documents as $document)
-            <div class="img-div m-2 p-2 border">
-                {{-- Prikazujemo privremeni pregled za uploadane datoteke --}}
-                <embed class="image" src="{{ $document->temporaryUrl() }}" type="application/pdf" style="width:100px; height:100px;">
-                <div class="text-center">
+    <form wire:submit.prevent="uploadDocuments">
+        <input type="file" wire:model="documents" id="pdf-upload" multiple accept=".pdf">
+        <label for="pdf-upload" class="btn btn-primary d-block mt-3">Odaberite PDF datoteke</label>
+        
+        <div class="d-flex flex-wrap justify-content-center gap-3 mt-3">
+            @foreach ($this->documents as $document)
+                <div class="p-2 border" wire:key="document-{{ $loop->index }}">
+                    {{-- Prikazujemo ime fajla, jer ne možemo prikazati PDF --}}
                     {{ $document->getClientOriginalName() }}
                 </div>
-            </div>
-        @endforeach
-    </div>
+            @endforeach
+        </div>
+        
+        @error('documents.*')
+            <div class="alert alert-danger mt-3">{{ $message }}</div>
+        @enderror
 
-    {{-- Input i label za odabir datoteka --}}
-    <div wire:loading wire:target="documents">Upload u toku...</div>
-    <input type="file" wire:model="documents" id="pdf-upload" multiple hidden accept=".pdf">
-    <label for="pdf-upload" class="btn btn-primary d-block mt-3">
-        Odaberite PDF datoteke ili prevucite datoteke ovdje
-    </label>
+        @if ($this->documents)
+            <button type="submit" class="btn btn-success mt-3">Pošalji dokumente</button>
+        @endif
+    </form>
     
-    {{-- Prikazivanje poruka nakon uploada --}}
     @if(session()->has('message'))
         <div class="alert alert-success mt-3">{{ session('message') }}</div>
     @endif
