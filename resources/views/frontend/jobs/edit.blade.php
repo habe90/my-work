@@ -78,6 +78,7 @@
                                         <select class="form-control" id="jobStatus" name="status">
                                             <option value="pending" {{ $job->status == 'pending' ? 'selected' : '' }}>{{ __('panel.pending') }}</option>
                                             <option value="completed" {{ $job->status == 'completed' ? 'selected' : '' }}>{{ __('panel.completed') }}</option>
+                                            <option value="in process" {{ $job->status == 'active' ? 'selected' : '' }}>{{ __('panel.active') }}</option>
                                             <option value="in process" {{ $job->status == 'in process' ? 'selected' : '' }}>{{ __('panel.in_process') }}</option>
                                             <option value="canceled" {{ $job->status == 'canceled' ? 'selected' : '' }}>{{ __('panel.canceled') }}</option>
                                         </select>
