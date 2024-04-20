@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Bid;
 use App\Models\Job;
+use App\Models\User;
 use App\Notifications\NewBidPlaced;
 use Illuminate\Support\Facades\Notification;
 
