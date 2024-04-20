@@ -69,7 +69,7 @@
                                 </div>
                             @elseif(!auth()->user()->verification_documents_submitted)
                                 <div class="alert alert-info">
-                                    {{ __('messages.submit_documents', [], app()->getLocale()) }} <a href="{{ route('verification.page') }}">{{ __('messages.here', [], app()->getLocale()) }}</a>.
+                                    {{ __('messages.submit_documents', [], app()->getLocale()) }} <a href="{{ route('company.verification') }}">{{ __('messages.here', [], app()->getLocale()) }}</a>.
                                 </div>
                             @endif
                         </div>
