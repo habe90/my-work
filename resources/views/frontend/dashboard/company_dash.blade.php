@@ -64,7 +64,7 @@
                                 </nav>
                             </div>
                             @if(auth()->user()->verification_documents_submitted && !auth()->user()->is_verified)
-                                <div class="alert alert-warning">
+                                <div class="alert alert-warning" style="color: black!important;">
                                     {{ __('messages.documents_under_review', [], app()->getLocale()) }}
                                 </div>
                             @elseif(!auth()->user()->verification_documents_submitted)
