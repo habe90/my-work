@@ -14,5 +14,8 @@ return [
     'email_signature' => 'Ihr My-Work-Team',
     'email_subject'=> 'Benutzerverifizierungsdokumente',
     'documents_already_submitted' => 'Sie haben Ihre Verifizierungsdokumente bereits eingereicht.',
+    'documents_under_review' => 'Ihre Dokumente wurden eingereicht und werden derzeit überprüft. Bitte haben Sie Geduld, während wir den Verifizierungsprozess abschließen.',
+    'submit_documents' => 'Sie haben keine Dokumente zur Verifizierung eingereicht. Bitte reichen Sie Ihre Dokumente ein',
+    'here' => 'hier'
 
 ];

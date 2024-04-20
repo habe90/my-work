@@ -15,5 +15,8 @@ return [
     'email_signature' => 'Your My-Work Team',
     'email_subject'=> 'User Verification Documents',
     'documents_already_submitted' => 'You have already submitted your verification documents.',
+    'documents_under_review' => 'Your documents have been submitted and are currently under review. Please be patient while we complete the verification process.',
+    'submit_documents' => 'You have not submitted documents for verification. Please submit your documents',
+    'here' => 'here'
 
 ];

@@ -65,15 +65,16 @@
                             </div>
                             @if(auth()->user()->verification_documents_submitted && !auth()->user()->is_verified)
                                 <div class="alert alert-warning">
-                                    Vaši dokumenti su predani i trenutno su na pregledu. Molimo vas za strpljenje dok ne završimo proces verifikacije.
+                                    {{ __('messages.documents_under_review', [], app()->getLocale()) }}
                                 </div>
                             @elseif(!auth()->user()->verification_documents_submitted)
                                 <div class="alert alert-info">
-                                    Niste predali dokumente za verifikaciju. Molimo predajte vaše dokumente <a href="{{ route('verification.page') }}">ovdje</a>.
+                                    {{ __('messages.submit_documents', [], app()->getLocale()) }} <a href="{{ route('verification.page') }}">{{ __('messages.here', [], app()->getLocale()) }}</a>.
                                 </div>
                             @endif
                         </div>
                     </div>
+                    
                     
                     <div class="row">
                         <div class="{{ $settings1['column_class'] }}">
