@@ -15,25 +15,33 @@ class CompanyVerification extends Component
     public $uploadProgress = [];
 
     public function uploadDocuments()
-{
-    $this->validate([
-        'documents.*' => 'file|mimes:pdf|max:10240', // Ograničenje na 10MB i PDF format
-    ]);
+    {
+        $this->validate([
+            'documents.*' => 'file|mimes:pdf|max:10240', // Ograničenje na 10MB i PDF format
+        ]);
 
-    $attachments = [];
+        $user = auth()->user();
+        if ($user->verification_documents_submitted) {
+            session()->flash('error', __('messages.documents_already_submitted', [], app()->getLocale()));
+            return;
+        }
+    
+       
 
-    foreach ($this->documents as $document) {
-        $filename = $document->getClientOriginalName();
-        $path = Storage::putFileAs('public/verification_documents', $document, $filename);
-        $attachments[] = storage_path('app/public/verification_documents/' . $filename);
-        $this->uploadProgress[$filename] = __('messages.document_uploaded', [], app()->getLocale());
+        $attachments = [];
+
+        foreach ($this->documents as $document) {
+            $filename = $document->getClientOriginalName();
+            $path = Storage::putFileAs('public/verification_documents', $document, $filename);
+            $attachments[] = storage_path('app/public/verification_documents/' . $filename);
+            $this->uploadProgress[$filename] = __('messages.document_uploaded', [], app()->getLocale());
+        }
+
+        if (count($attachments) > 0) {
+            $user_name = auth()->user()->name;
+            $this->sendEmailWithAttachments($attachments, $user_name);
+        }
     }
-
-    if (count($attachments) > 0) {
-        $user_name = auth()->user()->name;
-        $this->sendEmailWithAttachments($attachments, $user_name);
-    }
-}
 
 private function sendEmailWithAttachments($attachments, $user_name)
 {
@@ -52,18 +60,23 @@ private function sendEmailWithAttachments($attachments, $user_name)
                 'mime' => 'application/pdf',
             ]);
         }
+
+        $user->verification_documents_submitted = 1;
+        $user->save();
     });
 
     session()->flash('message', __('messages.documents_sent_for_verification', [], app()->getLocale()));
     $this->emit('refreshComponent');
 }
 
-
-
-
-
     public function render()
     {
-        return view('livewire.company-verification');
+        $user = auth()->user();
+        $documentsAlreadySubmitted = $user->verification_documents_submitted;
+
+        return view('livewire.company-verification', [
+        'documentsAlreadySubmitted' => $documentsAlreadySubmitted
+        ]);
+
     }
 }

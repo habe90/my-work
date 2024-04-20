@@ -14,5 +14,6 @@ return [
     'email_thank_you' => 'Thank you for using our system.',
     'email_signature' => 'Your My-Work Team',
     'email_subject'=> 'User Verification Documents',
+    'documents_already_submitted' => 'You have already submitted your verification documents.',
 
 ];

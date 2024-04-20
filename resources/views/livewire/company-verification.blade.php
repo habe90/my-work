@@ -1,4 +1,7 @@
 <div>
+    @if ($documentsAlreadySubmitted)
+    <div class="alert alert-info">{{ __('messages.documents_already_submitted', [], app()->getLocale()) }}</div>
+@else
     <h1 class="h4 text-center mb-3">{{ __('messages.upload_pdf_verification') }}</h1>
 
     {{-- Provjeravamo da li sesija ima poruku i na osnovu toga prikazujemo ili sakrivamo formu --}}
@@ -24,6 +27,7 @@
     @else
         <div class="alert alert-success mt-3">{{ session('message') }}</div>
         <a href="{{ url('/') }}" class="btn btn-primary mt-2">Vrati se na početnu</a>
+    @endif
     @endif
 
 
