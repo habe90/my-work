@@ -45,10 +45,12 @@ class CompanyVerification extends Component
 
 private function sendEmailWithAttachments($attachments, $user_name)
 {
+    $user = auth()->user(); 
     $subject = __('messages.email_subject', [], app()->getLocale());
     $body = __('messages.email_body', ['user_name' => $user_name], app()->getLocale());
     $thankYou = __('messages.email_thank_you', [], app()->getLocale());
     $signature = __('messages.email_signature', [], app()->getLocale());
+
     Mail::raw("{$body}\n\n{$thankYou}\n\n{$signature}", function ($message) use ($attachments, $subject, $user) {
         $message->to('habetech@gmail.com')->subject($subject);
     
