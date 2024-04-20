@@ -43,6 +43,7 @@ return [
     'register_as_company' => "Register as a Company",
     'total_views' => 'Total Views',
     'completed_jobs' => 'Completed Jobs',
+    'active' => 'Active',
     'draft' => 'Draft',
     'project_offers' => 'Project Offers',
     'reviews' => 'Reviews',

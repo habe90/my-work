@@ -16,6 +16,7 @@ return [
     'pending' => 'In Bearbeitung',
     'completed' => 'Abgeschlossen',
     'in_process' => 'In Verarbeitung',
+    'active' => 'Active',
     'canceled' => 'Storniert',
     'reviews' => 'Rezensionen',
     'image_alt' => 'Benutzerbild',
