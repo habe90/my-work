@@ -49,18 +49,16 @@ private function sendEmailWithAttachments($attachments, $user_name)
     $body = __('messages.email_body', ['user_name' => $user_name], app()->getLocale());
     $thankYou = __('messages.email_thank_you', [], app()->getLocale());
     $signature = __('messages.email_signature', [], app()->getLocale());
-
-    Mail::raw("{$body}\n\n{$thankYou}\n\n{$signature}", function ($message) use ($attachments, $subject) {
+    Mail::raw("{$body}\n\n{$thankYou}\n\n{$signature}", function ($message) use ($attachments, $subject, $user) {
         $message->to('habetech@gmail.com')->subject($subject);
-
+    
         foreach ($attachments as $attachmentPath) {
-            // Ovdje možda trebate koristiti basename funkciju ako želite samo ime fajla
             $message->attach($attachmentPath, [
                 'as' => basename($attachmentPath),
                 'mime' => 'application/pdf',
             ]);
         }
-
+    
         $user->verification_documents_submitted = 1;
         $user->save();
     });
