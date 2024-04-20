@@ -100,15 +100,34 @@
     <!-- This page plugins -->
     <!-- ============================================================== -->
     <script>
-        @if (Session::has('success'))
-            toastr.options = {
-                "closeButton": true,
-                "progressBar": true,
-                "timeOut": "5000"
-            }
-            toastr.success("{{ Session::get('success') }}");
+        // Toastr opcije
+        toastr.options = {
+            "closeButton": true,
+            "progressBar": true,
+            "timeOut": "5000"
+        }
+    
+        // Toastr za poruke uspjeha
+        @if (session('success'))
+            toastr.success("{{ session('success') }}");
+        @endif
+    
+        // Toastr za poruke grešaka
+        @if (session('error'))
+            toastr.error("{{ session('error') }}");
+        @endif
+    
+        // Toastr za upozorenja
+        @if (session('warning'))
+            toastr.warning("{{ session('warning') }}");
+        @endif
+    
+        // Toastr za informacije
+        @if (session('info'))
+            toastr.info("{{ session('info') }}");
         @endif
     </script>
+    
     <script>
         $(document).ready(function() {
             $('#theme-slide-2').owlCarousel({
