@@ -209,10 +209,11 @@
                                                         <span
                                                             class="badge badge-warning text-white">{{ $bid->status }}</span>
                                                             @if (auth()->id() === $bid->user_id && $bid->edit_count < 3)
-                                                            <a href="#" class="btn btn-sm btn-secondary">
+                                                            <button wire:click="$emit('openEditModal', {{ $bid->id }})" class="btn btn-sm btn-secondary">
                                                                 <i class="fa fa-pencil" aria-hidden="true"></i>
-                                                            </a>
+                                                            </button>
                                                         @endif
+                                                        
                                                     </div>
                                                 </div>
                                             </div>

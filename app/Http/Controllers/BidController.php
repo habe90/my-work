@@ -35,7 +35,7 @@ class BidController extends Controller
     {
         $job = Job::with('bids')->findOrFail($jobId);
 
-        // Pretpostavimo da imate view fajl koji se zove 'bids.show'
+      
         return view('frontend.bids.show', compact('job'));
     }
 
