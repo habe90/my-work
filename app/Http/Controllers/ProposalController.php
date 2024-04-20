@@ -18,19 +18,26 @@ class ProposalController extends Controller
             'amount' => 'required|numeric',
             'comment' => 'sometimes|string',
         ]);
-
+    
+        // Provjeri da li je korisnik verifikovan
+        $user = User::findOrFail($validatedData['user_id']);
+        if (!$user->is_verified) {
+            return redirect()->back()->with('error', __('messages.user_not_verified', [], app()->getLocale()));
+        }
+    
         // Kreiranje nove ponude
         $proposal = new Bid($validatedData);
         $proposal->save();
-
+    
         // Dobavljanje vlasnika posla i slanje notifikacije
         $job = Job::findOrFail($validatedData['job_id']);
-        $jobOwner = $job->user; 
+        $jobOwner = $job->user;
         Notification::send($jobOwner, new NewBidPlaced($proposal));
-
+    
         // Preusmjeravanje sa porukom o uspjehu
-        return redirect()->back()->with('success', 'Ihr Angebot wurde erfolgreich gesendet!');
+        return redirect()->back()->with('success', __('messages.bid_successfully_sent', [], app()->getLocale()));
     }
+    
 
     public function edit(Bid $proposal)
     {

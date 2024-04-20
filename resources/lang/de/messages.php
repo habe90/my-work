@@ -16,6 +16,8 @@ return [
     'documents_already_submitted' => 'Sie haben Ihre Verifizierungsdokumente bereits eingereicht.',
     'documents_under_review' => 'Ihre Dokumente wurden eingereicht und werden derzeit überprüft. Bitte haben Sie Geduld, während wir den Verifizierungsprozess abschließen.',
     'submit_documents' => 'Sie haben keine Dokumente zur Verifizierung eingereicht. Bitte reichen Sie Ihre Dokumente ein',
-    'here' => 'hier'
+    'here' => 'hier',
+    'user_not_verified' => 'Ihr Konto wurde noch nicht verifiziert. Bitte überprüfen Sie Ihre Dokumente.',
+    'bid_successfully_sent' => 'Ihr Angebot wurde erfolgreich gesendet!'
 
 ];
