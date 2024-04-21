@@ -315,28 +315,29 @@
         </div>
     </section>
     <!-- ============================ Main Section End ================================== -->
-    <script>
-        window.addEventListener('load', (event) => {
-            const successMessage = "{{ session('successMessage') }}";
-            if (successMessage) {
-                Swal.fire({
-                    title: 'Uspjeh!',
-                    text: successMessage,
-                    icon: 'success',
-                    confirmButtonText: 'U redu'
-                });
-            }
-        });
-    </script>
-
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
-    <script>
-        window.livewire.on('startEditing', () => {
-    console.log('Editing mode started');
-});
+<script>
+    window.addEventListener('load', () => {
+        const successMessage = "{{ session('successMessage') }}";
+        if (successMessage) {
+            Swal.fire({
+                title: 'Uspjeh!',
+                text: successMessage,
+                icon: 'success',
+                confirmButtonText: 'U redu'
+            });
+        }
+    });
 
+    $(document).ready(function() {
+        // Događaj za prebacivanje prikaza forme za uređivanje ponude
+        $('#editButton').on('click', function() {
+            $('#editForm').toggle(); // Ovo će skrivati ili prikazivati formu
+        });
+
+        // Događaj za bookmark gumb
         $('#bookmark-btn').on('click', function() {
             var $this = $(this);
             var job_id = $this.data('job-id');
@@ -357,43 +358,30 @@
                     $this.data('bookmarked', !isBookmarked);
                     $this.toggleClass('bookmarked');
                     $this.find('i').toggleClass('fas far');
-
                     Swal.fire({
-                        title: isBookmarked ? 'Wurde entfernt!' : 'Hinzugefügt!',
-                        text: isBookmarked ? 'Der Job wurde aus Ihren Lesezeichen entfernt.' :
-                            'Der Job wurde zu Ihren Lesezeichen hinzugefügt.',
+                        title: isBookmarked ? 'Uklonjeno!' : 'Dodano!',
+                        text: isBookmarked ? 'Posao je uklonjen iz vaših zabilješki.' :
+                            'Posao je dodan u vaše zabilješke.',
                         icon: 'success',
-                        confirmButtonText: 'In Ordnung'
+                        confirmButtonText: 'U redu'
                     });
+
+                    // Emitujemo događaj za osvježavanje komponenti ako je potrebno
+                    window.livewire.emit('refreshComponent');
                 },
                 error: function() {
                     Swal.fire({
-                        title: 'Fehler!',
-                        text: 'Ein Fehler ist aufgetreten.',
+                        title: 'Greška!',
+                        text: 'Došlo je do greške.',
                         icon: 'error',
-                        confirmButtonText: 'In Ordnung'
+                        confirmButtonText: 'U redu'
                     });
                 }
             });
         });
-    </script>
-    <script>
-        $(document).ready(function() {
-            $('#editButton').click(function() {
-                var displayStatus = $('#editForm').css('display');
-                $('#editForm').css('display', displayStatus === 'none' ? 'block' : 'none');
-            });
-        });
-        </script>
-          @push('scripts')
-          <script>
-              document.addEventListener('DOMContentLoaded', function () {
-                  Livewire.on('refreshBids', () => {
-                      Livewire.emit('refreshComponent');
-                  });
-              });
-          </script>
-      @endpush
+    });
+</script>
+
     
 @endsection
 
