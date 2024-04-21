@@ -18,8 +18,8 @@
                                 <img src="{{ $job->featured_image }}" class="img-fluid" alt="" />
                             </div>
                             <div class="_jb_details01_authors_caption">
-                                <h4 class="jbs_title">{{ $job->title }}<img src="{{ asset('frontend/img/verify.svg') }}" class="ml-1"
-                                        width="12" alt=""></h4>
+                                <h4 class="jbs_title">{{ $job->title }}<img src="{{ asset('frontend/img/verify.svg') }}"
+                                        class="ml-1" width="12" alt=""></h4>
                                 <ul class="jbx_info_list">
                                     <li><span><i class="ti-briefcase"></i>
                                             {{ $job->category ? $job->category->name : 'No category' }}</span></li>
@@ -152,7 +152,7 @@
                             <div class="_job_detail_single">
                                 <h4>{{ __('global.job_desc') }}</h4>
                                 <p>{!! $job->description !!}</p>
-                            </div>        
+                            </div>
                         </div>
 
                         <div class="_wrap_box_slice">,
@@ -199,12 +199,12 @@
                                                         <span>{{ $bid->created_at->diffForHumans() }}</span>
                                                         <span
                                                             class="badge badge-warning text-white">{{ $bid->status }}</span>
-                                                            @if (auth()->id() === $bid->user_id && $bid->edit_count < 3)
+                                                        @if (auth()->id() === $bid->user_id && $bid->edit_count < 3)
                                                             <button id="editButton" class="btn btn-sm btn-secondary">
                                                                 <i class="fa fa-pencil" aria-hidden="true"></i>
-                                                            </button>                                  
+                                                            </button>
                                                         @endif
-                                                </div>
+                                                    </div>
                                                 </div>
                                             </div>
                                         @endforeach
@@ -221,22 +221,22 @@
                             @endif
                         </div>
                         @php
-                        $isEditing = session('isEditing', false);
+                            $isEditing = session('isEditing', false);
                         @endphp
-                    
-                      
-                    <div id="editForm" style="display: none;">
-                        @livewire('edit-bid', ['bid' => $bid])
-                    </div>
-                    
-                 
-                 
-                        @if (!$userHasMadeBid && auth()->user()->id !== $job->user_id)                    
+
+
+                        <div id="editForm" style="display: none;">
+                            @livewire('edit-bid', ['bid' => $bid])
+                        </div>
+
+
+
+                        @if (!$userHasMadeBid && auth()->user()->id !== $job->user_id)
                             <div class="_wrap_box_slice">
                                 <div class="_job_detail_single">
                                     <h4>{{ __('global.send_proposal') }}</h4>
-                               
-                                   @include('frontend.jobs.forms.add_bid')
+
+                                    @include('frontend.jobs.forms.add_bid')
 
                                 </div>
                             </div>
@@ -245,7 +245,7 @@
                                 {{ __('global.offer_error_message') }}
                             </div>
                         @endif
-                      
+
 
                     </div>
                 </div>
@@ -330,7 +330,8 @@
                 var $this = $(this);
                 var job_id = $this.data('job-id');
                 var isBookmarked = $this.data('bookmarked');
-                var ajaxUrl = isBookmarked ? "{{ route('bookmarks.destroy', '') }}/" + job_id : "{{ route('bookmarks.store') }}";
+                var ajaxUrl = isBookmarked ? "{{ route('bookmarks.destroy', '') }}/" + job_id :
+                    "{{ route('bookmarks.store') }}";
                 var ajaxType = isBookmarked ? 'DELETE' : 'POST';
 
                 $.ajax({
@@ -341,13 +342,20 @@
                         job_id: job_id
                     },
                     success: function(response) {
+                        // Ažuriramo stanje bookmarked
                         $this.data('bookmarked', !isBookmarked);
-                        $this.toggleClass('bookmarked');
-                        $this.find('i').toggleClass('fas far');
+
+                        // Toggle klase za stilizovanje ikone
+                        var icon = $this.find('i');
+                        icon.toggleClass('fas far');
+                        icon.toggleClass('bookmarked', !
+                        isBookmarked); // ovo dodaje ili uklanja klasu 'bookmarked'
 
                         Swal.fire({
-                            title: isBookmarked ? translations.removedTitle : translations.addedTitle,
-                            text: isBookmarked ? translations.removedText : translations.addedText,
+                            title: isBookmarked ? translations.removedTitle :
+                                translations.addedTitle,
+                            text: isBookmarked ? translations.removedText : translations
+                                .addedText,
                             icon: 'success',
                             confirmButtonText: translations.buttonText
                         });
@@ -355,7 +363,6 @@
                         // Emitovanje događaja za osvježavanje Livewire komponente, ako je to potrebno
                         window.livewire.emit('refreshComponent');
                     },
-
                     error: function() {
                         Swal.fire({
                             title: 'Greška!',
@@ -366,6 +373,7 @@
                     }
                 });
             });
+
         });
     </script>
     <script>
@@ -379,4 +387,3 @@
     </script>
 
 @endsection
-
