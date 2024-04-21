@@ -240,7 +240,7 @@
                     
                       
                         <div id="editForm" style="display: none;">
-                            @livewire('edit-proposal-component', ['bid' => $bid])
+                            @livewire('edit-bid', ['bid' => $bid])
                         </div>
                  
                  
