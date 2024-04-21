@@ -383,6 +383,10 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
     <script>
+        window.livewire.on('startEditing', () => {
+    console.log('Editing mode started');
+});
+
         $('#bookmark-btn').on('click', function() {
             var $this = $(this);
             var job_id = $this.data('job-id');
