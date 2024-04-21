@@ -426,16 +426,15 @@
         });
     </script>
     <script>
-       document.addEventListener('DOMContentLoaded', function() {
-    const editButton = document.getElementById('editButton');
-    const editForm = document.getElementById('editForm');
-
-    if (editButton && editForm) {
-        editButton.addEventListener('click', function() {
-            editForm.style.display = (editForm.style.display === 'none' ? 'block' : 'none');
-        });
-    }
+     document.addEventListener('livewire:load', function() {
+    window.livewire.on('closeForm', () => {
+        const editForm = document.getElementById('editForm');
+        if (editForm) {
+            editForm.style.display = 'none';
+        }
+    });
 });
+
 
         </script>
         
