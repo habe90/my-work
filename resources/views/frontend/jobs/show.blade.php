@@ -213,7 +213,7 @@
                                                         <span
                                                             class="badge badge-warning text-white">{{ $bid->status }}</span>
                                                         @if (auth()->id() === $bid->user_id && $bid->edit_count < 3)
-                                                        <button wire:click="startEditing" class="btn btn-sm btn-secondary">
+                                                        <button wire:click.prevent="startEditing" class="btn btn-sm btn-secondary">
                                                             <i class="fa fa-pencil" aria-hidden="true"></i>
                                                         </button>
                                                         
