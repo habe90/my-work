@@ -18,6 +18,12 @@ return [
     'my_account' => "Mein Konto",
     'sign_in' => "Anmelden",
     'register_as_company' => "Als Handwerker registrieren",
+    'your_price' => 'Ihr Preis',
+    'cover_letter' => 'Begleitschreiben',
+    'agree_terms' => 'Ich stimme den Allgemeinen Geschäftsbedingungen zu',
+    'terms_and_conditions_link' => 'https://example.com/de/terms',
+    'terms_and_conditions' => 'Allgemeine Geschäftsbedingungen',
+    'send_proposal' => 'Vorschlag senden',
 
     'client-nav' => [
         'dashboard' => 'Dashboard',

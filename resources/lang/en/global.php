@@ -12,6 +12,12 @@ return [
     'home' => 'Home',
     'how_it_works' => "How it works",
     'project_offers' => 'Project Offers',
+    'your_price' => 'Your Price',
+    'cover_letter' => 'Cover Letter',
+    'agree_terms' => 'I agree to the terms and conditions',
+    'terms_and_conditions_link' => 'https://example.com/en/terms',
+    'terms_and_conditions' => 'Terms and Conditions',
+    'send_proposal' => 'Send Proposal'
 
     
     ],
