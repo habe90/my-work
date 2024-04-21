@@ -324,61 +324,61 @@
         });
 
         $(document).ready(function() {
-            // Toggle za prikaz/uklanjanje forme za uređivanje
-            $('#editButton').on('click', function() {
-                $('#editForm').toggle();
-            });
+    // Toggle za prikaz/uklanjanje forme za uređivanje
+    $('#editButton').on('click', function() {
+        $('#editForm').toggle();
+    });
 
-            // Logika za bookmark, koristeći AJAX
-            $('#bookmark-btn').on('click', function() {
-                var $this = $(this);
-                var job_id = $this.data('job-id');
-                var isBookmarked = $this.data('bookmarked');
-                var ajaxUrl = isBookmarked ? "{{ route('bookmarks.destroy', '') }}/" + job_id :
-                    "{{ route('bookmarks.store') }}";
-                var ajaxType = isBookmarked ? 'DELETE' : 'POST';
+    // Logika za bookmark, koristeći AJAX
+    $('#bookmark-btn').on('click', function() {
+        var $this = $(this);
+        var job_id = $this.data('job-id');
+        var isBookmarked = $this.data('bookmarked');
+        var ajaxUrl = isBookmarked ? "{{ route('bookmarks.destroy', '') }}/" + job_id :
+            "{{ route('bookmarks.store') }}";
+        var ajaxType = isBookmarked ? 'DELETE' : 'POST';
 
-                $.ajax({
-                    url: ajaxUrl,
-                    type: ajaxType,
-                    data: {
-                        _token: "{{ csrf_token() }}",
-                        job_id: job_id
-                    },
-                    success: function(response) {
-                        // Ažuriramo stanje bookmarked
-                        $this.data('bookmarked', !isBookmarked);
+        $.ajax({
+            url: ajaxUrl,
+            type: ajaxType,
+            data: {
+                _token: "{{ csrf_token() }}",
+                job_id: job_id
+            },
+            success: function(response) {
+                isBookmarked = !isBookmarked; // Ažuriramo stanje bookmarked
+                $this.data('bookmarked', isBookmarked); // Postavljamo novo stanje
 
-                        // Toggle klase za stilizovanje ikone
-                        var icon = $this.find('i');
-                        icon.toggleClass('fas far');
-                        icon.toggleClass('bookmarked', !
-                            isBookmarked); // ovo dodaje ili uklanja klasu 'bookmarked'
+                // Toggle klase za srce
+                var icon = $this.find('i');
+                icon.toggleClass('fas', isBookmarked); // Uključuje ili isključuje puno srce
+                icon.toggleClass('far', !isBookmarked); // Uključuje ili isključuje prazno srce
+                icon.css('color', isBookmarked ? 'red' : 'white'); // Promijeni boju srca
 
-                        Swal.fire({
-                            title: isBookmarked ? translations.removedTitle :
-                                translations.addedTitle,
-                            text: isBookmarked ? translations.removedText : translations
-                                .addedText,
-                            icon: 'success',
-                            confirmButtonText: translations.buttonText
-                        });
-
-                        // Emitovanje događaja za osvježavanje Livewire komponente, ako je to potrebno
-                        window.livewire.emit('refreshComponent');
-                    },
-                    error: function() {
-                        Swal.fire({
-                            title: 'Greška!',
-                            text: 'Došlo je do greške.',
-                            icon: 'error',
-                            confirmButtonText: 'U redu'
-                        });
-                    }
+                Swal.fire({
+                    title: isBookmarked ? translations.addedTitle : translations.removedTitle,
+                    text: isBookmarked ? translations.addedText : translations.removedText,
+                    icon: 'success',
+                    confirmButtonText: translations.buttonText
                 });
-            });
 
+                // Emitovanje događaja za osvježavanje Livewire komponente, ako je to potrebno
+                window.livewire.emit('refreshComponent');
+            },
+            error: function() {
+                Swal.fire({
+                    title: 'Greška!',
+                    text: 'Došlo je do greške.',
+                    icon: 'error',
+                    confirmButtonText: 'U redu'
+                });
+            }
         });
+    });
+
+});
+
+
     </script>
     <script>
         var translations = {
