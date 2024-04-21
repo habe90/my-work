@@ -430,17 +430,15 @@
         });
     </script>
     <script>
-   document.addEventListener('livewire:load', function() {
-    window.livewire.on('startEditing', () => {
-        console.log('Editing mode started');
-        var editForm = document.getElementById('editForm');
-        if (editForm) {
-            editForm.style.display = 'block';
-        }
-    });
-});
-
-
-        </script>
-        
+        document.addEventListener('DOMContentLoaded', function() {
+            // Ako koristite Livewire, osigurajte da se ovo izvršava nakon što se Livewire skripte učitaju
+            window.livewire.on('startEditing', () => {
+                console.log('Editing mode started');
+                var editForm = document.getElementById('editForm');
+                if (editForm) {
+                    editForm.style.display = 'block'; // Ovaj red prikazuje formu
+                }
+            });
+        });
+    </script>
 @endsection
