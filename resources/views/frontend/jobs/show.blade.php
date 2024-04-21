@@ -4,6 +4,10 @@
         ._job_detail_single ul li:before {
             content: none;
         }
+
+        .fa-heart.bookmarked {
+            color: red;
+        }
     </style>
     <!-- ============================ Page Title Start================================== -->
     <div class="page-title search-form dark">
@@ -349,7 +353,7 @@
                         var icon = $this.find('i');
                         icon.toggleClass('fas far');
                         icon.toggleClass('bookmarked', !
-                        isBookmarked); // ovo dodaje ili uklanja klasu 'bookmarked'
+                            isBookmarked); // ovo dodaje ili uklanja klasu 'bookmarked'
 
                         Swal.fire({
                             title: isBookmarked ? translations.removedTitle :
