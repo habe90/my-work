@@ -359,15 +359,16 @@
                         $this.find('i').toggleClass('fas far');
 
                         Swal.fire({
-                            title: isBookmarked ? 'Uklonjeno!' : 'Dodato!',
-                            text: isBookmarked ? 'Posao je uklonjen iz vaših zabilješki.' : 'Posao je dodan u vaše zabilješke.',
+                            title: isBookmarked ? translations.removedTitle : translations.addedTitle,
+                            text: isBookmarked ? translations.removedText : translations.addedText,
                             icon: 'success',
-                            confirmButtonText: 'U redu'
+                            confirmButtonText: translations.buttonText
                         });
 
-                        // Ovdje možemo emitovati događaj za osvježavanje Livewire komponente, ako je to potrebno
+                        // Emitovanje događaja za osvježavanje Livewire komponente, ako je to potrebno
                         window.livewire.emit('refreshComponent');
                     },
+
                     error: function() {
                         Swal.fire({
                             title: 'Greška!',
@@ -380,9 +381,14 @@
             });
         });
     </script>
-
-
-
-    
+    <script>
+        var translations = {
+            removedTitle: "{{ __('bookmarks.removed_title') }}",
+            removedText: "{{ __('bookmarks.removed_text') }}",
+            addedTitle: "{{ __('bookmarks.added_title') }}",
+            addedText: "{{ __('bookmarks.added_text') }}",
+            buttonText: "{{ __('general.ok') }}"
+        };
+    </script>   
 @endsection
 
