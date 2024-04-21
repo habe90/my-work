@@ -242,11 +242,11 @@
                             <div class="_wrap_box_slice">
                                 <div class="_job_detail_single">
                                     <h4>{{ __('global.send_proposal') }}</h4>
-                                    @if ($isEditing)
+                                 
                                     <div id="editForm" style="display: none;">
                                         @livewire('edit-proposal-component', ['bid' => $bid])
                                     </div>
-                                @else
+                            
                                     <form class="proposal-form" method="POST" action="{{ route('proposals.store') }}">
                                         @csrf
                                         <input type="hidden" name="job_id" value="{{ $job->id }}">
@@ -299,8 +299,7 @@
 
                                     </form>
                                        
-                                @endif
-
+                           
                                 </div>
                             </div>
                         @else
