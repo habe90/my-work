@@ -239,7 +239,7 @@
                         @endphp
                     
                       
-                        <div id="editForm" style="display: none;">
+                        <div >
                             @livewire('edit-bid', ['bid' => $bid])
                         </div>
                  
