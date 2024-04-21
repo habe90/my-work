@@ -212,15 +212,12 @@
                                                         <span>{{ $bid->created_at->diffForHumans() }}</span>
                                                         <span
                                                             class="badge badge-warning text-white">{{ $bid->status }}</span>
-                                                        @if (auth()->id() === $bid->user_id && $bid->edit_count < 3)
-                                                        <button wire:click.prevent="startEditing" class="btn btn-sm btn-secondary">
-                                                            <i class="fa fa-pencil" aria-hidden="true"></i>
-                                                        </button>
-                                                        
+                                                            @if (auth()->id() === $bid->user_id && $bid->edit_count < 3)
+                                                            <button wire:click.prevent="startEditing" class="btn btn-sm btn-secondary">
+                                                                <i class="fa fa-pencil" aria-hidden="true"></i>
+                                                            </button>
                                                         @endif
-
-
-                                                    </div>
+                                                </div>
                                                 </div>
                                             </div>
                                         @endforeach
@@ -238,10 +235,8 @@
                         </div>
                         @if (!$userHasMadeBid && auth()->user()->id !== $job->user_id)
                         @php
-                        $isEditing = session('isEditing', false); // Ako session ne sadrži 'isEditing', pretpostavi da je false
-                    @endphp
-                    
-                         
+                        $isEditing = session('isEditing', false);
+                        @endphp
 
                             <div class="_wrap_box_slice">
                                 <div class="_job_detail_single">
