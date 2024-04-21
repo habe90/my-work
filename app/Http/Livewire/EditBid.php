@@ -10,7 +10,8 @@ class EditBid extends Component
     public Bid $bid;
     public $amount;
     public $comment;
-    public $isEditing = false; // Dodavanje ove varijable
+    public $isEditing = false;
+    
 
     protected $rules = [
         'amount' => 'required|numeric',
@@ -46,7 +47,9 @@ class EditBid extends Component
 
         $this->isEditing = false; // Deaktivacija uređivanja
         $this->emit('alert', ['type' => 'success', 'message' => 'Ponuda je uspješno ažurirana.']);
+        $this->emitTo('show-bids', 'refreshBids');  // Emitovanje događaja ka komponenti 'show-bids'
     }
+
 
     public function render()
     {
