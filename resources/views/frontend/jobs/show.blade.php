@@ -215,10 +215,7 @@
                                                             @if (auth()->id() === $bid->user_id && $bid->edit_count < 3)
                                                             <button id="editButton" class="btn btn-sm btn-secondary">
                                                                 <i class="fa fa-pencil" aria-hidden="true"></i>
-                                                            </button>
-                                                            
-                                                            
-                                                                                                 
+                                                            </button>                                  
                                                         @endif
                                                 </div>
                                                 </div>
@@ -253,7 +250,7 @@
                                     <h4>{{ __('global.send_proposal') }}</h4>
                                
                                    @include('frontend.jobs.forms.add_bid')
-                                   
+
                                 </div>
                             </div>
                         @else
@@ -388,5 +385,15 @@
             });
         });
         </script>
+          @push('scripts')
+          <script>
+              document.addEventListener('DOMContentLoaded', function () {
+                  Livewire.on('refreshBids', () => {
+                      Livewire.emit('refreshComponent');
+                  });
+              });
+          </script>
+      @endpush
     
 @endsection
+
