@@ -213,9 +213,11 @@
                                                         <span
                                                             class="badge badge-warning text-white">{{ $bid->status }}</span>
                                                             @if (auth()->id() === $bid->user_id && $bid->edit_count < 3)
-                                                            <button id="editButton" wire:click.prevent="startEditing" class="btn btn-sm btn-secondary">
+                                                            <button id="editButton" class="btn btn-sm btn-secondary">
                                                                 <i class="fa fa-pencil" aria-hidden="true"></i>
                                                             </button>
+                                                            
+                                                            
                                                                                                  
                                                         @endif
                                                 </div>
@@ -239,14 +241,13 @@
                         @endphp
                     
                       
-                        <div >
-                            @livewire('edit-bid', ['bid' => $bid])
-                        </div>
+                    <div id="editForm" style="display: none;">
+                        @livewire('edit-bid', ['bid' => $bid])
+                    </div>
+                    
                  
                  
-                        @if (!$userHasMadeBid && auth()->user()->id !== $job->user_id)
-                       
-
+                        @if (!$userHasMadeBid && auth()->user()->id !== $job->user_id)                    
                             <div class="_wrap_box_slice">
                                 <div class="_job_detail_single">
                                     <h4>{{ __('global.send_proposal') }}</h4>
@@ -302,9 +303,6 @@
 
 
                                     </form>
-                                       
-                           
-
                                 </div>
                             </div>
                         @else
@@ -432,15 +430,12 @@
         });
     </script>
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Ako koristite Livewire, osigurajte da se ovo izvršava nakon što se Livewire skripte učitaju
-            window.livewire.on('startEditing', () => {
-                console.log('Editing mode started');
-                var editForm = document.getElementById('editForm');
-                if (editForm) {
-                    editForm.style.display = 'block'; // Ovaj red prikazuje formu
-                }
+        $(document).ready(function() {
+            $('#editButton').click(function() {
+                var displayStatus = $('#editForm').css('display');
+                $('#editForm').css('display', displayStatus === 'none' ? 'block' : 'none');
             });
         });
-    </script>
+        </script>
+    
 @endsection
