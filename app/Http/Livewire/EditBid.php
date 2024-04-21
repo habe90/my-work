@@ -38,16 +38,16 @@ class EditBid extends Component
     public function updateBid()
     {
         $this->validate();
-
+    
         $this->bid->update([
             'amount' => $this->amount,
             'comment' => $this->comment,
             'edit_count' => $this->bid->edit_count + 1,
         ]);
-
-        $this->isEditing = false; // Deaktivacija uređivanja
+    
+        $this->isEditing = false;
         $this->emit('alert', ['type' => 'success', 'message' => 'Ponuda je uspješno ažurirana.']);
-        $this->emitTo('show-bids', 'refreshBids');  // Emitovanje događaja ka komponenti 'show-bids'
+        $this->emit('refreshBids'); // Ovde emitujete event koji će osvježiti prikaz ponuda.
     }
 
 
