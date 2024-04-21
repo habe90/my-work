@@ -237,9 +237,10 @@
                             @endif
                         </div>
                         @if (!$userHasMadeBid && auth()->user()->id !== $job->user_id)
-                            @php
-                                $editCondition = session('isEditing', true);
-                            @endphp
+                        @php
+                        $isEditing = session('isEditing', false); // Ako session ne sadrži 'isEditing', pretpostavi da je false
+                    @endphp
+                    
                          
 
                             <div class="_wrap_box_slice">
