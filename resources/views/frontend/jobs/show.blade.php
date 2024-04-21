@@ -243,11 +243,10 @@
                                 <div class="_job_detail_single">
                                     <h4>{{ __('global.send_proposal') }}</h4>
                                  
-                                    @if ($isEditing)
-                                    <div id="editForm" style="display: none;">
+                                  
+                            
                                         @livewire('edit-proposal-component', ['bid' => $bid])
-                                    </div>
-                                @endif
+                               
                                 
                                 
                             
