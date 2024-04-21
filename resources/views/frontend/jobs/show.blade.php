@@ -18,7 +18,7 @@
                                 <img src="{{ $job->featured_image }}" class="img-fluid" alt="" />
                             </div>
                             <div class="_jb_details01_authors_caption">
-                                <h4 class="jbs_title">{{ $job->title }}<img src="assets/img/verify.svg" class="ml-1"
+                                <h4 class="jbs_title">{{ $job->title }}<img src="{{ asset('frontend/img/verify.svg') }}" class="ml-1"
                                         width="12" alt=""></h4>
                                 <ul class="jbx_info_list">
                                     <li><span><i class="ti-briefcase"></i>
