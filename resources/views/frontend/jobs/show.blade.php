@@ -54,12 +54,10 @@
                             <div class="_jb_details01_last">
                                 <ul class="_flex_btn">
                                     <li>
-                                        <button type="button" id="bookmark-btn"
-                                            class="_saveed_jb {{ $isBookmarked ? 'bookmarked' : '' }}"
-                                            data-job-id="{{ $job->id }}"
-                                            data-bookmarked="{{ $isBookmarked ? 'true' : 'false' }}">
+                                        <button type="button" id="bookmark-btn" class="_saveed_jb {{ $isBookmarked ? 'bookmarked' : '' }}" data-job-id="{{ $job->id }}" data-bookmarked="{{ $isBookmarked ? 'true' : 'false' }}">
                                             <i class="fa fa-heart {{ $isBookmarked ? 'fas' : 'far' }}"></i>
                                         </button>
+                                        
                                     </li>
                                 </ul>
                             </div>
@@ -328,6 +326,16 @@
     $('#editButton').on('click', function() {
         $('#editForm').toggle();
     });
+
+    var isBookmarked = $('#bookmark-btn').hasClass('bookmarked');
+    var $icon = $('#bookmark-btn').find('i');
+
+    // Postavljanje početne boje ikone na osnovu toga da li je posao bookmarkovan
+    if (isBookmarked) {
+        $icon.addClass('fas').removeClass('far').css('color', 'red');
+    } else {
+        $icon.addClass('far').removeClass('fas').css('color', 'white');
+    }
 
     // Logika za bookmark, koristeći AJAX
     $('#bookmark-btn').on('click', function() {
