@@ -27,7 +27,7 @@ class EditBid extends Component
     public function startEditing()
     {
         if ($this->bid->edit_count < 3) {
-            $this->isEditing = true; // Aktivira se uređivanje
+            $this->isEditing = true; // Samo postavljate način uređivanja
         } else {
             $this->emit('alert', ['type' => 'error', 'message' => 'Limit za izmjenu je dostignut.']);
         }
