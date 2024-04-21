@@ -213,9 +213,10 @@
                                                         <span
                                                             class="badge badge-warning text-white">{{ $bid->status }}</span>
                                                             @if (auth()->id() === $bid->user_id && $bid->edit_count < 3)
-                                                            <button wire:click.prevent="startEditing" class="btn btn-sm btn-secondary">
+                                                            <button id="editButton" wire:click.prevent="startEditing" class="btn btn-sm btn-secondary">
                                                                 <i class="fa fa-pencil" aria-hidden="true"></i>
                                                             </button>
+                                                                                                 
                                                         @endif
                                                 </div>
                                                 </div>
@@ -242,7 +243,9 @@
                                 <div class="_job_detail_single">
                                     <h4>{{ __('global.send_proposal') }}</h4>
                                     @if ($isEditing)
-                                    @livewire('edit-proposal-component', ['bid' => $bid])
+                                    <div id="editForm" style="display: none;">
+                                        @livewire('edit-proposal-component', ['bid' => $bid])
+                                    </div>
                                 @else
                                     <form class="proposal-form" method="POST" action="{{ route('proposals.store') }}">
                                         @csrf
@@ -423,4 +426,15 @@
             });
         });
     </script>
+    <script>
+        document.getElementById('editButton').addEventListener('click', function() {
+            var editForm = document.getElementById('editForm');
+            if (editForm.style.display === 'none') {
+                editForm.style.display = 'block';
+            } else {
+                editForm.style.display = 'none';
+            }
+        });
+        </script>
+        
 @endsection
