@@ -237,13 +237,13 @@
                         @php
                         $isEditing = session('isEditing', false);
                         @endphp
-                        @if ($isEditing)
+                    
                       
                         <div id="editForm" style="display: none;">
                             @livewire('edit-proposal-component', ['bid' => $bid])
                         </div>
                  
-                     @else
+                 
                         @if (!$userHasMadeBid && auth()->user()->id !== $job->user_id)
                        
 
@@ -312,7 +312,7 @@
                                 {{ __('global.offer_error_message') }}
                             </div>
                         @endif
-                        @endif
+                      
 
                     </div>
                 </div>
