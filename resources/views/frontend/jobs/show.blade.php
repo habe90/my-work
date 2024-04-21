@@ -430,14 +430,16 @@
         });
     </script>
     <script>
-    document.getElementById('editButton').addEventListener('click', function() {
-    var editForm = document.getElementById('editForm');
-    if (editForm.style.display === 'none') {
-        editForm.style.display = 'block';
-    } else {
-        editForm.style.display = 'none';
-    }
+   document.addEventListener('livewire:load', function() {
+    window.livewire.on('startEditing', () => {
+        console.log('Editing mode started');
+        var editForm = document.getElementById('editForm');
+        if (editForm) {
+            editForm.style.display = 'block';
+        }
+    });
 });
+
 
         </script>
         
