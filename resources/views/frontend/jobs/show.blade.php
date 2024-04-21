@@ -426,14 +426,17 @@
         });
     </script>
     <script>
-        document.getElementById('editButton').addEventListener('click', function() {
-            var editForm = document.getElementById('editForm');
-            if (editForm.style.display === 'none') {
-                editForm.style.display = 'block';
-            } else {
-                editForm.style.display = 'none';
-            }
+       document.addEventListener('DOMContentLoaded', function() {
+    const editButton = document.getElementById('editButton');
+    const editForm = document.getElementById('editForm');
+
+    if (editButton && editForm) {
+        editButton.addEventListener('click', function() {
+            editForm.style.display = (editForm.style.display === 'none' ? 'block' : 'none');
         });
+    }
+});
+
         </script>
         
 @endsection
