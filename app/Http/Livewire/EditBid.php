@@ -10,6 +10,7 @@ class EditBid extends Component
     public Bid $bid;
     public $amount;
     public $comment;
+    public $isEditing = false; // Dodavanje ove varijable
 
     protected $rules = [
         'amount' => 'required|numeric',
@@ -23,14 +24,18 @@ class EditBid extends Component
         $this->comment = $bid->comment;
     }
 
+    public function startEditing()
+    {
+        if ($this->bid->edit_count < 3) {
+            $this->isEditing = true; // Aktivira se uređivanje
+        } else {
+            $this->emit('alert', ['type' => 'error', 'message' => 'Limit za izmjenu je dostignut.']);
+        }
+    }
+
     public function updateBid()
     {
         $this->validate();
-
-        if ($this->bid->edit_count >= 3) {
-            $this->emit('alert', ['type' => 'error', 'message' => 'Limit za izmjenu je dostignut.']);
-            return;
-        }
 
         $this->bid->update([
             'amount' => $this->amount,
@@ -38,6 +43,7 @@ class EditBid extends Component
             'edit_count' => $this->bid->edit_count + 1,
         ]);
 
+        $this->isEditing = false; // Deaktivacija uređivanja
         $this->emit('alert', ['type' => 'success', 'message' => 'Ponuda je uspješno ažurirana.']);
     }
 

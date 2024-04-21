@@ -1,11 +1,10 @@
 @extends('frontend.layouts.front')
 @section('content')
-<style>
-    ._job_detail_single ul li:before{
-    content: none;
-}
-
-</style>
+    <style>
+        ._job_detail_single ul li:before {
+            content: none;
+        }
+    </style>
     <!-- ============================ Page Title Start================================== -->
     <div class="page-title search-form dark">
         <div class="container">
@@ -31,12 +30,13 @@
                                 </ul>
                                 <ul class="jbx_info_list">
                                     <li>
-                                        <div class="jb_types {{ $job->status == 'active' ? 'fulltime' : ($job->status == 'pending' ? 'urgent' : '') }}">
+                                        <div
+                                            class="jb_types {{ $job->status == 'active' ? 'fulltime' : ($job->status == 'pending' ? 'urgent' : '') }}">
                                             {{ $job->status }}
                                         </div>
                                     </li>
                                 </ul>
-                                
+
                             </div>
                         </div>
 
@@ -87,7 +87,7 @@
                                         @endphp
                                         @if ($additionalDetails)
                                             @foreach ($additionalDetails as $detailKey => $detailValue)
-                                                @if ($detailKey != 'service_type') 
+                                                @if ($detailKey != 'service_type')
                                                     <div class="col-lg-4 col-md-6 col-sm-12">
                                                         <div class="_eltio_caption">
                                                             <div class="_eltio_caption_icon">
@@ -108,15 +108,17 @@
                                                             <div class="_eltio_caption_body">
                                                                 @if (is_array($detailValue))
                                                                     @foreach ($detailValue as $subKey => $subValue)
-                                                                        <h4>{{ ucfirst(str_replace('_', ' ', $subKey)) }}</h4>
-                                                                        <span>{{ str_replace('_', ' ', $subValue) }}</span> 
+                                                                        <h4>{{ ucfirst(str_replace('_', ' ', $subKey)) }}
+                                                                        </h4>
+                                                                        <span>{{ str_replace('_', ' ', $subValue) }}</span>
                                                                     @endforeach
                                                                 @else
-                                                                    <h4>{{ ucfirst(str_replace('_', ' ', $detailKey)) }}</h4>
+                                                                    <h4>{{ ucfirst(str_replace('_', ' ', $detailKey)) }}
+                                                                    </h4>
                                                                     <span>{{ str_replace('_', ' ', $detailValue) }}</span>
                                                                 @endif
                                                             </div>
-                                                            
+
                                                         </div>
                                                     </div>
                                                 @endif
@@ -125,7 +127,8 @@
                                                 <div class="col-lg-4 col-md-6 col-sm-12">
                                                     <div class="_eltio_caption">
                                                         <div class="_eltio_caption_icon">
-                                                            <i class="ti-list" style="top: -30px;
+                                                            <i class="ti-list"
+                                                                style="top: -30px;
                                                                 position: relative;"></i>
                                                         </div>
                                                         <div class="_eltio_caption_body">
@@ -197,7 +200,8 @@
                                                                 @endif
                                                             @endfor
                                                             <a href="#" class="over_reviews_count">
-                                                                ({{ $bid->user->reviews_count }} {{ __('panel.reviews') }} )
+                                                                ({{ $bid->user->reviews_count }}
+                                                                {{ __('panel.reviews') }})
                                                             </a>
                                                         </div>
                                                     </div>
@@ -208,13 +212,14 @@
                                                         <span>{{ $bid->created_at->diffForHumans() }}</span>
                                                         <span
                                                             class="badge badge-warning text-white">{{ $bid->status }}</span>
-                                                            @if (auth()->id() === $bid->user_id && $bid->edit_count < 3)
-                                                            <button wire:click="edit({{ $bid->id }})" class="btn btn-sm btn-secondary">
-                                                                <i class="fa fa-pencil" aria-hidden="true"></i> 
+                                                        @if (auth()->id() === $bid->user_id && $bid->edit_count < 3)
+                                                            <button wire:click="edit({{ $bid->id }})"
+                                                                class="btn btn-sm btn-secondary">
+                                                                <i class="fa fa-pencil" aria-hidden="true"></i>
                                                             </button>
                                                         @endif
 
-                                                        
+
                                                     </div>
                                                 </div>
                                             </div>
@@ -232,9 +237,17 @@
                             @endif
                         </div>
                         @if (!$userHasMadeBid && auth()->user()->id !== $job->user_id)
+                            @php
+                                $editCondition = session('isEditing', false);
+                            @endphp
+                         
+
                             <div class="_wrap_box_slice">
                                 <div class="_job_detail_single">
                                     <h4>{{ __('global.send_proposal') }}</h4>
+                                    @if ($isEditing)
+                                    @livewire('edit-proposal-component', ['bid' => $bid])
+                                @else
                                     <form class="proposal-form" method="POST" action="{{ route('proposals.store') }}">
                                         @csrf
                                         <input type="hidden" name="job_id" value="{{ $job->id }}">
@@ -286,6 +299,9 @@
 
 
                                     </form>
+                                       
+@endif
+
                                 </div>
                             </div>
                         @else
@@ -310,16 +326,16 @@
                         </div>
 
                         <!-- Ovdje počinje galerija slika -->
-                                        
-                    <div class="_jb_summary_thumb">
-                        @foreach ($job->getMedia('image_gallery') as $image)
-                            <a href="{{ $image->getUrl() }}" data-lightbox="job-gallery" data-title="Gallery Image">
-                                <div class="gallery-image">
-                                    <img src="{{ $image->getUrl() }}" class="img-fluid" alt="" />
-                                </div>
-                            </a>
-                        @endforeach
-                    </div>
+
+                        <div class="_jb_summary_thumb">
+                            @foreach ($job->getMedia('image_gallery') as $image)
+                                <a href="{{ $image->getUrl() }}" data-lightbox="job-gallery" data-title="Gallery Image">
+                                    <div class="gallery-image">
+                                        <img src="{{ $image->getUrl() }}" class="img-fluid" alt="" />
+                                    </div>
+                                </a>
+                            @endforeach
+                        </div>
                         <!-- Kraj galerije slika -->
 
                     </div>
