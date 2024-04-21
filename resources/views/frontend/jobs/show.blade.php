@@ -152,20 +152,7 @@
                             <div class="_job_detail_single">
                                 <h4>{{ __('global.job_desc') }}</h4>
                                 <p>{!! $job->description !!}</p>
-                            </div>
-
-                            {{-- <div class="_job_detail_single flexeo">
-                                <div class="_job_detail_single_flex">
-                                    <ul class="shares_jobs">
-                                        <li>{{ __('global.share_link') }}</li>
-                                        <li><a href="https://www.facebook.com/sharer/sharer.php?u={{ urlencode(Request::fullUrl()) }}"
-                                                target="_blank" class="share fb"><i class="fa fa-facebook"></i></a></li>
-                                        <li><a href="https://twitter.com/share?url={{ urlencode(Request::fullUrl()) }}&text={{ urlencode('Pogledajte ovaj posao na našoj stranici: ' . $job->title) }}"
-                                                target="_blank" class="share tw"><i class="fa fa-twitter"></i></a></li>
-                                      
-                                    </ul>
-                                </div>
-                            </div> --}}
+                            </div>        
                         </div>
 
                         <div class="_wrap_box_slice">,
@@ -383,12 +370,13 @@
     </script>
     <script>
         var translations = {
-            removedTitle: "{{ __('bookmarks.removed_title') }}",
-            removedText: "{{ __('bookmarks.removed_text') }}",
-            addedTitle: "{{ __('bookmarks.added_title') }}",
-            addedText: "{{ __('bookmarks.added_text') }}",
-            buttonText: "{{ __('general.ok') }}"
+            removedTitle: "{{ __('messages.removed_title') }}",
+            removedText: "{{ __('messages.removed_text') }}",
+            addedTitle: "{{ __('messages.added_title') }}",
+            addedText: "{{ __('messages.added_text') }}",
+            buttonText: "{{ __('messages.ok') }}"
         };
-    </script>   
+    </script>
+
 @endsection
 

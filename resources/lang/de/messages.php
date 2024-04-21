@@ -18,6 +18,11 @@ return [
     'submit_documents' => 'Sie haben keine Dokumente zur Verifizierung eingereicht. Bitte reichen Sie Ihre Dokumente ein',
     'here' => 'hier',
     'user_not_verified' => 'Ihr Konto wurde noch nicht verifiziert. Bitte überprüfen Sie Ihre Dokumente.',
-    'bid_successfully_sent' => 'Ihr Angebot wurde erfolgreich gesendet!'
+    'bid_successfully_sent' => 'Ihr Angebot wurde erfolgreich gesendet!',
+    'removed_title' => 'Entfernt!',
+    'removed_text' => 'Der Job wurde aus Ihren Lesezeichen entfernt.',
+    'added_title' => 'Hinzugefügt!',
+    'added_text' => 'Der Job wurde zu Ihren Lesezeichen hinzugefügt.',
+    'ok' => 'In Ordnung'
 
 ];

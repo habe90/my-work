@@ -20,5 +20,10 @@ return [
     'here' => 'here',
     'user_not_verified' => 'Your account has not been verified yet. Please verify your documents.',
     'bid_successfully_sent' => 'Your bid has been sent successfully!',
+    'removed_title' => 'Removed!',
+    'removed_text' => 'The job has been removed from your bookmarks.',
+    'added_title' => 'Added!',
+    'added_text' => 'The job has been added to your bookmarks.',
+    'ok' => 'OK'
 
 ];
