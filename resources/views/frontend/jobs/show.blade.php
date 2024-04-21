@@ -243,9 +243,13 @@
                                 <div class="_job_detail_single">
                                     <h4>{{ __('global.send_proposal') }}</h4>
                                  
+                                    @if ($isEditing)
                                     <div id="editForm" style="display: none;">
                                         @livewire('edit-proposal-component', ['bid' => $bid])
                                     </div>
+                                @endif
+                                
+                                
                             
                                     <form class="proposal-form" method="POST" action="{{ route('proposals.store') }}">
                                         @csrf
@@ -426,15 +430,14 @@
         });
     </script>
     <script>
-     document.addEventListener('livewire:load', function() {
-    window.livewire.on('closeForm', () => {
-        const editForm = document.getElementById('editForm');
-        if (editForm) {
-            editForm.style.display = 'none';
-        }
-    });
+    document.getElementById('editButton').addEventListener('click', function() {
+    var editForm = document.getElementById('editForm');
+    if (editForm.style.display === 'none') {
+        editForm.style.display = 'block';
+    } else {
+        editForm.style.display = 'none';
+    }
 });
-
 
         </script>
         
