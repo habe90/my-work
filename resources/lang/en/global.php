@@ -17,7 +17,10 @@ return [
     'agree_terms' => 'I agree to the terms and conditions',
     'terms_and_conditions_link' => 'https://example.com/en/terms',
     'terms_and_conditions' => 'Terms and Conditions',
-    'send_proposal' => 'Send Proposal'
+    'send_proposal' => 'Send Proposal',
+    'bid_amount' => 'Amount',
+    'comment' => 'Comment',
+    'update_offer' => 'Update Offer',
 
     
     ],

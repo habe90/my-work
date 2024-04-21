@@ -24,6 +24,9 @@ return [
     'terms_and_conditions_link' => 'https://example.com/de/terms',
     'terms_and_conditions' => 'Allgemeine Geschäftsbedingungen',
     'send_proposal' => 'Vorschlag senden',
+    'bid_amount' => 'Betrag',
+    'comment' => 'Kommentar',
+    'update_offer' => 'Angebot aktualisieren',
 
     'client-nav' => [
         'dashboard' => 'Dashboard',
