@@ -234,24 +234,21 @@
                                 </div>
                             @endif
                         </div>
-                        
-                        @if ($isEditing)
-                        <div id="editForm" style="display: none;">
-                            @livewire('edit-proposal-component', ['bid' => $bid])
-                        </div>
-                    @endif
-                        @if (!$userHasMadeBid && auth()->user()->id !== $job->user_id)
                         @php
                         $isEditing = session('isEditing', false);
                         @endphp
+                        @if ($isEditing)
+                        <div id="editForm" style="display: none;">
+                             @livewire('edit-proposal-component', ['bid' => $bid])
+                         </div>
+                     @else
+                        @if (!$userHasMadeBid && auth()->user()->id !== $job->user_id)
+                       
 
                             <div class="_wrap_box_slice">
                                 <div class="_job_detail_single">
                                     <h4>{{ __('global.send_proposal') }}</h4>
-                                 
-                                
-                                
-                            
+                               
                                     <form class="proposal-form" method="POST" action="{{ route('proposals.store') }}">
                                         @csrf
                                         <input type="hidden" name="job_id" value="{{ $job->id }}">
@@ -305,12 +302,14 @@
                                     </form>
                                        
                            
+
                                 </div>
                             </div>
                         @else
                             <div class="alert alert-success" role="alert">
                                 {{ __('global.offer_error_message') }}
                             </div>
+                        @endif
                         @endif
 
                     </div>
@@ -426,18 +425,6 @@
                         icon: 'error',
                         confirmButtonText: 'In Ordnung'
                     });
-                }
-            });
-        });
-    </script>
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Ako koristite Livewire, osigurajte da se ovo izvršava nakon što se Livewire skripte učitaju
-            window.livewire.on('startEditing', () => {
-                console.log('Editing mode started');
-                var editForm = document.getElementById('editForm');
-                if (editForm) {
-                    editForm.style.display = 'block'; // Ovaj red prikazuje formu
                 }
             });
         });
