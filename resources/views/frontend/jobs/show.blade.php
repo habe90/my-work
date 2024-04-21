@@ -234,6 +234,12 @@
                                 </div>
                             @endif
                         </div>
+                        
+                        @if ($isEditing)
+                        <div id="editForm" style="display: none;">
+                            @livewire('edit-proposal-component', ['bid' => $bid])
+                        </div>
+                    @endif
                         @if (!$userHasMadeBid && auth()->user()->id !== $job->user_id)
                         @php
                         $isEditing = session('isEditing', false);
@@ -243,10 +249,6 @@
                                 <div class="_job_detail_single">
                                     <h4>{{ __('global.send_proposal') }}</h4>
                                  
-                                  
-                            
-                                        @livewire('edit-proposal-component', ['bid' => $bid])
-                               
                                 
                                 
                             
