@@ -238,7 +238,7 @@
                         </div>
                         @if (!$userHasMadeBid && auth()->user()->id !== $job->user_id)
                             @php
-                                $editCondition = session('isEditing', false);
+                                $editCondition = session('isEditing', true);
                             @endphp
                          
 
