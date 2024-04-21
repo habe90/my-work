@@ -30,6 +30,22 @@ class ShowBids extends Component
         ])->findOrFail($jobId);
     }
 
+    public function getListeners()
+    {
+        return [
+            "echo:bid.{$this->bid->id},BidUpdated" => 'refreshComponent',
+        ];
+    }
+
+    
+    public function refreshComponent()
+    {
+        // Ova metoda će se pozvati kada se emituje BidUpdated event za bid sa određenim ID-om
+        // Ovdje možete dodati logiku za osvježavanje komponente, na primjer:
+        $this->job->refresh();
+    }
+
+
     public function acceptBid($bidId)
     {
         $bid = Bid::find($bidId);
