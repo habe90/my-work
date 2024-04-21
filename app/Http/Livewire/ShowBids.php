@@ -14,6 +14,7 @@ class ShowBids extends Component
 {
     public $job;
     protected $listeners = ['refreshComponent' => '$refresh'];
+    
 
     public function mount($jobId)
     {
@@ -26,25 +27,26 @@ class ShowBids extends Component
 
     public function acceptBid($bidId)
     {
-        $bid = Bid::find($bidId);
-        
-        if ($bid) {
+        DB::beginTransaction();
+        try {
+            $bid = Bid::find($bidId);
+            if (!$bid) {
+                throw new \Exception('Bid not found');
+            }
+
             $bid->status = 'accepted';
             $conversationId = $this->findOrCreateConversation($bid->user_id, $bidId);
             $bid->conversation_id = $conversationId;
             $bid->save();
 
-            $userLocale = $bid->user->locale ?? app()->getLocale();
-            $message = __('front.bid_accepted', ['bidId' => $bidId], $userLocale);
-
-            // Slanje automatske poruke korisniku
             $this->sendAutomaticMessage($conversationId, $message);
+            DB::commit();
 
-            // Emitovanje osvježavanja komponente
             $this->emit('refreshComponent');
-
-            // Osvježavanje stranice za prikaz promjena
-            $this->emitTo('show-bids', 'refreshComponent');
+        } catch (\Exception $e) {
+            DB::rollback();
+            // handle error, e.g. emit error message
+            $this->emit('error', $e->getMessage());
         }
     }
 
